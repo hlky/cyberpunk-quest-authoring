@@ -1,0 +1,22 @@
+[book]
+authors = ["hlky and contributors"]
+description = "First-principles documentation for Cyberpunk 2077 quest and scene authoring."
+language = "en"
+src = "src"
+title = "Cyberpunk 2077 Quest Authoring"
+
+[build]
+build-dir = "site"
+create-missing = false
+
+[output.html]
+additional-css = ["theme/questbook.css"]
+edit-url-template = "https://github.com/hlky/cyberpunk-quest-authoring/edit/main/book/{path}"
+git-repository-icon = "fab-github"
+git-repository-url = "https://github.com/hlky/cyberpunk-quest-authoring"
+site-url = "/cyberpunk-quest-authoring/"
+
+[output.html.search]
+enable = true
+limit-results = 30
+use-boolean-and = true

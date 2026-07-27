@@ -1,0 +1,76 @@
+name: Book
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/pages.yml"
+      - "book/**"
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "STYLE.md"
+      - "HANDOFF.md"
+  pull_request:
+    paths:
+      - ".github/workflows/pages.yml"
+      - "book/**"
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "STYLE.md"
+      - "HANDOFF.md"
+  workflow_dispatch:
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  MDBOOK_VERSION: "0.5.4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install mdBook
+        shell: bash
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            --output mdbook.tar.gz
+          tar -xzf mdbook.tar.gz
+          chmod +x mdbook
+
+      - name: Build book
+        run: ./mdbook build book
+
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: book/site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

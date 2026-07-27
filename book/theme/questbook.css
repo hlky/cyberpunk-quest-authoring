@@ -1,0 +1,41 @@
+:root {
+  --quest-entry: #6b7280;
+  --quest-gate: #d89b2b;
+  --quest-fact: #8b5cf6;
+  --quest-journal: #2f9e69;
+  --quest-action: #3b82f6;
+  --quest-world: #159a9c;
+  --quest-scene: #d95b8c;
+  --quest-danger: #dc4c4c;
+}
+
+.evidence {
+  border-left: 0.3rem solid var(--quest-entry);
+  margin: 1rem 0;
+  padding: 0.7rem 1rem;
+}
+
+.evidence.runtime-proven {
+  border-left-color: var(--quest-journal);
+}
+
+.evidence.structurally-validated {
+  border-left-color: var(--quest-action);
+}
+
+.evidence.observed-in-vanilla {
+  border-left-color: var(--quest-gate);
+}
+
+.evidence.experimental {
+  border-left-color: var(--quest-danger);
+}
+
+.content img[src$=".svg"] {
+  height: auto;
+  max-width: 100%;
+}
+
+.table-wrapper table {
+  width: 100%;
+}
