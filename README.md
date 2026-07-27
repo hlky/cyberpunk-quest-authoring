@@ -41,13 +41,12 @@ The generated site is written to `book/site` and is ignored by Git.
 ## Publishing
 
 `.github/workflows/pages.yml` builds pull requests and deploys `main` through
-GitHub Pages. After the GitHub repository is created, configure Pages to use
-**GitHub Actions** as its source.
+GitHub Pages.
 
-The intended repository URL is:
+The repository is hosted at:
 
 `https://github.com/hlky/cyberpunk-quest-authoring`
 
-The intended Pages URL is:
+The published book is available at:
 
 `https://hlky.github.io/cyberpunk-quest-authoring/`
