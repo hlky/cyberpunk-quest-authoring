@@ -530,11 +530,17 @@ def build_localization() -> dict[str, Any]:
     }
 
 
+def native_float(value: float) -> float:
+    """Canonicalize a generated coordinate to the resource's 32-bit float."""
+
+    return struct.unpack("<f", struct.pack("<f", value))[0]
+
+
 def circle_points(radius: float, count: int) -> list[tuple[float, float, float]]:
     return [
         (
-            math.cos(2 * math.pi * index / count) * radius,
-            math.sin(2 * math.pi * index / count) * radius,
+            native_float(math.cos(2 * math.pi * index / count) * radius),
+            native_float(math.sin(2 * math.pi * index / count) * radius),
             0,
         )
         for index in range(count)
