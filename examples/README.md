@@ -12,4 +12,9 @@ Each example should:
   output; and
 - use stable resource paths that do not depend on Ghostline.
 
-The first planned examples are listed in [`../HANDOFF.md`](../HANDOFF.md).
+Implemented examples:
+
+- [`lab-01-one-shot`](lab-01-one-shot/README.md): start and completed
+  checkpoints for the `cqa001` one-shot quest.
+
+The longer release sequence remains in [`../HANDOFF.md`](../HANDOFF.md).

@@ -1,17 +1,38 @@
 # Foundations
 
-This section explains the shared concepts needed by every later tutorial.
+Native quests are not one file format. A questphase coordinates resources that
+have different owners, identifiers, loading rules, and persistence behavior.
+The foundations establish those boundaries before a tutorial asks you to edit a
+graph.
 
-Planned subjects:
+Read these chapters in order:
 
-- resource ownership and depot paths;
-- graph nodes, sockets, ordinals, and execution;
-- CR2W handles versus NodeRefs and other identifier domains;
-- facts and persistent state;
-- parent and child questphases;
-- normal execution versus cut/interrupt paths;
-- completion, cleanup, and re-entry;
-- structural validation versus runtime proof.
+1. [Resources and ownership](resource-model.md)
+2. [Graph execution](graph-execution.md)
+3. [Identifier domains](identifier-domains.md)
+4. [Facts, journals, and saves](persistent-state.md)
+5. [Root and child questphases](phase-composition.md)
+6. [Lifecycle, cleanup, and evidence](lifecycle-and-evidence.md)
 
-Large serialized resources will be represented with focused excerpts, diagrams,
-and property tables rather than complete JSON dumps.
+Afterward you should be able to answer:
+
+- which resource owns a behavior;
+- whether an identifier names an object, a world location, or a lookup key;
+- whether a node evaluates now or waits;
+- which state survives a save and reload;
+- where a parent phase ends and a child phase begins;
+- what serialization, packing, and runtime tests each prove.
+
+The chapters use small excerpts from the mod-owned `cqa001` example. They cite
+vanilla depot paths where useful but do not redistribute extracted game
+resources.
+
+## Evidence boundary
+
+The resource relationships and CR2W structures shown here are
+**Structurally validated** with WolvenKit 8.19.0. Save persistence and selected
+quest lifecycle behavior are **Runtime-proven** in isolated research fixtures.
+Any rule supported only by a particular vanilla resource is labeled
+**Observed in vanilla** instead of being presented as a universal invariant.
+
+See [Tested versions](../reference/tested-versions.md) for the current baseline.

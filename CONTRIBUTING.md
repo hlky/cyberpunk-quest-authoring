@@ -9,6 +9,12 @@ Before contributing, read:
 - [STYLE.md](STYLE.md) for the editorial and visual contract;
 - [AGENTS.md](AGENTS.md) for repository guardrails.
 
+## License of contributions
+
+By contributing, you agree that prose, diagrams, and example-project material
+may be distributed under CC BY 4.0 and that contributions under `scripts/` may
+be distributed under the MIT License. See [LICENSE.md](LICENSE.md).
+
 ## Chapter requirements
 
 A hands-on chapter should contain:

@@ -19,3 +19,9 @@ Planned references:
 
 The reference will cite vanilla resources but will not redistribute extracted
 game files.
+
+Implemented references:
+
+- [Tested versions](tested-versions.md)
+- [Tutorial namespace](tutorial-namespace.md)
+- [Exact graph contract](graph-contract.md)

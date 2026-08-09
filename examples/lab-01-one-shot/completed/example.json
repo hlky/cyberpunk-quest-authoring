@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "cqa001",
+  "title": "First Signal",
+  "book_chapter": "book/src/start-here/lab-01.md",
+  "tested": {
+    "date": "2026-07-27",
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0"
+  },
+  "depot_paths": [
+    "mod\\cqa\\cqa001\\phases\\cqa001.questphase",
+    "mod\\cqa\\cqa001\\journal\\cqa001.journal",
+    "mod\\cqa\\cqa001\\localization\\en-us\\onscreens\\cqa001.json"
+  ],
+  "persistent_facts": [
+    "cqa001_completed"
+  ],
+  "evidence": {
+    "structure": "structurally-validated",
+    "runtime": "experimental"
+  }
+}

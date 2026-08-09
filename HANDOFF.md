@@ -44,16 +44,20 @@ The local repository is initialized at:
 It has:
 
 - a `main` branch;
-- no remote and no commits;
+- a public `origin` at
+  `https://github.com/hlky/cyberpunk-quest-authoring.git`;
+- an initial publication history pushed to `main`;
 - an mdBook configuration;
 - GitHub Pages build/deploy automation;
+- a confirmed published base URL at
+  `https://hlky.github.io/cyberpunk-quest-authoring/`;
 - contributor and style guidance;
 - chapter landing pages matching the planned information architecture;
-- empty `examples`, `assets/diagrams`, and `scripts` areas for later work.
-
-No GitHub repository has been created yet. Creating the public remote,
-configuring Pages to use GitHub Actions, selecting a license, and making the
-initial commit remain explicit next actions.
+- CC BY 4.0 licensing for prose, diagrams, and examples plus MIT licensing for
+  scripts;
+- the pinned first-release version set;
+- a designed and structurally validated Lab 1 reference project;
+- a deterministic CR2W-JSON graph renderer and first exact SVG.
 
 ## Research evidence available in Ghostline
 
@@ -362,6 +366,11 @@ longer matches the example project.
 Do not begin with a contact scene or full narrative quest. The first complete
 release should contain five incremental labs.
 
+Before extending the lab sequence, complete the shared Foundations chapters:
+resource ownership, graph execution, identifier domains, persistent state,
+root/child phase composition, and lifecycle/evidence. Labs may link back to
+those concepts instead of redefining them.
+
 ### Lab 1 — One-shot minimal quest
 
 ```text
@@ -546,10 +555,10 @@ The book currently uses mdBook `0.5.4` in CI.
 
 The GitHub Pages workflow follows the artifact deployment model:
 
-- `actions/checkout@v6`
-- `actions/configure-pages@v5`
-- `actions/upload-pages-artifact@v4`
-- `actions/deploy-pages@v4`
+- `actions/checkout@v7`
+- `actions/configure-pages@v6`
+- `actions/upload-pages-artifact@v5`
+- `actions/deploy-pages@v5`
 
 Pull requests build the book without deploying. Pushes to `main` and manual
 workflow runs build and deploy.
@@ -558,30 +567,50 @@ The workflow intentionally does not force-push a generated `gh-pages` branch.
 
 ## Immediate next actions
 
-1. Choose a documentation/code license. A likely combination is CC BY 4.0 for
-   prose and diagrams plus MIT for scripts, but this requires an explicit owner
-   decision.
-2. Create `hlky/cyberpunk-quest-authoring` on GitHub.
-3. Add the remote and make the initial commit.
-4. Enable GitHub Pages with **GitHub Actions** as the source.
-5. Confirm the published base URL and repository edit links.
-6. Choose the neutral tutorial namespace and IDs.
-7. Pin the initial tested Cyberpunk, WolvenKit, ArchiveXL, and RED4ext versions.
-8. Design Lab 1's journal tree and minimal questphase before creating CR2W
-   resources.
-9. Decide the exact graph-rendering input contract.
-10. Build the first deterministic SVG from the Lab 1 questphase.
-11. Write the complete Lab 1 chapter against both start and completed projects.
-12. Ask the Cyberpunk Modding Docs maintainers to add the published book to
-    their navigation when Lab 1 is usable.
+Completed on 2026-07-27:
 
-## Open decisions
+1. Applied CC BY 4.0 to prose, diagrams, and example projects and MIT to
+   scripts.
+2. Confirmed the public repository, pushed `main`, GitHub Actions Pages source,
+   published base URL, and edit links.
+3. Chose `cqa` as the neutral tutorial namespace and `cqa001` as Lab 1.
+4. Pinned Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, and
+   RED4ext `1.30.0`.
+5. Designed Lab 1's journal tree and root questphase.
+6. Selected CR2W-JSON plus layout-only overrides as the exact graph contract.
+7. Built the first deterministic SVG from the Lab 1 questphase and enforced a
+   source fingerprint.
+8. Added start and completed WolvenKit checkpoints and began the Lab 1 chapter.
+9. Filled out the shared Foundations and placed them before Lab 1 in the
+   reading order.
+10. Filled the first Questphases pass: resource anatomy, root registration,
+    phase interfaces, external children, prefab dependencies, completion, and
+    cut obligations.
 
-- Documentation and script licenses.
-- Whether “The RED Questbook” appears as an informal subtitle.
-- Tutorial prefix, quest ID, and player-facing theme.
-- Whether exact diagrams use CR2W-JSON plus layout overrides or a normalized
-  graph manifest.
-- Whether release ZIPs are built automatically or attached manually at first.
-- Minimum supported WolvenKit and framework versions.
-- Whether translations live in this repository or in later sibling books.
+Next:
+
+1. Run the completed checkpoint in Cyberpunk 2077 2.31a on a clean save and
+   retain logs and hashes for the acceptance record.
+2. Fill Conditions and gates, then Journal/UI/localization, before designing
+   another lab.
+3. Complete the click-by-click WolvenKit authoring instructions, linking each
+   step to the relevant Foundation rather than repeating the engine model.
+4. Publish both automatically generated Lab 1 checkpoint ZIPs.
+5. Promote Lab 1 claims from experimental/structurally validated only where the
+   retained runtime evidence supports it.
+6. Ask the Cyberpunk Modding Docs maintainers to add the published book to
+   their navigation when Lab 1 is usable.
+
+## Resolved decisions
+
+- Prose, diagrams, and example projects use CC BY 4.0; scripts use MIT.
+- “The RED Questbook” is the informal subtitle.
+- Tutorials use prefix `cqa`; Lab 1 is `cqa001`, titled “First Signal.”
+- Exact diagrams use WolvenKit CR2W-JSON plus layout-only overrides and a
+  checked structural fingerprint.
+- Release ZIPs will be built automatically from the checked example projects.
+- The first release supports the exact pinned version set rather than claiming
+  compatibility with older WolvenKit or framework versions.
+- Translations are deferred until the English Lab 1 structure is stable; they
+  should use later sibling books rather than partially translated chapters in
+  this repository.

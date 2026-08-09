@@ -3,7 +3,7 @@ authors = ["hlky and contributors"]
 description = "First-principles documentation for Cyberpunk 2077 quest and scene authoring."
 language = "en"
 src = "src"
-title = "Cyberpunk 2077 Quest Authoring"
+title = "Cyberpunk 2077 Quest Authoring — The RED Questbook"
 
 [build]
 build-dir = "site"

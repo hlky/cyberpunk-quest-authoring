@@ -1,5 +1,7 @@
 # Cyberpunk 2077 Quest Authoring
 
+*The RED Questbook*
+
 This book explains how Cyberpunk 2077's native quest resources work together
 and how to author new quest content with WolvenKit and standard modding
 frameworks.
@@ -9,8 +11,10 @@ devices, combat, vehicles, and specialized systems. The goal is not to hide the
 engine behind a generator. The goal is to make the resource model
 understandable.
 
-The first complete tutorial is still being prepared. The current chapter pages
-record the intended scope and order.
+The first tutorial is being built around `cqa001`, a one-shot quest with no
+world, scene, actor, or device dependencies. Its stable resource design and
+exact graph are published before the manual authoring walkthrough so that
+structural claims remain reviewable.
 
 ## What this book will cover
 

@@ -15,3 +15,6 @@ Planned chapters:
 
 The first hands-on result will be a one-shot quest with one objective and no
 world, scene, NPC, or device dependencies.
+
+Read [Foundations](../foundations/index.md) before beginning
+[Lab 1: one-shot quest](lab-01.md).

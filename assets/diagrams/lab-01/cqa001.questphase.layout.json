@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "title": "cqa001 one-shot root questphase",
+  "source_fingerprint": "sha256:4f19c675ab57194ce73a007aca29c3c973e9c98f1129fc4cf05e756bfaeafa82",
+  "canvas": {
+    "width": 1390,
+    "height": 520
+  },
+  "nodes": {
+    "0": {
+      "x": 30,
+      "y": 70,
+      "width": 190,
+      "height": 92
+    },
+    "10": {
+      "x": 270,
+      "y": 70,
+      "width": 230,
+      "height": 92
+    },
+    "11": {
+      "x": 550,
+      "y": 70,
+      "width": 220,
+      "height": 92
+    },
+    "12": {
+      "x": 820,
+      "y": 70,
+      "width": 250,
+      "height": 92
+    },
+    "13": {
+      "x": 1120,
+      "y": 70,
+      "width": 230,
+      "height": 92
+    },
+    "14": {
+      "x": 1120,
+      "y": 330,
+      "width": 250,
+      "height": 92
+    },
+    "15": {
+      "x": 820,
+      "y": 330,
+      "width": 250,
+      "height": 92
+    },
+    "16": {
+      "x": 550,
+      "y": 330,
+      "width": 220,
+      "height": 92
+    },
+    "1": {
+      "x": 270,
+      "y": 330,
+      "width": 230,
+      "height": 92
+    }
+  }
+}

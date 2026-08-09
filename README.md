@@ -1,5 +1,7 @@
 # Cyberpunk 2077 Quest Authoring
 
+*The RED Questbook*
+
 First-principles documentation for Cyberpunk 2077 questphases, scenes,
 journals, world integration, localization, characters, devices, vehicles, and
 related gameplay systems.
@@ -13,14 +15,14 @@ frameworks.
 
 The repository contains:
 
-- an mdBook and GitHub Pages scaffold;
+- a published mdBook and GitHub Pages workflow;
 - the agreed information architecture;
 - editorial and diagram standards;
-- chapter landing pages;
+- complete first-pass Foundations chapters;
+- the pinned first-release toolchain and Lab 1 resource design;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
-The first complete tutorial and downloadable WolvenKit example project have
-not been authored yet.
+Lab 1 implementation is in progress under `examples/lab-01-one-shot`.
 
 ## Local preview
 
@@ -50,3 +52,9 @@ The repository is hosted at:
 The published book is available at:
 
 `https://hlky.github.io/cyberpunk-quest-authoring/`
+
+## License
+
+Prose, diagrams, and example projects are licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Scripts are licensed
+under the [MIT License](LICENSE-MIT). See [LICENSE.md](LICENSE.md) for scope.

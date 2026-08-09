@@ -1,0 +1,12 @@
+quest:
+  phases:
+  - path: mod\cqa\cqa001\phases\cqa001.questphase
+    parent: base\quest\cyberpunk2077.quest
+
+journal:
+- mod\cqa\cqa001\journal\cqa001.journal
+
+localization:
+  onscreens:
+    en-us:
+    - mod\cqa\cqa001\localization\en-us\onscreens\cqa001.json
