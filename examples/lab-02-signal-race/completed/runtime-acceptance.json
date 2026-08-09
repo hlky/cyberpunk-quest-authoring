@@ -1,0 +1,436 @@
+{
+  "schema_version": 3,
+  "example_id": "cqa002",
+  "status": "pending",
+  "evidence_class": "experimental",
+  "required_environment": {
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "candidates": [
+    {
+      "id": "canonical-mode-2",
+      "manifest": "example.json",
+      "source_state": {
+        "questphase_node_id": 11,
+        "fact_name": "cqa002_test_mode",
+        "set_exact_value": 2,
+        "canonical": true
+      },
+      "installed_files": [
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab02_SignalRace.archive",
+          "sha256": null
+        },
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab02_SignalRace.archive.xl",
+          "sha256": null
+        }
+      ],
+      "depot_paths": [
+        "mod\\cqa\\cqa002\\phases\\cqa002.questphase",
+        "mod\\cqa\\cqa002\\journal\\cqa002.journal",
+        "mod\\cqa\\cqa002\\localization\\en-us\\onscreens\\cqa002.json"
+      ]
+    },
+    {
+      "id": "source-edit-mode-1",
+      "manifest": "example.json",
+      "source_state": {
+        "questphase_node_id": 11,
+        "fact_name": "cqa002_test_mode",
+        "set_exact_value": 1,
+        "canonical": false
+      },
+      "installed_files": [
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab02_SignalRace.archive",
+          "sha256": null
+        },
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab02_SignalRace.archive.xl",
+          "sha256": null
+        }
+      ],
+      "depot_paths": [
+        "mod\\cqa\\cqa002\\phases\\cqa002.questphase",
+        "mod\\cqa\\cqa002\\journal\\cqa002.journal",
+        "mod\\cqa\\cqa002\\localization\\en-us\\onscreens\\cqa002.json"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "canonical-clean",
+      "candidate_id": "canonical-mode-2",
+      "save_state": "untouched-preinstall",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "id": "canonical-mid-flow-reload",
+      "candidate_id": "canonical-mode-2",
+      "save_state": "mid-flow",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "id": "canonical-completed-reload",
+      "candidate_id": "canonical-mode-2",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "id": "canonical-reinstall",
+      "candidate_id": "canonical-mode-2",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "id": "canonical-clean-replay",
+      "candidate_id": "canonical-mode-2",
+      "save_state": "untouched-preinstall",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    },
+    {
+      "id": "source-edit-failure",
+      "candidate_id": "source-edit-mode-1",
+      "save_state": "untouched-preinstall",
+      "save_provenance": "source-edit-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        {
+          "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\red4ext.log",
+          "sha256": null
+        },
+        {
+          "path": "red4ext\\logs\\game.log",
+          "sha256": null
+        },
+        {
+          "path": "r6\\logs\\redscript_rCURRENT.log",
+          "sha256": null
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-save-stable-route",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean"
+      ],
+      "precondition": "Install the canonical mode-2 candidate and load an untouched pre-Lab-2 save.",
+      "expected": "Signal Race and both objectives activate once; the optional objective remains active before the 120-second stable result, then succeeds, and the required objective and quest succeed.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "immediate-selector-versus-pause",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean"
+      ],
+      "precondition": "Run the canonical mode-2 candidate and record the visible objective states before and after the 120-second result.",
+      "expected": "Both objectives remain active before the 120-second result, then the optional objective succeeds once. Exact graph evidence owns the immediate-selector and waiting-gate attribution; this runtime case records visible state and timing.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "logical-and-fulfilment",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean"
+      ],
+      "precondition": "Use canonical test_mode 2 and measure from objective activation without pausing the game.",
+      "expected": "With canonical mode 2, the optional objective remains active before the 120-second result and succeeds afterward. Exact source and graph evidence own the configured two-child AND attribution; this is not a one-child negative control.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "source-edit-failure-route",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "source-edit-failure"
+      ],
+      "precondition": "Change only node [11] to set exact test_mode 1, rebuild, retain the edited archive hash, and load a separate untouched pre-Lab-2 save.",
+      "expected": "The optional objective remains active before the 30-second failure result, then fails, and the required objective and quest still succeed. Exact source and graph evidence own the internal route attribution.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "xor-route-convergence",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean",
+        "source-edit-failure"
+      ],
+      "precondition": "Complete one clean canonical run and one clean source-edit failure run; retain visible journal transitions and exact candidate hashes.",
+      "expected": "The canonical optional objective succeeds and the edited optional objective fails; both are followed by required-objective and quest completion. Exact graph evidence maps those routes to In2 and In1 respectively. This does not test winner, cancellation, repeat-emission, or simultaneous-arrival policy.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "mid-flow-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-mid-flow-reload"
+      ],
+      "precondition": "After both canonical objectives activate, save while the optional objective remains visibly active before its roughly 120-second outcome; reload and record whether elapsed time resumes or restarts.",
+      "expected": "Reloading neither duplicates journal activation nor blocks eventual single completion; timer behavior is recorded explicitly.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-completed-reload"
+      ],
+      "precondition": "Save after canonical completion and reload without changing the installation.",
+      "expected": "No quest or objective reactivation and no delayed visible journal update occurs. Exact graph evidence maps this bypass to the cqa002_completed guard's False route.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reinstall",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-reinstall"
+      ],
+      "precondition": "Remove and reinstall the identical canonical candidate, then load its completed save.",
+      "expected": "The quest remains completed and does not create a second activation.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "clean-replay",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean-replay"
+      ],
+      "precondition": "Reload the original untouched pre-install save with the canonical candidate still installed.",
+      "expected": "The stable route activates and completes once with the same player-facing result.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "registration-and-lookup-logs",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "canonical-clean",
+        "canonical-mid-flow-reload",
+        "canonical-completed-reload",
+        "canonical-reinstall",
+        "canonical-clean-replay",
+        "source-edit-failure"
+      ],
+      "precondition": "Retain a fresh four-file RED4ext/ArchiveXL/redscript log set from each of the six executions.",
+      "expected": "All six log sets contain no cqa002 registration, depot-path, journal, localization, or condition error.",
+      "observed": null,
+      "evidence": []
+    }
+  ],
+  "promotion_rule": "Set status to passed and evidence_class to runtime-proven only when every required case passes and evidence binds both candidate builds, all six executions, the two distinct untouched pre-install saves and derived mid-flow/completed saves, exact versions, and all four logs for every execution."
+}

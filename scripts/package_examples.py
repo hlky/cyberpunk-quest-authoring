@@ -7,6 +7,7 @@ SPDX-License-Identifier: MIT
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import tempfile
 from pathlib import Path, PurePosixPath
@@ -14,13 +15,56 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LAB = ROOT / "examples" / "lab-01-one-shot"
-START_FILES = (
+LAB01 = ROOT / "examples" / "lab-01-one-shot"
+LAB02 = ROOT / "examples" / "lab-02-signal-race"
+
+
+def lab02_retained_evidence_files() -> tuple[str, ...]:
+    """Return only acceptance-record evidence paths safe to ship in Lab 2."""
+
+    record_path = LAB02 / "completed" / "runtime-acceptance.json"
+    try:
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read Lab 2 acceptance record: {error}") from error
+
+    cases = record.get("cases") if isinstance(record, dict) else None
+    if not isinstance(cases, list):
+        raise ValueError("Lab 2 acceptance record cases must be an array")
+
+    references: set[str] = set()
+    for case_index, case in enumerate(cases):
+        evidence = case.get("evidence") if isinstance(case, dict) else None
+        if not isinstance(evidence, list):
+            raise ValueError(f"Lab 2 case {case_index} evidence must be an array")
+        for evidence_index, item in enumerate(evidence):
+            reference = item.get("reference") if isinstance(item, dict) else None
+            if not isinstance(reference, str) or not reference:
+                raise ValueError(
+                    f"Lab 2 case {case_index} evidence {evidence_index} needs a reference"
+                )
+            relative = PurePosixPath(reference)
+            if (
+                reference != relative.as_posix()
+                or relative.is_absolute()
+                or "\\" in reference
+                or len(relative.parts) < 2
+                or relative.parts[0] != "evidence"
+                or any(part in {"", ".", ".."} for part in relative.parts)
+            ):
+                raise ValueError(f"unsafe Lab 2 evidence path: {reference!r}")
+            source = LAB02 / "completed" / Path(*relative.parts)
+            if not source.is_file() or source.is_symlink():
+                raise ValueError(f"missing or linked Lab 2 evidence file: {reference}")
+            references.add(reference)
+    return tuple(sorted(references))
+
+LAB01_START_FILES = (
     "CQA_Lab01_OneShot_Start.cpmodproj",
     "README.md",
 )
-START_TEXT_FILES = frozenset(START_FILES)
-COMPLETED_FILES = (
+LAB01_START_TEXT_FILES = frozenset(LAB01_START_FILES)
+LAB01_COMPLETED_FILES = (
     "CQA_Lab01_OneShot.cpmodproj",
     "README.md",
     "example.json",
@@ -33,7 +77,7 @@ COMPLETED_FILES = (
     "source/raw/mod/cqa/cqa001/phases/cqa001.questphase.json",
     "source/resources/CQA_Lab01_OneShot.archive.xl",
 )
-COMPLETED_TEXT_FILES = frozenset(
+LAB01_COMPLETED_TEXT_FILES = frozenset(
     {
         "CQA_Lab01_OneShot.cpmodproj",
         "README.md",
@@ -45,21 +89,88 @@ COMPLETED_TEXT_FILES = frozenset(
         "source/resources/CQA_Lab01_OneShot.archive.xl",
     }
 )
+
+LAB02_START_FILES = (
+    "CQA_Lab02_SignalRace_Start.cpmodproj",
+    "README.md",
+    "source/archive/mod/cqa/cqa002/journal/cqa002.journal",
+    "source/archive/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json",
+    "source/archive/mod/cqa/cqa002/phases/cqa002.questphase",
+    "source/raw/mod/cqa/cqa002/journal/cqa002.journal.json",
+    "source/raw/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json.json",
+    "source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json",
+    "source/resources/CQA_Lab02_SignalRace_Start.archive.xl",
+)
+LAB02_START_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab02_SignalRace_Start.cpmodproj",
+        "README.md",
+        "source/raw/mod/cqa/cqa002/journal/cqa002.journal.json",
+        "source/raw/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json.json",
+        "source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json",
+        "source/resources/CQA_Lab02_SignalRace_Start.archive.xl",
+    }
+)
+LAB02_COMPLETED_BASE_FILES = (
+    "CQA_Lab02_SignalRace.cpmodproj",
+    "README.md",
+    "example.json",
+    "runtime-acceptance.json",
+    "source/archive/mod/cqa/cqa002/journal/cqa002.journal",
+    "source/archive/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json",
+    "source/archive/mod/cqa/cqa002/phases/cqa002.questphase",
+    "source/raw/mod/cqa/cqa002/journal/cqa002.journal.json",
+    "source/raw/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json.json",
+    "source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json",
+    "source/resources/CQA_Lab02_SignalRace.archive.xl",
+)
+LAB02_COMPLETED_FILES = (
+    *LAB02_COMPLETED_BASE_FILES,
+    *lab02_retained_evidence_files(),
+)
+LAB02_COMPLETED_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab02_SignalRace.cpmodproj",
+        "README.md",
+        "example.json",
+        "runtime-acceptance.json",
+        "source/raw/mod/cqa/cqa002/journal/cqa002.journal.json",
+        "source/raw/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json.json",
+        "source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json",
+        "source/resources/CQA_Lab02_SignalRace.archive.xl",
+    }
+)
+
 CHECKPOINTS = {
     "cqa-lab-01-start.zip": (
-        LAB / "start",
+        LAB01 / "start",
         "CQA_Lab01_OneShot_Start",
-        START_FILES,
-        START_TEXT_FILES,
+        LAB01_START_FILES,
+        LAB01_START_TEXT_FILES,
+        LAB01 / "LICENSE.md",
     ),
     "cqa-lab-01-completed.zip": (
-        LAB / "completed",
+        LAB01 / "completed",
         "CQA_Lab01_OneShot",
-        COMPLETED_FILES,
-        COMPLETED_TEXT_FILES,
+        LAB01_COMPLETED_FILES,
+        LAB01_COMPLETED_TEXT_FILES,
+        LAB01 / "LICENSE.md",
+    ),
+    "cqa-lab-02-start.zip": (
+        LAB02 / "start",
+        "CQA_Lab02_SignalRace_Start",
+        LAB02_START_FILES,
+        LAB02_START_TEXT_FILES,
+        LAB02 / "LICENSE.md",
+    ),
+    "cqa-lab-02-completed.zip": (
+        LAB02 / "completed",
+        "CQA_Lab02_SignalRace",
+        LAB02_COMPLETED_FILES,
+        LAB02_COMPLETED_TEXT_FILES,
+        LAB02 / "LICENSE.md",
     ),
 }
-SHARED = (LAB / "LICENSE.md",)
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
 ZIP_CREATE_SYSTEM = 3  # Unix: keeps host OS out of the archive metadata.
 ZIP_VERSION = 20
@@ -101,6 +212,7 @@ def entries(
     root_name: str,
     expected_files: tuple[str, ...],
     text_files: frozenset[str],
+    license_path: Path,
 ) -> list[tuple[str, Path, bool]]:
     actual_files = {
         path.relative_to(source).as_posix()
@@ -124,7 +236,9 @@ def entries(
         (f"{root_name}/{relative}", source / Path(*PurePosixPath(relative).parts), relative in text_files)
         for relative in expected_files
     ]
-    result.extend((f"{root_name}/LICENSE.md", shared, True) for shared in SHARED)
+    if not license_path.is_file():
+        raise ValueError(f"{license_path}: shared checkpoint license is missing")
+    result.append((f"{root_name}/LICENSE.md", license_path, True))
     result.sort(key=lambda entry: entry[0])
 
     targets = [target for target, _, _ in result]
@@ -138,9 +252,16 @@ def package(
     root_name: str,
     expected_files: tuple[str, ...],
     text_files: frozenset[str],
+    license_path: Path,
     destination: Path,
 ) -> None:
-    prepared_entries = entries(source, root_name, expected_files, text_files)
+    prepared_entries = entries(
+        source,
+        root_name,
+        expected_files,
+        text_files,
+        license_path,
+    )
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
         dir=destination.parent,
@@ -176,8 +297,21 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    for name, (source, root_name, expected_files, text_files) in CHECKPOINTS.items():
-        package(source, root_name, expected_files, text_files, args.output / name)
+    for name, (
+        source,
+        root_name,
+        expected_files,
+        text_files,
+        license_path,
+    ) in CHECKPOINTS.items():
+        package(
+            source,
+            root_name,
+            expected_files,
+            text_files,
+            license_path,
+            args.output / name,
+        )
 
 
 if __name__ == "__main__":

@@ -16,5 +16,7 @@ Implemented examples:
 
 - [`lab-01-one-shot`](lab-01-one-shot/README.md): start and completed
   checkpoints for the `cqa001` one-shot quest.
+- [`lab-02-signal-race`](lab-02-signal-race/README.md): start and completed
+  checkpoints for the `cqa002` immediate/waiting gate and monitor lab.
 
 The longer release sequence remains in [`../HANDOFF.md`](../HANDOFF.md).

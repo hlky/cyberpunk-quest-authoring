@@ -18,6 +18,13 @@ claims reviewable without presenting an expected game result as proof.
 
 **Lab 1 runtime evidence:** **Experimental** — pending.
 
+The second tutorial, `cqa002`, adds immediate and waiting conditions, a nested
+Boolean tree, parallel monitors, and XOR-shaped signal convergence. It ships as
+two structurally validated WolvenKit checkpoints with separate canonical and
+source-edited runtime candidates.
+
+**Lab 2 runtime evidence:** **Experimental** — pending.
+
 ## What this book will cover
 
 Cyberpunk quests span several resource systems:

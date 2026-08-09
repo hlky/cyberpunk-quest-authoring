@@ -125,6 +125,41 @@ def compare_symbol(value: str) -> str:
     }.get(value, value)
 
 
+def condition_summary(value: Any, handles: dict[str, Json]) -> str:
+    resolved = resolve(value, handles)
+    red_type = str(resolved.get("$type", ""))
+    if red_type == "questFactsDBCondition":
+        comparison = find_typed(
+            resolved.get("type"), "questVarComparison_ConditionType", handles
+        )
+        if comparison:
+            return (
+                f"{comparison.get('factName', '?')} "
+                f"{compare_symbol(str(comparison.get('comparisonType', '?')))} "
+                f"{comparison.get('value', '?')}"
+            )
+    if red_type == "questLogicalCondition":
+        operation = str(resolved.get("operation", "?")).upper()
+        children = [
+            condition_summary(child, handles)
+            for child in resolved.get("conditions", [])
+        ]
+        return f" {operation} ".join(f"({child})" for child in children)
+    if red_type == "questTimeCondition":
+        delay = find_typed(
+            resolved.get("type"), "questRealtimeDelay_ConditionType", handles
+        )
+        if delay:
+            seconds = (
+                float(delay.get("seconds", 0))
+                + 60 * float(delay.get("minutes", 0))
+                + 3600 * float(delay.get("hours", 0))
+                + float(delay.get("miliseconds", 0)) / 1000
+            )
+            return f"{seconds:g} real-time seconds"
+    return "condition"
+
+
 def node_presentation(data: Json, handles: dict[str, Json]) -> tuple[str, str, str]:
     red_type = str(data.get("$type", "Unknown"))
     if red_type == "questInputNodeDefinition":
@@ -135,26 +170,35 @@ def node_presentation(data: Json, handles: dict[str, Json]) -> tuple[str, str, s
         comparison = find_typed(
             data.get("condition"), "questVarComparison_ConditionType", handles
         )
-        if comparison:
-            detail = (
-                f"{comparison.get('factName', '?')} "
-                f"{compare_symbol(str(comparison.get('comparisonType', '?')))} "
-                f"{comparison.get('value', '?')}"
-            )
-        else:
-            detail = "evaluate condition now"
-        return "One-shot guard", detail, "gate"
-    if red_type == "questPauseConditionNodeDefinition":
-        delay = find_typed(
-            data.get("condition"), "questRealtimeDelay_ConditionType", handles
+        title = (
+            "One-shot guard"
+            if comparison and str(comparison.get("factName", "")).endswith("_completed")
+            else "Branch now"
         )
-        if delay:
-            seconds = int(delay.get("seconds", 0))
-            minutes = int(delay.get("minutes", 0))
-            hours = int(delay.get("hours", 0))
-            total = seconds + 60 * minutes + 3600 * hours
-            return "Wait", f"{total} real-time seconds", "gate"
-        return "Wait", "until condition becomes true", "gate"
+        return title, condition_summary(data.get("condition"), handles), "gate"
+    if red_type == "questPauseConditionNodeDefinition":
+        return "Wait", condition_summary(data.get("condition"), handles), "gate"
+    if red_type == "questLogicalXorNodeDefinition":
+        return (
+            "XOR convergence",
+            f"{data.get('inputSocketCount', '?')} inputs -> Out1",
+            "gate",
+        )
+    if red_type == "questLogicalAndNodeDefinition":
+        return (
+            "AND convergence",
+            f"{data.get('inputSocketCount', '?')} inputs -> Out1",
+            "gate",
+        )
+    if red_type == "questLogicalHubNodeDefinition":
+        return (
+            "Logical hub",
+            (
+                f"{data.get('inputSocketCount', '?')} inputs -> "
+                f"{data.get('outputSocketCount', '?')} outputs"
+            ),
+            "gate",
+        )
     if red_type == "questJournalNodeDefinition":
         path = find_typed(data.get("type"), "gameJournalPath", handles)
         real_path = str(path.get("realPath", "?")) if path else "?"
@@ -276,13 +320,25 @@ def update_fingerprint(path: Path, layout: Json, actual: str) -> None:
         stream.write(json.dumps(layout, indent=2, ensure_ascii=False) + "\n")
 
 
-def validate_layout(nodes: Iterable[Node], layout: Json) -> None:
+def edge_key(edge: Edge) -> str:
+    return (
+        f"{edge.source}.{edge.source_socket}->"
+        f"{edge.destination}.{edge.destination_socket}"
+    )
+
+
+def validate_layout(
+    nodes: Iterable[Node],
+    layout: Json,
+    edges: Iterable[Edge] | None = None,
+) -> None:
     allowed_top = {
         "schema_version",
         "title",
         "source_fingerprint",
         "canvas",
         "nodes",
+        "routes",
     }
     unexpected_top = set(layout) - allowed_top
     if unexpected_top:
@@ -310,6 +366,31 @@ def validate_layout(nodes: Iterable[Node], layout: Json) -> None:
             )
         if not {"x", "y"} <= set(geometry):
             raise ValueError(f"layout node {node_id} requires x and y")
+
+    raw_routes = layout.get("routes", {})
+    if not isinstance(raw_routes, dict):
+        raise ValueError("layout routes must be an object")
+    if edges is not None:
+        graph_edges = {edge_key(edge) for edge in edges}
+        unexpected_routes = set(raw_routes) - graph_edges
+        if unexpected_routes:
+            raise ValueError(
+                "layout routes name edges absent from the graph: "
+                f"{sorted(unexpected_routes)}"
+            )
+    for route_name, points in raw_routes.items():
+        if not isinstance(points, list) or not points:
+            raise ValueError(f"layout route {route_name!r} requires waypoints")
+        for index, point in enumerate(points):
+            if (
+                not isinstance(point, list)
+                or len(point) != 2
+                or not all(isinstance(value, (int, float)) for value in point)
+            ):
+                raise ValueError(
+                    f"layout route {route_name!r} waypoint {index} "
+                    "must be a numeric [x, y] pair"
+                )
 
 
 def svg_text(x: float, y: float, value: str, css_class: str) -> str:
@@ -411,34 +492,54 @@ def render_svg(
         source_box = boxes[edge.source]
         destination_box = boxes[edge.destination]
         start, end = edge_points(source_box, destination_box)
-        delta = max(45.0, abs(end[0] - start[0]) * 0.4)
-        if abs(end[1] - start[1]) < 1:
-            path = f"M {start[0]:g} {start[1]:g} L {end[0]:g} {end[1]:g}"
-        elif abs(end[0] - start[0]) < 1:
-            path = (
-                f"M {start[0]:g} {start[1]:g} "
-                f"C {start[0] + 70:g} {start[1]:g}, "
-                f"{end[0] + 70:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
-            )
-        elif end[0] > start[0]:
-            path = (
-                f"M {start[0]:g} {start[1]:g} "
-                f"C {start[0] + delta:g} {start[1]:g}, "
-                f"{end[0] - delta:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
+        waypoints = layout.get("routes", {}).get(edge_key(edge))
+        if waypoints:
+            route_points = [start, *(tuple(point) for point in waypoints), end]
+            path = " ".join(
+                [f"M {route_points[0][0]:g} {route_points[0][1]:g}"]
+                + [f"L {point[0]:g} {point[1]:g}" for point in route_points[1:]]
             )
         else:
-            path = (
-                f"M {start[0]:g} {start[1]:g} "
-                f"C {start[0] - delta:g} {start[1]:g}, "
-                f"{end[0] + delta:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
-            )
+            delta = max(45.0, abs(end[0] - start[0]) * 0.4)
+            if abs(end[1] - start[1]) < 1:
+                path = f"M {start[0]:g} {start[1]:g} L {end[0]:g} {end[1]:g}"
+            elif abs(end[0] - start[0]) < 1:
+                path = (
+                    f"M {start[0]:g} {start[1]:g} "
+                    f"C {start[0] + 70:g} {start[1]:g}, "
+                    f"{end[0] + 70:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
+                )
+            elif end[0] > start[0]:
+                path = (
+                    f"M {start[0]:g} {start[1]:g} "
+                    f"C {start[0] + delta:g} {start[1]:g}, "
+                    f"{end[0] - delta:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
+                )
+            else:
+                path = (
+                    f"M {start[0]:g} {start[1]:g} "
+                    f"C {start[0] - delta:g} {start[1]:g}, "
+                    f"{end[0] + delta:g} {end[1]:g}, {end[0]:g} {end[1]:g}"
+                )
         parts.append(f'<path class="edge" d="{path}"/>')
         label = f"{edge.source_socket} → {edge.destination_socket}"
-        label_x = (start[0] + end[0]) / 2
-        if abs(end[1] - start[1]) < 1:
-            label_y = min(source_box[1], destination_box[1]) - 10
+        if waypoints:
+            segments = list(zip(route_points, route_points[1:]))
+            label_start, label_end = max(
+                segments,
+                key=lambda segment: (
+                    (segment[1][0] - segment[0][0]) ** 2
+                    + (segment[1][1] - segment[0][1]) ** 2
+                ),
+            )
+            label_x = (label_start[0] + label_end[0]) / 2
+            label_y = (label_start[1] + label_end[1]) / 2 - 8
         else:
-            label_y = (start[1] + end[1]) / 2 - 8
+            label_x = (start[0] + end[0]) / 2
+            if abs(end[1] - start[1]) < 1:
+                label_y = min(source_box[1], destination_box[1]) - 10
+            else:
+                label_y = (start[1] + end[1]) / 2 - 8
         parts.append(svg_text(label_x, label_y, label, "edge-label"))
 
     for node in nodes:
@@ -492,7 +593,7 @@ def main() -> None:
     source = load_json(args.source)
     layout = load_json(args.layout)
     nodes, edges = parse_graph(source)
-    validate_layout(nodes, layout)
+    validate_layout(nodes, layout, edges)
     actual = fingerprint(nodes, edges)
     if args.update_fingerprint:
         update_fingerprint(args.layout, layout, actual)

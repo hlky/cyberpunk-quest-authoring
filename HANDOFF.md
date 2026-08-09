@@ -39,6 +39,8 @@ The project originated from:
 
 **Lab 1 runtime evidence:** **Experimental** — pending.
 
+**Lab 2 runtime evidence:** **Experimental** — pending.
+
 The local repository is initialized at:
 
 `H:\cyberpunk-quest-authoring`
@@ -64,7 +66,12 @@ It has:
 - a deterministic CR2W-JSON graph renderer and first exact SVG;
 - substantive journal, UI, localization, mappin, message/document, reward, and
   completion chapters, backed by an exact lookup diagram and Lab 1 semantic
-  validation.
+  validation;
+- substantive condition, gate, signal-flow, timing, monitor, and condition
+  catalog chapters;
+- a designed and structurally validated Lab 2 reference project with start and
+  completed checkpoints, an exact 21-node/22-edge SVG, manual WolvenKit
+  authoring, and a two-candidate acceptance record.
 
 ## Research evidence available in Ghostline
 
@@ -595,17 +602,20 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0 and 1 completed the validation baseline, zero-assumption
-onboarding, and Lab 1 authoring path. The next delivery stages are
-Journal/UI/localization, Conditions and gates with Lab 2, then World
-integration with Lab 3. Runtime labels are promoted only when retained
-clean-save evidence supports them.
+published. Stages 0–3 completed the validation baseline, zero-assumption
+onboarding, Lab 1, Journal/UI/localization, Conditions and gates, and the
+structurally validated Lab 2. The next delivery stage is World integration
+with Lab 3. Runtime labels are promoted only when retained clean-save evidence
+supports them.
 
 ## Resolved decisions
 
 - Prose, diagrams, and example projects use CC BY 4.0; scripts use MIT.
 - “The RED Questbook” is the informal subtitle.
 - Tutorials use prefix `cqa`; Lab 1 is `cqa001`, titled “First Signal.”
+- Lab 2 is `cqa002`, titled “Signal Race”; its canonical project sets test
+  mode `2`, while a single-property source edit to mode `1` exercises the
+  alternate acceptance route on a separate untouched save.
 - Exact diagrams use WolvenKit CR2W-JSON plus layout-only overrides and a
   checked structural fingerprint.
 - Release ZIPs will be built automatically from the checked example projects.

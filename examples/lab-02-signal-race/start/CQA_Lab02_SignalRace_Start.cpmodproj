@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CP77Mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>CQA Lab 02 Signal Race Start</Name>
+  <ModName>CQA_Lab02_SignalRace_Start</ModName>
+  <Author>Cyberpunk 2077 Quest Authoring contributors</Author>
+  <Version>0.1.0</Version>
+</CP77Mod>

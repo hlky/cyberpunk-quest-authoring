@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate generated documentation artifacts and Lab 1 example projects.
+"""Validate generated documentation artifacts and tutorial example projects.
 
 The validator deliberately uses only the Python standard library. It parses
 JSON only from the checked manifest, layout, and expected CR2W-JSON paths; a
@@ -96,6 +96,7 @@ LOCALIZATION_RAW = (
 BUILD_SCRIPT = ROOT / "scripts" / "build_lab01_sources.py"
 RENDER_SCRIPT = ROOT / "scripts" / "render_quest_graph.py"
 PACKAGE_SCRIPT = ROOT / "scripts" / "package_examples.py"
+LAB02_VALIDATOR = ROOT / "scripts" / "validate_lab02.py"
 SHARED_LICENSE = LAB / "LICENSE.md"
 JSON_SIZE_LIMIT = 16 * 1024 * 1024
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
@@ -210,6 +211,14 @@ CHECKPOINTS = {
         COMPLETED_TEXT_FILES,
     ),
 }
+GENERATED_DOWNLOAD_NAMES = frozenset(
+    {
+        "cqa-lab-01-start.zip",
+        "cqa-lab-01-completed.zip",
+        "cqa-lab-02-start.zip",
+        "cqa-lab-02-completed.zip",
+    }
+)
 
 EXPECTED_ROOT_TYPES = {
     ".journal": "gameJournalResource",
@@ -968,7 +977,9 @@ def validate_book_links_and_summary() -> None:
         + describe_set_difference(actual_pages, set(normalized_summary)),
     )
 
-    generated_downloads = {f"downloads/{name}" for name in CHECKPOINTS}
+    generated_downloads = {
+        f"downloads/{name}" for name in GENERATED_DOWNLOAD_NAMES
+    }
     heading_cache: dict[Path, set[str]] = {}
     for page in sorted(BOOK_SRC.rglob("*.md")):
         visible_text = markdown_visible_text(page.read_text(encoding="utf-8"))
@@ -1332,7 +1343,7 @@ def validate_graph(info: ManifestInfo) -> None:
     module = load_module(RENDER_SCRIPT, "_cqa_render_quest_graph")
     try:
         nodes, edges = module.parse_graph(source)
-        module.validate_layout(nodes, layout)
+        module.validate_layout(nodes, layout, edges)
         actual_fingerprint = module.fingerprint(nodes, edges)
         require(
             layout.get("source_fingerprint") == actual_fingerprint,
@@ -1377,6 +1388,7 @@ def expected_zip_entries(
     source: Path,
     root_name: str,
     expected_files: frozenset[str],
+    license_path: Path,
 ) -> dict[str, bytes]:
     result = {
         f"{root_name}/{relative}": (source / relative).read_bytes()
@@ -1384,7 +1396,7 @@ def expected_zip_entries(
     }
     license_name = f"{root_name}/LICENSE.md"
     require(license_name not in result, f"{display(source)}: LICENSE.md collides with shared ZIP entry")
-    result[license_name] = SHARED_LICENSE.read_bytes()
+    result[license_name] = license_path.read_bytes()
     return result
 
 
@@ -1393,8 +1405,9 @@ def validate_zip(
     source: Path,
     root_name: str,
     expected_files: frozenset[str],
+    license_path: Path,
 ) -> None:
-    expected = expected_zip_entries(source, root_name, expected_files)
+    expected = expected_zip_entries(source, root_name, expected_files, license_path)
     with ZipFile(path) as archive:
         require(archive.comment == b"", f"{path.name}: unexpected archive comment")
         require(archive.testzip() is None, f"{path.name}: CRC check failed")
@@ -1425,11 +1438,62 @@ def validate_packages() -> None:
         first = Path(first_directory)
         second = Path(second_directory)
         packager = load_module(PACKAGE_SCRIPT, "cqa_package_examples_atomic_check")
+
+        evidence_fixture = first / "lab02-evidence-fixture"
+        evidence_path = evidence_fixture / "completed" / "evidence" / "run-note.md"
+        evidence_path.parent.mkdir(parents=True)
+        evidence_path.write_text("sanitized evidence\n", encoding="utf-8", newline="\n")
+        evidence_record = evidence_fixture / "completed" / "runtime-acceptance.json"
+        evidence_record.write_text(
+            json.dumps(
+                {
+                    "cases": [
+                        {"evidence": [{"reference": "evidence/run-note.md"}]},
+                    ]
+                }
+            ),
+            encoding="utf-8",
+            newline="\n",
+        )
+        original_lab02 = packager.LAB02
+        try:
+            packager.LAB02 = evidence_fixture
+            require(
+                packager.lab02_retained_evidence_files() == ("evidence/run-note.md",),
+                "package_examples.py did not admit acceptance-bound Lab 2 evidence",
+            )
+            evidence_record.write_text(
+                json.dumps(
+                    {
+                        "cases": [
+                            {"evidence": [{"reference": "../private-save.dat"}]},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+                newline="\n",
+            )
+            try:
+                packager.lab02_retained_evidence_files()
+            except ValueError:
+                pass
+            else:
+                raise ValidationError("package_examples.py accepted an unsafe evidence path")
+        finally:
+            packager.LAB02 = original_lab02
+
         preserved = first / "preserved.zip"
         sentinel = b"previous valid download"
         preserved.write_bytes(sentinel)
         try:
-            packager.package(LAB / "start", "Invalid", ("missing.file",), frozenset(), preserved)
+            packager.package(
+                LAB / "start",
+                "Invalid",
+                ("missing.file",),
+                frozenset(),
+                SHARED_LICENSE,
+                preserved,
+            )
         except ValueError:
             pass
         else:
@@ -1440,15 +1504,45 @@ def validate_packages() -> None:
         )
         run_packager(first)
         run_packager(second)
-        for name, (source, root_name, expected_files, _) in CHECKPOINTS.items():
+        for name, (
+            source,
+            root_name,
+            expected_files,
+            _,
+            license_path,
+        ) in packager.CHECKPOINTS.items():
             first_zip = first / name
             second_zip = second / name
             require(first_zip.is_file() and second_zip.is_file(), f"package_examples.py did not create {name}")
-            validate_zip(first_zip, source, root_name, expected_files)
+            validate_zip(
+                first_zip,
+                source,
+                root_name,
+                frozenset(expected_files),
+                license_path,
+            )
             require(
                 first_zip.read_bytes() == second_zip.read_bytes(),
                 f"{name}: two clean packaging runs differ",
             )
+
+
+def validate_lab02() -> None:
+    environment = os.environ.copy()
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    result = subprocess.run(
+        [sys.executable, str(LAB02_VALIDATOR)],
+        cwd=ROOT,
+        env=environment,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    require(
+        result.returncode == 0,
+        f"validate_lab02.py failed:\n{result.stdout}{result.stderr}".rstrip(),
+    )
 
 
 def run_check(name: str, check: Callable[[], None]) -> bool:
@@ -1480,6 +1574,7 @@ def main() -> int:
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),
         ("cooked CR2W and review-source provenance", lambda: validate_cr2w_pairs(info)),
         ("Lab 1 graph fingerprint and exact SVG", lambda: validate_graph(info)),
+        ("Lab 2 project, evidence, semantics, and graph", validate_lab02),
         ("deterministic example ZIPs", validate_packages),
     )
     results = [run_check(name, check) for name, check in checks]

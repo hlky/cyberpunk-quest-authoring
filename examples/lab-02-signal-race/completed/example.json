@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "id": "cqa002",
+  "title": "Signal Race",
+  "book_chapter": "book/src/gates/lab-02.md",
+  "baseline": {
+    "recorded": "2026-08-09",
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "depot_paths": [
+    "mod\\cqa\\cqa002\\phases\\cqa002.questphase",
+    "mod\\cqa\\cqa002\\journal\\cqa002.journal",
+    "mod\\cqa\\cqa002\\localization\\en-us\\onscreens\\cqa002.json"
+  ],
+  "persistent_facts": [
+    "cqa002_test_mode",
+    "cqa002_signal_failed",
+    "cqa002_signal_stop",
+    "cqa002_signal_succeeded",
+    "cqa002_completed"
+  ],
+  "evidence": {
+    "structure": {
+      "status": "structurally-validated",
+      "date": "2026-08-09",
+      "method": "WolvenKit 8.19.0 deserialize and round-trip inspection"
+    },
+    "runtime": {
+      "status": "pending",
+      "class": "experimental",
+      "date": null,
+      "record": "runtime-acceptance.json"
+    }
+  },
+  "graph": {
+    "layout": "assets/diagrams/lab-02/cqa002.questphase.layout.json",
+    "source_fingerprint": "sha256:a537f0bbbd7fb065f0f84ed9a3d5face784ceedb9b40226527e03a52e58df7f5"
+  },
+  "artifacts": {
+    "algorithm": "sha256",
+    "files": {
+      "CQA_Lab02_SignalRace.cpmodproj": "a289576e5786303ac6421d62e88456baa964b984fd09ad2d3fe8e5a5f1ac67e0",
+      "runtime-acceptance.json": "235bc5ecf8897c8b67228da7d00c81dbd892b19cd6a96339d9a65ad9be6e9780",
+      "source/archive/mod/cqa/cqa002/journal/cqa002.journal": "6193ab08255f4ad0fef160e7944fee67dcbca250aad3331cf5e31ecc81df2199",
+      "source/archive/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json": "b90e8c1dba13ecfcd2c3389ee5b85b840dc085c6d9dc0d83b2b8a93e3cd1f2ee",
+      "source/archive/mod/cqa/cqa002/phases/cqa002.questphase": "c6a62a727b34d10591214ad208d54b09c1345a12dd455f2721978a8092e9f9a7",
+      "source/raw/mod/cqa/cqa002/journal/cqa002.journal.json": "45573b653dde7162a9d6138bf8677b25138aafb9c69ce6998127ee258874c1a5",
+      "source/raw/mod/cqa/cqa002/localization/en-us/onscreens/cqa002.json.json": "a83c126d829cae2fe4c7db280289e85e1228d05dc146bc5a16c309c76ba1b590",
+      "source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json": "e888dfc2d2faf43d941e4fa18e8aa364952df07b46704f87e55e290d362c0d23",
+      "source/resources/CQA_Lab02_SignalRace.archive.xl": "4f90db9881cbdc9189cdde4b60d6b17380b7d3a70a1c9a626a812430f13bf75f"
+    }
+  }
+}

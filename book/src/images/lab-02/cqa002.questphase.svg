@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="4780" height="1220" viewBox="0 0 4780 1220" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa002 Signal Race root questphase</title>
+<desc id="svg-desc">Exact quest graph rendered from cqa002.questphase.json. Fingerprint sha256:a537f0bbbd7fb065f0f84ed9a3d5face784ceedb9b40226527e03a52e58df7f5.</desc>
+<metadata>{&quot;source&quot;: &quot;examples/lab-02-signal-race/completed/source/raw/mod/cqa/cqa002/phases/cqa002.questphase.json&quot;, &quot;source_fingerprint&quot;: &quot;sha256:a537f0bbbd7fb065f0f84ed9a3d5face784ceedb9b40226527e03a52e58df7f5&quot;}</metadata>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa4b2"/>
+  </marker>
+  <style>
+    .background { fill: #11151c; }
+    .edge { fill: none; stroke: #9aa4b2; stroke-width: 2; marker-end: url(#arrow); }
+    .edge-label { fill: #d7dde7; font: 12px ui-monospace, Consolas, monospace;
+                  text-anchor: middle; paint-order: stroke; stroke: #11151c;
+                  stroke-width: 4px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #9a6700; }
+    .fact { fill: #6d3ea0; }
+    .journal { fill: #247a4b; }
+    .action { fill: #28699c; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: white; font: 600 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+  </style>
+</defs>
+<rect class="background" width="4780" height="1220"/>
+<path class="edge" d="M 210 586 L 260 586"/>
+<text x="235" y="530" class="edge-label">Out → In</text>
+<path class="edge" d="M 500 586 L 520 1160 L 4490 1160 L 4490 586 L 4570 586"/>
+<text x="2505" y="1152" class="edge-label">False → In</text>
+<path class="edge" d="M 500 586 L 550 586"/>
+<text x="525" y="530" class="edge-label">True → In</text>
+<path class="edge" d="M 810 586 L 860 586"/>
+<text x="835" y="530" class="edge-label">Out → Active</text>
+<path class="edge" d="M 1110 586 L 1160 586"/>
+<text x="1135" y="530" class="edge-label">Out → Active</text>
+<path class="edge" d="M 1470 586 L 1520 586"/>
+<text x="1495" y="530" class="edge-label">Out → Active</text>
+<path class="edge" d="M 1850 586 C 1895 586, 1865 126, 1910 126"/>
+<text x="1880" y="348" class="edge-label">Out → In</text>
+<path class="edge" d="M 1850 586 C 1895 586, 1865 376, 1910 376"/>
+<text x="1880" y="473" class="edge-label">Out → In</text>
+<path class="edge" d="M 1850 586 C 1895 586, 1865 806, 1910 806"/>
+<text x="1880" y="688" class="edge-label">Out → In</text>
+<path class="edge" d="M 2220 126 L 2280 126"/>
+<text x="2250" y="70" class="edge-label">Out → Failed</text>
+<path class="edge" d="M 2370 376 L 2420 376"/>
+<text x="2395" y="320" class="edge-label">Out → Succeeded</text>
+<path class="edge" d="M 2210 806 C 2255 806, 2215 976, 2260 976"/>
+<text x="2235" y="883" class="edge-label">False → In</text>
+<path class="edge" d="M 2210 806 C 2255 806, 2215 746, 2260 746"/>
+<text x="2235" y="768" class="edge-label">True → In</text>
+<path class="edge" d="M 2540 746 L 2590 746"/>
+<text x="2565" y="690" class="edge-label">Out → In</text>
+<path class="edge" d="M 2540 976 L 2590 976"/>
+<text x="2565" y="920" class="edge-label">Out → In</text>
+<path class="edge" d="M 2610 126 C 2842 126, 2958 316, 3190 316"/>
+<text x="2900" y="213" class="edge-label">Out → In1</text>
+<path class="edge" d="M 2750 376 L 2800 376"/>
+<text x="2775" y="320" class="edge-label">Out → In</text>
+<path class="edge" d="M 3140 376 C 3185 376, 3145 316, 3190 316"/>
+<text x="3165" y="338" class="edge-label">Out → In2</text>
+<path class="edge" d="M 3480 316 C 3525 316, 3485 586, 3530 586"/>
+<text x="3505" y="443" class="edge-label">Out1 → Succeeded</text>
+<path class="edge" d="M 3860 586 L 3910 586"/>
+<text x="3885" y="530" class="edge-label">Out → In</text>
+<path class="edge" d="M 4220 586 L 4270 586"/>
+<text x="4245" y="530" class="edge-label">Out → Succeeded</text>
+<path class="edge" d="M 4520 586 L 4570 586"/>
+<text x="4545" y="530" class="edge-label">Out → In</text>
+<g aria-label="questInputNodeDefinition: In1">
+<rect class="node boundary" x="30" y="540" width="180" height="92" rx="10"/>
+<text x="44" y="561" class="node-id">ID 0</text>
+<text x="44" y="587" class="node-title">Input</text>
+<text x="44" y="610" class="node-detail">In1</text>
+</g>
+<g aria-label="questOutputNodeDefinition: Terminating">
+<rect class="node boundary" x="4570" y="540" width="180" height="92" rx="10"/>
+<text x="4584" y="561" class="node-id">ID 1</text>
+<text x="4584" y="587" class="node-title">Terminate</text>
+<text x="4584" y="610" class="node-detail">Terminating</text>
+</g>
+<g aria-label="questConditionNodeDefinition: cqa002_completed == 0">
+<polygon class="node gate" points="276,540 484,540 500,586 484,632 276,632 260,586"/>
+<text x="274" y="561" class="node-id">ID 10</text>
+<text x="274" y="587" class="node-title">One-shot guard</text>
+<text x="274" y="610" class="node-detail">cqa002_completed == 0</text>
+</g>
+<g aria-label="questFactsDBManagerNodeDefinition: cqa002_test_mode = 2">
+<rect class="node fact" x="550" y="540" width="260" height="92" rx="10"/>
+<text x="564" y="561" class="node-id">ID 11</text>
+<text x="564" y="587" class="node-title">Set fact</text>
+<text x="564" y="610" class="node-detail">cqa002_test_mode = 2</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002">
+<rect class="node journal" x="860" y="540" width="250" height="92" rx="10"/>
+<text x="874" y="561" class="node-id">ID 12</text>
+<text x="874" y="587" class="node-title">Journal state</text>
+<text x="874" y="610" class="node-detail">cqa002</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002_01_obj_wait">
+<rect class="node journal" x="1160" y="540" width="310" height="92" rx="10"/>
+<text x="1174" y="561" class="node-id">ID 13</text>
+<text x="1174" y="587" class="node-title">Journal state</text>
+<text x="1174" y="610" class="node-detail">cqa002_01_obj_wait</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002_01_obj_stable">
+<rect class="node journal" x="1520" y="540" width="330" height="92" rx="10"/>
+<text x="1534" y="561" class="node-id">ID 14</text>
+<text x="1534" y="587" class="node-title">Journal state</text>
+<text x="1534" y="610" class="node-detail">cqa002_01_obj_stable</text>
+</g>
+<g aria-label="questPauseConditionNodeDefinition: cqa002_signal_failed &gt; 0">
+<polygon class="node gate" points="1926,80 2204,80 2220,126 2204,172 1926,172 1910,126"/>
+<text x="1924" y="101" class="node-id">ID 15</text>
+<text x="1924" y="127" class="node-title">Wait</text>
+<text x="1924" y="150" class="node-detail">cqa002_signal_failed &gt; 0</text>
+</g>
+<g aria-label="questPauseConditionNodeDefinition: (cqa002_signal_stop &gt; 0) AND (cqa002_test_mode == 2)">
+<polygon class="node gate" points="1926,330 2354,330 2370,376 2354,422 1926,422 1910,376"/>
+<text x="1924" y="351" class="node-id">ID 16</text>
+<text x="1924" y="377" class="node-title">Wait</text>
+<text x="1924" y="400" class="node-detail">(cqa002_signal_stop &gt; 0) AND (cqa002_test_mode == 2)</text>
+</g>
+<g aria-label="questConditionNodeDefinition: cqa002_test_mode == 1">
+<polygon class="node gate" points="1926,760 2194,760 2210,806 2194,852 1926,852 1910,806"/>
+<text x="1924" y="781" class="node-id">ID 17</text>
+<text x="1924" y="807" class="node-title">Branch now</text>
+<text x="1924" y="830" class="node-detail">cqa002_test_mode == 1</text>
+</g>
+<g aria-label="questPauseConditionNodeDefinition: 30 real-time seconds">
+<polygon class="node gate" points="2276,700 2524,700 2540,746 2524,792 2276,792 2260,746"/>
+<text x="2274" y="721" class="node-id">ID 18</text>
+<text x="2274" y="747" class="node-title">Wait</text>
+<text x="2274" y="770" class="node-detail">30 real-time seconds</text>
+</g>
+<g aria-label="questFactsDBManagerNodeDefinition: cqa002_signal_failed = 1">
+<rect class="node fact" x="2590" y="700" width="340" height="92" rx="10"/>
+<text x="2604" y="721" class="node-id">ID 19</text>
+<text x="2604" y="747" class="node-title">Set fact</text>
+<text x="2604" y="770" class="node-detail">cqa002_signal_failed = 1</text>
+</g>
+<g aria-label="questPauseConditionNodeDefinition: 120 real-time seconds">
+<polygon class="node gate" points="2276,930 2524,930 2540,976 2524,1022 2276,1022 2260,976"/>
+<text x="2274" y="951" class="node-id">ID 20</text>
+<text x="2274" y="977" class="node-title">Wait</text>
+<text x="2274" y="1000" class="node-detail">120 real-time seconds</text>
+</g>
+<g aria-label="questFactsDBManagerNodeDefinition: cqa002_signal_stop = 1">
+<rect class="node fact" x="2590" y="930" width="340" height="92" rx="10"/>
+<text x="2604" y="951" class="node-id">ID 21</text>
+<text x="2604" y="977" class="node-title">Set fact</text>
+<text x="2604" y="1000" class="node-detail">cqa002_signal_stop = 1</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002_01_obj_stable">
+<rect class="node journal" x="2280" y="80" width="330" height="92" rx="10"/>
+<text x="2294" y="101" class="node-id">ID 22</text>
+<text x="2294" y="127" class="node-title">Journal state</text>
+<text x="2294" y="150" class="node-detail">cqa002_01_obj_stable</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002_01_obj_stable">
+<rect class="node journal" x="2420" y="330" width="330" height="92" rx="10"/>
+<text x="2434" y="351" class="node-id">ID 23</text>
+<text x="2434" y="377" class="node-title">Journal state</text>
+<text x="2434" y="400" class="node-detail">cqa002_01_obj_stable</text>
+</g>
+<g aria-label="questFactsDBManagerNodeDefinition: cqa002_signal_succeeded = 1">
+<rect class="node fact" x="2800" y="330" width="340" height="92" rx="10"/>
+<text x="2814" y="351" class="node-id">ID 24</text>
+<text x="2814" y="377" class="node-title">Set fact</text>
+<text x="2814" y="400" class="node-detail">cqa002_signal_succeeded = 1</text>
+</g>
+<g aria-label="questLogicalXorNodeDefinition: 2 inputs -&gt; Out1">
+<polygon class="node gate" points="3206,270 3464,270 3480,316 3464,362 3206,362 3190,316"/>
+<text x="3204" y="291" class="node-id">ID 25</text>
+<text x="3204" y="317" class="node-title">XOR convergence</text>
+<text x="3204" y="340" class="node-detail">2 inputs -&gt; Out1</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002_01_obj_wait">
+<rect class="node journal" x="3530" y="540" width="330" height="92" rx="10"/>
+<text x="3544" y="561" class="node-id">ID 26</text>
+<text x="3544" y="587" class="node-title">Journal state</text>
+<text x="3544" y="610" class="node-detail">cqa002_01_obj_wait</text>
+</g>
+<g aria-label="questFactsDBManagerNodeDefinition: cqa002_completed = 1">
+<rect class="node fact" x="3910" y="540" width="310" height="92" rx="10"/>
+<text x="3924" y="561" class="node-id">ID 27</text>
+<text x="3924" y="587" class="node-title">Set fact</text>
+<text x="3924" y="610" class="node-detail">cqa002_completed = 1</text>
+</g>
+<g aria-label="questJournalNodeDefinition: cqa002">
+<rect class="node journal" x="4270" y="540" width="250" height="92" rx="10"/>
+<text x="4284" y="561" class="node-id">ID 28</text>
+<text x="4284" y="587" class="node-title">Journal state</text>
+<text x="4284" y="610" class="node-detail">cqa002</text>
+</g>
+</svg>
