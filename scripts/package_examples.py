@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LAB01 = ROOT / "examples" / "lab-01-one-shot"
 LAB02 = ROOT / "examples" / "lab-02-signal-race"
 LAB03 = ROOT / "examples" / "lab-03-boundary-check"
+LAB04 = ROOT / "examples" / "lab-04-handoff-point"
 
 
 def lab02_retained_evidence_files() -> tuple[str, ...]:
@@ -98,6 +99,47 @@ def lab03_retained_evidence_files() -> tuple[str, ...]:
             source = LAB03 / "completed" / Path(*relative.parts)
             if not source.is_file() or source.is_symlink():
                 raise ValueError(f"missing or linked Lab 3 evidence file: {reference}")
+            references.add(reference)
+    return tuple(sorted(references))
+
+
+def lab04_retained_evidence_files() -> tuple[str, ...]:
+    """Return only acceptance-record evidence paths safe to ship in Lab 4."""
+
+    record_path = LAB04 / "completed" / "runtime-acceptance.json"
+    try:
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read Lab 4 acceptance record: {error}") from error
+
+    cases = record.get("cases") if isinstance(record, dict) else None
+    if not isinstance(cases, list):
+        raise ValueError("Lab 4 acceptance record cases must be an array")
+
+    references: set[str] = set()
+    for case_index, case in enumerate(cases):
+        evidence = case.get("evidence") if isinstance(case, dict) else None
+        if not isinstance(evidence, list):
+            raise ValueError(f"Lab 4 case {case_index} evidence must be an array")
+        for evidence_index, item in enumerate(evidence):
+            reference = item.get("reference") if isinstance(item, dict) else None
+            if not isinstance(reference, str) or not reference:
+                raise ValueError(
+                    f"Lab 4 case {case_index} evidence {evidence_index} needs a reference"
+                )
+            relative = PurePosixPath(reference)
+            if (
+                reference != relative.as_posix()
+                or relative.is_absolute()
+                or "\\" in reference
+                or len(relative.parts) < 2
+                or relative.parts[0] != "evidence"
+                or any(part in {"", ".", ".."} for part in relative.parts)
+            ):
+                raise ValueError(f"unsafe Lab 4 evidence path: {reference!r}")
+            source = LAB04 / "completed" / Path(*relative.parts)
+            if not source.is_file() or source.is_symlink():
+                raise ValueError(f"missing or linked Lab 4 evidence file: {reference}")
             references.add(reference)
     return tuple(sorted(references))
 
@@ -252,6 +294,81 @@ LAB03_COMPLETED_TEXT_FILES = frozenset(
     }
 )
 
+LAB04_START_FILES = (
+    "CQA_Lab04_HandoffPoint_Start.cpmodproj",
+    "README.md",
+    "source/archive/mod/cqa/cqa004/journal/cqa004.journal",
+    "source/archive/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json",
+    "source/archive/mod/cqa/cqa004/phases/cqa004.questphase",
+    "source/archive/mod/cqa/cqa004/phases/cqa004_boundary.questphase",
+    "source/archive/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector",
+    "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingblock",
+    "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingsector",
+    "source/raw/mod/cqa/cqa004/journal/cqa004.journal.json",
+    "source/raw/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json.json",
+    "source/raw/mod/cqa/cqa004/phases/cqa004.questphase.json",
+    "source/raw/mod/cqa/cqa004/phases/cqa004_boundary.questphase.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingblock.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingsector.json",
+    "source/resources/CQA_Lab04_HandoffPoint_Start.archive.xl",
+)
+LAB04_START_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab04_HandoffPoint_Start.cpmodproj",
+        "README.md",
+        "source/raw/mod/cqa/cqa004/journal/cqa004.journal.json",
+        "source/raw/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json.json",
+        "source/raw/mod/cqa/cqa004/phases/cqa004.questphase.json",
+        "source/raw/mod/cqa/cqa004/phases/cqa004_boundary.questphase.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingblock.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingsector.json",
+        "source/resources/CQA_Lab04_HandoffPoint_Start.archive.xl",
+    }
+)
+LAB04_COMPLETED_BASE_FILES = (
+    "CQA_Lab04_HandoffPoint.cpmodproj",
+    "README.md",
+    "example.json",
+    "runtime-acceptance.json",
+    "source/archive/mod/cqa/cqa004/journal/cqa004.journal",
+    "source/archive/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json",
+    "source/archive/mod/cqa/cqa004/phases/cqa004.questphase",
+    "source/archive/mod/cqa/cqa004/phases/cqa004_boundary.questphase",
+    "source/archive/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector",
+    "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingblock",
+    "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingsector",
+    "source/raw/mod/cqa/cqa004/journal/cqa004.journal.json",
+    "source/raw/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json.json",
+    "source/raw/mod/cqa/cqa004/phases/cqa004.questphase.json",
+    "source/raw/mod/cqa/cqa004/phases/cqa004_boundary.questphase.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingblock.json",
+    "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingsector.json",
+    "source/resources/CQA_Lab04_HandoffPoint.archive.xl",
+)
+LAB04_COMPLETED_FILES = (
+    *LAB04_COMPLETED_BASE_FILES,
+    *lab04_retained_evidence_files(),
+)
+LAB04_COMPLETED_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab04_HandoffPoint.cpmodproj",
+        "README.md",
+        "example.json",
+        "runtime-acceptance.json",
+        "source/raw/mod/cqa/cqa004/journal/cqa004.journal.json",
+        "source/raw/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json.json",
+        "source/raw/mod/cqa/cqa004/phases/cqa004.questphase.json",
+        "source/raw/mod/cqa/cqa004/phases/cqa004_boundary.questphase.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingblock.json",
+        "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingsector.json",
+        "source/resources/CQA_Lab04_HandoffPoint.archive.xl",
+    }
+)
+
 CHECKPOINTS = {
     "cqa-lab-01-start.zip": (
         LAB01 / "start",
@@ -294,6 +411,20 @@ CHECKPOINTS = {
         LAB03_COMPLETED_FILES,
         LAB03_COMPLETED_TEXT_FILES,
         LAB03 / "LICENSE.md",
+    ),
+    "cqa-lab-04-start.zip": (
+        LAB04 / "start",
+        "CQA_Lab04_HandoffPoint_Start",
+        LAB04_START_FILES,
+        LAB04_START_TEXT_FILES,
+        LAB04 / "LICENSE.md",
+    ),
+    "cqa-lab-04-completed.zip": (
+        LAB04 / "completed",
+        "CQA_Lab04_HandoffPoint",
+        LAB04_COMPLETED_FILES,
+        LAB04_COMPLETED_TEXT_FILES,
+        LAB04 / "LICENSE.md",
     ),
 }
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)

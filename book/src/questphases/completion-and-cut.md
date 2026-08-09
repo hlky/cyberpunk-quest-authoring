@@ -1,54 +1,49 @@
 # Completion and interruption
 
 A phase is complete only when execution reaches the intended output and its
-owner has performed the required cleanup. The last visible objective update is
-not an implicit return.
+owner has performed the required state transitions. The last visible objective
+update is not an implicit return.
 
-## Normal completion
+## Normal child completion
 
-Lab 1's normal route is:
-
-```text
-succeed objective
-  -> set cqa001_completed = 1
-  -> succeed quest
-  -> terminating output Out1
-```
-
-Each edge matters. If termination moved before the fact write, the write would
-be unreachable. If the completion fact were omitted, later root evaluation
-would have no durable one-shot guard.
-
-The exact best ordering depends on the intended recovery policy. It must be
-tested at save boundaries rather than inferred from a successful uninterrupted
-run.
-
-## Child completion is a two-sided contract
-
-For a child:
+Lab 4's child ends with:
 
 ```text
-child route -> child output "Out1"
-                       |
-                       v
-parent phase node emits "Out1" -> parent continuation
+[16] wait until player IsOutside leave volume
+  -> [17] leave objective Succeeded
+  -> [1] terminating output socketName Out1
 ```
+
+Reaching output node `1` terminates that child route and exposes outcome
+`Out1`. It does not itself finish the root quest.
+
+## Parent continuation is the second half
+
+![Handoff Point parent-child contract](../images/lab-04/cqa004.handoff-contract.svg)
+
+The parent phase node must expose the same name and connect it onward:
+
+```text
+child [1] socketName Out1
+  -> parent [13].Out1
+  -> parent [14] confirmation objective Active
+  -> [15] wait 30 realtime seconds
+  -> [16] confirmation objective Succeeded
+  -> [17] phase Succeeded
+  -> [18] set cqa004_completed = 1
+  -> [19] quest Succeeded
+  -> [1] terminating output
+```
+
+The confirmation window exists to make the ownership transition observable
+and saveable. If objective `cqa004_01_obj_confirm` becomes active, normal
+execution has returned to parent-only work. A reload during that 30-second
+window tests a different boundary from a reload while the child is waiting on
+a trigger.
 
 Review both resources. A terminating child output with no matching parent
-socket cannot convey the intended result. A matching socket with no outgoing
-parent connection conveys the result and then goes nowhere.
-
-With several outcomes, cleanup can differ by route:
-
-| Outcome | Example responsibility before return |
-| --- | --- |
-| `accepted` | Close meeting UI, preserve acceptance fact, release temporary setup |
-| `declined` | Inactivate meeting objective and marker, preserve decline policy |
-| `failed` | Stop success monitor, apply failure presentation, release encounter |
-| `cut` | Stop active work and leave save state in an intentional recovery state |
-
-Outcome names here illustrate a design contract; use names proven for the
-specific node/resource arrangement you author.
+socket cannot convey the intended result. A matching parent socket with no
+outgoing connection receives the result and then advances nowhere.
 
 ## Termination is not cleanup
 
@@ -58,64 +53,112 @@ Reaching a `questOutputNodeDefinition` does not, by itself:
 - deactivate a community;
 - stop a scene or parallel monitor;
 - reset a device's persistent state;
-- clear a completion fact;
-- choose what a parent does next.
+- clear or set a completion fact;
+- choose what a parent does next;
+- unload every prefab declared by an ancestor.
 
-Every acquired transient dependency needs an owner and release boundary.
-Persistent progression should remain only because the re-entry design calls
-for it.
+Lab 4's child performs its local presentation transitions before return: the
+checkpoint pin is retired, the reach objective is succeeded, and the leave
+objective is succeeded. The parent owns the remaining confirmation and final
+quest completion.
 
-## Cut sockets
+Every transient dependency needs an owner and release boundary. Persistent
+progress remains only because the re-entry design calls for it.
 
-Many quest nodes expose a `CutDestination` socket. Its presence identifies an
-interruption surface; it does not supply a correct interruption policy.
+## Write durable state before terminating
 
-Before wiring a cut route, answer:
+Lab 4 writes `cqa004_completed = 1` after the child has returned and the
+confirmation objective and phase have succeeded, but before the quest succeeds
+and the root terminates:
 
-1. What work may be active when the cut arrives?
-2. Which child phase or scene must receive interruption?
-3. Which journal entries become inactive, failed, or resumable?
-4. Which communities, markers, devices, and monitors must be released?
-5. Which durable fact distinguishes cut from normal completion?
-6. Which output tells the parent cleanup is finished?
+```text
+phase Succeeded
+  -> set completion fact exactly to 1
+  -> quest Succeeded
+  -> terminate root route
+```
 
-The Lab 1 structure contains unwired `CutDestination` sockets.
-**Experimental:** this book does not claim cut-safe behavior for Lab 1 until an
-interruption fixture and expected recovery state are defined.
+Moving the terminating output earlier would make later writes unreachable.
+Moving the fact earlier would change which incomplete save boundaries take the
+already-completed bypass. The exact order is part of the recovery policy and
+must be tested, not inferred from one uninterrupted run.
 
-## Re-entry after termination
+## Cut sockets are structural interruption surfaces
+
+Many quest nodes expose a `CutDestination` socket. Its presence identifies a
+distinct socket class; it does not supply a correct interruption policy.
+
+Lab 4 retains the serialized cut sockets on its relevant nodes and connects
+none of them. Its validator rejects any ordinary or cut edge involving
+`CutDestination`.
+
+| Claim | Evidence class |
+| --- | --- |
+| The sockets exist with type `CutDestination` | **Structurally validated** |
+| Similar sockets exist in extracted vanilla phases | **Observed in vanilla** |
+| An unwired Lab 4 child cleans up correctly when externally interrupted | **Experimental** |
+| A wired cut propagates across this parent/child boundary and reaches a particular recovery state | **Experimental** |
+
+Do not draw a cut edge merely to make the graph look complete. Before wiring
+one, define:
+
+1. what work may be active when the cut arrives;
+2. which child, scene, or monitor receives interruption;
+3. which journal entries become inactive, failed, or resumable;
+4. which communities, markers, devices, and monitors are released;
+5. which durable fact distinguishes cut from normal completion;
+6. which child output tells the parent cleanup has finished;
+7. which save/reload cases prove the recovery policy.
+
+That requires a separate fixture. Lab 4 teaches normal `Out1` handoff only.
+
+## Re-entry across two active owners
 
 Termination ends an execution route, not the lifetime of all save-backed
-state. When a root is evaluated again, its policy must choose among:
+state. A composed quest has more than one meaningful reload boundary:
 
-| Policy | Required evidence |
+| Save boundary | Expected active owner in Lab 4 |
 | --- | --- |
-| One-shot | Completed route runs once; later entry takes the already-done route |
-| Resume | Saves taken at supported boundaries return to the intended stage |
-| Retry | Failure/cut cleanup restores exactly the state needed for another attempt |
-| Repeat | Reset or cooldown prevents overlap and restores repeatable inputs |
+| Before reaching checkpoint | Child, before `IsInside` resolves |
+| Between reach and leave volumes | Child, before `IsOutside` resolves |
+| After child return, during 30-second confirmation | Parent |
+| After final completion | No first-run route; root guard bypasses |
 
-For Lab 1, test at minimum:
+The runtime protocol also streams away and returns while the child is active,
+then tests completed reload, identical reinstall, and a second untouched clean
+replay.
 
-1. first run from a clean save;
-2. save/reload while the delay is active;
-3. reload after completion;
-4. reinstall over a save where `cqa001_completed == 1`;
-5. removal/reinstallation behavior only if the guide intends to support it.
+Use a save created before any Lab 4 candidate was installed. Changing files,
+uninstalling, or writing `cqa004_completed = 0` in a console does not erase
+save-backed journal, graph, mappin, world, or persistent-state history.
 
-Record journal state and the fact value for each case. Visual success alone
-does not prove that the one-shot invariant survived the save.
+## Evidence boundary
+
+**Runtime-proven:** the retained GQT003 research candidate completed normal
+handoffs across four external children with a root-owned prefab scope. That is
+evidence for the exact recorded composition, not for Lab 4's new graphs or its
+eight-run save matrix.
+
+**Structurally validated:** Lab 4's child route reaches terminating `Out1`,
+parent `13.Out1` connects to parent node `14`, every final write precedes the
+root output, and no `CutDestination` is connected.
+
+**Experimental:** Lab 4 normal handoff, active-child reload, active-child
+streaming, parent-window reload, completed re-entry, and cut behavior remain
+pending until the appropriate clean-save evidence is retained.
 
 ## Review before composition grows
 
 Before adding another child or parallel branch, verify:
 
-- every normal route reaches an intentional output;
+- every normal child route reaches an intentional output;
 - every parent output has a continuation or deliberate terminal policy;
 - all transient dependencies have cleanup owners;
 - persistent writes occur before their route becomes unreachable;
+- post-return parent work is distinguishable from active-child work;
 - cut remains explicitly unsupported or has a tested policy;
-- the tested version set and clean-save conditions are recorded.
+- the exact version set, installed hashes, and clean-save provenance are
+  recorded.
 
-This keeps phase composition reviewable when later chapters add gates, world
-references, scenes, and parallel failure monitors.
+Previous: [Prefab dependencies](prefab-dependencies.md). Next: [Lab 4: Handoff
+Point](lab-04.md).

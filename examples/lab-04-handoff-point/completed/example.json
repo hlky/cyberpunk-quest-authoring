@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "id": "cqa004",
+  "title": "Handoff Point",
+  "book_chapter": "book/src/questphases/lab-04.md",
+  "baseline": {
+    "recorded": "2026-08-09",
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "depot_paths": [
+    "mod\\cqa\\cqa004\\phases\\cqa004.questphase",
+    "mod\\cqa\\cqa004\\phases\\cqa004_boundary.questphase",
+    "mod\\cqa\\cqa004\\journal\\cqa004.journal",
+    "mod\\cqa\\cqa004\\localization\\en-us\\onscreens\\cqa004.json",
+    "mod\\cqa\\cqa004\\world\\cqa004_handoff.streamingblock",
+    "mod\\cqa\\cqa004\\world\\cqa004_handoff.streamingsector",
+    "mod\\cqa\\cqa004\\world\\cqa004_always_loaded.streamingsector"
+  ],
+  "registered_depot_paths": [
+    "mod\\cqa\\cqa004\\phases\\cqa004.questphase",
+    "mod\\cqa\\cqa004\\journal\\cqa004.journal",
+    "mod\\cqa\\cqa004\\localization\\en-us\\onscreens\\cqa004.json",
+    "mod\\cqa\\cqa004\\world\\cqa004_handoff.streamingblock"
+  ],
+  "persistent_facts": [
+    "cqa004_completed"
+  ],
+  "evidence": {
+    "structure": {
+      "status": "structurally-validated",
+      "date": "2026-08-09",
+      "method": "WolvenKit 8.19.0 deserialize and serialize round-trip inspection",
+      "resource_pairs": 14
+    },
+    "runtime": {
+      "status": "pending",
+      "class": "experimental",
+      "date": null,
+      "record": "runtime-acceptance.json"
+    }
+  },
+  "graphs": {
+    "root": {
+      "layout": "assets/diagrams/lab-04/cqa004.questphase.layout.json",
+      "source_fingerprint": "sha256:733cf3e3d754fc2a311077da6b888c72e0089abaeeed89aad628cd8d0993bbc5"
+    },
+    "child": {
+      "layout": "assets/diagrams/lab-04/cqa004_boundary.questphase.layout.json",
+      "source_fingerprint": "sha256:c3255c0dff8fe0427c7b370747afabd4c81dd1348f13af4f2d384e4b3d09dbbc"
+    }
+  },
+  "artifacts": {
+    "algorithm": "sha256",
+    "files": {
+      "CQA_Lab04_HandoffPoint.cpmodproj": "18b457ff07daf703081c5955d6c01698e6ff1ae440fa88ee3ad727ec0aba5981",
+      "runtime-acceptance.json": "d9ae814bbf006f756566507d8d1a5219b8ca46823b806a3f57f1583186f03d25",
+      "source/archive/mod/cqa/cqa004/journal/cqa004.journal": "2ccbc83c1bffa6ddfc5e128c84a6743eea284aeb59fd896c61fc6d33cf476fcd",
+      "source/archive/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json": "543aaf49f96a6bbc265ca38222dbfed2e4be32c4e840efbbc081de42f427e148",
+      "source/archive/mod/cqa/cqa004/phases/cqa004_boundary.questphase": "315de1eb79008de5531778aa86547a541e680463a00dc795aaa285d4241eb0b9",
+      "source/archive/mod/cqa/cqa004/phases/cqa004.questphase": "ca2bba2d96c9f72340686b56959de53517424a0bbd82904ecd010949b382abba",
+      "source/archive/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector": "ef2be841576256b664e3923107bee7c71d77abbf271a3cb75a130e4e85b90473",
+      "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingblock": "ce7756add62da3545b68289a6d722e854c46b57dffb7fa6a16701e49c7da7696",
+      "source/archive/mod/cqa/cqa004/world/cqa004_handoff.streamingsector": "22a73974052860899fe21895b77d4fad299070f563c69b2e7f485935f6192027",
+      "source/raw/mod/cqa/cqa004/journal/cqa004.journal.json": "8e1b1b17e60a3fe02c075d3d5a5925c30da51547e4e94dc8625be7738886f46a",
+      "source/raw/mod/cqa/cqa004/localization/en-us/onscreens/cqa004.json.json": "aefc01ac172c230d19b5e11b2573a60c06987cd7c4f7b849c34836c67d15bd37",
+      "source/raw/mod/cqa/cqa004/phases/cqa004_boundary.questphase.json": "55ef868bda3fe0135d09d88f576f2218b8178a90655a005c65b93e89064fdfb9",
+      "source/raw/mod/cqa/cqa004/phases/cqa004.questphase.json": "4a7bb6636dad23bc6c698d8c475af08246a5aff73bda3f6e9d9552e5222854fa",
+      "source/raw/mod/cqa/cqa004/world/cqa004_always_loaded.streamingsector.json": "c2dfbf83b7ef9f2c0146651b0ea6ab8c5c7dc97dbc8383d4a50b3c918a3fdf28",
+      "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingblock.json": "7c13f7854a16f263d6d671d0c5a03f28cfa2b125ef369db69aa096d0ab081bd9",
+      "source/raw/mod/cqa/cqa004/world/cqa004_handoff.streamingsector.json": "946f63cfd8f640ba3c41dc2597b07df07de7cc1a79e06d8545742b9cb992c19d",
+      "source/resources/CQA_Lab04_HandoffPoint.archive.xl": "3bee81ae00881ea95f3db5c35c9433c51a475a4c4d8fc76acbd63fc87e51ac32"
+    }
+  }
+}

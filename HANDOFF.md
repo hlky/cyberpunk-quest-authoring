@@ -43,6 +43,8 @@ The project originated from:
 
 **Lab 3 runtime evidence:** **Experimental** — pending.
 
+**Lab 4 runtime evidence:** **Experimental** — pending.
+
 The local repository is initialized at:
 
 `H:\cyberpunk-quest-authoring`
@@ -81,6 +83,12 @@ It has:
   six-resource checkpoints, an exact 16-node/16-edge graph, resource and
   trigger-volume diagrams, manual WolvenKit authoring, and an eight-run
   acceptance record.
+- substantive root/child composition chapters covering root registration,
+  archived external-child resolution, socket contracts, root-owned prefab
+  scope, completion handoff, and the bounded evidence for interruption;
+- a designed and structurally validated Lab 4 reference project with start and
+  completed checkpoints, exact parent/child graphs, a manual WolvenKit
+  authoring path, and an eight-run acceptance record.
 
 ## Research evidence available in Ghostline
 
@@ -128,6 +136,26 @@ The initial inventory established:
   packages, devices, communities, markers, and triggers;
 - an experimental custom braindance pipeline covering Blender-authored
   animation, `.scenerid`, rewindable scenes, clue layers, and quest linkage.
+
+Stage 5 narrowed the composition evidence further:
+
+- **Runtime-proven:** Ghostline history commit
+  `6e959d2149e664432eaff3b7d4905e8b1d342f2f` retains the GQT003 candidate in
+  which one root prefab declaration served four external children with empty
+  `phasePrefabs`; the full recorded sequence passed. The candidate archive SHA
+  is `B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF`.
+- **Observed in vanilla:** the parent
+  `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03.questphase`
+  owns one prefab while its external `sts_wat_nid_03_openworld.questphase`
+  child declares none and uses references beneath it.
+- **Structurally validated:** the focused external phase-node shape uses a soft
+  `phaseResource`, `phaseGraph: null`, an empty `phaseInstancePrefabs`, and
+  parent sockets `In1`, `Out1`, and `CutDestination`; the child matches
+  `In1`/`Out1`. This does not prove the cut route at runtime.
+- **Experimental:** all exact `cqa004` normal-`Out1` child lifetime, streaming,
+  reload, and save claims remain pending its retained eight-run matrix.
+  `CutDestination` remains outside that matrix and needs a separate
+  interruption fixture even after the normal handoff passes.
 
 The local public `modding_docs` snapshot has useful isolated material but lacks
 an end-to-end model:
@@ -274,7 +302,7 @@ prerequisite.
 - Root registration under `base\quest\cyberpunk2077.quest`
 - Inputs, outputs, named outcomes, and termination
 - Child-phase handoff
-- Phase-prefab ownership and inheritance
+- Root-owned phase-prefab scope and node-local declarations
 - Cut/interrupt paths
 
 ### Conditions and gates
@@ -434,13 +462,16 @@ Add:
 
 ### Lab 4 — Root and child phases
 
-Move the activity into a child phase and teach:
+Move Lab 3's reach/leave activity pattern into an external child and teach:
 
 - `In1` and `Out1`;
-- parent/child ownership;
-- resource paths;
-- phase-prefab inheritance;
-- completion handoff.
+- one ArchiveXL-registered root and one archived child resolved by
+  `phaseResource`;
+- parent/child ownership and resource paths;
+- root-owned quest-prefab scope without duplicating it into the child or
+  `phaseInstancePrefabs`;
+- completion handoff and an explicitly unconnected, **Experimental**
+  `CutDestination` route.
 
 ### Lab 5 — First contact and scene
 
@@ -611,11 +642,13 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0–4 completed the validation baseline, zero-assumption
-onboarding, Lab 1, Journal/UI/localization, Conditions and gates, and the
-structurally validated Labs 2 and 3 plus World integration. The next delivery
-stage is root/child composition with Lab 4. Runtime labels are promoted only
-when retained clean-save evidence supports them.
+published. Stages 0–5 completed the validation baseline, zero-assumption
+onboarding, Lab 1, Journal/UI/localization, Conditions and gates, World
+integration, root/child composition, and the structurally validated Labs 2–4.
+Stage 6 is communities, scene basics, and Lab 5; Stages 7–9 retain the
+hardening, cookbook, advanced-systems, and final-publication work in the
+roadmap. Runtime labels are promoted only when retained clean-save evidence
+supports them.
 
 ## Resolved decisions
 
@@ -628,6 +661,10 @@ when retained clean-save evidence supports them.
 - Lab 3 is `cqa003`, titled “Boundary Check”; it keeps triggers in a Quest
   sector, the marker in a separate AlwaysLoaded sector, and uses state-shaped
   `IsInside`/`IsOutside` gates whose runtime behavior remains Experimental.
+- Lab 4 is `cqa004`, titled “Handoff Point”; ArchiveXL registers only its root
+  phase, the external child is archived and resolved through `phaseResource`,
+  and the root owns `#cqa004_pr_handoff`. Its exact runtime behavior remains
+  **Experimental** pending the retained acceptance matrix.
 - Exact diagrams use WolvenKit CR2W-JSON plus layout-only overrides and a
   checked structural fingerprint.
 - Release ZIPs will be built automatically from the checked example projects.

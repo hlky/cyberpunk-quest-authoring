@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="720" viewBox="0 0 1500 720" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa004 terminating-child handoff contract</title>
+<desc id="svg-desc">Parent execution enters the phase node at In1, the child input is also named In1, the terminating child output Out1 returns through the parent phase node Out1, and CutDestination remains deliberately unwired.</desc>
+<metadata>{&quot;diagram&quot;:&quot;conceptual-handoff-contract&quot;,&quot;evidence_class&quot;:&quot;Experimental&quot;}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/></marker>
+<style>
+    .bg { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 28px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 14px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .edge { fill: none; stroke: #c9d1dc; stroke-width: 2.1; marker-end: url(#arrow); }
+    .edge-label { fill: #e0e5ed; font: 12px ui-monospace, Consolas, monospace;
+                  text-anchor: middle; paint-order: stroke; stroke: #10151d;
+                  stroke-width: 5px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #956600; }
+    .journal { fill: #247a4b; }
+    .phase { fill: #315f9a; }
+    .fact { fill: #6d3ea0; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+    .node-type { fill: #d2d9e3; font: 10px ui-monospace, Consolas, monospace; }
+    .panel { fill: #181f2a; stroke: #506078; stroke-width: 1.5; }
+    .panel-blue { fill: #182b49; stroke: #78a9ff; stroke-width: 2; }
+    .panel-green { fill: #173d38; stroke: #68d8c5; stroke-width: 2; }
+    .panel-amber { fill: #493510; stroke: #f3be55; stroke-width: 2; }
+    .panel-title { fill: #ffffff; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .warn { fill: #ffd982; font: 600 13px system-ui, sans-serif; }
+    .dashed { fill: none; stroke: #f3be55; stroke-width: 2; stroke-dasharray: 7 7; }
+
+</style>
+</defs>
+<rect class="bg" width="1500" height="720"/>
+<text class="title" x="40" y="48">cqa004 terminating-child handoff contract</text>
+<text class="subtitle" x="40" y="77">Exact socket names at the external phase boundary</text>
+<rect class="panel-blue" x="60" y="145" width="390" height="260" rx="12"/>
+<text class="panel-title" x="78" y="176">Parent graph • phase node ID 13</text>
+<text class="detail" x="78" y="206">input socket: In1</text>
+<text class="detail" x="78" y="228">output socket: Out1</text>
+<text class="detail" x="78" y="250">socket: CutDestination</text>
+<text class="detail" x="78" y="272">phaseGraph: null</text>
+<text class="detail" x="78" y="294">phaseResource: cqa004_boundary.questphase</text>
+<rect class="panel-amber" x="550" y="145" width="390" height="260" rx="12"/>
+<text class="panel-title" x="568" y="176">External child resource</text>
+<text class="detail" x="568" y="206">questInput socketName: In1</text>
+<text class="detail" x="568" y="228">child work executes</text>
+<text class="detail" x="568" y="250">questOutput socketName: Out1</text>
+<text class="detail" x="568" y="272">questOutput type: Terminating</text>
+<text class="detail" x="568" y="294">phasePrefabs: []</text>
+<rect class="panel-blue" x="1040" y="145" width="390" height="260" rx="12"/>
+<text class="panel-title" x="1058" y="176">Parent continuation</text>
+<text class="detail" x="1058" y="206">phase node Out1</text>
+<text class="detail" x="1058" y="228">→ objective ID 14 Active</text>
+<text class="detail" x="1058" y="250">→ 30-second confirmation</text>
+<text class="detail" x="1058" y="272">→ completion path</text>
+<text class="detail" x="1058" y="294">CutDestination has no edge</text>
+<path class="edge" d="M 450 225 L 550 225"/>
+<text class="edge-label" x="500" y="208">In1 → In1</text>
+<path class="edge" d="M 940 305 L 1040 305"/>
+<text class="edge-label" x="990" y="288">Out1 → Out1</text>
+<path class="dashed" d="M 255 405 L 255 535 L 1235 535 L 1235 405"/>
+<text class="edge-label" x="745" y="523">CutDestination • present on nodes • deliberately unwired</text>
+<text class="label" x="60" y="590">Structural contract: exact sockets and terminating output.</text>
+<text class="warn" x="60" y="618">Runtime interpretation of CutDestination: Experimental; this lab creates no cut edge.</text>
+<text class="note" x="1430" y="665" text-anchor="end">Experimental — parent/child runtime acceptance pending</text>
+</svg>

@@ -16,6 +16,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 
 **Lab 3 runtime evidence:** **Experimental** — pending.
 
+**Lab 4 runtime evidence:** **Experimental** — pending.
+
 | Stage | Status on 2026-08-09 |
 | --- | --- |
 | 0 — audit and validation baseline | Complete; committed and published |
@@ -23,7 +25,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 | 2 — journal, UI, and localization | Complete; seven substantive chapters, a deterministic lookup diagram, and Lab 1 semantic checks |
 | 3 — conditions and gates plus Lab 2 | Complete; eight control/reference chapters, a three-page practical lab, two deterministic checkpoints, an exact 21-node graph, and schema-v3 two-variant acceptance |
 | 4 — world integration plus Lab 3 | Complete; ten world chapters, two deterministic six-resource checkpoints, three exact/conceptual SVGs, and schema-v3 eight-run acceptance |
-| 5–9 | Planned below |
+| 5 — root/child composition plus Lab 4 | Complete; six focused questphase chapters, a three-page practical lab, two deterministic seven-resource checkpoints, exact parent/child graphs, and an eight-run acceptance matrix |
+| 6–9 | Planned below |
 
 ## Completion standard
 
@@ -106,10 +109,13 @@ historical notes show `WolvenKit 8.17.4-nightly.2026-03-20`, ArchiveXL
 `1.27.0`, and TweakXL `1.11.3`, but not as one uniform acceptance record, and
 they do not bind the game executable or RED4ext version. They are therefore
 legacy runtime evidence, not automatic proof under this book's pinned
-`2.31a`/`8.19.0`/`1.27.0`/`1.30.0`/`0.5.31` practical baseline. The strongest
-GQT002–GQT004 proof narrative also survives in Ghostline Git history rather
-than its working tree; it must be migrated into durable, hash-bound evidence
-records before publication claims rely on it.
+`2.31a`/`8.19.0`/`1.27.0`/`1.30.0`/`0.5.31` practical baseline. Stage 5 migrated
+one bounded GQT003 composition claim into this book with its source commit and
+candidate archive hash; that claim remains legacy runtime evidence rather than
+proof under the pinned practical baseline. The remaining GQT002–GQT004 proof
+narratives still survive primarily in Ghostline Git history and must be
+migrated into equally explicit, durable evidence records before new
+publication claims rely on them.
 
 ## Delivery stages
 
@@ -162,10 +168,19 @@ acceptance record and synchronized status marker above.
 
 ### Stage 5 — root/child composition plus Lab 4
 
+Status: **Complete** on 2026-08-09. The exact Lab 4 child lifetime, handoff,
+stream-return, and save behavior remain **Experimental** pending its retained
+acceptance matrix.
+
 - turn the existing phase-composition theory into a complete external-child
   procedure;
-- ship `In1`/`Out1` handoff, prefab inheritance, completion/cut diagrams, and
-  Lab 4 checkpoints.
+- distinguish the one ArchiveXL-registered root from an archived external
+  child resolved by `phaseResource`;
+- teach `In1`/`Out1` handoff, root-owned prefab scope, and the evidence boundary
+  around `CutDestination` rather than treating compiler inheritance policy as
+  native law;
+- ship Lab 4 start/completed checkpoints, exact parent/child diagrams, manual
+  authoring, and an eight-run acceptance procedure.
 
 ### Stage 6 — communities, scene basics, and Lab 5
 

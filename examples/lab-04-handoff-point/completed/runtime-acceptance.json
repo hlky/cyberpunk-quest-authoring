@@ -1,0 +1,347 @@
+{
+  "schema_version": 3,
+  "example_id": "cqa004",
+  "status": "pending",
+  "evidence_class": "experimental",
+  "required_environment": {
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "candidates": [
+    {
+      "id": "canonical",
+      "manifest": "example.json",
+      "installed_files": [
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab04_HandoffPoint.archive",
+          "sha256": null
+        },
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab04_HandoffPoint.archive.xl",
+          "sha256": null
+        }
+      ],
+      "depot_paths": [
+        "mod\\cqa\\cqa004\\phases\\cqa004.questphase",
+        "mod\\cqa\\cqa004\\phases\\cqa004_boundary.questphase",
+        "mod\\cqa\\cqa004\\journal\\cqa004.journal",
+        "mod\\cqa\\cqa004\\localization\\en-us\\onscreens\\cqa004.json",
+        "mod\\cqa\\cqa004\\world\\cqa004_handoff.streamingblock",
+        "mod\\cqa\\cqa004\\world\\cqa004_handoff.streamingsector",
+        "mod\\cqa\\cqa004\\world\\cqa004_always_loaded.streamingsector"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "clean-walk",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-reach",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "pre-reach-reload",
+      "candidate_id": "canonical",
+      "save_state": "child-active-before-reach",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "between-boundaries-reload",
+      "candidate_id": "canonical",
+      "save_state": "child-active-reach-succeeded-inside-leave",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "post-return-reload",
+      "candidate_id": "canonical",
+      "save_state": "parent-confirmation-delay-active",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "stream-away-return",
+      "candidate_id": "canonical",
+      "save_state": "child-active-before-reach",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "completed-reload",
+      "candidate_id": "canonical",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "completed-reinstall",
+      "candidate_id": "canonical",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "clean-replay",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-reach",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-walk",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-walk"],
+      "precondition": "Install the canonical candidate and load an untouched pre-Lab-4 save with the player outside the reach volume.",
+      "expected": "The root invokes the external child once; reach and leave advance once; child Out1 activates the parent confirmation objective; thirty realtime seconds later the quest completes once. Logs contain no cqa004 registration, child phaseResource, NodeRef, journal, localization, or streaming error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "pre-reach-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["pre-reach-reload"],
+      "precondition": "Save after the child activates but before entering the reach volume, then reload without changing the installation.",
+      "expected": "The active child, reach objective, and pin return once; entering and leaving advance once and return through child Out1. Logs contain no child-resolution or duplicated-activation error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "between-boundaries-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["between-boundaries-reload"],
+      "precondition": "Save after reach succeeds while the child waits inside the leave volume, then reload.",
+      "expected": "The child remains at the leave wait, does not complete until the boundary is crossed, and then returns to the parent once. Logs contain no child-state or NodeRef error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "post-return-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["post-return-reload"],
+      "precondition": "Cross outside, verify the child returned, save while the parent's thirty-second confirmation delay is active, and reload.",
+      "expected": "The child does not restart; the confirmation objective resumes coherently and completes once. Record whether elapsed realtime resumes or restarts. Logs contain no phase continuation error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "stream-away-return",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["stream-away-return"],
+      "precondition": "While the child is active before reach, travel by ordinary movement beyond the finite Quest descriptor box, return by ordinary movement, and finish the route.",
+      "expected": "The active child remains coherent; the returned trigger crossings advance once; child Out1 continues the parent once. Logs contain no cqa004 streaming, phaseResource, or NodeRef resolution error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["completed-reload"],
+      "precondition": "Save after ordinary completion and reload without changing the installation.",
+      "expected": "The cqa004_completed guard bypasses the child; no objective, pin, confirmation delay, or quest state reactivates. Logs remain free of cqa004 errors.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-reinstall",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["completed-reinstall"],
+      "precondition": "Remove and reinstall the identical canonical candidate, then load its completed save.",
+      "expected": "The quest remains completed and the child is not reinvoked. ArchiveXL logs show the root registered without a separate child-phase registration and no cqa004 error.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "clean-replay",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-replay"],
+      "precondition": "Reload the original untouched pre-install save with the canonical candidate still installed and walk the full route again.",
+      "expected": "The root-to-child-to-root sequence, visible journal states, world gates, confirmation delay, and completion reproduce once with no cqa004 errors in any retained log.",
+      "observed": null,
+      "evidence": []
+    }
+  ],
+  "promotion_rule": "Set status to passed and evidence_class to runtime-proven only when all eight required cases pass and evidence binds the exact candidate build, all eight executions, the untouched pre-install save and every derived save, exact versions, visible observations, and all four logs for every execution. CutDestination remains outside this promotion rule because the lab leaves it unwired."
+}

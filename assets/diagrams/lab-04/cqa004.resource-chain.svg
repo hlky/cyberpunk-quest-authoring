@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="720" viewBox="0 0 1580 720" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa004 external-phase resource chain</title>
+<desc id="svg-desc">ArchiveXL registers only the root phase. Its phase node resolves the archived child, which uses NodeRefs owned by the root prefab declaration and world resources.</desc>
+<metadata>{&quot;diagram&quot;:&quot;conceptual-resource-chain&quot;,&quot;evidence_class&quot;:&quot;Experimental&quot;}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/></marker>
+<style>
+    .bg { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 28px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 14px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .edge { fill: none; stroke: #c9d1dc; stroke-width: 2.1; marker-end: url(#arrow); }
+    .edge-label { fill: #e0e5ed; font: 12px ui-monospace, Consolas, monospace;
+                  text-anchor: middle; paint-order: stroke; stroke: #10151d;
+                  stroke-width: 5px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #956600; }
+    .journal { fill: #247a4b; }
+    .phase { fill: #315f9a; }
+    .fact { fill: #6d3ea0; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+    .node-type { fill: #d2d9e3; font: 10px ui-monospace, Consolas, monospace; }
+    .panel { fill: #181f2a; stroke: #506078; stroke-width: 1.5; }
+    .panel-blue { fill: #182b49; stroke: #78a9ff; stroke-width: 2; }
+    .panel-green { fill: #173d38; stroke: #68d8c5; stroke-width: 2; }
+    .panel-amber { fill: #493510; stroke: #f3be55; stroke-width: 2; }
+    .panel-title { fill: #ffffff; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .warn { fill: #ffd982; font: 600 13px system-ui, sans-serif; }
+    .dashed { fill: none; stroke: #f3be55; stroke-width: 2; stroke-dasharray: 7 7; }
+
+</style>
+</defs>
+<rect class="bg" width="1580" height="720"/>
+<text class="title" x="40" y="48">cqa004 external-phase resource chain</text>
+<text class="subtitle" x="40" y="77">Registration, archive lookup, phase scope, and world ownership are different relationships</text>
+<rect class="panel-blue" x="40" y="125" width="300" height="150" rx="12"/>
+<text class="panel-title" x="58" y="156">ArchiveXL</text>
+<text class="detail" x="58" y="186">register cqa004.questphase</text>
+<text class="detail" x="58" y="208">register journal + localization</text>
+<text class="detail" x="58" y="230">register streaming block</text>
+<text class="detail" x="58" y="252">DO NOT register child</text>
+<rect class="panel-blue" x="410" y="125" width="330" height="150" rx="12"/>
+<text class="panel-title" x="428" y="156">Root questphase</text>
+<text class="detail" x="428" y="186">phasePrefabs: #cqa004_pr_handoff</text>
+<text class="detail" x="428" y="208">external phase node ID 13</text>
+<text class="detail" x="428" y="230">phaseInstancePrefabs: []</text>
+<rect class="panel-amber" x="810" y="125" width="330" height="150" rx="12"/>
+<text class="panel-title" x="828" y="156">External child</text>
+<text class="detail" x="828" y="186">archived cqa004_boundary.questphase</text>
+<text class="detail" x="828" y="208">phasePrefabs: []</text>
+<text class="detail" x="828" y="230">terminating Out1</text>
+<rect class="panel-green" x="1210" y="125" width="330" height="150" rx="12"/>
+<text class="panel-title" x="1228" y="156">Child graph lookups</text>
+<text class="detail" x="1228" y="186">#cqa004_mp_handoff</text>
+<text class="detail" x="1228" y="208">#cqa004_tr_reach</text>
+<text class="detail" x="1228" y="230">#cqa004_tr_leave</text>
+<rect class="panel-green" x="410" y="410" width="330" height="160" rx="12"/>
+<text class="panel-title" x="428" y="441">Streaming block</text>
+<text class="detail" x="428" y="471">Quest descriptor binds</text>
+<text class="detail" x="428" y="493">$/mod/cqa/cqa004/</text>
+<text class="detail" x="428" y="515">#cqa004_pr_handoff</text>
+<rect class="panel-green" x="810" y="410" width="330" height="160" rx="12"/>
+<text class="panel-title" x="828" y="441">Quest sector</text>
+<text class="detail" x="828" y="471">owns reach + leave triggers</text>
+<text class="detail" x="828" y="493">finite Quest descriptor</text>
+<text class="detail" x="828" y="515">Allen Street geometry</text>
+<rect class="panel-green" x="1210" y="410" width="330" height="160" rx="12"/>
+<text class="panel-title" x="1228" y="441">AlwaysLoaded sector</text>
+<text class="detail" x="1228" y="471">owns static handoff marker</text>
+<text class="detail" x="1228" y="493">separate sector category</text>
+<text class="detail" x="1228" y="515">same full prefab subtree</text>
+<path class="edge" d="M 340 200 L 410 200"/>
+<text class="edge-label" x="375" y="190">registered root</text>
+<path class="edge" d="M 740 200 L 810 200"/>
+<text class="edge-label" x="775" y="190">soft phaseResource</text>
+<path class="edge" d="M 1140 200 L 1210 200"/>
+<text class="edge-label" x="1175" y="190">local NodeRefs</text>
+<path class="edge" d="M 575 275 L 575 410"/>
+<text class="edge-label" x="575" y="332.5">root prefab scope</text>
+<path class="edge" d="M 740 490 L 810 490"/>
+<text class="edge-label" x="775" y="480">descriptor data</text>
+<path class="edge" d="M 1140 490 L 1210 490"/>
+<text class="edge-label" x="1175" y="480">separate owner</text>
+<text class="warn" x="40" y="660">Archived does not mean registered: the parent resolves the child by depot path.</text>
+<text class="note" x="1540" y="660" text-anchor="end">Experimental — runtime behavior pending</text>
+</svg>

@@ -142,14 +142,17 @@ claim that every external child always repeats every root it directly uses.
 It does not, by itself, prove the engine's complete inheritance or lifetime
 rule.
 
-For mod-owned resources, declaring a directly used root again in an external
-child is a conservative authoring convention that avoids relying on an
-unresolved transitive rule. It must be described as a convention, not a
-vanilla invariant. Lab 3 intentionally stays in one root phase, so its first
-world test does not depend on that ambiguity. [Prefab
-dependencies](../questphases/prefab-dependencies.md) contains the book's
-conservative review procedure; apply its ownership rule within this evidence
-boundary.
+For mod-owned resources, choose the declaration owner from a complete,
+evidence-matched lifetime rather than duplicating roots by default. Lab 4 keeps
+the declaration on its registered root while the external child and invoking
+node stay empty; that arrangement is backed by a retained runtime fixture and
+a matching vanilla shape, while Lab 4's exact new runtime remains
+**Experimental**. Repeating a root in a child is a different arrangement that
+needs its own validation, not a harmless conservative default. Lab 3
+intentionally stays in one root phase, so its first world test does not depend
+on either external-child arrangement. [Prefab
+dependencies](../questphases/prefab-dependencies.md) contains the book's review
+procedure; apply its ownership rule within this evidence boundary.
 
 ## Names are part of persisted identity
 

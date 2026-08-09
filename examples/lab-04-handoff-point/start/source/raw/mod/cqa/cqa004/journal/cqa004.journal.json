@@ -1,0 +1,228 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa004\\journal\\cqa004.journal"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "gameJournalResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "entry": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "gameJournalRootFolderEntry",
+          "descriptor": {
+            "DepotPath": {
+              "$type": "ResourcePath",
+              "$storage": "string",
+              "$value": "base\\journal\\descriptor.journaldesc"
+            },
+            "Flags": "Soft"
+          },
+          "entries": [
+            {
+              "HandleId": "1",
+              "Data": {
+                "$type": "gameJournalPrimaryFolderEntry",
+                "entries": [
+                  {
+                    "HandleId": "2",
+                    "Data": {
+                      "$type": "gameJournalFolderEntry",
+                      "entries": [
+                        {
+                          "HandleId": "3",
+                          "Data": {
+                            "$type": "gameJournalQuest",
+                            "entries": [
+                              {
+                                "HandleId": "4",
+                                "Data": {
+                                  "$type": "gameJournalQuestPhase",
+                                  "entries": [
+                                    {
+                                      "HandleId": "5",
+                                      "Data": {
+                                        "$type": "gameJournalQuestObjective",
+                                        "entries": [
+                                          {
+                                            "HandleId": "6",
+                                            "Data": {
+                                              "$type": "gameJournalQuestMapPin",
+                                              "entries": [],
+                                              "id": "cqa004_01_qmp_handoff",
+                                              "journalEntryOverrideDataList": [],
+                                              "enableGPS": 1,
+                                              "mappinData": {
+                                                "$type": "gamemappinsMappinData",
+                                                "active": 0,
+                                                "debugCaption": "cqa_cqa004_mappin_handoff",
+                                                "localizedCaption": {
+                                                  "unk1": "0",
+                                                  "value": "cqa_cqa004_mappin_handoff"
+                                                },
+                                                "mappinType": {
+                                                  "$type": "TweakDBID",
+                                                  "$storage": "string",
+                                                  "$value": "Mappins.QuestStaticMappinDefinition"
+                                                },
+                                                "scriptData": null,
+                                                "variant": "DefaultQuestVariant",
+                                                "visibleThroughWalls": 1
+                                              },
+                                              "offset": {
+                                                "$type": "Vector3",
+                                                "X": 0,
+                                                "Y": 0,
+                                                "Z": 0.5
+                                              },
+                                              "reference": {
+                                                "$type": "gameEntityReference",
+                                                "dynamicEntityUniqueName": {
+                                                  "$type": "CName",
+                                                  "$storage": "string",
+                                                  "$value": "None"
+                                                },
+                                                "names": [],
+                                                "reference": {
+                                                  "$type": "NodeRef",
+                                                  "$storage": "string",
+                                                  "$value": "#cqa004_mp_handoff"
+                                                },
+                                                "sceneActorContextName": {
+                                                  "$type": "CName",
+                                                  "$storage": "string",
+                                                  "$value": "None"
+                                                },
+                                                "slotName": {
+                                                  "$type": "CName",
+                                                  "$storage": "string",
+                                                  "$value": "None"
+                                                },
+                                                "type": "EntityRef"
+                                              }
+                                            }
+                                          }
+                                        ],
+                                        "id": "cqa004_01_obj_reach",
+                                        "journalEntryOverrideDataList": [],
+                                        "counter": 0,
+                                        "description": {
+                                          "unk1": "0",
+                                          "value": "cqa_cqa004_objective_reach"
+                                        },
+                                        "districtID": "",
+                                        "itemID": {
+                                          "$type": "TweakDBID",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "locationPrefabRef": {
+                                          "$type": "NodeRef",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "optional": 0
+                                      }
+                                    },
+                                    {
+                                      "HandleId": "7",
+                                      "Data": {
+                                        "$type": "gameJournalQuestObjective",
+                                        "entries": [],
+                                        "id": "cqa004_01_obj_leave",
+                                        "journalEntryOverrideDataList": [],
+                                        "counter": 0,
+                                        "description": {
+                                          "unk1": "0",
+                                          "value": "cqa_cqa004_objective_leave"
+                                        },
+                                        "districtID": "",
+                                        "itemID": {
+                                          "$type": "TweakDBID",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "locationPrefabRef": {
+                                          "$type": "NodeRef",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "optional": 0
+                                      }
+                                    },
+                                    {
+                                      "HandleId": "8",
+                                      "Data": {
+                                        "$type": "gameJournalQuestObjective",
+                                        "entries": [],
+                                        "id": "cqa004_01_obj_confirm",
+                                        "journalEntryOverrideDataList": [],
+                                        "counter": 0,
+                                        "description": {
+                                          "unk1": "0",
+                                          "value": "cqa_cqa004_objective_confirm"
+                                        },
+                                        "districtID": "",
+                                        "itemID": {
+                                          "$type": "TweakDBID",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "locationPrefabRef": {
+                                          "$type": "NodeRef",
+                                          "$storage": "uint64",
+                                          "$value": "0"
+                                        },
+                                        "optional": 0
+                                      }
+                                    }
+                                  ],
+                                  "id": "cqa004_01",
+                                  "journalEntryOverrideDataList": [],
+                                  "locationPrefabRef": {
+                                    "$type": "NodeRef",
+                                    "$storage": "uint64",
+                                    "$value": "0"
+                                  }
+                                }
+                              }
+                            ],
+                            "id": "cqa004",
+                            "journalEntryOverrideDataList": [],
+                            "districtID": "",
+                            "recommendedLevelID": {
+                              "$type": "TweakDBID",
+                              "$storage": "uint64",
+                              "$value": "0"
+                            },
+                            "title": {
+                              "unk1": "0",
+                              "value": "cqa_cqa004_title"
+                            },
+                            "type": "MinorQuest"
+                          }
+                        }
+                      ],
+                      "id": "minor_quest",
+                      "journalEntryOverrideDataList": []
+                    }
+                  }
+                ],
+                "id": "quests",
+                "journalEntryOverrideDataList": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    "EmbeddedFiles": []
+  }
+}

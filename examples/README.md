@@ -21,5 +21,8 @@ Implemented examples:
 - [`lab-03-boundary-check`](lab-03-boundary-check/README.md): start and
   completed checkpoints for the `cqa003` streaming, marker, and nested-trigger
   world objective.
+- [`lab-04-handoff-point`](lab-04-handoff-point/README.md): start and completed
+  checkpoints for the `cqa004` registered-root, archive-resolved child-phase
+  handoff.
 
 The longer release sequence remains in [`../HANDOFF.md`](../HANDOFF.md).

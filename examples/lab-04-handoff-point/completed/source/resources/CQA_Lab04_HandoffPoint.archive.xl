@@ -1,0 +1,16 @@
+quest:
+  phases:
+  - path: mod\cqa\cqa004\phases\cqa004.questphase
+    parent: base\quest\cyberpunk2077.quest
+
+journal:
+- mod\cqa\cqa004\journal\cqa004.journal
+
+localization:
+  onscreens:
+    en-us:
+    - mod\cqa\cqa004\localization\en-us\onscreens\cqa004.json
+
+streaming:
+  blocks:
+  - mod\cqa\cqa004\world\cqa004_handoff.streamingblock

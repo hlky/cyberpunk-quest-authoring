@@ -1,0 +1,62 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa004\\localization\\en-us\\onscreens\\cqa004.json"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "JsonResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "root": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "localizationPersistenceOnScreenEntries",
+          "entries": [
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Handoff Point",
+              "maleVariant": "",
+              "primaryKey": "0",
+              "secondaryKey": "cqa_cqa004_title"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Reach the handoff point.",
+              "maleVariant": "",
+              "primaryKey": "0",
+              "secondaryKey": "cqa_cqa004_objective_reach"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Clear the handoff area.",
+              "maleVariant": "",
+              "primaryKey": "0",
+              "secondaryKey": "cqa_cqa004_objective_leave"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Wait for handoff confirmation.",
+              "maleVariant": "",
+              "primaryKey": "0",
+              "secondaryKey": "cqa_cqa004_objective_confirm"
+            },
+            {
+              "$type": "localizationPersistenceOnScreenEntry",
+              "femaleVariant": "Handoff Point",
+              "maleVariant": "",
+              "primaryKey": "0",
+              "secondaryKey": "cqa_cqa004_mappin_handoff"
+            }
+          ]
+        }
+      }
+    },
+    "EmbeddedFiles": []
+  }
+}

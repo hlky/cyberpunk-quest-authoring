@@ -9,7 +9,7 @@ prerequisite for understanding or authoring native Cyberpunk 2077 quests.
 Current utilities:
 
 - `validate.py` is the single local and CI validation command. It regenerates
-  all three labs' CR2W-JSON into temporary directories; checks manifests, source
+  all four labs' CR2W-JSON into temporary directories; checks manifests, source
   and checkpoint inventories, Git tracking, LF-normalized text, exact
   ArchiveXL section nesting, manifest SHA-256 values, runtime-acceptance
   contracts and reader-facing evidence status, mdBook SUMMARY coverage and
@@ -30,11 +30,20 @@ Current utilities:
 - `validate_lab03.py` supplies Lab 3's exact graph, journal/mappin, trigger
   buffer, NodeRef, sector/block, manifest, and acceptance checks to the shared
   entry point.
+- `build_lab04_sources.py` deterministically rebuilds both Lab 4 checkpoints'
+  seven mod-owned resources, including the registered root and archive-resolved
+  child questphases.
+- `build_lab04_diagrams.py` validates the exact Lab 4 root and child graphs and
+  emits their SVGs plus the resource-chain and terminating-handoff diagrams.
+- `validate_lab04.py` supplies Lab 4's root-only registration, external-phase
+  socket, prefab-scope, graph, world, evidence, and diagram checks. Pass
+  `--wkit <WolvenKit.CLI>` to repeat the pinned 8.19.0 cook and serialize
+  round trip locally; the shared CI entry point remains dependency-free.
 - `render_quest_graph.py` renders an exact SVG from WolvenKit CR2W-JSON plus a
   geometry-only override (including optional edge waypoints) and rejects stale
   source fingerprints.
 - `package_examples.py` creates deterministic ZIP downloads for all start and
-  completed checkpoints. Lab 2 and Lab 3 evidence files are included only
+  completed checkpoints. Lab 2, Lab 3, and Lab 4 evidence files are included only
   when a safe `evidence/` path is named by the matching acceptance record;
   unreferenced extras keep failing the closed-inventory check.
 
@@ -45,9 +54,10 @@ python scripts/validate.py
 ```
 
 The suite has no third-party Python dependencies and does not invoke
-WolvenKit. Its binary/source check is intentionally limited to locally
+WolvenKit. Its default binary/source check is intentionally limited to locally
 provable provenance: CR2W magic, the CR2W-JSON archive filename and resource
 type, and the cooked resource's matching root-type string. It does not prove a
-WolvenKit round trip or in-game behavior.
+WolvenKit round trip or in-game behavior. The optional Lab 4 `--wkit` gate is
+the explicit local exception and is not run by `validate.py`.
 
 Scripts in this directory are licensed under the MIT License.

@@ -19,6 +19,8 @@ frameworks.
 
 **Lab 3 runtime evidence:** **Experimental** — pending.
 
+**Lab 4 runtime evidence:** **Experimental** — pending.
+
 The repository contains:
 
 - a published mdBook and GitHub Pages workflow;
@@ -39,6 +41,12 @@ The repository contains:
   safe vanilla-location research;
 - Lab 3's start/completed WolvenKit projects, exact 16-node graph, resource
   and volume diagrams, manual authoring path, and eight-run runtime protocol;
+- a complete root/child questphase section covering root-only questphase
+  registration,
+  external `phaseResource` resolution, socket contracts, root-owned prefab
+  scope, completion handoff, and bounded interruption evidence;
+- Lab 4's start/completed WolvenKit projects, exact parent/child graphs, manual
+  authoring path, and eight-run runtime protocol;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
@@ -57,6 +65,13 @@ Its block mounting, sector/NodeRef resolution, trigger boundaries, marker/GPS
 presentation, streaming return, and save behavior remain Experimental until
 the hash-bound canonical candidate passes all eight executions in its
 schema-version-3 acceptance record.
+
+Lab 4's `cqa004` resources are structurally validated with WolvenKit 8.19.0.
+Only its root phase is registered through ArchiveXL; its archived child is
+resolved through `phaseResource`, while the root owns the shared quest-prefab
+scope. That exact child lifetime, handoff, stream return, and save behavior
+remains **Experimental** until the hash-bound canonical candidate passes all
+eight executions in its acceptance record.
 
 ## Local preview
 
