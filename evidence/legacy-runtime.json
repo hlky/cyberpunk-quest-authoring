@@ -10,6 +10,25 @@
   },
   "records": [
     {
+      "id": "gqt004-fact-only-handoff-failure",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "0BB4540D0EF1C74BFBAF3BEA3F84CF290A72CF62B10D4C1DA473602F57E815A8",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "failed",
+      "bounded_observations": [
+        "The stage-50-bypass candidate reached breadcrumb 40 with the contact ride complete and contact-cleanup fact unset; its fact-only intermediate cleanup child did not hand off, and the theft vehicle disappeared as that child was entered."
+      ],
+      "not_proven": [
+        "The precise engine cause of the failed child handoff or vehicle disappearance.",
+        "A generic rule that a fact-only child cannot terminate.",
+        "The later direct route, final cleanup, or pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/vehicle-delivery-cleanup-chase-race.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
       "id": "gq000-direct-device-mappin-failure",
       "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
       "archive_sha256": "0F971F97877421C181C5D4B114F5090D015DEE97B3FE7FFCF9091F57FD476158",
@@ -51,13 +70,19 @@
       "evidence_class": "runtime-proven",
       "runtime_result": "passed",
       "bounded_observations": [
-        "The complete retained route displayed intended onscreen text, five meeting choice labels, spoken subtitles and VO, phone choices, completion presentation, and the separate always-loaded marker strategy."
+        "The complete retained route displayed intended onscreen text, five meeting choice labels, spoken subtitles and VO, phone choices, completion presentation, and the separate always-loaded marker strategy.",
+        "The route used the live Kabuki drop_point_009 reservation and native deposit, removed the quest package, completed delivery, traversed both recorded Morrow response routes, granted the reward, and succeeded the quest."
       ],
       "not_proven": [
         "Equivalence to the pinned current book baseline.",
-        "That the earlier FEAEC candidate carried the complete-route result."
+        "That the earlier FEAEC candidate carried the complete-route result.",
+        "The later GPS cleanup and marker-height corrections; this candidate exposed stale and low-marker presentation defects."
       ],
       "reader_pages": [
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/patterns/branching-choices-and-debriefs.md",
+        "book/src/patterns/messages-calls-and-conversations.md",
+        "book/src/patterns/rewards-switches-and-outcomes.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/reference/localization-reference.md",
         "book/src/troubleshooting/journal-localization-audio.md",
@@ -85,6 +110,7 @@
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/entries-phases-and-ai-spots.md",
         "book/src/communities/index.md",
+        "book/src/patterns/workspots-and-interactions.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/scenes/actors-and-performers.md",
         "book/src/scenes/index.md",
@@ -109,6 +135,105 @@
       ]
     },
     {
+      "id": "gqt003-sequential-route-role-clear",
+      "source_commit": "6e959d2149e664432eaff3b7d4905e8b1d342f2f",
+      "archive_sha256": "3EB9FCB4DBD1CA8BA6730C02CDF81B8A89B855C75372FFF8927DC66F0423D597",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "The sequential-route candidate advanced through escort gates 1, 2, and 3, then cleared the follower role at gate 3 and allowed the persistent target to walk back toward her original AI spot as the hold began."
+      ],
+      "not_proven": [
+        "The later corrected follower-retaining handoff or combat defend wave.",
+        "A generic follower-clear timing or persistent-AI policy.",
+        "Equivalence to the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/rescue-escort-defend-and-carry.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
+      "id": "gqt004-cross-vehicle-cleanup-failure",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "707CA5603E84D802B11400CF98761624A1B9156E56BF6752B695C30AA29B5D19",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "The fresh-identity theft vehicle existed during the contact drive but disappeared exactly when the intermediate contact-vehicle cleanup handed off to the theft objective while both custom player-vehicle records had live instances."
+      ],
+      "not_proven": [
+        "A universal causal law for questEnablePlayerVehicle or every pair of live player-vehicle records.",
+        "Safe reuse of that intermediate cleanup topology with another record or owner.",
+        "The later passing route, generic community/world-vehicle cleanup, or the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/vehicle-delivery-cleanup-chase-race.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
+      "id": "gqt001-files-document-pass",
+      "source_commit": "6e959d2149e664432eaff3b7d4905e8b1d342f2f",
+      "archive_sha256": "791ED71FB1B443734153304DB609961D193BF7ECEE300CD09818BEEE10D5C166",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "The fresh Files-only laptop exposed only its authored Files tab, and opening SIGNAL DELAY advanced the quest through the named document-read fact."
+      ],
+      "not_proven": [
+        "A generic signal for emails, internet pages, or arbitrary computer content.",
+        "Quest-complete presentation; this candidate still omitted explicit success of the quest journal entry.",
+        "Equivalence to the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/items-shards-files-and-scans.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
+      "id": "gq002-shard-acquisition-fact-pass",
+      "source_commit": "5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb",
+      "archive_sha256": "82C221619EBA15D39D5F82D53B9CCE86AEEB9107AEC15166718143043284B312",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "After the readable item had been consumed into the Journal, the final scan's acquisition fact plus the three-second presentation delay advanced the shard objective into the next security stage.",
+        "That next security trigger then waited silently while its volume was centred below the rooftop route, exposing the placement defect later corrected in a different candidate."
+      ],
+      "not_proven": [
+        "That the pickup overlay or full Journal reader was visited.",
+        "A generic readable-shard completion signal.",
+        "The later corrected security-trigger route."
+      ],
+      "reader_pages": [
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/patterns/items-shards-files-and-scans.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
+      "id": "gqt004-vehicle-harness-pass",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "passed",
+      "bounded_observations": [
+        "The final GQT004 candidate completed its exact six-stage vehicle harness: enter the named contact vehicle, assign Patch as its passenger, reach the contact destination, mount the designated theft vehicle, reach its delivery trigger, and run the final player-vehicle cleanup.",
+        "The final placement correction kept the theft vehicle loaded on approach, resolving the last blocked stage in that retained route."
+      ],
+      "not_proven": [
+        "A stopped-inside delivery condition; the retained delivery phase used vehicle arrival in its destination trigger without the separate CT_EQUAL/0 speed wait.",
+        "Generic cleanup for a community-owned or placed world vehicle, or safe reuse of the removed intermediate contact-cleanup stage.",
+        "Reload, interruption, failure, clean-save replay, chase, race, or equivalence to the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/mount-ride-drive-and-theft.md",
+        "book/src/patterns/vehicle-delivery-cleanup-chase-race.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
       "id": "gq000-shared-lipsync-meeting-pass",
       "source_commit": "68f311c8f2511aeba679b76a68062ef5e446aaa0",
       "archive_sha256": "87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D",
@@ -129,6 +254,9 @@
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/index.md",
         "book/src/communities/registries-and-areas.md",
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/patterns/npc-interaction-and-meetings.md",
+        "book/src/patterns/workspots-and-interactions.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/reference/localization-reference.md",
         "book/src/scenes/actors-and-performers.md",
@@ -138,20 +266,46 @@
       ]
     },
     {
+      "id": "gq002-security-trigger-pass",
+      "source_commit": "5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb",
+      "archive_sha256": "8FF1835A73F93B032FC4E1602FA1CC80234779706B085C385EBB7DFB91CE945B",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "Entering the corrected rooftop trigger activated the security encounter and the downstream quest flow continued."
+      ],
+      "not_proven": [
+        "The following return-to-relay objective and GPS presentation, which were added in a later candidate.",
+        "A generic trigger size, placement, or security encounter.",
+        "Equivalence to the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
       "id": "gqt003-root-owned-prefab-pass",
       "source_commit": "6e959d2149e664432eaff3b7d4905e8b1d342f2f",
       "archive_sha256": "B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF",
       "evidence_class": "runtime-proven",
       "runtime_result": "passed",
       "bounded_observations": [
-        "One root-owned quest prefab remained usable across four external children whose phasePrefabs arrays were empty."
+        "One root-owned quest prefab remained usable across four external children whose phasePrefabs arrays were empty.",
+        "The exact extraction harness advanced through its native access-point hack and release route, then through three ordered escort gates while retaining the follower role into the hold.",
+        "All three configured attackers spawned and engaged, the 20-second defend success route completed, surviving attackers deactivated, and the follower role cleared after the escort/defend handoff."
       ],
       "not_proven": [
         "A universal inheritance law.",
-        "Lab 4 behavior under the pinned baseline."
+        "Lab 4 behavior under the pinned baseline.",
+        "The defend failure or retry route.",
+        "Generic access-point controller/action combinations, movement recovery, carry, or trunk placement."
       ],
       "reader_pages": [
         "HANDOFF.md",
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/patterns/rescue-escort-defend-and-carry.md",
+        "book/src/patterns/stealth-combat-and-destruction.md",
         "book/src/questphases/index.md",
         "book/src/questphases/prefab-dependencies.md",
         "book/src/reference/evidence-version-matrix.md"
@@ -192,6 +346,29 @@
       ]
     },
     {
+      "id": "gqt002-quiet-install-pass",
+      "source_commit": "6e959d2149e664432eaff3b7d4905e8b1d342f2f",
+      "archive_sha256": "C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "passed",
+      "bounded_observations": [
+        "Ordinary guard awareness could fail the optional stealth objective, while the quiet route exposed the laptop's Steal Data personal-link interaction.",
+        "After the player selected that interaction, the quest waited for ScriptableDeviceComponentPS.IsPersonalLinkConnected, displayed the five-second install presentation, sent QuestForceDisconnectPersonalLink, consumed the exact keylogger, cleaned up the guards, and completed."
+      ],
+      "not_proven": [
+        "Other controller, action, condition-function, or item combinations.",
+        "A general monitor-cancellation, XOR, or late-signal law.",
+        "Arbitrary encounters, placements, workspots, or the pinned current book environment."
+      ],
+      "reader_pages": [
+        "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/patterns/items-shards-files-and-scans.md",
+        "book/src/patterns/stealth-combat-and-destruction.md",
+        "book/src/patterns/workspots-and-interactions.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
       "id": "gq000-hostile-patrol-cleanup",
       "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
       "archive_sha256": "DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A",
@@ -208,6 +385,7 @@
         "HANDOFF.md",
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/index.md",
+        "book/src/patterns/areas-devices-and-hacking.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/scenes/index.md",
         "book/src/scenes/lab-05.md"

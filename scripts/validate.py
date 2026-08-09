@@ -127,6 +127,19 @@ FIRST_RELEASE_HARDENING_PAGES = tuple(
         "reference/vanilla-depot-paths.md",
     )
 )
+GAMEPLAY_PATTERN_PAGES = {
+    "messages-calls-and-conversations.md": "Messages, calls, and conversations",
+    "branching-choices-and-debriefs.md": "Branching, choices, and debriefs",
+    "areas-devices-and-hacking.md": "Areas, devices, and hacking",
+    "items-shards-files-and-scans.md": "Items, shards, files, and scans",
+    "workspots-and-interactions.md": "Workspots and interactions",
+    "npc-interaction-and-meetings.md": "NPC interaction and meetings",
+    "stealth-combat-and-destruction.md": "Stealth, combat, and destruction",
+    "rescue-escort-defend-and-carry.md": "Rescue, escort, defend, and carry",
+    "mount-ride-drive-and-theft.md": "Mount, ride, drive, and theft",
+    "vehicle-delivery-cleanup-chase-race.md": "Vehicle delivery, cleanup, chase, and race",
+    "rewards-switches-and-outcomes.md": "Rewards, switches, and outcomes",
+}
 LAB_RUNTIME_MANIFESTS = (
     (1, ROOT / "examples" / "lab-01-one-shot" / "completed" / "example.json"),
     (2, ROOT / "examples" / "lab-02-signal-race" / "completed" / "example.json"),
@@ -136,15 +149,23 @@ LAB_RUNTIME_MANIFESTS = (
 )
 LEGACY_RUNTIME_LEDGER = ROOT / "evidence" / "legacy-runtime.json"
 EXPECTED_LEGACY_ARCHIVES = {
+    "gqt004-fact-only-handoff-failure": "0BB4540D0EF1C74BFBAF3BEA3F84CF290A72CF62B10D4C1DA473602F57E815A8",
     "gq000-direct-device-mappin-failure": "0F971F97877421C181C5D4B114F5090D015DEE97B3FE7FFCF9091F57FD476158",
     "gq000-scene-launch-crash": "177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD",
     "gq000-complete-route": "1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC",
     "gq000-generic-guards-passive": "2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80",
     "gqt004-truncated-writer-crash": "355C442781509F69B61745AF0889CDD32EEA825BA0E480AAD97A8DAF2CCE90BE",
+    "gqt003-sequential-route-role-clear": "3EB9FCB4DBD1CA8BA6730C02CDF81B8A89B855C75372FFF8927DC66F0423D597",
+    "gqt004-cross-vehicle-cleanup-failure": "707CA5603E84D802B11400CF98761624A1B9156E56BF6752B695C30AA29B5D19",
+    "gqt001-files-document-pass": "791ED71FB1B443734153304DB609961D193BF7ECEE300CD09818BEEE10D5C166",
+    "gq002-shard-acquisition-fact-pass": "82C221619EBA15D39D5F82D53B9CCE86AEEB9107AEC15166718143043284B312",
+    "gqt004-vehicle-harness-pass": "84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B",
     "gq000-shared-lipsync-meeting-pass": "87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D",
+    "gq002-security-trigger-pass": "8FF1835A73F93B032FC4E1602FA1CC80234779706B085C385EBB7DFB91CE945B",
     "gqt003-root-owned-prefab-pass": "B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF",
     "gqt004-placeholder-fix-candidate": "B5C9527AEAC233D3D9885B276E4898EE67114CA0FBDE3A7EBC57413EC06AB04A",
     "gqt004-rebuilt-topology-partial": "BA94F1F88E91DA2E5C1E15D956E1AE867048029F4894C65F0A7B6DA6403436C1",
+    "gqt002-quiet-install-pass": "C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD",
     "gq000-hostile-patrol-cleanup": "DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A",
     "gq000-sorted-locstore-intermediate": "FEAEC7D66E6C3E492ACE2454A0E32FFB7E1DCBA6B8C08B7E44A427745BF21CAC",
 }
@@ -1224,6 +1245,162 @@ def validate_first_release_hardening() -> None:
             )
 
 
+def validate_gameplay_cookbook() -> None:
+    patterns = BOOK_SRC / "patterns"
+    expected_inventory = {"index.md"} | set(GAMEPLAY_PATTERN_PAGES)
+    actual_inventory = {page.name for page in patterns.glob("*.md")}
+    require(
+        actual_inventory == expected_inventory,
+        "gameplay-pattern page inventory: "
+        + describe_set_difference(expected_inventory, actual_inventory),
+    )
+    index_path = patterns / "index.md"
+    index_text = index_path.read_text(encoding="utf-8")
+    normalized_index = " ".join(markdown_visible_text(index_text).split())
+    for stale_phrase in ("will become", "planned families include"):
+        require(
+            stale_phrase not in normalized_index.lower(),
+            f"{display(index_path)}: placeholder text remains at {stale_phrase!r}",
+        )
+    for required in (
+        "Evidence does not compose automatically",
+        "Ghostline is not a reader dependency",
+        "Clean-save rule",
+        "Cyberpunk 2077 Windows GOG `2.31a`",
+        "WolvenKit `8.19.0`",
+        "(workspots-and-interactions.md#doors-are-device-contracts)",
+        "(../gates/delays-and-persistence.md)",
+    ):
+        require(required in index_text, f"{display(index_path)}: missing {required!r}")
+
+    summary_text = SUMMARY.read_text(encoding="utf-8")
+    depot_index = (BOOK_SRC / "reference" / "vanilla-depot-paths.md").read_text(
+        encoding="utf-8"
+    )
+    depot_path_pattern = re.compile(
+        r"base\\(?:[A-Za-z0-9_.-]+\\)+[A-Za-z0-9_.-]+\."
+        r"(?:anims|community|devices|ent|journaldesc|journal|json|questphase|quest|"
+        r"scene|streamingblock|streamingsector_inplace|streamingsector|streamingworld|workspot)"
+    )
+    ledger_records = load_json(LEGACY_RUNTIME_LEDGER)["records"]
+    runtime_hashes = {
+        record["archive_sha256"]
+        for record in ledger_records
+        if record["evidence_class"] == "runtime-proven"
+    }
+    evidence_matrix = (
+        BOOK_SRC / "reference" / "evidence-version-matrix.md"
+    ).read_text(encoding="utf-8")
+    summary_positions: list[int] = []
+    index_positions: list[int] = []
+    for filename, title in GAMEPLAY_PATTERN_PAGES.items():
+        page = patterns / filename
+        require(page.is_file(), f"missing gameplay-pattern page {display(page)}")
+        text = page.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        require(
+            lines and lines[0] == f"# {title}",
+            f"{display(page)}: expected exact H1 {title!r}",
+        )
+        require(
+            summary_text.count(f"(patterns/{filename})") == 1,
+            f"{display(SUMMARY)}: expected one link to patterns/{filename}",
+        )
+        summary_positions.append(summary_text.index(f"(patterns/{filename})"))
+        require(
+            index_text.count(f"({filename})") == 1,
+            f"{display(index_path)}: expected one cookbook link to {filename}",
+        )
+        index_positions.append(index_text.index(f"({filename})"))
+
+        normalized = " ".join(markdown_visible_text(text).split())
+        for token in (
+            "Cyberpunk 2077",
+            "2.31a",
+            "WolvenKit",
+            "8.19.0",
+            "ArchiveXL",
+            "1.27.0",
+            "RED4ext",
+            "1.30.0",
+            "redscript",
+            "0.5.31",
+            "**Observed in vanilla**",
+            "**Structurally validated**",
+            "**Experimental**",
+        ):
+            require(token in normalized, f"{display(page)}: missing boundary token {token!r}")
+        require(
+            re.search(
+                r"\b(?:clean[- ]save|clean retest|clean replay|untouched (?:pre-install )?save)\b",
+                normalized,
+                flags=re.IGNORECASE,
+            )
+            is not None,
+            f"{display(page)}: missing explicit clean/untouched-save boundary",
+        )
+        require(
+            re.search(
+                r"^## .*?(?:WolvenKit|authoring|composition order)",
+                text,
+                flags=re.IGNORECASE | re.MULTILINE,
+            )
+            is not None,
+            f"{display(page)}: missing manual authoring section",
+        )
+        require(
+            re.search(
+                r"^## .*?(?:acceptance|runtime cases|save.*matrix|lifecycle matrix)",
+                text,
+                flags=re.IGNORECASE | re.MULTILINE,
+            )
+            is not None,
+            f"{display(page)}: missing acceptance/lifecycle test section",
+        )
+        require(
+            "Ghostline generator" not in normalized
+            and "Ghostline compiler" not in normalized,
+            f"{display(page)}: reader-facing Ghostline tooling dependency found",
+        )
+        for line_number, line in enumerate(lines, start=1):
+            require(
+                re.fullmatch(r"\s*base\\.*\\\s*", line) is None,
+                f"{display(page)}:{line_number}: depot path is wrapped instead of copyable",
+            )
+
+        cited_paths = set(depot_path_pattern.findall(text))
+        require(
+            len(depot_path_pattern.findall(text)) == text.count("base\\"),
+            f"{display(page)}: every base depot-path occurrence must be complete",
+        )
+        require(cited_paths, f"{display(page)}: no exact vanilla depot path cited")
+        for depot_path in sorted(cited_paths):
+            require(
+                f"`{depot_path}`" in depot_index,
+                f"{display(page)}: depot path missing from vanilla index: {depot_path}",
+            )
+
+        cited_runtime_hashes = set(re.findall(r"\b[0-9A-F]{64}\b", text)) & runtime_hashes
+        require(
+            cited_runtime_hashes,
+            f"{display(page)}: no full hash from the runtime-evidence ledger",
+        )
+        for archive_hash in cited_runtime_hashes:
+            require(
+                archive_hash in evidence_matrix,
+                f"{display(page)}: runtime hash missing from evidence/version matrix: {archive_hash}",
+            )
+
+    require(
+        summary_positions == sorted(summary_positions),
+        f"{display(SUMMARY)}: gameplay-pattern links are not in canonical order",
+    )
+    require(
+        index_positions == sorted(index_positions),
+        f"{display(index_path)}: gameplay-pattern links are not in canonical order",
+    )
+
+
 def validate_legacy_runtime_ledger() -> None:
     ledger = load_json(LEGACY_RUNTIME_LEDGER)
     require(
@@ -2074,6 +2251,7 @@ def main() -> int:
         ("Lab 1 reader-facing evidence status", lambda: validate_reader_evidence_status(info)),
         ("book links and SUMMARY coverage", validate_book_links_and_summary),
         ("first-release references and lab navigation", validate_first_release_hardening),
+        ("gameplay cookbook coverage and evidence boundaries", validate_gameplay_cookbook),
         ("bounded legacy runtime evidence ledger", validate_legacy_runtime_ledger),
         ("Lab 1 journal and localization lookups", validate_lab01_journal_contract),
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),

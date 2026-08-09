@@ -100,7 +100,11 @@ It has:
 - a designed and structurally validated Lab 5 reference project with two
   eleven-CR2W-plus-WEM checkpoints, exact root/child/scene graphs, seven
   deterministic diagrams, a manual WolvenKit authoring path, and an
-  eleven-case acceptance record.
+  eleven-case acceptance record;
+- a complete gameplay cookbook with eleven substantive guides, explicit
+  time-gate and door routing, manual WolvenKit composition orders, indexed
+  vanilla paths, clean-save/lifecycle matrices, and hash-bound legacy evidence
+  that does not make Ghostline a reader dependency.
 
 ## Research evidence available in Ghostline
 
@@ -689,13 +693,13 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0–7 completed the validation baseline, zero-assumption
+published. Stages 0–8 completed the validation baseline, zero-assumption
 onboarding, Lab 1, Journal/UI/localization, Conditions and gates, World
 integration, root/child composition, communities, scene basics, the
-structurally validated Labs 2–5, symptom-led troubleshooting, and the complete
-first-release lookup set. Stage 8 is the gameplay cookbook; Stage 9 retains
-advanced systems and the final publication audit. Runtime labels are promoted
-only when retained clean-save evidence supports them.
+structurally validated Labs 2–5, symptom-led troubleshooting, the complete
+first-release lookup set, and the evidence-bounded gameplay cookbook. Stage 9
+retains advanced systems and the final publication audit. Runtime labels are
+promoted only when retained clean-save evidence supports them.
 
 ## Resolved decisions
 

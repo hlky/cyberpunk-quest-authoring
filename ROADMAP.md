@@ -30,7 +30,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 | 5 — root/child composition plus Lab 4 | Complete; six focused questphase chapters, a three-page practical lab, two deterministic seven-resource checkpoints, exact parent/child graphs, and an eight-run acceptance matrix |
 | 6 — communities, scene basics, and Lab 5 | Complete; twelve focused community/scene chapters, a three-page practical lab, two deterministic twelve-artifact checkpoints, seven diagrams, and an eleven-case acceptance matrix |
 | 7 — first-release hardening | Complete; eight symptom-led troubleshooting guides, eleven lookup/reference pages, canonical five-lab navigation, synchronized release status, a validated legacy-evidence ledger, and full-repository lint/build/package checks |
-| 8–9 | Planned below |
+| 8 — gameplay cookbook | Complete; eleven substantive pattern guides, explicit time-gate and door routing, exact indexed vanilla paths, migrated hash-bound legacy results, and a dedicated cookbook validation gate |
+| 9 — advanced systems and final publication pass | Planned below |
 
 ## Completion standard
 
@@ -113,13 +114,15 @@ historical notes show `WolvenKit 8.17.4-nightly.2026-03-20`, ArchiveXL
 `1.27.0`, and TweakXL `1.11.3`, but not as one uniform acceptance record, and
 they do not bind the game executable or RED4ext version. They are therefore
 legacy runtime evidence, not automatic proof under this book's pinned
-`2.31a`/`8.19.0`/`1.27.0`/`1.30.0`/`0.5.31` practical baseline. Stage 5 migrated
-one bounded GQT003 composition claim into this book with its source commit and
-candidate archive hash; that claim remains legacy runtime evidence rather than
-proof under the pinned practical baseline. The remaining GQT002–GQT004 proof
-narratives still survive primarily in Ghostline Git history and must be
-migrated into equally explicit, durable evidence records before new
-publication claims rely on them.
+`2.31a`/`8.19.0`/`1.27.0`/`1.30.0`/`0.5.31` practical baseline. Stages 5–8
+migrated the bounded root-owned-prefab, documents, shard/trigger,
+quiet-install, escort/defend, and passing vehicle-harness claims used by the
+book into the machine-readable ledger with exact source commits, archive
+hashes, observations, exclusions, and reader-page inventories. Those remain
+legacy runtime evidence rather than proof under the pinned practical baseline.
+Any other GQT002–GQT004 narrative that survives only in Ghostline history must
+be migrated to the same durable contract before a publication claim relies on
+it.
 
 ## Delivery stages
 
@@ -214,6 +217,12 @@ canonical runtime records; it does not promote pending gameplay claims.
 - run a complete editorial, link, figure, package, and live-site pass.
 
 ### Stage 8 — gameplay cookbook
+
+Status: **Complete** on 2026-08-09. Eleven guides cover the five planned
+batches, while the landing page routes the already-complete time-gate guide and
+adds a bounded world-door contract. Runtime labels remain exact-archive claims;
+new compositions, stopped-inside delivery, generic vehicle cleanup, carry,
+chase, race, and other unpassed variants retain **Experimental** boundaries.
 
 Publish in independently verifiable batches:
 

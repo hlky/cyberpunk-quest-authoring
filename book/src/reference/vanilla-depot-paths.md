@@ -35,6 +35,9 @@ serialization.
 | `base\quest\side_quests\sq021\phases\sq021_randys_room.questphase` | How a computer-page output sets a fact and how a phase waits for that authored document signal |
 | `base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase` | Prefab dependencies, trigger/device/scene-marker/AI-spot refs, Boolean gates, and a plant-item comparison |
 | `base\open_world\minor_activities\watson\northside\ma_wat_nid_15\ma_wat_nid_15_phase.questphase` | Facts, logical trees, trigger/time/journal/content conditions, and investigation progression |
+| `base\open_world\minor_activities\watson\little_china\ma_wat_lch_03\ma_wat_lch_03_phase.questphase` | A focused `read_shard` objective whose progression does not use `questJournalEntryVisited_ConditionType` |
+| `base\open_world\minor_activities\watson\little_china\ma_wat_lch_05\ma_wat_lch_05_phase.questphase` | A second focused `read_shard` comparison without a journal-visited condition |
+| `base\open_world\minor_activities\watson\little_china\ma_wat_lch_15\phases\ma_wat_lch_15.questphase` | A third focused `read_shard` comparison using inventory, loot, or interaction state rather than a universal visited recipe |
 | `base\quest\side_quests\sq011\phases\sq011_concert.questphase` | Game-time and real-time payloads plus delayed contact orchestration |
 | `base\quest\side_quests\sq011\phases\sq011_follow_up.questphase` | Multi-day game-time delay before later contact logic |
 | `base\open_world\street_stories\westbrook\japantown\sts_wbr_jpn_03\phase\sts_wbr_jpn_03_streetstory.questphase` | Parallel stealth-failure monitoring, stop/converge behavior, and optional outcomes |
@@ -48,6 +51,16 @@ serialization.
 | `base\open_world\street_stories\heywood\vista_del_rey\sts_hey_rey_09\phases\sts_hey_rey_09_openworld.questphase` | Inventory, scan, scene, character-mount/carry, and vehicle-trunk condition shapes |
 | `base\open_world\street_stories\westbrook\japantown\sts_wbr_jpn_09\phases\sts_wbr_jpn_09_gameplay.questphase` | Spawner readiness, distance, mount, and defend-target comparison |
 | `base\open_world\street_stories\watson\kabuki\sts_wat_kab_05\phases\sts_wat_kab_05_openworld.questphase` | Journal completion/reward context and native drop-point reservation comparison |
+| `base\quest\side_quests\sq004\phases\sq004_02_drive.questphase` | Player/contact mount conditions, vehicle assignment, seat roles, and destination-driving comparison |
+| `base\quest\side_quests\sq031\phases\sq031_rogue.questphase` | Spawned readiness, puppet-AI tier work, and vehicle-forbidden-trigger context |
+| `base\quest\side_quests\sq031\phases\sq031_porsche.questphase` | Player-vehicle record enable/despawn payload context; not a generic world-vehicle cleanup operation |
+| `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_02\phases\sts_wat_nid_02_gameplay.questphase` | Player-trigger contrasts and a van `CT_NOT_EQUAL`/`0` moving-state condition, not an exact stopped-inside delivery chain |
+| `base\open_world\street_stories\badlands\inland_avenue\sts_bls_ina_07\phases\sts_bls_ina_07_gpl.questphase` | Composite chase staging: vehicle-seat assignment, AI roles, and route/lost-state facts |
+| `base\quest\side_quests\sq024\phases\sq024_05_the_big_race.questphase` | Race start/stop/recovery, course splines, competitor parameters, checkpoints, and restriction lifecycle |
+| `base\quest\side_quests\sq004\phases\sq004_03_raffen_shiv_camp.questphase` | Release/escort comparison, target readiness, follower AI, and later handoff context |
+| `base\open_world\street_stories\watson\kabuki\sts_wat_kab_02\phases\sts_wat_kab_02_openworld.questphase` | Device release plus named-target readiness comparison |
+| `base\open_world\street_stories\santo_domingo\arroyo\sts_std_arr_05\phases\sts_std_arr_05_openworld.questphase` | Plant-item device action/condition and inventory-consumption comparison |
+| `base\open_world\phases\cyberpsychos\open_world_cyberpsychos.questphase` | Shared cyberpsycho orchestration, reveal/resolution families, and metaquest ownership; not a complete custom encounter recipe |
 
 These phases depend on quest-local facts, journal entries, NodeRefs,
 communities, devices, vehicles, and other child resources. A copied node is
@@ -63,6 +76,7 @@ not a self-contained recipe.
 | `base\quest\minor_quests\mq003\scenes\mq003_03_orbital_pod.scene` | Comparable scene resource, actor, screenplay, event, and locStore structures |
 | `base\quest\minor_quests\mq007\scenes\mq007_01_gun_found.scene` | Comparable scene graph and embedded locStore ordering |
 | `base\quest\minor_quests\mq010\scenes\mq010_02_barry_talk.scene` | Comparable dialogue scene and embedded locStore ordering |
+| `base\quest\side_quests\sq011\scenes\sq011_09_nancy_call.scene` | Holocall scene invocation, entry/exit, and quest handoff comparison |
 | `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community` | Generic Tyger Claw entries, phases, appearances, time periods, quantities, and AI-spot references |
 | `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot` | The stationary workspot byte-bound to the retained generic-character research lineage used by Lab 5 |
 | `base\workspots\common\ground\generic__stand_ground__guard__02.workspot` | A different standing-guard lineage; do not substitute it for the cigarette mapping without new evidence |
@@ -89,6 +103,7 @@ recording a comparison.
 | `base\worlds\03_night_city\_compiled\default\exterior_19_-8_0_0.streamingsector` | Placed laptop node data, entity template, instance data, and cooked prefab link |
 | `base\worlds\03_night_city\_compiled\default\4fd0915183681e53.streamingsector_inplace` | What the laptop placement's separate inplace resource embeds and omits |
 | `base\gameplay\devices\drop_points\drop_point.ent` | Drop-point components and local UI/navigation slots |
+| `base\gameplay\devices\masters\computers\laptop_1.ent` | Base computer components, controller package, and interaction/workspot ownership used by focused laptop comparisons |
 | `base\worlds\03_night_city\_compiled\default\03_night_city.devices` | Focused lookup of a device identity in the global device registry |
 
 World identities and transforms are not portable guarantees. Reusing a
@@ -98,10 +113,10 @@ and navmesh checks, and save-aware device/community acceptance.
 ## Provenance boundary
 
 The focused quest-block corpus was retained in Ghostline research commit
-`29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e`. Its manifest records extraction
-from the user's base-game archives on 2026-07-23 and 2026-07-24. Later
-research supplied the scene, community, and world comparisons used by the
-book.
+`29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e`. Its README summarizes focused
+base-game archive extraction across 2026-07-23 and 2026-07-24; the manifest at
+that commit records the 2026-07-24 corpus state. Later research supplied the
+scene, community, and world comparisons used by the book.
 
 That provenance is not one fully bound Cyberpunk `2.31a` acceptance record.
 Treat every row as **Observed in vanilla**, then re-extract the named resource

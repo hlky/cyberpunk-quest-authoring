@@ -67,6 +67,10 @@ The repository contains:
   boundaries, and named vanilla depot paths;
 - synchronized five-lab status lookup plus canonical navigation across all
   overview, authoring, and test pages;
+- a complete gameplay-pattern cookbook covering communications and choices,
+  areas/devices/items/scans/workspots/doors, NPC and combat lifecycles,
+  rescue/escort/defend/carry, vehicle objectives, and rewards/outcomes, with
+  exact evidence boundaries and clean-save matrices;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 

@@ -14,10 +14,12 @@ Current utilities:
   ArchiveXL section nesting, manifest SHA-256 values, runtime-acceptance
   contracts and reader-facing evidence status, mdBook SUMMARY coverage and
   internal links, first-release troubleshooting/reference coverage, canonical
-  lab identities and navigation, the bounded legacy-runtime ledger and every
-  reader-page hash occurrence, journal/localization semantics, cooked CR2W
-  headers, graph fingerprints, and exact SVGs; and builds every checkpoint
-  twice to verify ZIP entries, metadata, atomic failure behavior, and repeatability.
+  lab identities and navigation, the complete gameplay-cookbook inventory,
+  titles, version/evidence boundaries, copyable indexed vanilla paths, the
+  bounded legacy-runtime ledger and every reader-page hash occurrence,
+  journal/localization semantics, cooked CR2W headers, graph fingerprints, and
+  exact SVGs; and builds every checkpoint twice to verify ZIP entries,
+  metadata, atomic failure behavior, and repeatability.
 - `build_lab01_sources.py` deterministically rebuilds the book-owned Lab 1
   CR2W-JSON review artifacts. It is not part of the reader workflow.
 - `build_lab02_sources.py` deterministically rebuilds both Lab 2 checkpoints'
