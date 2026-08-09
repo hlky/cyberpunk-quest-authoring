@@ -20,6 +20,7 @@ The repository contains:
 - editorial and diagram standards;
 - complete first-pass Foundations chapters;
 - the pinned first-release toolchain and Lab 1 resource design;
+- an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
 Lab 1 implementation is in progress under `examples/lab-01-one-shot`.

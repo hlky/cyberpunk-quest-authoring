@@ -1,0 +1,193 @@
+# Completion roadmap
+
+This roadmap records the audited state of *Cyberpunk 2077 Quest Authoring* and
+the stages used to finish it. It is a delivery plan, not reader-facing engine
+documentation. The audit date is **2026-08-09**.
+
+The canonical editorial scope remains [HANDOFF.md](HANDOFF.md). Ghostline is
+research input only: readers must be able to follow every procedure with
+WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
+
+## Completion standard
+
+A category is complete when:
+
+1. its landing page routes readers through substantive chapters rather than a
+   list of promises;
+2. native resources, ownership boundaries, identifiers, graph semantics, and
+   lifecycle obligations are explained from first principles;
+3. practical claims carry one of the book's four evidence labels;
+4. practical guides record tested versions, save-state requirements, expected
+   behavior, verification, and failure boundaries;
+5. every supplied node and resource is explained, and mod-owned examples are
+   downloadable without requiring Ghostline;
+6. the book, generated figures, manifests, and example packages pass the
+   repository validation gate.
+
+Completeness does not turn an untested feature into a proven one. A bounded
+research page may be complete while remaining **Experimental**. A practical
+guide is promoted to **Runtime-proven** only when its retained acceptance
+record supports that label.
+
+## Audited baseline
+
+| Area | State on 2026-08-09 | Principal gap |
+| --- | --- | --- |
+| Publication and CI | Operational | Validation was Lab-1-specific; checkpoint ZIP bytes differed by host OS |
+| Start here | Placeholder plus a partial Lab 1 | Zero-assumption setup, project creation, vanilla inspection, installation, and test workflow |
+| Foundations | Substantive first pass | Stronger fixture/depot-path citations and final cross-links |
+| Questphases | Substantive first pass | Practical child-phase checkpoint and final evidence pass |
+| Lab 1 — First Signal | Structurally validated design and completed checkpoint | Manual WolvenKit procedure and retained clean-save runtime acceptance |
+| Conditions and gates | Placeholder | All control semantics, condition families, and Lab 2 |
+| Journal, UI, and localization | Placeholder | Journal trees, states, mappins, messages/files, and three localization lookup systems |
+| World integration | Placeholder | Streaming ownership, prefabs, NodeRefs, triggers, markers, devices, and Lab 3 |
+| Communities and characters | Placeholder | Community lifecycle, spawn readiness, AI, entity, appearance, and Lab 5 prerequisites |
+| Scenes | Placeholder | Resource anatomy, screenplay graph, IDs, localization, quest handoff, audio, and cleanup |
+| Gameplay patterns | Placeholder | Evidence-backed cookbook pages organized by player behavior |
+| Braindance | Experimental scope notice | Bounded conceptual/resource pages and the eight-case runtime boundary |
+| Troubleshooting | Placeholder | Symptom-led diagnosis, isolation, logs, clean-save tests, and crash boundaries |
+| Reference | Three focused notes | Glossary, resource/node/condition indexes, evidence matrix, and vanilla path index |
+| Labs 2–5 | Absent | Projects, exact diagrams, tutorials, downloads, and acceptance records |
+
+The existing table of contents has no missing file targets or orphaned
+reader-facing Markdown. Its weakness is depth: nine category pages are short
+placeholders, and only Lab 1 exists.
+
+## Research inventory
+
+The current Ghostline tree contains a larger evidence base than the original
+handoff paths imply. Its relevant maintained routes include:
+
+- `H:\projects\Ghostline\docs\authoring\` for scenes, world resources,
+  characters, items, ArchiveXL patching, and experimental braindance work;
+- `H:\projects\Ghostline\docs\workflows\` for build, package, automated-test,
+  runtime-test, and isolated test-quest records;
+- `H:\projects\Ghostline\docs\reference\` for vanilla quest and focused
+  system studies;
+- `H:\projects\Ghostline\tools\quest_spec.md` and the quest compiler for the
+  typed building-block inventory;
+- `H:\projects\Ghostline\reference\vanilla_quest_blocks\` for focused vanilla
+  CR2W research and provenance.
+
+These locations may contain extracted vanilla binaries. They are evidence for
+research, never files to copy into this repository. Book pages cite depot paths
+and teach readers to extract their own references.
+
+The building-block compiler currently exposes 30 stage types, superseding the
+handoff's older count of 28. That count is a research inventory, not a claim
+that 30 reader-facing recipes are already proved. GQ000 provides the strongest
+representative evidence for root/child flow, a contact scene, community
+readiness, journal/mappins, device interaction, localization, delivery, and
+completion. Isolated GQT002–GQT004 fixtures provide strong runtime evidence for
+stealth/plant, rescue/escort/defend, and vehicle lifecycle families. Other
+patterns range from partial runtime passes to structural or vanilla-only
+evidence and must be labelled individually.
+
+The retained Ghostline records bind packages to hashes. Their metadata and
+historical notes show `WolvenKit 8.17.4-nightly.2026-03-20`, ArchiveXL
+`1.27.0`, and TweakXL `1.11.3`, but not as one uniform acceptance record, and
+they do not bind the game executable or RED4ext version. They are therefore
+legacy runtime evidence, not automatic proof under this book's pinned
+`2.31a`/`8.19.0`/`1.27.0`/`1.30.0` practical baseline. The strongest
+GQT002–GQT004 proof narrative also survives in Ghostline Git history rather
+than its working tree; it must be migrated into durable, hash-bound evidence
+records before publication claims rely on it.
+
+## Delivery stages
+
+Each stage ends with the same gate: run repository validation, inspect the
+diff, commit only that stage, push `main`, wait for its matching Pages workflow
+to succeed, and smoke-test affected pages and downloads.
+
+### Stage 0 — audit and validation baseline
+
+- publish this status/category matrix and current Ghostline routes;
+- make checkpoint ZIPs byte-for-byte deterministic across supported hosts;
+- add one local validation entry point for generated sources, exact figures,
+  manifests, CR2W presence, registration paths, and packages;
+- run the baseline locally and in GitHub Actions.
+
+### Stage 1 — zero-assumption start and Lab 1 closeout
+
+- install/configure the pinned toolchain from a clean starting state;
+- create a WolvenKit project and explain depot paths, archives, and framework
+  resource registration;
+- inspect a named vanilla questphase without redistributing it;
+- complete the click-by-click Lab 1 authoring, install, log, clean-save, and
+  reset procedure;
+- add a machine-readable acceptance record. Keep runtime claims experimental
+  until the clean-save matrix is actually retained.
+
+### Stage 2 — journal, UI, and localization
+
+- document quest/phase/objective/mappin trees and state transitions;
+- separate journal/UI keys, spoken-line localization, and embedded scene
+  choice localization;
+- cover messages, files, emails, shards, onscreens, rewards, and presentation;
+- reconcile every Lab 1 journal/localization property with these chapters.
+
+### Stage 3 — conditions and gates plus Lab 2
+
+- teach immediate branches, pause conditions, Boolean trees, joins, races,
+  monitors, ordering, switches, delays, one-shot guards, and repeatability;
+- index the condition families observed in the retained vanilla corpus;
+- ship Lab 2 start/completed checkpoints and exact graphs.
+
+### Stage 4 — world integration plus Lab 3
+
+- teach streaming blocks/sectors, inplace packages, quest prefabs, NodeRefs,
+  triggers, markers, mappins, navigation endpoints, and device identity;
+- ship Lab 3's reach/leave objective with streamed-state and save-state tests.
+
+### Stage 5 — root/child composition plus Lab 4
+
+- turn the existing phase-composition theory into a complete external-child
+  procedure;
+- ship `In1`/`Out1` handoff, prefab inheritance, completion/cut diagrams, and
+  Lab 4 checkpoints.
+
+### Stage 6 — communities, scene basics, and Lab 5
+
+- teach community registries, entries, phases, AI spots, activation, spawn
+  readiness, acquisition, and cleanup;
+- teach scene anatomy, actors/performers, one-line screenplay flow, entry
+  points, named exits, questphase handoff, and persistent completion;
+- ship the first-contact Lab 5 without hiding setup or cleanup in a template.
+
+### Stage 7 — first-release hardening
+
+- add symptom-led troubleshooting and clean-save isolation procedures;
+- add the glossary, resource map, node/socket/condition indexes, ID-domain
+  quick reference, evidence/version matrix, and vanilla depot-path index;
+- normalize lab naming and navigation;
+- run a complete editorial, link, figure, package, and live-site pass.
+
+### Stage 8 — gameplay cookbook
+
+Publish in independently verifiable batches:
+
+1. communications, journal presentation, and branching;
+2. areas, devices, items, files, shards, scans, and workspots;
+3. NPC interaction, stealth, combat, rescue, escort, defend, and carry;
+4. vehicle mount, ride, drive, theft, delivery, cleanup, chase, and race;
+5. rewards, destruction, switches, and outcome-dependent debriefs.
+
+Every recipe names its exact evidence source. Close equivalents and known gaps
+remain visible instead of being promoted to exact support.
+
+### Stage 9 — advanced systems and final publication pass
+
+- complete advanced scenes, choices, VO/lipsync, animations, characters,
+  appearances, AI, devices, and complex cleanup;
+- publish braindance ownership and resource-chain material as
+  **Experimental** until all eight acceptance cases are retained;
+- perform the final cross-category consistency and release audit.
+
+## Runtime evidence hold points
+
+Codex can complete resources, explanations, structural checks, hashes, and
+acceptance procedures in this repository. In-game claims require a compatible
+Cyberpunk 2077 installation and a human-verifiable play session. If no retained
+run is available, work continues with the correct **Structurally validated**,
+**Observed in vanilla**, or **Experimental** label; it does not fabricate a
+runtime result.

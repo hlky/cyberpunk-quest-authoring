@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# Cooked CR2W resources are binary even when the depot extension is `.json`.
+examples/**/source/archive/** -text -eol

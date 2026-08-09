@@ -67,6 +67,10 @@ The evidence repository is currently:
 
 Important routing sources:
 
+> **2026-08-09 path note:** Ghostline's documentation has since been grouped
+> under `docs/authoring`, `docs/workflows`, and `docs/reference`. Use the current
+> routes in `ROADMAP.md`; the paths below record the layout at handoff time.
+
 - `ROADMAP.md`
 - `docs/quest-scene-flow.md`
 - `docs/scene-authoring-rules.md`
@@ -212,21 +216,16 @@ Each substantial graph guide should provide:
 
 Large nested node properties belong in detail cards or tables beside the graph.
 
-The future diagram renderer is documentation-author infrastructure. It may
-consume serialized example resources or a compact diagram manifest and emit
-deterministic SVG. Readers will not be required to run it.
+The implemented diagram renderer is documentation-author infrastructure. It
+consumes serialized CR2W-JSON plus a small tutorial-owned layout override and
+emits deterministic SVG. Structural truth comes from the example resource
+while layout remains deliberate and readable. Readers are not required to run
+it.
 
-Before implementing the renderer, decide whether exact graphs are generated:
-
-- directly from serialized CR2W-JSON;
-- from a tutorial-owned normalized graph manifest;
-- or from CR2W-JSON with a small checked layout-override file.
-
-The third option is likely the best balance: structural truth comes from the
-example resource while layout remains deliberate and readable.
-
-CI should eventually reject figures whose recorded source fingerprint no
-longer matches the example project.
+Lab 1's exact graph already carries a checked source fingerprint, and CI rejects
+a stale SVG. The remaining infrastructure work is to generalize the same
+contract across later examples without turning the renderer into a reader
+prerequisite.
 
 ## Proposed book architecture
 
@@ -587,19 +586,12 @@ Completed on 2026-07-27:
     phase interfaces, external children, prefab dependencies, completion, and
     cut obligations.
 
-Next:
-
-1. Run the completed checkpoint in Cyberpunk 2077 2.31a on a clean save and
-   retain logs and hashes for the acceptance record.
-2. Fill Conditions and gates, then Journal/UI/localization, before designing
-   another lab.
-3. Complete the click-by-click WolvenKit authoring instructions, linking each
-   step to the relevant Foundation rather than repeating the engine model.
-4. Publish both automatically generated Lab 1 checkpoint ZIPs.
-5. Promote Lab 1 claims from experimental/structurally validated only where the
-   retained runtime evidence supports it.
-6. Ask the Cyberpunk Modding Docs maintainers to add the published book to
-   their navigation when Lab 1 is usable.
+The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
+2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are already generated
+and published. The immediate delivery stages are the validation baseline,
+zero-assumption onboarding and Lab 1 closeout, Journal/UI/localization, then
+Conditions and gates with Lab 2. Runtime labels are promoted only when retained
+clean-save evidence supports them.
 
 ## Resolved decisions
 

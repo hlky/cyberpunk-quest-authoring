@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - ".gitattributes"
       - ".github/workflows/pages.yml"
       - "book/**"
       - "assets/diagrams/**"
@@ -16,8 +17,10 @@ on:
       - "CONTRIBUTING.md"
       - "STYLE.md"
       - "HANDOFF.md"
+      - "ROADMAP.md"
   pull_request:
     paths:
+      - ".gitattributes"
       - ".github/workflows/pages.yml"
       - "book/**"
       - "assets/diagrams/**"
@@ -29,6 +32,7 @@ on:
       - "CONTRIBUTING.md"
       - "STYLE.md"
       - "HANDOFF.md"
+      - "ROADMAP.md"
   workflow_dispatch:
 
 concurrency:
@@ -48,6 +52,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Validate documentation sources and examples
+        run: python scripts/validate.py
+
       - name: Install mdBook
         shell: bash
         run: |
@@ -59,18 +66,6 @@ jobs:
 
       - name: Build book
         run: ./mdbook build book
-
-      - name: Verify generated Lab 1 sources and graph
-        shell: bash
-        run: |
-          python scripts/build_lab01_sources.py
-          git diff --exit-code -- \
-            examples/lab-01-one-shot/completed/source/raw
-          python scripts/render_quest_graph.py \
-            examples/lab-01-one-shot/completed/source/raw/mod/cqa/cqa001/phases/cqa001.questphase.json \
-            assets/diagrams/lab-01/cqa001.questphase.layout.json \
-            book/src/images/lab-01/cqa001.questphase.svg \
-            --check
 
       - name: Package example checkpoints
         run: python scripts/package_examples.py
