@@ -32,6 +32,24 @@ are structurally validated; the eight-run world/save matrix is still pending.
 
 **Lab 3 runtime evidence:** **Experimental** — pending.
 
+The fourth tutorial, `cqa004`, moves the world activity into an archived
+external child and makes the registered-root, root-owned prefab, `In1`/`Out1`,
+and normal return contract explicit.
+
+**Lab 4 runtime evidence:** **Experimental** — pending.
+
+The fifth tutorial, `cqa005`, activates a one-entry community, waits for actor
+and approach readiness, runs one externally localized spoken line through a
+named scene entry/exit, and delays deactivation until V leaves the outer
+cleanup area. Both checkpoints are structurally validated; exact in-matrix
+runtime claims, including the named pre-scene seed loads in Cases 3, 4, and 7,
+follow the synchronized marker below. Active-line
+interruption/`CutDestination`, arbitrary/unlisted pre-scene active-child
+states, and facial/workspot-animation quality remain **Experimental** outside
+that matrix.
+
+**Lab 5 runtime evidence:** **Experimental** — pending.
+
 ## What this book will cover
 
 Cyberpunk quests span several resource systems:

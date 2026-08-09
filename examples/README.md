@@ -24,5 +24,8 @@ Implemented examples:
 - [`lab-04-handoff-point`](lab-04-handoff-point/README.md): start and completed
   checkpoints for the `cqa004` registered-root, archive-resolved child-phase
   handoff.
+- [`lab-05-first-contact`](lab-05-first-contact/README.md): start and completed
+  checkpoints for the `cqa005` community-backed contact, one-line scene,
+  named outcome, and delayed cleanup lifecycle.
 
 The longer release sequence remains in [`../HANDOFF.md`](../HANDOFF.md).

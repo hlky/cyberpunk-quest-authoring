@@ -19,6 +19,7 @@ LAB01 = ROOT / "examples" / "lab-01-one-shot"
 LAB02 = ROOT / "examples" / "lab-02-signal-race"
 LAB03 = ROOT / "examples" / "lab-03-boundary-check"
 LAB04 = ROOT / "examples" / "lab-04-handoff-point"
+LAB05 = ROOT / "examples" / "lab-05-first-contact"
 
 
 def lab02_retained_evidence_files() -> tuple[str, ...]:
@@ -140,6 +141,47 @@ def lab04_retained_evidence_files() -> tuple[str, ...]:
             source = LAB04 / "completed" / Path(*relative.parts)
             if not source.is_file() or source.is_symlink():
                 raise ValueError(f"missing or linked Lab 4 evidence file: {reference}")
+            references.add(reference)
+    return tuple(sorted(references))
+
+
+def lab05_retained_evidence_files() -> tuple[str, ...]:
+    """Return only acceptance-record evidence paths safe to ship in Lab 5."""
+
+    record_path = LAB05 / "completed" / "runtime-acceptance.json"
+    try:
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read Lab 5 acceptance record: {error}") from error
+
+    cases = record.get("cases") if isinstance(record, dict) else None
+    if not isinstance(cases, list):
+        raise ValueError("Lab 5 acceptance record cases must be an array")
+
+    references: set[str] = set()
+    for case_index, case in enumerate(cases):
+        evidence = case.get("evidence") if isinstance(case, dict) else None
+        if not isinstance(evidence, list):
+            raise ValueError(f"Lab 5 case {case_index} evidence must be an array")
+        for evidence_index, item in enumerate(evidence):
+            reference = item.get("reference") if isinstance(item, dict) else None
+            if not isinstance(reference, str) or not reference:
+                raise ValueError(
+                    f"Lab 5 case {case_index} evidence {evidence_index} needs a reference"
+                )
+            relative = PurePosixPath(reference)
+            if (
+                reference != relative.as_posix()
+                or relative.is_absolute()
+                or "\\" in reference
+                or len(relative.parts) < 2
+                or relative.parts[0] != "evidence"
+                or any(part in {"", ".", ".."} for part in relative.parts)
+            ):
+                raise ValueError(f"unsafe Lab 5 evidence path: {reference!r}")
+            source = LAB05 / "completed" / Path(*relative.parts)
+            if not source.is_file() or source.is_symlink():
+                raise ValueError(f"missing or linked Lab 5 evidence file: {reference}")
             references.add(reference)
     return tuple(sorted(references))
 
@@ -369,6 +411,90 @@ LAB04_COMPLETED_TEXT_FILES = frozenset(
     }
 )
 
+LAB05_START_FILES = (
+    "CQA_Lab05_FirstContact_Start.cpmodproj",
+    "README.md",
+    "source/archive/mod/cqa/cqa005/journal/cqa005.journal",
+    "source/archive/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json",
+    "source/archive/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles.json",
+    "source/archive/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles_map.json",
+    "source/archive/mod/cqa/cqa005/localization/en-us/vo/contact_i_85c3283507e7ef2f.wem",
+    "source/archive/mod/cqa/cqa005/localization/en-us/vo/cqa005_vo.json",
+    "source/archive/mod/cqa/cqa005/phases/cqa005.questphase",
+    "source/archive/mod/cqa/cqa005/phases/cqa005_contact.questphase",
+    "source/archive/mod/cqa/cqa005/scenes/cqa005_first_contact.scene",
+    "source/archive/mod/cqa/cqa005/world/cqa005_always_loaded.streamingsector",
+    "source/archive/mod/cqa/cqa005/world/cqa005_first_contact.streamingblock",
+    "source/archive/mod/cqa/cqa005/world/cqa005_first_contact.streamingsector",
+    "source/raw/mod/cqa/cqa005/journal/cqa005.journal.json",
+    "source/raw/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json.json",
+    "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles.json.json",
+    "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles_map.json.json",
+    "source/raw/mod/cqa/cqa005/localization/en-us/vo/cqa005_vo.json.json",
+    "source/raw/mod/cqa/cqa005/phases/cqa005.questphase.json",
+    "source/raw/mod/cqa/cqa005/phases/cqa005_contact.questphase.json",
+    "source/raw/mod/cqa/cqa005/scenes/cqa005_first_contact.scene.json",
+    "source/raw/mod/cqa/cqa005/world/cqa005_always_loaded.streamingsector.json",
+    "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingblock.json",
+    "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingsector.json",
+    "source/resources/CQA_Lab05_FirstContact_Start.archive.xl",
+)
+LAB05_START_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab05_FirstContact_Start.cpmodproj",
+        "README.md",
+        "source/raw/mod/cqa/cqa005/journal/cqa005.journal.json",
+        "source/raw/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json.json",
+        "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles.json.json",
+        "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles_map.json.json",
+        "source/raw/mod/cqa/cqa005/localization/en-us/vo/cqa005_vo.json.json",
+        "source/raw/mod/cqa/cqa005/phases/cqa005.questphase.json",
+        "source/raw/mod/cqa/cqa005/phases/cqa005_contact.questphase.json",
+        "source/raw/mod/cqa/cqa005/scenes/cqa005_first_contact.scene.json",
+        "source/raw/mod/cqa/cqa005/world/cqa005_always_loaded.streamingsector.json",
+        "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingblock.json",
+        "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingsector.json",
+        "source/resources/CQA_Lab05_FirstContact_Start.archive.xl",
+    }
+)
+LAB05_COMPLETED_BASE_FILES = (
+    "CQA_Lab05_FirstContact.cpmodproj",
+    "README.md",
+    "example.json",
+    "runtime-acceptance.json",
+    *LAB05_START_FILES[2:-1],
+    "source/resources/CQA_Lab05_FirstContact.archive.xl",
+)
+LAB05_COMPLETED_FILES = (
+    *LAB05_COMPLETED_BASE_FILES,
+    *lab05_retained_evidence_files(),
+)
+LAB05_COMPLETED_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab05_FirstContact.cpmodproj",
+        "README.md",
+        "example.json",
+        "runtime-acceptance.json",
+        *LAB05_START_TEXT_FILES.difference(
+            {
+                "CQA_Lab05_FirstContact_Start.cpmodproj",
+                "README.md",
+                "source/resources/CQA_Lab05_FirstContact_Start.archive.xl",
+            }
+        ),
+        "source/resources/CQA_Lab05_FirstContact.archive.xl",
+    }
+)
+LAB05_VOICE_SOURCE_ENTRIES = (
+    (LAB05 / "voice-source" / "README.md", "voice-source/README.md", True),
+    (
+        LAB05 / "voice-source" / "contact_i_85c3283507e7ef2f.wav",
+        "voice-source/contact_i_85c3283507e7ef2f.wav",
+        False,
+    ),
+    (LAB05 / "voice-source" / "provenance.json", "voice-source/provenance.json", True),
+)
+
 CHECKPOINTS = {
     "cqa-lab-01-start.zip": (
         LAB01 / "start",
@@ -376,6 +502,7 @@ CHECKPOINTS = {
         LAB01_START_FILES,
         LAB01_START_TEXT_FILES,
         LAB01 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-01-completed.zip": (
         LAB01 / "completed",
@@ -383,6 +510,7 @@ CHECKPOINTS = {
         LAB01_COMPLETED_FILES,
         LAB01_COMPLETED_TEXT_FILES,
         LAB01 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-02-start.zip": (
         LAB02 / "start",
@@ -390,6 +518,7 @@ CHECKPOINTS = {
         LAB02_START_FILES,
         LAB02_START_TEXT_FILES,
         LAB02 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-02-completed.zip": (
         LAB02 / "completed",
@@ -397,6 +526,7 @@ CHECKPOINTS = {
         LAB02_COMPLETED_FILES,
         LAB02_COMPLETED_TEXT_FILES,
         LAB02 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-03-start.zip": (
         LAB03 / "start",
@@ -404,6 +534,7 @@ CHECKPOINTS = {
         LAB03_START_FILES,
         LAB03_START_TEXT_FILES,
         LAB03 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-03-completed.zip": (
         LAB03 / "completed",
@@ -411,6 +542,7 @@ CHECKPOINTS = {
         LAB03_COMPLETED_FILES,
         LAB03_COMPLETED_TEXT_FILES,
         LAB03 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-04-start.zip": (
         LAB04 / "start",
@@ -418,6 +550,7 @@ CHECKPOINTS = {
         LAB04_START_FILES,
         LAB04_START_TEXT_FILES,
         LAB04 / "LICENSE.md",
+        (),
     ),
     "cqa-lab-04-completed.zip": (
         LAB04 / "completed",
@@ -425,6 +558,23 @@ CHECKPOINTS = {
         LAB04_COMPLETED_FILES,
         LAB04_COMPLETED_TEXT_FILES,
         LAB04 / "LICENSE.md",
+        (),
+    ),
+    "cqa-lab-05-start.zip": (
+        LAB05 / "start",
+        "CQA_Lab05_FirstContact_Start",
+        LAB05_START_FILES,
+        LAB05_START_TEXT_FILES,
+        LAB05 / "LICENSE.md",
+        LAB05_VOICE_SOURCE_ENTRIES,
+    ),
+    "cqa-lab-05-completed.zip": (
+        LAB05 / "completed",
+        "CQA_Lab05_FirstContact",
+        LAB05_COMPLETED_FILES,
+        LAB05_COMPLETED_TEXT_FILES,
+        LAB05 / "LICENSE.md",
+        LAB05_VOICE_SOURCE_ENTRIES,
     ),
 }
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
@@ -469,6 +619,7 @@ def entries(
     expected_files: tuple[str, ...],
     text_files: frozenset[str],
     license_path: Path,
+    extra_entries: tuple[tuple[Path, str, bool], ...] = (),
 ) -> list[tuple[str, Path, bool]]:
     actual_files = {
         path.relative_to(source).as_posix()
@@ -492,6 +643,18 @@ def entries(
         (f"{root_name}/{relative}", source / Path(*PurePosixPath(relative).parts), relative in text_files)
         for relative in expected_files
     ]
+    for extra_source, relative, is_text in extra_entries:
+        posix_relative = PurePosixPath(relative)
+        if (
+            relative != posix_relative.as_posix()
+            or posix_relative.is_absolute()
+            or "\\" in relative
+            or any(part in {"", ".", ".."} for part in posix_relative.parts)
+        ):
+            raise ValueError(f"unsafe extra ZIP path: {relative!r}")
+        if not extra_source.is_file() or extra_source.is_symlink():
+            raise ValueError(f"missing or linked extra ZIP source: {extra_source}")
+        result.append((f"{root_name}/{relative}", extra_source, is_text))
     if not license_path.is_file():
         raise ValueError(f"{license_path}: shared checkpoint license is missing")
     result.append((f"{root_name}/LICENSE.md", license_path, True))
@@ -510,6 +673,7 @@ def package(
     text_files: frozenset[str],
     license_path: Path,
     destination: Path,
+    extra_entries: tuple[tuple[Path, str, bool], ...] = (),
 ) -> None:
     prepared_entries = entries(
         source,
@@ -517,6 +681,7 @@ def package(
         expected_files,
         text_files,
         license_path,
+        extra_entries,
     )
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
@@ -559,6 +724,7 @@ def main() -> None:
         expected_files,
         text_files,
         license_path,
+        extra_entries,
     ) in CHECKPOINTS.items():
         package(
             source,
@@ -567,6 +733,7 @@ def main() -> None:
             text_files,
             license_path,
             args.output / name,
+            extra_entries,
         )
 
 

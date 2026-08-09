@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "title": "cqa005 First Contact root questphase",
+  "source_fingerprint": "sha256:893073dd943a2952214f1fbb00607e7a877a8d3a7efc0da47b94ee98db442619",
+  "canvas": {
+    "width": 2550,
+    "height": 780
+  },
+  "nodes": {
+    "0": {
+      "x": 40,
+      "y": 140,
+      "width": 170,
+      "height": 116
+    },
+    "1": {
+      "x": 2300,
+      "y": 405,
+      "width": 210,
+      "height": 116
+    },
+    "10": {
+      "x": 260,
+      "y": 140,
+      "width": 280,
+      "height": 116
+    },
+    "11": {
+      "x": 590,
+      "y": 140,
+      "width": 250,
+      "height": 116
+    },
+    "12": {
+      "x": 890,
+      "y": 140,
+      "width": 330,
+      "height": 116
+    },
+    "13": {
+      "x": 1270,
+      "y": 405,
+      "width": 280,
+      "height": 116
+    },
+    "14": {
+      "x": 1600,
+      "y": 405,
+      "width": 280,
+      "height": 116
+    }
+  },
+  "routes": {
+    "10.False->1.In": [
+      [
+        400,
+        690
+      ],
+      [
+        2300,
+        690
+      ]
+    ],
+    "12.Out1->13.Succeeded": [
+      [
+        1055,
+        335
+      ],
+      [
+        1410,
+        335
+      ]
+    ]
+  }
+}

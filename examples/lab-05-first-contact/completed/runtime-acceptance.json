@@ -1,0 +1,457 @@
+{
+  "schema_version": 4,
+  "example_id": "cqa005",
+  "status": "pending",
+  "evidence_class": "experimental",
+  "date": null,
+  "required_environment": {
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "candidates": [
+    {
+      "id": "canonical",
+      "manifest": "example.json",
+      "installed_files": [
+        { "path": "archive\\pc\\mod\\CQA_Lab05_FirstContact.archive", "sha256": null },
+        { "path": "archive\\pc\\mod\\CQA_Lab05_FirstContact.archive.xl", "sha256": null }
+      ],
+      "depot_paths": [
+        "mod\\cqa\\cqa005\\phases\\cqa005.questphase",
+        "mod\\cqa\\cqa005\\phases\\cqa005_contact.questphase",
+        "mod\\cqa\\cqa005\\scenes\\cqa005_first_contact.scene",
+        "mod\\cqa\\cqa005\\journal\\cqa005.journal",
+        "mod\\cqa\\cqa005\\localization\\en-us\\onscreens\\cqa005_onscreens.json",
+        "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles.json",
+        "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles_map.json",
+        "mod\\cqa\\cqa005\\localization\\en-us\\vo\\cqa005_vo.json",
+        "mod\\cqa\\cqa005\\world\\cqa005_first_contact.streamingblock",
+        "mod\\cqa\\cqa005\\world\\cqa005_first_contact.streamingsector",
+        "mod\\cqa\\cqa005\\world\\cqa005_always_loaded.streamingsector",
+        "mod\\cqa\\cqa005\\localization\\en-us\\vo\\contact_i_85c3283507e7ef2f.wem"
+      ]
+    }
+  ],
+  "save_captures": [
+    {
+      "id": "original-outside-setup",
+      "source_run_id": null,
+      "parent_capture_id": null,
+      "save_type": "manual-save",
+      "label": "CQA005 ORIGINAL OUTSIDE SETUP",
+      "observable_state": "V is outside the cqa005 setup volume on the ordinary approach route, and this save has never loaded any CQA Lab 1–5 candidate.",
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": true,
+      "sha256": null
+    },
+    {
+      "id": "original-near-setup",
+      "source_run_id": null,
+      "parent_capture_id": null,
+      "save_type": "manual-save",
+      "label": "CQA005 ORIGINAL NEAR SETUP",
+      "observable_state": "V is near but outside the cqa005 setup volume, and this separate save has never loaded any CQA Lab 1–5 candidate.",
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": true,
+      "sha256": null
+    },
+    {
+      "id": "seed-pre-scene-outside-setup",
+      "source_run_id": "clean-ordinary-passive-spawn",
+      "parent_capture_id": "original-outside-setup",
+      "save_type": "manual-save",
+      "label": "CQA005 SEED PRE SCENE OUTSIDE SETUP",
+      "observable_state": "Meet is Active, its pin is Active, the child is active, the contact is spawned and passive, V is outside setup, checkpoint cqa005_first_contact has not executed, the scene has not started, and cqa005_completed is 0.",
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": false,
+      "sha256": null
+    },
+    {
+      "id": "seed-post-contact-inside-cleanup",
+      "source_run_id": "clean-ordinary-passive-spawn",
+      "parent_capture_id": "seed-pre-scene-outside-setup",
+      "save_type": "manual-save",
+      "label": "CQA005 SEED POST CONTACT INSIDE CLEANUP",
+      "observable_state": "contact_done has returned, Meet is Succeeded, its pin is Inactive, Leave is Active, the child and contact are active, V is inside cleanup, and cqa005_completed is 0.",
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": false,
+      "sha256": null
+    },
+    {
+      "id": "seed-completed",
+      "source_run_id": "clean-ordinary-passive-spawn",
+      "parent_capture_id": "seed-post-contact-inside-cleanup",
+      "save_type": "manual-save",
+      "label": "CQA005 SEED COMPLETED",
+      "observable_state": "Leave and the quest are Succeeded, the pin is Inactive, the contact is deactivated, the child and root have returned, and cqa005_completed is 1.",
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": false,
+      "sha256": null
+    }
+  ],
+  "runs": [
+    {
+      "id": "clean-ordinary-passive-spawn",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-setup",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 ORIGINAL OUTSIDE SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": true, "capture_id": "original-outside-setup", "source_run_id": null, "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "fast-arrival-race",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-near-setup",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 ORIGINAL NEAR SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": true, "capture_id": "original-near-setup", "source_run_id": null, "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "slow-contact-av-once",
+      "candidate_id": "canonical",
+      "save_state": "clean-derived-before-setup",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED PRE SCENE OUTSIDE SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-pre-scene-outside-setup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "named-exit-only",
+      "candidate_id": "canonical",
+      "save_state": "clean-derived-before-scene",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED PRE SCENE OUTSIDE SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-pre-scene-outside-setup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "no-replay-inside-lifetime",
+      "candidate_id": "canonical",
+      "save_state": "clean-derived-after-contact-inside-cleanup",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED POST CONTACT INSIDE CLEANUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-post-contact-inside-cleanup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "post-scene-reload",
+      "candidate_id": "canonical",
+      "save_state": "contact-done-inside-cleanup",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED POST CONTACT INSIDE CLEANUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-post-contact-inside-cleanup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "stream-away-return",
+      "candidate_id": "canonical",
+      "save_state": "child-active-before-setup",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED PRE SCENE OUTSIDE SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-pre-scene-outside-setup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "cleanup-boundary-no-pop",
+      "candidate_id": "canonical",
+      "save_state": "contact-done-inside-cleanup",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED POST CONTACT INSIDE CLEANUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-post-contact-inside-cleanup", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "completed-reload",
+      "candidate_id": "canonical",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED COMPLETED", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-completed", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "untouched-replay",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-setup",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 ORIGINAL OUTSIDE SETUP", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": true, "capture_id": "original-outside-setup", "source_run_id": null, "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "removal-isolation-diagnostic",
+      "candidate_id": "canonical",
+      "save_state": "completed-disposable-clone-before-removal",
+      "save_provenance": "canonical-completed-diagnostic-clone",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": { "label": "CQA005 SEED COMPLETED", "slot_directory": null, "artifact": "sav.dat", "created_before_first_install": false, "capture_id": "seed-completed", "source_run_id": "clean-ordinary-passive-spawn", "copy_scope": "complete-slot-directory", "game_closed_before_clone": null, "sha256": null },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "clean-ordinary-passive-spawn",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-ordinary-passive-spawn"],
+      "precondition": "Install the canonical candidate, load a closed-game full-slot clone of the untouched outside-setup original, approach by ordinary movement, and continue the same unbroken route through ordinary completion while making the three named manual seed saves.",
+      "expected": "The root and child activate once, the passive community contact appears through the community/AI-spot mapping, the meet objective and pin appear once without a spawn or NodeRef error, the ordinary route completes once, and exactly the pre-scene, post-contact, and completed seed captures are made at their frozen observable states.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "fast-arrival-race",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["fast-arrival-race"],
+      "precondition": "Load a closed-game full-slot clone of the separate untouched near-setup original and enter immediately before waiting for streaming or spawn.",
+      "expected": "The spawned-character wait resolves before the setup wait advances; the scene begins once only after the contact exists, with no missed trigger or deadlock.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "slow-contact-av-once",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["slow-contact-av-once"],
+      "precondition": "Load a byte-identical full-slot clone of the named pre-scene outside-setup seed, approach slowly, remain in range for the full scene, and do not skip or interrupt it.",
+      "expected": "The exact subtitle `All clear. Keep moving.` and the hash-pinned WEM play once; the contact is acquired, the line does not duplicate, and lipsync/audio errors are absent from retained logs.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "named-exit-only",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["named-exit-only"],
+      "precondition": "Load a byte-identical full-slot clone of the same named pre-scene outside-setup seed used by Cases 3 and 7, then observe ordinary completion; this is not a save between checkpoint node 15 and scene node 16.",
+      "expected": "Only named exit `contact_done` advances the child to meet Succeeded; Default INT/RET remain unwired and no fallback continuation is observed.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "no-replay-inside-lifetime",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["no-replay-inside-lifetime"],
+      "precondition": "Load a byte-identical full-slot clone of the named post-contact inside-cleanup seed, then cross the setup boundary or revisit the contact point before leaving cleanup.",
+      "expected": "The scene, subtitle, and WEM do not replay during the same child lifetime; the leave objective remains the only active progression state.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "post-scene-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["post-scene-reload"],
+      "precondition": "Without changing the installation, load a byte-identical full-slot clone of the named post-contact inside-cleanup seed.",
+      "expected": "Meet stays succeeded, the pin stays inactive, leave stays active, the contact line does not replay, and crossing cleanup continues once.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "stream-away-return",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["stream-away-return"],
+      "precondition": "Load a byte-identical full-slot clone of the named pre-scene outside-setup seed, travel by ordinary movement beyond the finite Quest descriptor box before entering setup, return, and finish.",
+      "expected": "The community and child remain coherent across streaming; returning resolves the same NodeRefs and advances the scene exactly once without duplicate contact entries.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "cleanup-boundary-no-pop",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["cleanup-boundary-no-pop"],
+      "precondition": "Load a byte-identical full-slot clone of the named post-contact inside-cleanup seed, then walk outward continuously through the cleanup boundary more than 110 metres from the shared center.",
+      "expected": "IsOutside resolves once, whole-community deactivation occurs only at cleanup, no visible contact pop occurs inside the cleanup volume, leave succeeds, and child Out1 returns once.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["completed-reload"],
+      "precondition": "With the same exact candidate installed, load a byte-identical full-slot clone of the named completed seed.",
+      "expected": "cqa005_completed bypasses the child; objectives, pin, community, scene, subtitle, and WEM do not reactivate or replay.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "untouched-replay",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["untouched-replay"],
+      "precondition": "With the canonical candidate still installed, load a byte-identical full-slot clone of the same untouched outside-setup original used by Case 1 and repeat the ordinary route.",
+      "expected": "Spawn, acquisition, line, named exit, cleanup, child return, and root completion reproduce once with the same visible and logged behavior.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "removal-isolation-diagnostic",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["removal-isolation-diagnostic"],
+      "precondition": "With the game closed, clone the named completed seed into the disposable execution slot, remove both exact candidate files before launching and loading that clone, and revisit the site without resetting any fact.",
+      "expected": "No mod-owned resource remains mounted, no Lab 5 objective or pin reactivates, no cqa005 contact appears, fresh logs show no cqa005 registration, and the packaged fixture contains no TweakDB mutation or override.",
+      "observed": null,
+      "evidence": []
+    }
+  ],
+  "promotion_rule": "Set status to passed and evidence_class to runtime-proven only when all eleven required cases pass and evidence binds the exact candidate build, both immutable original captures, all three manual Case-1 seed captures, every closed-game full-slot execution clone, exact versions, visible observations, the canonical WEM hash, and all four logs for the complete campaign. Structural round trips alone never promote the combined cqa005 fixture."
+}

@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "id": "cqa005",
+  "title": "First Contact",
+  "book_chapter": "book/src/scenes/lab-05.md",
+  "baseline": {
+    "recorded": "2026-08-09",
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "depot_paths": [
+    "mod\\cqa\\cqa005\\phases\\cqa005.questphase",
+    "mod\\cqa\\cqa005\\phases\\cqa005_contact.questphase",
+    "mod\\cqa\\cqa005\\scenes\\cqa005_first_contact.scene",
+    "mod\\cqa\\cqa005\\journal\\cqa005.journal",
+    "mod\\cqa\\cqa005\\localization\\en-us\\onscreens\\cqa005_onscreens.json",
+    "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles.json",
+    "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles_map.json",
+    "mod\\cqa\\cqa005\\localization\\en-us\\vo\\cqa005_vo.json",
+    "mod\\cqa\\cqa005\\world\\cqa005_first_contact.streamingblock",
+    "mod\\cqa\\cqa005\\world\\cqa005_first_contact.streamingsector",
+    "mod\\cqa\\cqa005\\world\\cqa005_always_loaded.streamingsector",
+    "mod\\cqa\\cqa005\\localization\\en-us\\vo\\contact_i_85c3283507e7ef2f.wem"
+  ],
+  "registered_depot_paths": [
+    "mod\\cqa\\cqa005\\phases\\cqa005.questphase",
+    "mod\\cqa\\cqa005\\journal\\cqa005.journal",
+    "mod\\cqa\\cqa005\\localization\\en-us\\onscreens\\cqa005_onscreens.json",
+    "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles_map.json",
+    "mod\\cqa\\cqa005\\localization\\en-us\\vo\\cqa005_vo.json",
+    "mod\\cqa\\cqa005\\world\\cqa005_first_contact.streamingblock"
+  ],
+  "persistent_facts": [
+    "cqa005_completed"
+  ],
+  "evidence": {
+    "structure": {
+      "status": "structurally-validated",
+      "date": "2026-08-09",
+      "method": "WolvenKit 8.19.0 deserialize and serialize round-trip inspection",
+      "resource_pairs": 22
+    },
+    "runtime": {
+      "status": "pending",
+      "class": "experimental",
+      "date": null,
+      "record": "runtime-acceptance.json"
+    }
+  },
+  "graphs": {
+    "root": {
+      "layout": "assets/diagrams/lab-05/cqa005.questphase.layout.json",
+      "source_fingerprint": "sha256:893073dd943a2952214f1fbb00607e7a877a8d3a7efc0da47b94ee98db442619"
+    },
+    "child": {
+      "layout": "assets/diagrams/lab-05/cqa005_contact.questphase.layout.json",
+      "source_fingerprint": "sha256:1c6fe28c01a681084d93a54a42a1f0d1128bc2cfe93e108b6c46985171572815"
+    },
+    "scene": {
+      "source": "examples/lab-05-first-contact/completed/source/raw/mod/cqa/cqa005/scenes/cqa005_first_contact.scene.json",
+      "nodes": 4,
+      "edges": 3,
+      "entry": "start",
+      "exit": "contact_done"
+    }
+  },
+  "audio": {
+    "line_key": "cqa005_contact_line_0001",
+    "ruid": "9638591835734011695",
+    "wav_sha256": "ca63bdebd64a1312f53a4fe04f381b97cd9b3e11c04c19b815a503b0b5a11110",
+    "wem_sha256": "0487ba1116d9c4fa9cfb25e825ad4ec35110195cf3953cb8bc67a16f5cbc657f",
+    "wwise_console": "2025.1.7.9143",
+    "byte_reproducible_wem": false,
+    "runtime": "experimental",
+    "provenance": "voice-source/provenance.json"
+  },
+  "artifacts": {
+    "algorithm": "sha256",
+    "checkpoint_files": {
+      "CQA_Lab05_FirstContact.cpmodproj": "5f6c9f55f6310bb257203a523cd652e9a2f865c55da03932cba3c9acf6868b55",
+      "README.md": "01db8164046ff409d3347ca9074df87cbe0c21533cd0ee2598ec9431a028a015",
+      "runtime-acceptance.json": "8fb708951a6905ab4f43e1f169da7531d9e43480cd922a51baff29bcd18d9f20",
+      "source/archive/mod/cqa/cqa005/journal/cqa005.journal": "2fe35725619acc8c43124b8be36474f24b38aee9f84a4a64221d5fd260066bb2",
+      "source/archive/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json": "09aa7095e0125fd7e6b442a5c72d91db88eb148d4cd63346428845c72f8c494b",
+      "source/archive/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles.json": "6892da157ec52f39704fffa3a7d23def9672d54719d778a31186c6388b22d3ec",
+      "source/archive/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles_map.json": "fe43996fa74e32019b76358debd2eaa24bc6c351d2265f4144f1fb59d170c634",
+      "source/archive/mod/cqa/cqa005/localization/en-us/vo/contact_i_85c3283507e7ef2f.wem": "0487ba1116d9c4fa9cfb25e825ad4ec35110195cf3953cb8bc67a16f5cbc657f",
+      "source/archive/mod/cqa/cqa005/localization/en-us/vo/cqa005_vo.json": "ec98d567d14e47c7951589eabb76be3b189ce4db0c52da87ac50295340e4ba92",
+      "source/archive/mod/cqa/cqa005/phases/cqa005.questphase": "1f34e674058eb4e0b4aee2d89164ad4c1325c09f8c3f8a5c889b4dfb783f89b7",
+      "source/archive/mod/cqa/cqa005/phases/cqa005_contact.questphase": "660ae638c99576ba6daa3cf2c0d94120c237a17806ca05cddfa3072c419a9387",
+      "source/archive/mod/cqa/cqa005/scenes/cqa005_first_contact.scene": "bd39bfd0227d1d55267692366b2554464eb5aa770a814461864a8bf4bff7c77b",
+      "source/archive/mod/cqa/cqa005/world/cqa005_always_loaded.streamingsector": "41f2b282d4df185e79be78e4869eed6b0384f138c325c8b593bb80477ea98783",
+      "source/archive/mod/cqa/cqa005/world/cqa005_first_contact.streamingblock": "b15af0d24dc6178d3ab06597aafb00a81e941b19927c11c47c5c0927ca241287",
+      "source/archive/mod/cqa/cqa005/world/cqa005_first_contact.streamingsector": "4b9b402ce4584093df762fb6e3e5abc977c15d4647f3e932c2445ee5aae7014c",
+      "source/raw/mod/cqa/cqa005/journal/cqa005.journal.json": "d9c5e5f4b46a25f6555b9a47063a2c84abf16c47b005f47e1e8dd8c5dffa6c67",
+      "source/raw/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json.json": "9d373d0e010923d1c8efe1a2eab86adfc219ee8c2a2fb7ff2d609d8b3bc933a4",
+      "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles.json.json": "11b1b49f3b7de10fc2725aefc54b3e24d8c3e7e773a8f363f4bad14c942a9aad",
+      "source/raw/mod/cqa/cqa005/localization/en-us/subtitles/cqa005_subtitles_map.json.json": "5edbad51966fddd12883e00ab6dd8e35c9160750cebd725e5408f1b1f6bf02ff",
+      "source/raw/mod/cqa/cqa005/localization/en-us/vo/cqa005_vo.json.json": "e5bcbda2a945613c96ce0ba1012c0902a797db8db39b727449c6865fdbed974e",
+      "source/raw/mod/cqa/cqa005/phases/cqa005.questphase.json": "443d742b20a4a3eb09d0b22d928ceec4221bb310d643f916956708967989490d",
+      "source/raw/mod/cqa/cqa005/phases/cqa005_contact.questphase.json": "ef101b6b8fc1a6b4321358e92e35c216bf74b5187f8b790af386af90fa8018b7",
+      "source/raw/mod/cqa/cqa005/scenes/cqa005_first_contact.scene.json": "98e9b6fb267fe09a9c5cb73fb99c76b56d7ef72f7bbd072a2f97b30a140c1f28",
+      "source/raw/mod/cqa/cqa005/world/cqa005_always_loaded.streamingsector.json": "f3d4934a3bad908db46351c0075f3553f5e1d478f3580391bbcb906b98e44250",
+      "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingblock.json": "bc30e0ec816074c35201130d846cdd798ebcd4f8f9b0d0d9af609d0dc6cc18a9",
+      "source/raw/mod/cqa/cqa005/world/cqa005_first_contact.streamingsector.json": "f1e03534edc53d6cdf993cfaecd6ff01251fd31b6d76f2868832f345e6417a15",
+      "source/resources/CQA_Lab05_FirstContact.archive.xl": "46d80fcc300a5553d6fe7ae59d1d969bc1ba91766427997236555ab1b1e0c5b4"
+    },
+    "shared_files": {
+      "LICENSE.md": "f202fa9a0d4a92a176bf0160e490ae25996c8bf60233bd159feaf8a554ebc802",
+      "README.md": "77adaa8781ef3d41c5186ada95d3845ffaed06cd2b1b9413ed78ac07fa52ad72",
+      "voice-source/README.md": "d625e1d55fdbf8cd5a9b03b5280d747ee738522d21d8ea23384d0c27859bb09b",
+      "voice-source/contact_i_85c3283507e7ef2f.wav": "ca63bdebd64a1312f53a4fe04f381b97cd9b3e11c04c19b815a503b0b5a11110",
+      "voice-source/provenance.json": "fa1b884d3fddf5b044354be132a047ed617484c0adfb438f375b1314b98ffac8"
+    },
+    "diagrams": {
+      "assets/diagrams/lab-05/cqa005.child.questphase.svg": "d63aad24b77a4e2e07b8198a9d8f62fe6eab9a8fd0fb25e39759ac82d1fa3cb4",
+      "assets/diagrams/lab-05/cqa005.community-identity.svg": "b283b978ddd7d6d49940b87e1b995b8470a6c1b65769a80f3139e281456a6edc",
+      "assets/diagrams/lab-05/cqa005.lifecycle.svg": "04ab3bcebebcda84cf7f26f232ba5ce9e60695114ebb355e59def11a024843a2",
+      "assets/diagrams/lab-05/cqa005.questphase.layout.json": "0c993f72ab01ebe10dd6e657a1a582003f07daa245e7ac80096f40822b477174",
+      "assets/diagrams/lab-05/cqa005.resource-chain.svg": "d915ee1813dcac042436ca1ce2c75e52aa79d9bb6a9a86d4b83baaa94998a7ba",
+      "assets/diagrams/lab-05/cqa005.root.questphase.svg": "43a774ba98c2175ce2f7e2fe3d38884cf5578668734ce4900f04085d38d2300b",
+      "assets/diagrams/lab-05/cqa005.scene.svg": "4d26072a08b8ec47b5f312a0defc7f4faf400a5491eba076c130ffef504b5e0a",
+      "assets/diagrams/lab-05/cqa005.trigger-volume-plan.svg": "87ba5bc4d6950c438fe19872ddd4270637a8ca3549d76d1b4067c9f56e3317eb",
+      "assets/diagrams/lab-05/cqa005_contact.questphase.layout.json": "544f23448128df7e2b947a12572218b5e94792f0c4e5dd40e4ecc235eee6c54d"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles_map.json"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "JsonResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "root": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "localizationPersistenceSubtitleMap",
+          "entries": [
+            {
+              "$type": "localizationPersistenceSubtitleMapEntry",
+              "subtitleFile": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "string",
+                  "$value": "mod\\cqa\\cqa005\\localization\\en-us\\subtitles\\cqa005_subtitles.json"
+                },
+                "Flags": "Soft"
+              },
+              "subtitleGroup": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "quest"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "EmbeddedFiles": []
+  }
+}

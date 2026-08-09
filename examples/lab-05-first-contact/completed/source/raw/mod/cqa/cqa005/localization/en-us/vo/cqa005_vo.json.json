@@ -1,0 +1,47 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa005\\localization\\en-us\\vo\\cqa005_vo.json"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "JsonResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "root": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "locVoiceoverMap",
+          "entries": [
+            {
+              "$type": "locVoLineEntry",
+              "femaleResPath": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "string",
+                  "$value": "mod\\cqa\\cqa005\\localization\\en-us\\vo\\contact_i_85c3283507e7ef2f.wem"
+                },
+                "Flags": "Soft"
+              },
+              "maleResPath": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "string",
+                  "$value": "mod\\cqa\\cqa005\\localization\\en-us\\vo\\contact_i_85c3283507e7ef2f.wem"
+                },
+                "Flags": "Soft"
+              },
+              "stringId": "9638591835734011695"
+            }
+          ]
+        }
+      }
+    },
+    "EmbeddedFiles": []
+  }
+}

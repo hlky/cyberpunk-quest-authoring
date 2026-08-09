@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "line": {
+    "key": "cqa005_contact_line_0001",
+    "text": "All clear. Keep moving.",
+    "ruid": "9638591835734011695",
+    "hex_ruid": "85c3283507e7ef2f"
+  },
+  "source": {
+    "file": "contact_i_85c3283507e7ef2f.wav",
+    "bytes": 249160,
+    "sha256": "ca63bdebd64a1312f53a4fe04f381b97cd9b3e11c04c19b815a503b0b5a11110",
+    "format": "PCM s16le mono 48000 Hz",
+    "duration_seconds": 2.594604,
+    "generator": "eSpeak NG 1.50",
+    "voice": "en-us+f3",
+    "speed": 145,
+    "pitch": 42,
+    "amplitude": 160,
+    "normalization": "ffmpeg 48000 Hz mono s16 loudnorm"
+  },
+  "wem": {
+    "file": "contact_i_85c3283507e7ef2f.wem",
+    "bytes": 21379,
+    "sha256": "0487ba1116d9c4fa9cfb25e825ad4ec35110195cf3953cb8bc67a16f5cbc657f",
+    "format": "Wwise Vorbis Quality High, Windows, 48000 Hz mono",
+    "duration_seconds": 2.598188,
+    "converter": "WwiseConsole 2025.1.7.9143 convert-external-source",
+    "byte_reproducible": false
+  },
+  "license": "CC-BY-4.0",
+  "redistributed_third_party_binaries": []
+}

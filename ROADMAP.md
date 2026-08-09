@@ -18,6 +18,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 
 **Lab 4 runtime evidence:** **Experimental** — pending.
 
+**Lab 5 runtime evidence:** **Experimental** — pending.
+
 | Stage | Status on 2026-08-09 |
 | --- | --- |
 | 0 — audit and validation baseline | Complete; committed and published |
@@ -26,7 +28,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 | 3 — conditions and gates plus Lab 2 | Complete; eight control/reference chapters, a three-page practical lab, two deterministic checkpoints, an exact 21-node graph, and schema-v3 two-variant acceptance |
 | 4 — world integration plus Lab 3 | Complete; ten world chapters, two deterministic six-resource checkpoints, three exact/conceptual SVGs, and schema-v3 eight-run acceptance |
 | 5 — root/child composition plus Lab 4 | Complete; six focused questphase chapters, a three-page practical lab, two deterministic seven-resource checkpoints, exact parent/child graphs, and an eight-run acceptance matrix |
-| 6–9 | Planned below |
+| 6 — communities, scene basics, and Lab 5 | Complete; twelve focused community/scene chapters, a three-page practical lab, two deterministic twelve-artifact checkpoints, seven diagrams, and an eleven-case acceptance matrix |
+| 7–9 | Planned below |
 
 ## Completion standard
 
@@ -183,6 +186,14 @@ acceptance matrix.
   authoring, and an eight-run acceptance procedure.
 
 ### Stage 6 — communities, scene basics, and Lab 5
+
+Status: **Complete** on 2026-08-09. The exact Lab 5 community, scene,
+localization/audio, ordinary cleanup, stream-away/return,
+post-`contact_done` reload, and completed reload behavior follows the
+synchronized marker above, including the named pre-scene seed loads in Cases
+3, 4, and 7. Active-line interruption/`CutDestination`, arbitrary/unlisted
+pre-scene active-child states, and facial/workspot-animation quality remain
+**Experimental** outside its retained eleven-case acceptance matrix.
 
 - teach community registries, entries, phases, AI spots, activation, spawn
   readiness, acquisition, and cleanup;

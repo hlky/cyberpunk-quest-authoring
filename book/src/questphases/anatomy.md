@@ -32,7 +32,7 @@ questQuestPhaseResource
 | --- | --- |
 | `cookingPlatform` | Target cooking platform recorded by the resource |
 | `graph` | Handle to the executable `questGraphDefinition` |
-| `inplacePhases` | Storage associated with inline/in-place phases; empty in Labs 1–4 |
+| `inplacePhases` | Storage associated with inline/in-place phases; empty in Labs 1–5 |
 | `phasePrefabs` | Quest-prefab roots declared by this resource; the exact active composition determines which descendants can resolve against that scope |
 
 **Structurally validated:** Lab 4's root contains one prefab entry and its

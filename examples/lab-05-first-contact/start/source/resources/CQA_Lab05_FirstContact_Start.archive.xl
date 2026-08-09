@@ -1,0 +1,22 @@
+quest:
+  phases:
+  - path: mod\cqa\cqa005\phases\cqa005.questphase
+    parent: base\quest\cyberpunk2077.quest
+
+journal:
+- mod\cqa\cqa005\journal\cqa005.journal
+
+localization:
+  onscreens:
+    en-us:
+    - mod\cqa\cqa005\localization\en-us\onscreens\cqa005_onscreens.json
+  subtitles:
+    en-us:
+    - mod\cqa\cqa005\localization\en-us\subtitles\cqa005_subtitles_map.json
+  vomaps:
+    en-us:
+    - mod\cqa\cqa005\localization\en-us\vo\cqa005_vo.json
+
+streaming:
+  blocks:
+  - mod\cqa\cqa005\world\cqa005_first_contact.streamingblock

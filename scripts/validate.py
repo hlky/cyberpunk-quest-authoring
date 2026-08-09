@@ -99,6 +99,7 @@ PACKAGE_SCRIPT = ROOT / "scripts" / "package_examples.py"
 LAB02_VALIDATOR = ROOT / "scripts" / "validate_lab02.py"
 LAB03_VALIDATOR = ROOT / "scripts" / "validate_lab03.py"
 LAB04_VALIDATOR = ROOT / "scripts" / "validate_lab04.py"
+LAB05_VALIDATOR = ROOT / "scripts" / "validate_lab05.py"
 SHARED_LICENSE = LAB / "LICENSE.md"
 JSON_SIZE_LIMIT = 16 * 1024 * 1024
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
@@ -223,6 +224,8 @@ GENERATED_DOWNLOAD_NAMES = frozenset(
         "cqa-lab-03-completed.zip",
         "cqa-lab-04-start.zip",
         "cqa-lab-04-completed.zip",
+        "cqa-lab-05-start.zip",
+        "cqa-lab-05-completed.zip",
     }
 )
 
@@ -1394,15 +1397,28 @@ def expected_zip_entries(
     source: Path,
     root_name: str,
     expected_files: frozenset[str],
+    text_files: frozenset[str],
     license_path: Path,
+    extra_entries: tuple[tuple[Path, str, bool], ...] = (),
 ) -> dict[str, bytes]:
+    def packaged_bytes(path: Path, *, text: bool) -> bytes:
+        payload = path.read_bytes()
+        if not text:
+            return payload
+        normalized = payload.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        return normalized.encode("utf-8")
+
     result = {
-        f"{root_name}/{relative}": (source / relative).read_bytes()
+        f"{root_name}/{relative}": packaged_bytes(source / relative, text=relative in text_files)
         for relative in expected_files
     }
+    for extra_source, relative, is_text in extra_entries:
+        target = f"{root_name}/{relative}"
+        require(target not in result, f"{display(source)}: duplicate extra ZIP entry {relative}")
+        result[target] = packaged_bytes(extra_source, text=is_text)
     license_name = f"{root_name}/LICENSE.md"
     require(license_name not in result, f"{display(source)}: LICENSE.md collides with shared ZIP entry")
-    result[license_name] = license_path.read_bytes()
+    result[license_name] = packaged_bytes(license_path, text=True)
     return result
 
 
@@ -1411,9 +1427,18 @@ def validate_zip(
     source: Path,
     root_name: str,
     expected_files: frozenset[str],
+    text_files: frozenset[str],
     license_path: Path,
+    extra_entries: tuple[tuple[Path, str, bool], ...] = (),
 ) -> None:
-    expected = expected_zip_entries(source, root_name, expected_files, license_path)
+    expected = expected_zip_entries(
+        source,
+        root_name,
+        expected_files,
+        text_files,
+        license_path,
+        extra_entries,
+    )
     with ZipFile(path) as archive:
         require(archive.comment == b"", f"{path.name}: unexpected archive comment")
         require(archive.testzip() is None, f"{path.name}: CRC check failed")
@@ -1564,6 +1589,44 @@ def validate_packages() -> None:
         finally:
             packager.LAB04 = original_lab04
 
+        evidence_record.write_text(
+            json.dumps(
+                {
+                    "cases": [
+                        {"evidence": [{"reference": "evidence/run-note.md"}]},
+                    ]
+                }
+            ),
+            encoding="utf-8",
+            newline="\n",
+        )
+        original_lab05 = packager.LAB05
+        try:
+            packager.LAB05 = evidence_fixture
+            require(
+                packager.lab05_retained_evidence_files() == ("evidence/run-note.md",),
+                "package_examples.py did not admit acceptance-bound Lab 5 evidence",
+            )
+            evidence_record.write_text(
+                json.dumps(
+                    {
+                        "cases": [
+                            {"evidence": [{"reference": "../private-save.dat"}]},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+                newline="\n",
+            )
+            try:
+                packager.lab05_retained_evidence_files()
+            except ValueError:
+                pass
+            else:
+                raise ValidationError("package_examples.py accepted an unsafe Lab 5 evidence path")
+        finally:
+            packager.LAB05 = original_lab05
+
         preserved = first / "preserved.zip"
         sentinel = b"previous valid download"
         preserved.write_bytes(sentinel)
@@ -1590,8 +1653,9 @@ def validate_packages() -> None:
             source,
             root_name,
             expected_files,
-            _,
+            text_files,
             license_path,
+            extra_entries,
         ) in packager.CHECKPOINTS.items():
             first_zip = first / name
             second_zip = second / name
@@ -1601,7 +1665,9 @@ def validate_packages() -> None:
                 source,
                 root_name,
                 frozenset(expected_files),
+                frozenset(text_files),
                 license_path,
+                extra_entries,
             )
             require(
                 first_zip.read_bytes() == second_zip.read_bytes(),
@@ -1663,6 +1729,24 @@ def validate_lab04() -> None:
     )
 
 
+def validate_lab05() -> None:
+    environment = os.environ.copy()
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    result = subprocess.run(
+        [sys.executable, str(LAB05_VALIDATOR)],
+        cwd=ROOT,
+        env=environment,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    require(
+        result.returncode == 0,
+        f"validate_lab05.py failed:\n{result.stdout}{result.stderr}".rstrip(),
+    )
+
+
 def run_check(name: str, check: Callable[[], None]) -> bool:
     try:
         check()
@@ -1695,6 +1779,7 @@ def main() -> int:
         ("Lab 2 project, evidence, semantics, and graph", validate_lab02),
         ("Lab 3 project, world resources, evidence, and graph", validate_lab03),
         ("Lab 4 external phase, handoff evidence, and graphs", validate_lab04),
+        ("Lab 5 community, scene, audio, evidence, and graphs", validate_lab05),
         ("deterministic example ZIPs", validate_packages),
     )
     results = [run_check(name, check) for name, check in checks]

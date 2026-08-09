@@ -45,6 +45,8 @@ The project originated from:
 
 **Lab 4 runtime evidence:** **Experimental** — pending.
 
+**Lab 5 runtime evidence:** **Experimental** — pending.
+
 The local repository is initialized at:
 
 `H:\cyberpunk-quest-authoring`
@@ -88,7 +90,17 @@ It has:
   scope, completion handoff, and the bounded evidence for interruption;
 - a designed and structurally validated Lab 4 reference project with start and
   completed checkpoints, exact parent/child graphs, a manual WolvenKit
-  authoring path, and an eight-run acceptance record.
+  authoring path, and an eight-run acceptance record;
+- substantive community chapters covering registry/area/spot identity,
+  entries, phases, AI spots, readiness, scene acquisition, generic-character
+  safety, and delayed cleanup;
+- substantive scene chapters covering v5 resource anatomy, actors/performers,
+  screenplay items, timed events, graph stamps, named handoff, external
+  subtitle/VO lookup, and save-aware cleanup;
+- a designed and structurally validated Lab 5 reference project with two
+  eleven-CR2W-plus-WEM checkpoints, exact root/child/scene graphs, seven
+  deterministic diagrams, a manual WolvenKit authoring path, and an
+  eleven-case acceptance record.
 
 ## Research evidence available in Ghostline
 
@@ -156,6 +168,37 @@ Stage 5 narrowed the composition evidence further:
   reload, and save claims remain pending its retained eight-run matrix.
   `CutDestination` remains outside that matrix and needs a separate
   interruption fixture even after the normal handoff passes.
+
+Stage 6 narrowed the community and scene evidence further:
+
+- **Runtime-proven:** retained archive
+  `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
+  spawned all three configured generic guards, kept them passive, and cleaned
+  them up. Its exact Tyger Claw entry is joined to
+  `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot`.
+  Retained archive
+  `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
+  completed its community-readiness and scene-acquisition meeting route. Both
+  are bounded legacy results, not proof of `cqa005`.
+- **Observed in vanilla:** the cited `mq003`, `mq007`, and `mq010` scenes and
+  `mq003` questphases expose comparable actor, community, entry/exit,
+  screenplay, readiness, and delayed-lifecycle shapes. The Japantown
+  `ma_wbr_jpn_013_claws_com.community` resource supplies the generic entry
+  comparison. Readers extract these references themselves; none is
+  redistributed.
+- **Structurally validated:** both Lab 5 checkpoints have eleven CR2W resources
+  cooked and serialized with WolvenKit `8.19.0`. The exact seven-node root,
+  fifteen-node child, four-node completed scene, world identity joins,
+  localization paths, and the checked synthetic WEM contract are retained.
+- **Acceptance-gated:** the exact `cqa005` mount, passive spawn, ordinary
+  line/subtitle/WEM playback, `contact_done` return, delayed deactivation,
+  stream-away/return, post-`contact_done` reload, completed reload, clean-save
+  replay, removal isolation, and the exact named pre-scene seed loads in Cases
+  3, 4, and 7 follow the synchronized marker above.
+- **Experimental:** active-line interruption/return or `CutDestination`,
+  arbitrary/unlisted pre-scene active-child states, and
+  facial/workspot-animation quality are outside that frozen campaign and
+  retain this label independently.
 
 The local public `modding_docs` snapshot has useful isolated material but lacks
 an end-to-end model:
@@ -642,11 +685,11 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0–5 completed the validation baseline, zero-assumption
+published. Stages 0–6 completed the validation baseline, zero-assumption
 onboarding, Lab 1, Journal/UI/localization, Conditions and gates, World
-integration, root/child composition, and the structurally validated Labs 2–4.
-Stage 6 is communities, scene basics, and Lab 5; Stages 7–9 retain the
-hardening, cookbook, advanced-systems, and final-publication work in the
+integration, root/child composition, communities, scene basics, and the
+structurally validated Labs 2–5. Stage 7 is the first-release hardening pass;
+Stages 8–9 retain the cookbook, advanced-systems, and final-publication work in the
 roadmap. Runtime labels are promoted only when retained clean-save evidence
 supports them.
 
@@ -665,6 +708,15 @@ supports them.
   phase, the external child is archived and resolved through `phaseResource`,
   and the root owns `#cqa004_pr_handoff`. Its exact runtime behavior remains
   **Experimental** pending the retained acceptance matrix.
+- Lab 5 is `cqa005`, titled “First Contact”; its root owns
+  `#cqa005_pr_first_contact`, its external child owns the ordered community,
+  scene, and cleanup lifecycle, and ArchiveXL registers only the six intended
+  roots. Each checkpoint carries eleven CR2Ws plus one hash-pinned synthetic
+  WEM. Exact in-matrix runtime behavior, including the named Case 3/4/7
+  pre-scene seed loads, follows the synchronized marker above; active-line
+  interruption/`CutDestination`, arbitrary or unlisted pre-scene active-child
+  states, and facial/workspot-animation quality remain **Experimental**
+  out-of-matrix.
 - Exact diagrams use WolvenKit CR2W-JSON plus layout-only overrides and a
   checked structural fingerprint.
 - Release ZIPs will be built automatically from the checked example projects.

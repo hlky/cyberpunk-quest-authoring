@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="2550" height="780" viewBox="0 0 2550 780" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa005 First Contact — root graph</title>
+<desc id="svg-desc">Exact graph with 7 nodes and 7 edges. Runtime evidence remains Experimental.</desc>
+<metadata>{&quot;edge_count&quot;:7,&quot;evidence_class&quot;:&quot;Experimental&quot;,&quot;node_count&quot;:7,&quot;source&quot;:&quot;examples/lab-05-first-contact/completed/source/raw/mod/cqa/cqa005/phases/cqa005.questphase.json&quot;,&quot;source_fingerprint&quot;:&quot;sha256:893073dd943a2952214f1fbb00607e7a877a8d3a7efc0da47b94ee98db442619&quot;}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/></marker>
+<style>
+    .bg { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 28px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 14px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .edge { fill: none; stroke: #c9d1dc; stroke-width: 2.1; marker-end: url(#arrow); }
+    .edge-dashed { fill: none; stroke: #f3be55; stroke-width: 2; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    .edge-label { fill: #e0e5ed; font: 12px ui-monospace, Consolas, monospace; text-anchor: middle; paint-order: stroke; stroke: #10151d; stroke-width: 5px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #956600; }
+    .journal { fill: #247a4b; }
+    .phase { fill: #315f9a; }
+    .fact { fill: #6d3ea0; }
+    .community { fill: #8a4f22; }
+    .scene { fill: #7b315e; }
+    .action { fill: #315f78; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+    .node-type { fill: #d2d9e3; font: 10px ui-monospace, Consolas, monospace; }
+    .panel { fill: #181f2a; stroke: #506078; stroke-width: 1.5; }
+    .panel-blue { fill: #182b49; stroke: #78a9ff; stroke-width: 2; }
+    .panel-green { fill: #173d38; stroke: #68d8c5; stroke-width: 2; }
+    .panel-amber { fill: #493510; stroke: #f3be55; stroke-width: 2; }
+    .panel-magenta { fill: #47203d; stroke: #e07abc; stroke-width: 2; }
+    .panel-title { fill: #ffffff; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .warn { fill: #ffd982; font: 600 13px system-ui, sans-serif; }
+
+</style>
+</defs>
+<rect class="bg" width="2550" height="780"/>
+<text class="title" x="40" y="48">cqa005 First Contact — root graph</text>
+<text class="subtitle" x="40" y="77">7 nodes • 7 edges • root owns one-shot completion</text>
+<rect class="badge" x="2320" y="27" width="190" height="36" rx="18"/>
+<text class="badge-text" x="2415" y="51">Experimental</text>
+<g data-source="0" data-source-socket="Out" data-destination="10" data-destination-socket="In">
+<path class="edge" d="M 210 198 C 250 198, 220 198, 260 198"/>
+<text class="edge-label" x="235" y="188">Out → In</text>
+</g>
+<g data-source="10" data-source-socket="False" data-destination="1" data-destination-socket="In">
+<path class="edge" d="M 540 198 L 400 690 L 2300 690 L 2300 463"/>
+<text class="edge-label" x="1350" y="681">False → In</text>
+</g>
+<g data-source="10" data-source-socket="True" data-destination="11" data-destination-socket="Active">
+<path class="edge" d="M 540 198 C 580 198, 550 198, 590 198"/>
+<text class="edge-label" x="565" y="188">True → Active</text>
+</g>
+<g data-source="11" data-source-socket="Out" data-destination="12" data-destination-socket="In1">
+<path class="edge" d="M 840 198 C 880 198, 850 198, 890 198"/>
+<text class="edge-label" x="865" y="188">Out → In1</text>
+</g>
+<g data-source="12" data-source-socket="Out1" data-destination="13" data-destination-socket="Succeeded">
+<path class="edge" d="M 1220 198 L 1055 335 L 1410 335 L 1270 463"/>
+<text class="edge-label" x="1232.5" y="326">Out1 → Succeeded</text>
+</g>
+<g data-source="13" data-source-socket="Out" data-destination="14" data-destination-socket="In">
+<path class="edge" d="M 1550 463 C 1590 463, 1560 463, 1600 463"/>
+<text class="edge-label" x="1575" y="453">Out → In</text>
+</g>
+<g data-source="14" data-source-socket="Out" data-destination="1" data-destination-socket="In">
+<path class="edge" d="M 1880 463 C 2039.6 463, 2140.4 463, 2300 463"/>
+<text class="edge-label" x="2090" y="453">Out → In</text>
+</g>
+<g data-node-id="0" data-node-type="questInputNodeDefinition">
+<rect class="node boundary" x="40" y="140" width="170" height="116" rx="58"/>
+<text class="node-id" x="54" y="161">ID 0</text>
+<text class="node-title" x="54" y="188">Input</text>
+<text class="node-detail" x="54" y="214">In1</text>
+<text class="node-type" x="54" y="239">questInputNodeDefinition</text>
+</g>
+<g data-node-id="1" data-node-type="questOutputNodeDefinition">
+<rect class="node boundary" x="2300" y="405" width="210" height="116" rx="58"/>
+<text class="node-id" x="2314" y="426">ID 1</text>
+<text class="node-title" x="2314" y="453">Output</text>
+<text class="node-detail" x="2314" y="479">Terminating • Out1</text>
+<text class="node-type" x="2314" y="504">questOutputNodeDefinition</text>
+</g>
+<g data-node-id="10" data-node-type="questConditionNodeDefinition">
+<polygon class="node gate" points="280,140 520,140 540,198 520,256 280,256 260,198"/>
+<text class="node-id" x="274" y="161">ID 10</text>
+<text class="node-title" x="274" y="188">Fact guard</text>
+<text class="node-detail" x="274" y="214">cqa005_completed == 0</text>
+<text class="node-type" x="274" y="239">questConditionNodeDefinition</text>
+</g>
+<g data-node-id="11" data-node-type="questJournalNodeDefinition">
+<rect class="node journal" x="590" y="140" width="250" height="116" rx="10"/>
+<text class="node-id" x="604" y="161">ID 11</text>
+<text class="node-title" x="604" y="188">Quest • Active</text>
+<text class="node-detail" x="604" y="214">cqa005</text>
+<text class="node-type" x="604" y="239">questJournalNodeDefinition</text>
+</g>
+<g data-node-id="12" data-node-type="questPhaseNodeDefinition">
+<rect class="node phase" x="890" y="140" width="330" height="116" rx="10"/>
+<text class="node-id" x="904" y="161">ID 12</text>
+<text class="node-title" x="904" y="188">External child</text>
+<text class="node-detail" x="904" y="214">cqa005_contact.questphase</text>
+<text class="node-type" x="904" y="239">questPhaseNodeDefinition</text>
+</g>
+<g data-node-id="13" data-node-type="questJournalNodeDefinition">
+<rect class="node journal" x="1270" y="405" width="280" height="116" rx="10"/>
+<text class="node-id" x="1284" y="426">ID 13</text>
+<text class="node-title" x="1284" y="453">Quest • Succeeded</text>
+<text class="node-detail" x="1284" y="479">cqa005</text>
+<text class="node-type" x="1284" y="504">questJournalNodeDefinition</text>
+</g>
+<g data-node-id="14" data-node-type="questFactsDBManagerNodeDefinition">
+<rect class="node fact" x="1600" y="405" width="280" height="116" rx="10"/>
+<text class="node-id" x="1614" y="426">ID 14</text>
+<text class="node-title" x="1614" y="453">Set fact</text>
+<text class="node-detail" x="1614" y="479">cqa005_completed = 1</text>
+<text class="node-type" x="1614" y="504">questFactsDBManagerNodeDefinition</text>
+</g>
+<text class="warn" x="40" y="745">All CutDestination sockets are present and unwired.</text>
+<text class="note" x="2510" y="745" text-anchor="end">Experimental — runtime acceptance pending</text>
+</svg>

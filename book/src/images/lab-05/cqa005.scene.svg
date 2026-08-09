@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="620" viewBox="0 0 1540 620" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa005 First Contact scene graph</title>
+<desc id="svg-desc">Exact completed scene graph: Start fans to a dialog section and a scene-local Puppet AI quest node; the section reaches the terminating end.</desc>
+<metadata>{&quot;edge_count&quot;:3,&quot;evidence_class&quot;:&quot;Experimental&quot;,&quot;node_count&quot;:4,&quot;source&quot;:&quot;examples/lab-05-first-contact/completed/source/raw/mod/cqa/cqa005/scenes/cqa005_first_contact.scene.json&quot;}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/></marker>
+<style>
+    .bg { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 28px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 14px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .edge { fill: none; stroke: #c9d1dc; stroke-width: 2.1; marker-end: url(#arrow); }
+    .edge-dashed { fill: none; stroke: #f3be55; stroke-width: 2; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    .edge-label { fill: #e0e5ed; font: 12px ui-monospace, Consolas, monospace; text-anchor: middle; paint-order: stroke; stroke: #10151d; stroke-width: 5px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #956600; }
+    .journal { fill: #247a4b; }
+    .phase { fill: #315f9a; }
+    .fact { fill: #6d3ea0; }
+    .community { fill: #8a4f22; }
+    .scene { fill: #7b315e; }
+    .action { fill: #315f78; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+    .node-type { fill: #d2d9e3; font: 10px ui-monospace, Consolas, monospace; }
+    .panel { fill: #181f2a; stroke: #506078; stroke-width: 1.5; }
+    .panel-blue { fill: #182b49; stroke: #78a9ff; stroke-width: 2; }
+    .panel-green { fill: #173d38; stroke: #68d8c5; stroke-width: 2; }
+    .panel-amber { fill: #493510; stroke: #f3be55; stroke-width: 2; }
+    .panel-magenta { fill: #47203d; stroke: #e07abc; stroke-width: 2; }
+    .panel-title { fill: #ffffff; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .warn { fill: #ffd982; font: 600 13px system-ui, sans-serif; }
+
+</style>
+</defs>
+<rect class="bg" width="1540" height="620"/>
+<text class="title" x="40" y="48">cqa005 First Contact — scene graph</text>
+<text class="subtitle" x="40" y="77">4 nodes • 3 edges • exact input socket ordinals</text>
+<rect class="panel-blue" x="60" y="155" width="270" height="180" rx="12"/>
+<text class="panel-title" x="78" y="186">Start • ID 1</text>
+<text class="detail" x="78" y="216">startNodes: [1]</text>
+<text class="detail" x="78" y="238">output 0/0 fans out</text>
+<text class="detail" x="78" y="260">ffStrategy: automatic</text>
+<rect class="panel-magenta" x="470" y="115" width="340" height="200" rx="12"/>
+<text class="panel-title" x="488" y="146">Section • ID 2</text>
+<text class="detail" x="488" y="176">one scnDialogLineEvent</text>
+<text class="detail" x="488" y="198">ruid 9638591835734011695</text>
+<text class="detail" x="488" y="220">All clear. Keep moving.</text>
+<text class="detail" x="488" y="242">output 0/0 → End 3</text>
+<rect class="panel-amber" x="470" y="355" width="340" height="180" rx="12"/>
+<text class="panel-title" x="488" y="386">scnQuestNode • ID 4</text>
+<text class="detail" x="488" y="416">PuppetAIManager</text>
+<text class="detail" x="488" y="438">aiTier: Cinematic</text>
+<text class="detail" x="488" y="460">input socket 0/1</text>
+<text class="detail" x="488" y="482">output 0/0 empty</text>
+<rect class="panel-green" x="980" y="155" width="300" height="180" rx="12"/>
+<text class="panel-title" x="998" y="186">End • ID 3</text>
+<text class="detail" x="998" y="216">type: Terminating</text>
+<text class="detail" x="998" y="238">endNodes: [3]</text>
+<text class="detail" x="998" y="260">exit: contact_done</text>
+<path class="edge" d="M 330 225 L 470 215"/>
+<text class="edge-label" x="400" y="210">0/0 → 0/0</text>
+<path class="edge" d="M 330 265 L 470 420"/>
+<text class="edge-label" x="400" y="332.5">0/0 → 0/1</text>
+<path class="edge" d="M 810 215 L 980 225"/>
+<text class="edge-label" x="895" y="210">0/0 → 0/0</text>
+<text class="warn" x="60" y="575">The PuppetAI output is intentionally empty; no fourth edge is inferred.</text>
+<text class="note" x="1480" y="575" text-anchor="end">Experimental — combined runtime pending</text>
+</svg>

@@ -21,6 +21,8 @@ frameworks.
 
 **Lab 4 runtime evidence:** **Experimental** — pending.
 
+**Lab 5 runtime evidence:** **Experimental** — pending.
+
 The repository contains:
 
 - a published mdBook and GitHub Pages workflow;
@@ -47,6 +49,15 @@ The repository contains:
   scope, completion handoff, and bounded interruption evidence;
 - Lab 4's start/completed WolvenKit projects, exact parent/child graphs, manual
   authoring path, and eight-run runtime protocol;
+- a complete communities section covering registry/area identity joins,
+  entries, phases, AI spots, readiness, acquisition, delayed cleanup, and safe
+  generic-character selection;
+- a complete scene-basics section covering actors/performers, screenplay
+  items, timed events, entry/exit topology, external subtitle/VO lookup, and
+  scene-to-quest cleanup boundaries;
+- Lab 5's start/completed WolvenKit projects, exact root/child/scene graphs,
+  seven deterministic diagrams, a synthetic hash-pinned voice asset, manual
+  authoring path, and eleven-case runtime protocol;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
@@ -72,6 +83,18 @@ resolved through `phaseResource`, while the root owns the shared quest-prefab
 scope. That exact child lifetime, handoff, stream return, and save behavior
 remains **Experimental** until the hash-bound canonical candidate passes all
 eight executions in its acceptance record.
+
+Lab 5's `cqa005` checkpoints each contain eleven CR2W resources and one WEM.
+All twenty-two CR2W source/cooked pairs are structurally validated with
+WolvenKit 8.19.0. The generic contact's spawn/passivity/cleanup lineage and a
+community-acquired conversation have bounded legacy runtime evidence, but the
+exact `cqa005` mount, ordinary line/subtitle/audio playback, named exit,
+stream-away/return, delayed cleanup, post-`contact_done` reload, and completed
+reload follow the synchronized marker above. This includes the exact named
+pre-scene seed loads in Cases 3, 4, and 7. Active-line interruption or
+`CutDestination`, arbitrary/unlisted pre-scene active-child states, and
+facial/workspot-animation quality remain **Experimental** outside that frozen
+campaign.
 
 ## Local preview
 

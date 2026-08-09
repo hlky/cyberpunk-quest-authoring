@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1660" height="620" viewBox="0 0 1660 620" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa005 community identity domains</title>
+<desc id="svg-desc">NodeRefs, source object IDs, registry IDs, and AI spot IDs are related but not interchangeable</desc>
+<metadata>{&quot;diagram&quot;:&quot;conceptual-community-identity&quot;,&quot;evidence_class&quot;:&quot;Experimental&quot;}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/></marker>
+<style>
+    .bg { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 28px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 14px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .edge { fill: none; stroke: #c9d1dc; stroke-width: 2.1; marker-end: url(#arrow); }
+    .edge-dashed { fill: none; stroke: #f3be55; stroke-width: 2; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    .edge-label { fill: #e0e5ed; font: 12px ui-monospace, Consolas, monospace; text-anchor: middle; paint-order: stroke; stroke: #10151d; stroke-width: 5px; stroke-linejoin: round; }
+    .node { stroke: #e6e9ef; stroke-width: 1.5; }
+    .boundary { fill: #4b5563; }
+    .gate { fill: #956600; }
+    .journal { fill: #247a4b; }
+    .phase { fill: #315f9a; }
+    .fact { fill: #6d3ea0; }
+    .community { fill: #8a4f22; }
+    .scene { fill: #7b315e; }
+    .action { fill: #315f78; }
+    .node-id { fill: #f7f8fa; font: 12px ui-monospace, Consolas, monospace; }
+    .node-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .node-detail { fill: #f3f5f8; font: 12px ui-monospace, Consolas, monospace; }
+    .node-type { fill: #d2d9e3; font: 10px ui-monospace, Consolas, monospace; }
+    .panel { fill: #181f2a; stroke: #506078; stroke-width: 1.5; }
+    .panel-blue { fill: #182b49; stroke: #78a9ff; stroke-width: 2; }
+    .panel-green { fill: #173d38; stroke: #68d8c5; stroke-width: 2; }
+    .panel-amber { fill: #493510; stroke: #f3be55; stroke-width: 2; }
+    .panel-magenta { fill: #47203d; stroke: #e07abc; stroke-width: 2; }
+    .panel-title { fill: #ffffff; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .warn { fill: #ffd982; font: 600 13px system-ui, sans-serif; }
+
+</style>
+</defs>
+<rect class="bg" width="1660" height="620"/>
+<text class="title" x="40" y="48">cqa005 community identity domains</text>
+<text class="subtitle" x="40" y="77">NodeRefs, source object IDs, registry IDs, and AI spot IDs are related but not interchangeable</text>
+<rect class="panel-blue" x="40" y="155" width="350" height="240" rx="12"/>
+<text class="panel-title" x="58" y="186">Community NodeRef</text>
+<text class="detail" x="58" y="216">#cqa005_com_contact</text>
+<text class="detail" x="58" y="238">full prefab subtree</text>
+<text class="detail" x="58" y="260">RED4 hash: 5948510988927765319</text>
+<path class="edge" d="M 390 275 L 435 275"/>
+<text class="edge-label" x="412.5" y="258">resolves</text>
+<rect class="panel-green" x="435" y="155" width="350" height="240" rx="12"/>
+<text class="panel-title" x="453" y="186">Community source</text>
+<text class="detail" x="453" y="216">sourceObjectId</text>
+<text class="detail" x="453" y="238">5948510988927765319</text>
+<text class="detail" x="453" y="260">hash of community full ref</text>
+<path class="edge" d="M 785 275 L 830 275"/>
+<text class="edge-label" x="807.5" y="258">registry owns</text>
+<rect class="panel-amber" x="830" y="155" width="350" height="240" rx="12"/>
+<text class="panel-title" x="848" y="186">Registry node</text>
+<text class="detail" x="848" y="216">QuestPrefabRefHash</text>
+<text class="detail" x="848" y="238">6908684691797323855</text>
+<text class="detail" x="848" y="260">hash of full ref + _registry</text>
+<path class="edge" d="M 1180 275 L 1225 275"/>
+<text class="edge-label" x="1202.5" y="258">entry maps</text>
+<rect class="panel-magenta" x="1225" y="155" width="350" height="240" rx="12"/>
+<text class="panel-title" x="1243" y="186">AI spot</text>
+<text class="detail" x="1243" y="216">worldGlobalNodeID</text>
+<text class="detail" x="1243" y="238">15950783814303760596</text>
+<text class="detail" x="1243" y="260">hash of AI spot full ref</text>
+<text class="warn" x="40" y="540">Conceptual relationship diagram; exact values are listed in the panels.</text>
+<text class="note" x="1620" y="540" text-anchor="end">Experimental — runtime integration pending</text>
+</svg>

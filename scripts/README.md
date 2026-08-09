@@ -9,7 +9,7 @@ prerequisite for understanding or authoring native Cyberpunk 2077 quests.
 Current utilities:
 
 - `validate.py` is the single local and CI validation command. It regenerates
-  all four labs' CR2W-JSON into temporary directories; checks manifests, source
+  all five labs' CR2W-JSON into temporary directories; checks manifests, source
   and checkpoint inventories, Git tracking, LF-normalized text, exact
   ArchiveXL section nesting, manifest SHA-256 values, runtime-acceptance
   contracts and reader-facing evidence status, mdBook SUMMARY coverage and
@@ -39,13 +39,29 @@ Current utilities:
   socket, prefab-scope, graph, world, evidence, and diagram checks. Pass
   `--wkit <WolvenKit.CLI>` to repeat the pinned 8.19.0 cook and serialize
   round trip locally; the shared CI entry point remains dependency-free.
+- `build_lab05_sources.py` deterministically rebuilds both Lab 5 checkpoints'
+  eleven mod-owned CR2W-JSON resources and preserves the separately licensed,
+  hash-bound WAV/WEM assets.
+- `build_lab05_diagrams.py` validates the frozen root, child, scene, community,
+  resource, lifecycle, and trigger contracts and emits seven deterministic
+  exact or conceptual SVGs with explicit metadata.
+- `validate_lab05.py` supplies Lab 5's community identity joins, graph and
+  scene topology, localization/voice chain, world ownership, audio provenance,
+  schema-version-4 five-capture save lineage, acceptance record, manifest, and
+  diagram checks. It freezes two originals, three Case-1 manual seeds,
+  closed-game full-slot execution clones, exact fan-out hashes, and unique
+  execution directories. Pass `--wkit <WolvenKit.CLI>` to repeat the pinned
+  8.19.0 cook and serialize round trip.
 - `render_quest_graph.py` renders an exact SVG from WolvenKit CR2W-JSON plus a
   geometry-only override (including optional edge waypoints) and rejects stale
   source fingerprints.
 - `package_examples.py` creates deterministic ZIP downloads for all start and
-  completed checkpoints. Lab 2, Lab 3, and Lab 4 evidence files are included only
+  completed checkpoints. Lab 2 through Lab 5 evidence files are included only
   when a safe `evidence/` path is named by the matching acceptance record;
-  unreferenced extras keep failing the closed-inventory check.
+  unreferenced extras keep failing the closed-inventory check. Each Lab 5 ZIP
+  also receives the one repository-owned `voice-source` provenance bundle as
+  explicit, hash-checked external entries rather than duplicating it in both
+  project trees.
 
 From the repository root, run the complete validation suite with:
 
@@ -57,7 +73,7 @@ The suite has no third-party Python dependencies and does not invoke
 WolvenKit. Its default binary/source check is intentionally limited to locally
 provable provenance: CR2W magic, the CR2W-JSON archive filename and resource
 type, and the cooked resource's matching root-type string. It does not prove a
-WolvenKit round trip or in-game behavior. The optional Lab 4 `--wkit` gate is
-the explicit local exception and is not run by `validate.py`.
+WolvenKit round trip or in-game behavior. The optional Lab 4 and Lab 5
+`--wkit` gates are explicit local exceptions and are not run by `validate.py`.
 
 Scripts in this directory are licensed under the MIT License.

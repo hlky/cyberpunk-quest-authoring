@@ -1,6 +1,13 @@
 # Lab 4 example license
 
-The Lab 4 example project and its mod-owned resources are licensed under the
-MIT License. See the repository root `LICENSE-MIT` for the full text.
+The original resources, serialized review artifacts, metadata, and
+documentation in this directory are licensed under the [Creative Commons
+Attribution 4.0 International
+License](https://creativecommons.org/licenses/by/4.0/).
 
-SPDX-License-Identifier: MIT
+Copyright © 2026 hlky and contributors.
+
+Cyberpunk 2077, REDengine, and related names and assets belong to their
+respective owners. This example contains no extracted base-game resource.
+
+SPDX-License-Identifier: CC-BY-4.0
