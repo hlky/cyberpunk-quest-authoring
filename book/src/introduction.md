@@ -11,10 +11,12 @@ devices, combat, vehicles, and specialized systems. The goal is not to hide the
 engine behind a generator. The goal is to make the resource model
 understandable.
 
-The first tutorial is being built around `cqa001`, a one-shot quest with no
-world, scene, actor, or device dependencies. Its stable resource design and
-exact graph are published before the manual authoring walkthrough so that
-structural claims remain reviewable.
+The first tutorial builds `cqa001`, a one-shot quest with no world, scene,
+actor, or device dependencies. Its resource design, exact graph, manual
+WolvenKit walkthrough, and runtime-acceptance record keep structural
+claims reviewable without presenting an expected game result as proof.
+
+**Lab 1 runtime evidence:** **Experimental** — pending.
 
 ## What this book will cover
 

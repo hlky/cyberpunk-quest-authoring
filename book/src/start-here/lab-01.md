@@ -1,17 +1,25 @@
-# Lab 1: one-shot quest
+# Lab 1: First Signal
 
 Lab 1 establishes the smallest useful native quest loop: register a root
 questphase, show one objective, wait ten real-time seconds, complete the
 objective and quest, persist a one-shot guard, and terminate.
 
+| Record | Value |
+| --- | --- |
+| Procedure review date | 2026-08-09 |
+| Structural validation date | 2026-07-27 |
+| Runtime test date | Not yet recorded |
+
+**Lab 1 runtime evidence:** **Experimental** — pending.
+
 **Implementation status:** the supplied resources are **Structurally
 validated** after WolvenKit 8.19.0 deserialization and round-trip inspection.
-The custom arrangement remains **Experimental** until the complete project has
-passed an in-game clean-save run on Cyberpunk 2077 2.31a.
+The dedicated marker above is synchronized with the eight-case, hash-bound
+runtime-acceptance record.
 
-The manual click-by-click WolvenKit walkthrough is still being written. This
-page fixes the resource design and explains every supplied node so the example
-is reviewable while that authoring pass is completed.
+The complete [manual WolvenKit authoring, installation, test, and reset
+walkthrough](lab-01-authoring.md) builds this design from the empty checkpoint.
+This page remains the concise resource and graph reference.
 
 ## Outcome
 
@@ -39,8 +47,9 @@ distinguish resource ownership, socket semantics, identifier domains, and
 save-backed state.
 
 Use the exact [first-release version set](../reference/tested-versions.md):
-Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, and RED4ext
-`1.30.0`.
+Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext
+`1.30.0`, and the pinned redscript `0.5.31` (ArchiveXL requires `0.5.31` or
+newer).
 
 The example has two checkpoints:
 
@@ -54,6 +63,10 @@ The source directories remain available on
 
 Use a dedicated test save. The completion fact is stored in the save and is
 deliberately not reset by the quest.
+
+Follow the [manual authoring walkthrough](lab-01-authoring.md) to create the
+resources, enter the property paths, wire every socket, install the project,
+and run the Experimental clean-save acceptance matrix.
 
 ## Resource model
 

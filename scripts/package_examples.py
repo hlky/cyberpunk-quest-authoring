@@ -7,6 +7,8 @@ SPDX-License-Identifier: MIT
 from __future__ import annotations
 
 import argparse
+import os
+import tempfile
 from pathlib import Path, PurePosixPath
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
@@ -22,6 +24,7 @@ COMPLETED_FILES = (
     "CQA_Lab01_OneShot.cpmodproj",
     "README.md",
     "example.json",
+    "runtime-acceptance.json",
     "source/archive/mod/cqa/cqa001/journal/cqa001.journal",
     "source/archive/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json",
     "source/archive/mod/cqa/cqa001/phases/cqa001.questphase",
@@ -35,6 +38,7 @@ COMPLETED_TEXT_FILES = frozenset(
         "CQA_Lab01_OneShot.cpmodproj",
         "README.md",
         "example.json",
+        "runtime-acceptance.json",
         "source/raw/mod/cqa/cqa001/journal/cqa001.journal.json",
         "source/raw/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json.json",
         "source/raw/mod/cqa/cqa001/phases/cqa001.questphase.json",
@@ -136,16 +140,28 @@ def package(
     text_files: frozenset[str],
     destination: Path,
 ) -> None:
+    prepared_entries = entries(source, root_name, expected_files, text_files)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    with ZipFile(
-        destination,
-        "w",
-        compression=ZIP_DEFLATED,
-        compresslevel=ZIP_COMPRESSION_LEVEL,
-        strict_timestamps=True,
-    ) as archive:
-        for target, path, is_text in entries(source, root_name, expected_files, text_files):
-            add_file(archive, path, target, text=is_text)
+    with tempfile.NamedTemporaryFile(
+        dir=destination.parent,
+        prefix=f".{destination.name}.",
+        suffix=".tmp",
+        delete=False,
+    ) as temporary_file:
+        temporary_path = Path(temporary_file.name)
+    try:
+        with ZipFile(
+            temporary_path,
+            "w",
+            compression=ZIP_DEFLATED,
+            compresslevel=ZIP_COMPRESSION_LEVEL,
+            strict_timestamps=True,
+        ) as archive:
+            for target, path, is_text in prepared_entries:
+                add_file(archive, path, target, text=is_text)
+        os.replace(temporary_path, destination)
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
 
 def parse_args() -> argparse.Namespace:

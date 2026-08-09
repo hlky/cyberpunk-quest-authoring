@@ -22,7 +22,8 @@ into exact resource contracts:
 
 The exact property shapes and practical procedures target the
 [first-release version set](../reference/tested-versions.md): Cyberpunk 2077
-2.31a, WolvenKit 8.19.0, ArchiveXL 1.27.0, and RED4ext 1.30.0.
+2.31a, WolvenKit 8.19.0, ArchiveXL 1.27.0, RED4ext 1.30.0, and redscript
+0.5.31.
 
 ## What belongs in a questphase?
 
@@ -46,10 +47,11 @@ resource and a fact, then terminates.
 
 ## Evidence boundary
 
+**Lab 1 runtime evidence:** **Experimental** — pending.
+
 The supplied Lab 1 phase is **Structurally validated** with WolvenKit 8.19.0:
-its binary resources deserialize, round-trip, and pack. The custom runtime
-arrangement remains **Experimental** until the clean-save acceptance run is
-retained.
+its binary resources deserialize, round-trip, and pack. The dedicated marker
+above mirrors the eight-case, hash-bound runtime-acceptance record.
 
 External child phases and prefab ownership are supported by isolated research
 fixtures and vanilla comparison, but this section does not promote untested

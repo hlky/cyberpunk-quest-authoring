@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "example_id": "cqa001",
+  "status": "pending",
+  "evidence_class": "experimental",
+  "required_environment": {
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "candidate": {
+    "manifest": "example.json",
+    "installed_files": [
+      {
+        "path": "archive\\pc\\mod\\CQA_Lab01_OneShot.archive",
+        "sha256": null
+      },
+      {
+        "path": "archive\\pc\\mod\\CQA_Lab01_OneShot.archive.xl",
+        "sha256": null
+      }
+    ],
+    "depot_paths": [
+      "mod\\cqa\\cqa001\\phases\\cqa001.questphase",
+      "mod\\cqa\\cqa001\\journal\\cqa001.journal",
+      "mod\\cqa\\cqa001\\localization\\en-us\\onscreens\\cqa001.json"
+    ]
+  },
+  "run": {
+    "performed_at": null,
+    "tester": null,
+    "observed_environment": {
+      "cyberpunk_2077": null,
+      "wolvenkit": null,
+      "archive_xl": null,
+      "red4ext": null,
+      "redscript": null
+    },
+    "save": {
+      "label": null,
+      "slot_directory": null,
+      "artifact": "sav.dat",
+      "created_before_first_install": null,
+      "sha256": null
+    },
+    "logs": [
+      {
+        "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+        "sha256": null
+      },
+      {
+        "path": "red4ext\\logs\\red4ext.log",
+        "sha256": null
+      },
+      {
+        "path": "red4ext\\logs\\game.log",
+        "sha256": null
+      },
+      {
+        "path": "r6\\logs\\redscript_rCURRENT.log",
+        "sha256": null
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "clean-save-activation",
+      "required": true,
+      "status": "pending",
+      "precondition": "Load a save created before cqa001 was ever installed.",
+      "expected": "First Signal and Wait for the signal. activate once without a manual trigger.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "realtime-delay",
+      "required": true,
+      "status": "pending",
+      "precondition": "Measure wall-clock time from objective activation without pausing the game.",
+      "expected": "The objective does not succeed before ten real-time seconds and then advances once.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "journal-completion",
+      "required": true,
+      "status": "pending",
+      "precondition": "Let the first-run path finish without interruption.",
+      "expected": "The objective and quest both show succeeded state, and no localization key is blank.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "mid-flow-reload",
+      "required": true,
+      "status": "pending",
+      "precondition": "Save while the delay is active, reload that save, and record whether elapsed time resumes or restarts.",
+      "expected": "Reloading neither duplicates journal activation nor blocks completion; timer behavior is recorded explicitly.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reload",
+      "required": true,
+      "status": "pending",
+      "precondition": "Save after completion and reload without changing the installation.",
+      "expected": "The cqa001_completed guard takes the false route and the quest does not reactivate.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reinstall",
+      "required": true,
+      "status": "pending",
+      "precondition": "Remove and reinstall the identical candidate, then load the completed save.",
+      "expected": "The quest remains completed and does not create a second activation.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "clean-replay",
+      "required": true,
+      "status": "pending",
+      "precondition": "Reload the original untouched pre-install save with the identical candidate still installed.",
+      "expected": "The first-run route activates and completes once with the same player-facing result.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "registration-and-lookup-logs",
+      "required": true,
+      "status": "pending",
+      "precondition": "Retain fresh RED4ext and ArchiveXL logs from the clean-save run.",
+      "expected": "The logs contain no cqa001 registration, depot-path, journal, or localization lookup error.",
+      "observed": null,
+      "evidence": []
+    }
+  ],
+  "promotion_rule": "Set status to passed and evidence_class to runtime-proven only when every required case passes and the run binds both installed payloads, the pre-install save, exact versions, and all four retained logs to hashes."
+}

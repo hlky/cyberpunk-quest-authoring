@@ -37,6 +37,8 @@ The project originated from:
 
 ## Current repository state
 
+**Lab 1 runtime evidence:** **Experimental** — pending.
+
 The local repository is initialized at:
 
 `H:\cyberpunk-quest-authoring`
@@ -56,7 +58,9 @@ It has:
 - CC BY 4.0 licensing for prose, diagrams, and examples plus MIT licensing for
   scripts;
 - the pinned first-release version set;
-- a designed and structurally validated Lab 1 reference project;
+- zero-assumption onboarding and a complete Lab 1 manual authoring/test path;
+- a designed and structurally validated Lab 1 reference project with a
+  machine-readable runtime-acceptance record;
 - a deterministic CR2W-JSON graph renderer and first exact SVG.
 
 ## Research evidence available in Ghostline
@@ -573,8 +577,8 @@ Completed on 2026-07-27:
 2. Confirmed the public repository, pushed `main`, GitHub Actions Pages source,
    published base URL, and edit links.
 3. Chose `cqa` as the neutral tutorial namespace and `cqa001` as Lab 1.
-4. Pinned Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, and
-   RED4ext `1.30.0`.
+4. Pinned Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+   RED4ext `1.30.0`, and ArchiveXL's redscript dependency `0.5.31`.
 5. Designed Lab 1's journal tree and root questphase.
 6. Selected CR2W-JSON plus layout-only overrides as the exact graph contract.
 7. Built the first deterministic SVG from the Lab 1 questphase and enforced a
@@ -587,10 +591,11 @@ Completed on 2026-07-27:
     cut obligations.
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
-2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are already generated
-and published. The immediate delivery stages are the validation baseline,
-zero-assumption onboarding and Lab 1 closeout, Journal/UI/localization, then
-Conditions and gates with Lab 2. Runtime labels are promoted only when retained
+2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
+published. Stages 0 and 1 completed the validation baseline, zero-assumption
+onboarding, and Lab 1 authoring path. The next delivery stages are
+Journal/UI/localization, Conditions and gates with Lab 2, then World
+integration with Lab 3. Runtime labels are promoted only when retained
 clean-save evidence supports them.
 
 ## Resolved decisions

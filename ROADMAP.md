@@ -8,6 +8,16 @@ The canonical editorial scope remains [HANDOFF.md](HANDOFF.md). Ghostline is
 research input only: readers must be able to follow every procedure with
 WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 
+## Delivery status
+
+**Lab 1 runtime evidence:** **Experimental** — pending.
+
+| Stage | Status on 2026-08-09 |
+| --- | --- |
+| 0 — audit and validation baseline | Complete; committed and published |
+| 1 — zero-assumption start and Lab 1 closeout | Complete; runtime evidence is governed by the dedicated marker and canonical acceptance record |
+| 2–9 | Planned below |
+
 ## Completion standard
 
 A category is complete when:
@@ -49,9 +59,10 @@ record supports that label.
 | Reference | Three focused notes | Glossary, resource/node/condition indexes, evidence matrix, and vanilla path index |
 | Labs 2–5 | Absent | Projects, exact diagrams, tutorials, downloads, and acceptance records |
 
-The existing table of contents has no missing file targets or orphaned
-reader-facing Markdown. Its weakness is depth: nine category pages are short
-placeholders, and only Lab 1 exists.
+At audit time, the table of contents had no missing file targets or orphaned
+reader-facing Markdown. Its weakness was depth: nine category pages were short
+placeholders, and only Lab 1 existed. The delivery-status table above records
+progress after that frozen baseline.
 
 ## Research inventory
 
@@ -88,7 +99,7 @@ historical notes show `WolvenKit 8.17.4-nightly.2026-03-20`, ArchiveXL
 `1.27.0`, and TweakXL `1.11.3`, but not as one uniform acceptance record, and
 they do not bind the game executable or RED4ext version. They are therefore
 legacy runtime evidence, not automatic proof under this book's pinned
-`2.31a`/`8.19.0`/`1.27.0`/`1.30.0` practical baseline. The strongest
+`2.31a`/`8.19.0`/`1.27.0`/`1.30.0`/`0.5.31` practical baseline. The strongest
 GQT002–GQT004 proof narrative also survives in Ghostline Git history rather
 than its working tree; it must be migrated into durable, hash-bound evidence
 records before publication claims rely on it.

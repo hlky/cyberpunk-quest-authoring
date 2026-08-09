@@ -13,17 +13,23 @@ frameworks.
 
 ## Current state
 
+**Lab 1 runtime evidence:** **Experimental** — pending.
+
 The repository contains:
 
 - a published mdBook and GitHub Pages workflow;
 - the agreed information architecture;
 - editorial and diagram standards;
 - complete first-pass Foundations chapters;
-- the pinned first-release toolchain and Lab 1 resource design;
+- zero-assumption setup, project, vanilla-inspection, and install/test guides;
+- the complete Lab 1 resource reference and manual WolvenKit walkthrough;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
-Lab 1 implementation is in progress under `examples/lab-01-one-shot`.
+Lab 1's downloadable checkpoints, exact graph, artifact hashes, and
+runtime-acceptance record live under `examples/lab-01-one-shot`. Its native
+resources are structurally validated; the dedicated marker above mirrors the
+canonical runtime record.
 
 ## Local preview
 

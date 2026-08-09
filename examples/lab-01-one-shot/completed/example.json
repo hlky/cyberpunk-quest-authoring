@@ -1,14 +1,15 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "id": "cqa001",
   "title": "First Signal",
   "book_chapter": "book/src/start-here/lab-01.md",
-  "tested": {
-    "date": "2026-07-27",
+  "baseline": {
+    "recorded": "2026-08-09",
     "cyberpunk_2077": "2.31a",
     "wolvenkit": "8.19.0",
     "archive_xl": "1.27.0",
-    "red4ext": "1.30.0"
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
   },
   "depot_paths": [
     "mod\\cqa\\cqa001\\phases\\cqa001.questphase",
@@ -19,7 +20,34 @@
     "cqa001_completed"
   ],
   "evidence": {
-    "structure": "structurally-validated",
-    "runtime": "experimental"
+    "structure": {
+      "status": "structurally-validated",
+      "date": "2026-07-27",
+      "method": "WolvenKit 8.19.0 deserialize and round-trip inspection"
+    },
+    "runtime": {
+      "status": "pending",
+      "class": "experimental",
+      "date": null,
+      "record": "runtime-acceptance.json"
+    }
+  },
+  "graph": {
+    "layout": "assets/diagrams/lab-01/cqa001.questphase.layout.json",
+    "source_fingerprint": "sha256:4f19c675ab57194ce73a007aca29c3c973e9c98f1129fc4cf05e756bfaeafa82"
+  },
+  "artifacts": {
+    "algorithm": "sha256",
+    "files": {
+      "CQA_Lab01_OneShot.cpmodproj": "20a91bd2dc69b5f03f00b12cd6d634849533e43aa729a8f58de29fadcf0f85f5",
+      "runtime-acceptance.json": "ab12b4112ed87726274522dbff7b2166e258147d242a04687196d15c6ad56d2f",
+      "source/archive/mod/cqa/cqa001/journal/cqa001.journal": "f107c4156523375c835d99f79486c083f280c7327f0822c8848315efb81ed0f8",
+      "source/archive/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json": "00a0e3cb679eea92bd52e5b6125cbdb6f639b4f7db8d35138d80d62b42dbcffe",
+      "source/archive/mod/cqa/cqa001/phases/cqa001.questphase": "b22c734ca05aa1da9a26137aee7c56bf7a4f801be484300fcf15bab4fe05b066",
+      "source/raw/mod/cqa/cqa001/journal/cqa001.journal.json": "1abab280bfc050ff34c6ac5c62570946ad2e8d51bc138faa32dbf06797d29ae1",
+      "source/raw/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json.json": "4c963198883c4475169d0dad63024e41d6ae857663e63395cba7e108c9eed578",
+      "source/raw/mod/cqa/cqa001/phases/cqa001.questphase.json": "16e05dd155045962043603fc5b2b6f68f0913de31966ea5154a46e4c954d417f",
+      "source/resources/CQA_Lab01_OneShot.archive.xl": "ec2e1471500d7275a1756019b97a75d324c53ba81599ef16be228015ea91ae5e"
+    }
   }
 }

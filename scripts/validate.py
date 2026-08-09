@@ -10,6 +10,7 @@ SPDX-License-Identifier: MIT
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import json
 import os
@@ -17,6 +18,7 @@ import subprocess
 import sys
 import tempfile
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path, PurePosixPath
 from types import ModuleType
 from typing import Any, Callable
@@ -33,8 +35,27 @@ ARCHIVE_ROOT = SOURCE_ROOT / "archive"
 RAW_ROOT = SOURCE_ROOT / "raw"
 ARCHIVE_XL = SOURCE_ROOT / "resources" / "CQA_Lab01_OneShot.archive.xl"
 MANIFEST = COMPLETED / "example.json"
+ACCEPTANCE = COMPLETED / "runtime-acceptance.json"
 LAYOUT = ROOT / "assets" / "diagrams" / "lab-01" / "cqa001.questphase.layout.json"
 SVG = ROOT / "book" / "src" / "images" / "lab-01" / "cqa001.questphase.svg"
+LAB_STATUS_PAGES = (
+    ROOT / "README.md",
+    ROOT / "HANDOFF.md",
+    ROOT / "ROADMAP.md",
+    ROOT / "examples" / "lab-01-one-shot" / "README.md",
+    ROOT / "examples" / "lab-01-one-shot" / "completed" / "README.md",
+    ROOT / "book" / "src" / "introduction.md",
+    ROOT / "book" / "src" / "start-here" / "index.md",
+    ROOT / "book" / "src" / "start-here" / "lab-01.md",
+    ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
+    ROOT / "book" / "src" / "start-here" / "install-and-test.md",
+    ROOT / "book" / "src" / "questphases" / "index.md",
+)
+LAB_PRACTICAL_PAGES = (
+    ROOT / "book" / "src" / "start-here" / "lab-01.md",
+    ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
+    ROOT / "book" / "src" / "start-here" / "install-and-test.md",
+)
 QUEST_SOURCE_RELPATH = Path(
     "examples/lab-01-one-shot/completed/source/raw/"
     "mod/cqa/cqa001/phases/cqa001.questphase.json"
@@ -56,6 +77,58 @@ EXPECTED_DEPOT_PATHS = frozenset(
         "mod/cqa/cqa001/phases/cqa001.questphase",
     }
 )
+EXPECTED_ACCEPTANCE_CASES = {
+    "clean-save-activation": {
+        "precondition": "Load a save created before cqa001 was ever installed.",
+        "expected": "First Signal and Wait for the signal. activate once without a manual trigger.",
+    },
+    "realtime-delay": {
+        "precondition": "Measure wall-clock time from objective activation without pausing the game.",
+        "expected": "The objective does not succeed before ten real-time seconds and then advances once.",
+    },
+    "journal-completion": {
+        "precondition": "Let the first-run path finish without interruption.",
+        "expected": "The objective and quest both show succeeded state, and no localization key is blank.",
+    },
+    "mid-flow-reload": {
+        "precondition": "Save while the delay is active, reload that save, and record whether elapsed time resumes or restarts.",
+        "expected": "Reloading neither duplicates journal activation nor blocks completion; timer behavior is recorded explicitly.",
+    },
+    "completed-save-reload": {
+        "precondition": "Save after completion and reload without changing the installation.",
+        "expected": "The cqa001_completed guard takes the false route and the quest does not reactivate.",
+    },
+    "completed-save-reinstall": {
+        "precondition": "Remove and reinstall the identical candidate, then load the completed save.",
+        "expected": "The quest remains completed and does not create a second activation.",
+    },
+    "clean-replay": {
+        "precondition": "Reload the original untouched pre-install save with the identical candidate still installed.",
+        "expected": "The first-run route activates and completes once with the same player-facing result.",
+    },
+    "registration-and-lookup-logs": {
+        "precondition": "Retain fresh RED4ext and ArchiveXL logs from the clean-save run.",
+        "expected": "The logs contain no cqa001 registration, depot-path, journal, or localization lookup error.",
+    },
+}
+EXPECTED_INSTALLED_FILES = frozenset(
+    {
+        "archive/pc/mod/CQA_Lab01_OneShot.archive",
+        "archive/pc/mod/CQA_Lab01_OneShot.archive.xl",
+    }
+)
+EXPECTED_RUNTIME_LOGS = frozenset(
+    {
+        "red4ext/plugins/ArchiveXL/ArchiveXL.log",
+        "red4ext/logs/red4ext.log",
+        "red4ext/logs/game.log",
+        "r6/logs/redscript_rCURRENT.log",
+    }
+)
+EXPECTED_PROMOTION_RULE = (
+    "Set status to passed and evidence_class to runtime-proven only when every required case passes and the run "
+    "binds both installed payloads, the pre-install save, exact versions, and all four retained logs to hashes."
+)
 START_FILES = frozenset(
     {
         "CQA_Lab01_OneShot_Start.cpmodproj",
@@ -68,6 +141,7 @@ COMPLETED_FILES = frozenset(
         "CQA_Lab01_OneShot.cpmodproj",
         "README.md",
         "example.json",
+        "runtime-acceptance.json",
         "source/archive/mod/cqa/cqa001/journal/cqa001.journal",
         "source/archive/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json",
         "source/archive/mod/cqa/cqa001/phases/cqa001.questphase",
@@ -82,6 +156,7 @@ COMPLETED_TEXT_FILES = frozenset(
         "CQA_Lab01_OneShot.cpmodproj",
         "README.md",
         "example.json",
+        "runtime-acceptance.json",
         "source/raw/mod/cqa/cqa001/journal/cqa001.journal.json",
         "source/raw/mod/cqa/cqa001/localization/en-us/onscreens/cqa001.json.json",
         "source/raw/mod/cqa/cqa001/phases/cqa001.questphase.json",
@@ -117,6 +192,13 @@ class ValidationError(RuntimeError):
 @dataclass(frozen=True)
 class ManifestInfo:
     depot_paths: tuple[str, ...]
+    baseline: tuple[tuple[str, str], ...]
+    artifact_hashes: tuple[tuple[str, str], ...]
+    acceptance_record: str
+    graph_fingerprint: str
+    runtime_status: str
+    runtime_class: str
+    runtime_date: str | None
 
 
 def require(condition: bool, message: str) -> None:
@@ -166,7 +248,11 @@ def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
 
 def json_path_is_allowed(path: Path) -> bool:
     resolved = path.resolve(strict=False)
-    if resolved in {MANIFEST.resolve(strict=False), LAYOUT.resolve(strict=False)}:
+    if resolved in {
+        MANIFEST.resolve(strict=False),
+        ACCEPTANCE.resolve(strict=False),
+        LAYOUT.resolve(strict=False),
+    }:
         return True
     try:
         resolved.relative_to(RAW_ROOT.resolve(strict=False))
@@ -195,7 +281,13 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def validate_manifest() -> ManifestInfo:
     value = load_json(MANIFEST)
-    require(value.get("schema_version") == 1, f"{display(MANIFEST)}: unsupported schema_version")
+    require(value.get("schema_version") == 2, f"{display(MANIFEST)}: unsupported schema_version")
+    require(value.get("id") == "cqa001", f"{display(MANIFEST)}: unexpected example id")
+    require(value.get("title") == "First Signal", f"{display(MANIFEST)}: unexpected example title")
+    require(
+        value.get("persistent_facts") == ["cqa001_completed"],
+        f"{display(MANIFEST)}: persistent fact inventory mismatch",
+    )
 
     raw_paths = value.get("depot_paths")
     require(isinstance(raw_paths, list) and raw_paths, f"{display(MANIFEST)}: depot_paths must be a non-empty list")
@@ -212,7 +304,94 @@ def validate_manifest() -> ManifestInfo:
 
     chapter = normalize_relative(value.get("book_chapter"), f"{display(MANIFEST)} book_chapter")
     require((ROOT / chapter).is_file(), f"{display(MANIFEST)}: missing book_chapter {chapter}")
-    return ManifestInfo(depot_paths=depot_paths)
+
+    baseline = value.get("baseline")
+    expected_baseline = {
+        "recorded": "2026-08-09",
+        "cyberpunk_2077": "2.31a",
+        "wolvenkit": "8.19.0",
+        "archive_xl": "1.27.0",
+        "red4ext": "1.30.0",
+        "redscript": "0.5.31",
+    }
+    require(baseline == expected_baseline, f"{display(MANIFEST)}: pinned baseline mismatch")
+
+    evidence = value.get("evidence")
+    require(isinstance(evidence, dict), f"{display(MANIFEST)}: missing evidence object")
+    structure = evidence.get("structure")
+    runtime = evidence.get("runtime")
+    expected_structure = {
+        "status": "structurally-validated",
+        "date": "2026-07-27",
+        "method": "WolvenKit 8.19.0 deserialize and round-trip inspection",
+    }
+    require(structure == expected_structure, f"{display(MANIFEST)}: invalid structural evidence record")
+    require(isinstance(runtime, dict), f"{display(MANIFEST)}: missing runtime evidence state")
+    runtime_status = runtime.get("status")
+    runtime_class = runtime.get("class")
+    runtime_date = runtime.get("date")
+    require(runtime_status in {"pending", "passed", "failed"}, f"{display(MANIFEST)}: invalid runtime status")
+    require(
+        runtime_class == ("runtime-proven" if runtime_status == "passed" else "experimental"),
+        f"{display(MANIFEST)}: runtime status and evidence class disagree",
+    )
+    if runtime_status == "pending":
+        require(runtime_date is None, f"{display(MANIFEST)}: pending runtime evidence cannot have a test date")
+    else:
+        require(
+            valid_observed_date(runtime_date),
+            f"{display(MANIFEST)}: completed runtime evidence needs a YYYY-MM-DD date",
+        )
+    acceptance_record = normalize_relative(runtime.get("record"), f"{display(MANIFEST)} runtime record")
+    require(acceptance_record == "runtime-acceptance.json", f"{display(MANIFEST)}: unexpected runtime record")
+
+    graph = value.get("graph")
+    require(isinstance(graph, dict), f"{display(MANIFEST)}: missing graph object")
+    graph_layout = normalize_relative(graph.get("layout"), f"{display(MANIFEST)} graph layout")
+    require((ROOT / graph_layout).resolve() == LAYOUT.resolve(), f"{display(MANIFEST)}: wrong graph layout")
+    graph_fingerprint = graph.get("source_fingerprint")
+    require(
+        isinstance(graph_fingerprint, str)
+        and graph_fingerprint.startswith("sha256:")
+        and len(graph_fingerprint) == 71
+        and all(character in "0123456789abcdef" for character in graph_fingerprint[7:]),
+        f"{display(MANIFEST)}: invalid graph fingerprint",
+    )
+
+    artifacts = value.get("artifacts")
+    require(
+        isinstance(artifacts, dict) and artifacts.get("algorithm") == "sha256",
+        f"{display(MANIFEST)}: unsupported artifact hash configuration",
+    )
+    raw_hashes = artifacts.get("files")
+    require(isinstance(raw_hashes, dict), f"{display(MANIFEST)}: missing artifact hash map")
+    expected_hashed = set(COMPLETED_FILES) - {"README.md", "example.json"}
+    artifact_hashes: list[tuple[str, str]] = []
+    for raw_path, digest in raw_hashes.items():
+        artifact_path = normalize_relative(raw_path, f"{display(MANIFEST)} artifact path")
+        require(
+            isinstance(digest, str)
+            and len(digest) == 64
+            and all(character in "0123456789abcdef" for character in digest),
+            f"{display(MANIFEST)}: invalid SHA-256 for {artifact_path}",
+        )
+        artifact_hashes.append((artifact_path, digest))
+    require(
+        {path for path, _ in artifact_hashes} == expected_hashed,
+        f"{display(MANIFEST)} artifact inventory: "
+        + describe_set_difference(expected_hashed, {path for path, _ in artifact_hashes}),
+    )
+
+    return ManifestInfo(
+        depot_paths=depot_paths,
+        baseline=tuple(sorted(expected_baseline.items())),
+        artifact_hashes=tuple(sorted(artifact_hashes)),
+        acceptance_record=acceptance_record,
+        graph_fingerprint=graph_fingerprint,
+        runtime_status=runtime_status,
+        runtime_class=runtime_class,
+        runtime_date=runtime_date,
+    )
 
 
 def actual_files(root: Path) -> set[str]:
@@ -366,6 +545,307 @@ def validate_generated_raw(info: ManifestInfo) -> None:
         require(not stale, "generated Lab 1 CR2W-JSON is stale: " + ", ".join(stale))
 
 
+def valid_sha256(value: Any) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
+def valid_observed_timestamp(value: Any) -> bool:
+    if not isinstance(value, str) or "T" not in value:
+        return False
+    try:
+        observed = datetime.fromisoformat(value)
+    except ValueError:
+        return False
+    return observed.tzinfo is not None and observed.utcoffset() is not None
+
+
+def valid_observed_date(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        observed = datetime.strptime(value, "%Y-%m-%d")
+    except ValueError:
+        return False
+    return observed.strftime("%Y-%m-%d") == value
+
+
+def validate_evidence_record(info: ManifestInfo) -> None:
+    for relative, expected_digest in info.artifact_hashes:
+        path = COMPLETED / relative
+        require(path.is_file(), f"{display(path)}: hashed artifact is missing")
+        actual_digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        require(
+            actual_digest == expected_digest,
+            f"{display(path)}: SHA-256 mismatch; expected {expected_digest}, got {actual_digest}",
+        )
+
+    record_path = COMPLETED / info.acceptance_record
+    require(record_path.resolve() == ACCEPTANCE.resolve(), f"{display(record_path)}: unexpected acceptance path")
+    record = load_json(record_path)
+    require(record.get("schema_version") == 2, f"{display(record_path)}: unsupported schema_version")
+    require(record.get("example_id") == "cqa001", f"{display(record_path)}: wrong example_id")
+    require(record.get("status") == info.runtime_status, f"{display(record_path)}: status disagrees with manifest")
+    require(
+        record.get("evidence_class") == info.runtime_class,
+        f"{display(record_path)}: evidence_class disagrees with manifest",
+    )
+
+    expected_environment = dict(info.baseline)
+    expected_environment.pop("recorded")
+    require(
+        record.get("required_environment") == expected_environment,
+        f"{display(record_path)}: required environment disagrees with manifest",
+    )
+
+    candidate = record.get("candidate")
+    require(isinstance(candidate, dict), f"{display(record_path)}: missing candidate object")
+    require(candidate.get("manifest") == "example.json", f"{display(record_path)}: wrong manifest reference")
+    installed_files = candidate.get("installed_files")
+    require(
+        isinstance(installed_files, list),
+        f"{display(record_path)}: candidate installed_files must be a list",
+    )
+    installed_hashes: list[str | None] = []
+    installed_paths: set[str] = set()
+    for index, item in enumerate(installed_files):
+        require(
+            isinstance(item, dict),
+            f"{display(record_path)}: installed_files[{index}] must be an object",
+        )
+        installed_path = normalize_relative(
+            item.get("path"),
+            f"{display(record_path)} installed_files[{index}].path",
+        )
+        require(
+            installed_path not in installed_paths,
+            f"{display(record_path)}: duplicate installed file {installed_path}",
+        )
+        installed_paths.add(installed_path)
+        digest = item.get("sha256")
+        require(
+            digest is None or valid_sha256(digest),
+            f"{display(record_path)}: invalid installed-file SHA-256 for {installed_path}",
+        )
+        installed_hashes.append(digest)
+    require(
+        installed_paths == EXPECTED_INSTALLED_FILES,
+        f"{display(record_path)} installed files: "
+        + describe_set_difference(EXPECTED_INSTALLED_FILES, installed_paths),
+    )
+    candidate_paths = candidate.get("depot_paths")
+    require(isinstance(candidate_paths, list), f"{display(record_path)}: candidate depot_paths must be a list")
+    normalized_candidate_paths = {
+        normalize_relative(path, f"{display(record_path)} candidate depot path")
+        for path in candidate_paths
+    }
+    require(
+        len(candidate_paths) == len(normalized_candidate_paths),
+        f"{display(record_path)}: duplicate candidate depot path",
+    )
+    require(
+        normalized_candidate_paths == set(info.depot_paths),
+        f"{display(record_path)}: candidate depot paths disagree with manifest",
+    )
+
+    cases = record.get("cases")
+    require(isinstance(cases, list) and cases, f"{display(record_path)}: cases must be a non-empty list")
+    seen_case_ids: set[str] = set()
+    required_statuses: list[str] = []
+    for index, case in enumerate(cases):
+        require(isinstance(case, dict), f"{display(record_path)}: cases[{index}] must be an object")
+        case_id = case.get("id")
+        require(isinstance(case_id, str) and case_id, f"{display(record_path)}: cases[{index}] has no id")
+        require(case_id not in seen_case_ids, f"{display(record_path)}: duplicate case id {case_id}")
+        seen_case_ids.add(case_id)
+        require(
+            case_id in EXPECTED_ACCEPTANCE_CASES,
+            f"{display(record_path)}: unexpected acceptance case {case_id}",
+        )
+        expected_case = EXPECTED_ACCEPTANCE_CASES[case_id]
+        status = case.get("status")
+        require(status in {"pending", "passed", "failed", "not-applicable"}, f"{display(record_path)}:{case_id}: invalid status")
+        require(isinstance(case.get("required"), bool), f"{display(record_path)}:{case_id}: required must be Boolean")
+        require(case.get("precondition") == expected_case["precondition"], f"{display(record_path)}:{case_id}: precondition changed")
+        require(case.get("expected") == expected_case["expected"], f"{display(record_path)}:{case_id}: expected result changed")
+        evidence = case.get("evidence")
+        require(isinstance(evidence, list), f"{display(record_path)}:{case_id}: evidence must be a list")
+        for evidence_index, evidence_item in enumerate(evidence):
+            require(
+                isinstance(evidence_item, dict),
+                f"{display(record_path)}:{case_id}: evidence[{evidence_index}] must be an object",
+            )
+            require(
+                evidence_item.get("type") in {"screenshot", "video", "log", "save-metadata", "notes"},
+                f"{display(record_path)}:{case_id}: evidence[{evidence_index}] has an invalid type",
+            )
+            evidence_reference = normalize_relative(
+                evidence_item.get("reference"),
+                f"{display(record_path)}:{case_id}: evidence[{evidence_index}].reference",
+            )
+            require(
+                evidence_reference.startswith("evidence/"),
+                f"{display(record_path)}:{case_id}: evidence must be retained below evidence/",
+            )
+            require(
+                valid_sha256(evidence_item.get("sha256")),
+                f"{display(record_path)}:{case_id}: evidence[{evidence_index}] needs a SHA-256",
+            )
+            evidence_path = COMPLETED / evidence_reference
+            require(evidence_path.is_file(), f"{display(evidence_path)}: retained evidence is missing")
+            require(
+                evidence_path.name.lower() != "sav.dat" and evidence_path.suffix.lower() != ".dat",
+                f"{display(evidence_path)}: private save binaries cannot be retained as evidence",
+            )
+            if evidence_item["type"] == "save-metadata":
+                require(
+                    evidence_path.suffix.lower() in {".md", ".txt", ".json"},
+                    f"{display(evidence_path)}: save-metadata evidence must be sanitized text",
+                )
+            require(
+                hashlib.sha256(evidence_path.read_bytes()).hexdigest() == evidence_item["sha256"],
+                f"{display(evidence_path)}: retained evidence SHA-256 mismatch",
+            )
+        if status in {"passed", "failed"}:
+            require(
+                isinstance(case.get("observed"), str) and case.get("observed").strip() and evidence,
+                f"{display(record_path)}:{case_id}: a completed case needs an observation and evidence",
+            )
+        if case["required"]:
+            require(status != "not-applicable", f"{display(record_path)}:{case_id}: required case cannot be not-applicable")
+            required_statuses.append(status)
+
+    require(
+        seen_case_ids == set(EXPECTED_ACCEPTANCE_CASES),
+        f"{display(record_path)} acceptance cases: "
+        + describe_set_difference(set(EXPECTED_ACCEPTANCE_CASES), seen_case_ids),
+    )
+    require(
+        len(required_statuses) == len(EXPECTED_ACCEPTANCE_CASES),
+        f"{display(record_path)}: every Lab 1 acceptance case must remain required",
+    )
+
+    if any(status == "failed" for status in required_statuses):
+        expected_runtime_status = "failed"
+    elif all(status == "passed" for status in required_statuses):
+        expected_runtime_status = "passed"
+    else:
+        expected_runtime_status = "pending"
+    require(
+        info.runtime_status == expected_runtime_status,
+        f"{display(record_path)}: overall status disagrees with required case results",
+    )
+
+    run = record.get("run")
+    require(isinstance(run, dict), f"{display(record_path)}: missing run provenance")
+    require(
+        run.get("performed_at") is None or valid_observed_timestamp(run.get("performed_at")),
+        f"{display(record_path)}: performed_at must be an ISO 8601 timestamp with a UTC offset",
+    )
+    require(
+        run.get("tester") is None or isinstance(run.get("tester"), str),
+        f"{display(record_path)}: tester must be a string or null",
+    )
+    observed_environment = run.get("observed_environment")
+    require(isinstance(observed_environment, dict), f"{display(record_path)}: missing observed environment")
+    require(
+        set(observed_environment) == set(expected_environment),
+        f"{display(record_path)}: observed environment fields disagree with the required environment",
+    )
+    require(
+        all(value is None or isinstance(value, str) for value in observed_environment.values()),
+        f"{display(record_path)}: observed environment values must be strings or null",
+    )
+    logs = run.get("logs")
+    require(isinstance(logs, list), f"{display(record_path)}: logs must be a list")
+    log_paths: set[str] = set()
+    log_hashes: list[str | None] = []
+    for index, item in enumerate(logs):
+        require(isinstance(item, dict), f"{display(record_path)}: logs[{index}] must be an object")
+        log_path = normalize_relative(item.get("path"), f"{display(record_path)} logs[{index}].path")
+        require(log_path not in log_paths, f"{display(record_path)}: duplicate log path {log_path}")
+        log_paths.add(log_path)
+        digest = item.get("sha256")
+        require(
+            digest is None or valid_sha256(digest),
+            f"{display(record_path)}: invalid log SHA-256 for {log_path}",
+        )
+        log_hashes.append(digest)
+    require(
+        log_paths == EXPECTED_RUNTIME_LOGS,
+        f"{display(record_path)} runtime logs: "
+        + describe_set_difference(EXPECTED_RUNTIME_LOGS, log_paths),
+    )
+
+    has_completed_case = any(status in {"passed", "failed"} for status in required_statuses)
+    if has_completed_case:
+        require(
+            all(valid_sha256(digest) for digest in installed_hashes),
+            f"{display(record_path)}: completed run needs both installed payload SHA-256 values",
+        )
+        require(valid_observed_timestamp(run.get("performed_at")), f"{display(record_path)}: completed run needs performed_at")
+        require(
+            isinstance(run.get("tester"), str) and run["tester"].strip(),
+            f"{display(record_path)}: completed run needs tester",
+        )
+        require(
+            observed_environment == expected_environment,
+            f"{display(record_path)}: completed run uses the wrong observed environment",
+        )
+        save = run.get("save")
+        require(
+            isinstance(save, dict)
+            and isinstance(save.get("label"), str)
+            and save["label"].strip()
+            and isinstance(save.get("slot_directory"), str)
+            and save["slot_directory"].strip()
+            and save.get("artifact") == "sav.dat"
+            and save.get("created_before_first_install") is True
+            and valid_sha256(save.get("sha256")),
+            f"{display(record_path)}: completed run needs a hash-bound pre-install save",
+        )
+        require(
+            all(valid_sha256(digest) for digest in log_hashes),
+            f"{display(record_path)}: completed run needs hash-bound logs",
+        )
+        if info.runtime_status in {"passed", "failed"}:
+            require(
+                info.runtime_date == datetime.fromisoformat(run["performed_at"]).date().isoformat(),
+                f"{display(record_path)}: manifest runtime date disagrees with performed_at",
+            )
+
+    require(record.get("promotion_rule") == EXPECTED_PROMOTION_RULE, f"{display(record_path)}: promotion rule changed")
+
+
+def validate_reader_evidence_status(info: ManifestInfo) -> None:
+    expected_status_line = {
+        "pending": "**Lab 1 runtime evidence:** **Experimental** — pending.",
+        "failed": "**Lab 1 runtime evidence:** **Experimental** — failed.",
+        "passed": "**Lab 1 runtime evidence:** **Runtime-proven** — passed.",
+    }[info.runtime_status]
+    for page in LAB_STATUS_PAGES:
+        status_lines = [
+            line
+            for line in page.read_text(encoding="utf-8").splitlines()
+            if line.startswith("**Lab 1 runtime evidence:**")
+        ]
+        require(
+            status_lines == [expected_status_line],
+            f"{display(page)}: dedicated Lab 1 runtime evidence marker disagrees with the manifest",
+        )
+
+    expected_date = info.runtime_date if info.runtime_date is not None else "Not yet recorded"
+    date_row = f"| Runtime test date | {expected_date} |"
+    for page in LAB_PRACTICAL_PAGES:
+        require(
+            date_row in page.read_text(encoding="utf-8"),
+            f"{display(page)}: runtime test date disagrees with the manifest",
+        )
+
+
 def parse_archive_xl(
     path: Path,
 ) -> tuple[list[tuple[str, str]], set[str], set[str]]:
@@ -515,7 +995,7 @@ def validate_cr2w_pairs(info: ManifestInfo) -> None:
         )
 
 
-def validate_graph() -> None:
+def validate_graph(info: ManifestInfo) -> None:
     source = load_json(ROOT / QUEST_SOURCE_RELPATH)
     layout = load_json(LAYOUT)
     module = load_module(RENDER_SCRIPT, "_cqa_render_quest_graph")
@@ -526,6 +1006,10 @@ def validate_graph() -> None:
         require(
             layout.get("source_fingerprint") == actual_fingerprint,
             f"{display(LAYOUT)}: source fingerprint mismatch; actual {actual_fingerprint}",
+        )
+        require(
+            info.graph_fingerprint == actual_fingerprint,
+            f"{display(MANIFEST)}: graph fingerprint does not match the source",
         )
         generated_svg = module.render_svg(
             QUEST_SOURCE_RELPATH,
@@ -609,6 +1093,20 @@ def validate_packages() -> None:
     ) as second_directory:
         first = Path(first_directory)
         second = Path(second_directory)
+        packager = load_module(PACKAGE_SCRIPT, "cqa_package_examples_atomic_check")
+        preserved = first / "preserved.zip"
+        sentinel = b"previous valid download"
+        preserved.write_bytes(sentinel)
+        try:
+            packager.package(LAB / "start", "Invalid", ("missing.file",), frozenset(), preserved)
+        except ValueError:
+            pass
+        else:
+            raise ValidationError("package_examples.py accepted an invalid checkpoint inventory")
+        require(
+            preserved.read_bytes() == sentinel,
+            "package_examples.py changed the destination after inventory validation failed",
+        )
         run_packager(first)
         run_packager(second)
         for name, (source, root_name, expected_files, _) in CHECKPOINTS.items():
@@ -644,9 +1142,11 @@ def main() -> int:
         ("generated Lab 1 CR2W-JSON", lambda: validate_generated_raw(info)),
         ("Lab 1 source file set and Git tracking", lambda: validate_source_tree(info)),
         ("Lab 1 checkpoint inventories and line endings", validate_checkpoint_inventories),
+        ("Lab 1 hashes and runtime acceptance", lambda: validate_evidence_record(info)),
+        ("Lab 1 reader-facing evidence status", lambda: validate_reader_evidence_status(info)),
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),
         ("cooked CR2W and review-source provenance", lambda: validate_cr2w_pairs(info)),
-        ("Lab 1 graph fingerprint and exact SVG", validate_graph),
+        ("Lab 1 graph fingerprint and exact SVG", lambda: validate_graph(info)),
         ("deterministic example ZIPs", validate_packages),
     )
     results = [run_check(name, check) for name, check in checks]

@@ -1,20 +1,61 @@
 # Start here
 
-This section will take a reader from no WolvenKit project and no assumed
-service accounts to an installed, observable tutorial mod.
+This section takes you from a verified Windows game installation and no
+WolvenKit project to an installed, observable quest mod. It assumes no previous
+REDengine knowledge and no GitHub, Nexus Mods, or WolvenKit account.
 
-Planned chapters:
+The first result is deliberately small: **First Signal** activates one quest
+and one objective, waits ten real-time seconds, completes them, records a
+one-shot fact, and terminates. It has no world, scene, NPC, device, or audio
+dependency.
 
-- what a Cyberpunk quest consists of;
-- installing and configuring required software;
-- creating a WolvenKit project;
-- understanding depot paths, CR2W resources, archives, and framework files;
-- finding and inspecting vanilla questphase and scene references;
-- installing an isolated test build;
-- understanding facts, journal state, and other data retained in saves.
+**Lab 1 runtime evidence:** **Experimental** — pending.
 
-The first hands-on result will be a one-shot quest with one objective and no
-world, scene, NPC, or device dependencies.
+> **Evidence boundary:** the supplied Lab 1 resources are **Structurally
+> validated** with WolvenKit 8.19.0. The dedicated marker above mirrors the
+> hash-bound runtime acceptance record. Expected behavior in these chapters is
+> a test oracle, not a claimed result.
 
-Read [Foundations](../foundations/index.md) before beginning
-[Lab 1: one-shot quest](lab-01.md).
+## What a quest consists of
+
+A `.questphase` is the coordinator, not the entire quest. Even this minimal
+example crosses four ownership boundaries:
+
+| Responsibility | Owner in Lab 1 |
+| --- | --- |
+| Execution, wait, fact guard, and termination | `cqa001.questphase` |
+| Quest and objective definitions | `cqa001.journal` |
+| English player-facing text | `cqa001` onscreen localization resource |
+| Attaching those mod-owned resources to game roots | `CQA_Lab01_OneShot.archive.xl` |
+
+The first three are native CR2W resources packed into a game archive. The last
+is a loose ArchiveXL framework file. Installing only one layer cannot produce
+the complete behavior.
+
+## Use this reading path
+
+1. [Install the pinned toolchain](setup.md) from a known starting state.
+2. [Create a project and understand its layers](project-structure.md).
+3. [Extract and inspect one named vanilla questphase](inspecting-vanilla.md)
+   in a separate research project.
+4. Read [Foundations](../foundations/index.md) for ownership, graph execution,
+   identifiers, save-backed state, composition, and lifecycle.
+5. Build [Lab 1: First Signal](lab-01.md).
+6. [Install, observe, record, and reset](install-and-test.md) without confusing
+   an old save with a clean test.
+
+Use the exact [first-release version set](../reference/tested-versions.md)
+throughout. A different storefront build or newer tool may work, but it is a
+new test environment and must not inherit this book's evidence labels.
+
+## What you do not need
+
+You do not need a quest generator, a manifest compiler, a pre-extracted copy of
+the game, or access to the research repository used to develop this book. You
+will author and inspect the game resource model with WolvenKit, package native
+resources in an archive, register them with ArchiveXL, and test them in the
+game.
+
+You also do not need to edit raw CR2W-JSON. The serialized files supplied with
+the completed checkpoint exist for review, deterministic diagrams, and
+structural comparison; the beginner workflow stays in WolvenKit.
