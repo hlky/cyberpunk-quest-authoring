@@ -712,8 +712,6 @@ The synchronized marker set contains exactly 23 pages. Use this checklist for
 every pending, failed, or passed evidence update:
 
 - [ ] `README.md`
-- [ ] `HANDOFF.md`
-- [ ] `ROADMAP.md`
 - [ ] `book/src/introduction.md`
 - [ ] `book/src/communities/index.md`
 - [ ] `book/src/communities/activation-readiness-and-acquisition.md`

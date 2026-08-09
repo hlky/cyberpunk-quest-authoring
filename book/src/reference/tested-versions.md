@@ -10,6 +10,7 @@ with older tools.
 | ArchiveXL | `1.27.0` | Root questphase, journal, localization, and streaming-block registration |
 | RED4ext | `1.30.0` | Runtime required by ArchiveXL |
 | redscript | `0.5.31` | Runtime dependency declared by ArchiveXL 1.27.0, even though Labs 1–5 contain no `.reds` source |
+| TweakXL | `1.11.3` | Scope-specific pin for registering mod-owned `Character.*` and other TweakDB records in advanced guides; not required by Labs 1–5 |
 | mdBook | `0.5.4` | Documentation build only; not a reader authoring prerequisite |
 
 Version check date: **2026-08-09**. The ArchiveXL 1.27.0 compatibility contract
@@ -17,6 +18,11 @@ requires Cyberpunk 2077 2.31, redscript 0.5.31 or later, and RED4ext 1.29.0 or
 later. This book pins the exact versions above instead of treating those
 minimums as a tested range. Cyberpunk 2077 `2.31a` was the Windows GOG build
 supplied for testing.
+
+TweakXL `1.11.3` belongs only to procedures that add mod-owned TweakDB
+records. Inspecting vanilla records and completing Labs 1–5 does not require
+it. A page that uses TweakXL states that dependency locally instead of
+silently expanding every reader workflow.
 
 These are the initial support baseline, not universal minimums. A practical
 chapter may name a newer baseline after its example has been repeated against
@@ -34,6 +40,7 @@ Release sources:
 - [ArchiveXL 1.27.0](https://github.com/psiberx/cp2077-archive-xl/releases/tag/v1.27.0)
 - [RED4ext 1.30.0](https://github.com/WopsS/RED4ext/releases/tag/v1.30.0)
 - [redscript 0.5.31](https://github.com/jac3km4/redscript/releases/tag/v0.5.31)
+- [TweakXL 1.11.3](https://github.com/psiberx/cp2077-tweak-xl/releases/tag/v1.11.3)
 
 Every practical guide must also state its own test date, evidence status, and
 clean-save requirements. A repository-wide pin does not turn an untested

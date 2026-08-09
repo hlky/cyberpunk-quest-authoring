@@ -6,10 +6,11 @@ Use this page to answer two questions before editing a graph:
 2. Which registration or native reference makes that owner reachable?
 
 The rows introduced by the completed Lab 1–5 projects are **Structurally
-validated** with WolvenKit `8.19.0`. Rows explicitly marked **Observed in
-vanilla** are research surfaces rather than supplied tutorial resources. This
-map adds no runtime promotion; each lab's synchronized marker and retained
-acceptance record govern its exact in-game claims.
+validated** with WolvenKit `8.19.0`. Advanced rows inherit the narrower label
+and acceptance boundary of their linked chapter. Rows explicitly marked
+**Observed in vanilla** are research surfaces rather than supplied tutorial
+resources. This map adds no runtime promotion; each lab or advanced candidate's
+retained record governs its exact in-game claims.
 
 ## Project and installation layers
 
@@ -30,11 +31,12 @@ must not be registered.
 
 ## Native control, journal, and scene resources
 
-| Resource | Root or decisive native type | Owns | Becomes reachable through | Labs |
+| Resource | Root or decisive native type | Owns | Becomes reachable through | Coverage |
 | --- | --- | --- | --- | --- |
 | `*.questphase` | `questQuestPhaseResource` | Quest graph, phase interface, condition scheduling, fact/journal operations, scene and child handoff, prefab declarations | A root uses ArchiveXL `quest.phases`; an external child uses the parent's soft `phaseResource` | 1–5 |
 | `*.journal` | `gameJournalResource` | The contributed journal-entry tree: quests, phases, objectives, map pins, messages, files, and related entries | ArchiveXL `journal` merge | 1–5 |
-| `*.scene` | `scnSceneResource` | Actors, screenplay items, timed events, scene graph, entry/exit names, interruption policy, and animation references | A `questSceneNodeDefinition.sceneFile` soft reference; it is not a quest-root registration | 5 |
+| `*.scene` | `scnSceneResource` | Actors, screenplay items, choices, timed events, ordinary or rewindable graph flow, entry/exit names, interruption policy, and animation references | A `questSceneNodeDefinition.sceneFile` soft reference; it is not a quest-root registration | Lab 5 plus advanced scenes |
+| `*.scenerid` | `scnRidResource` | Recorded actor/camera tags, channel serials, animation buffers, and RID-local allocation | A scene `scnRidResourceHandler`, then scene-local RID reference arrays and timed events | Advanced braindance; structurally validated candidate, runtime **Experimental** |
 
 Important ownership boundaries:
 
@@ -113,21 +115,25 @@ shipping a standalone `.community` resource.
 | AI spot | `worldAISpotNode` containing `AIActionSpot` | Placed activity and soft workspot resource path | Quest sector placement and NodeRef registration |
 | Standalone community | `*.community` rooted at `communityCommunityTemplate` | Reusable community template data in the cited vanilla examples | **Observed in vanilla** comparison source; not a Lab 5 dependency |
 | Character record | `TweakDBID` such as `Character.jpn_tyger_claws_biker2_ranged2_copperhead_wa` | Gameplay record that leads onward to a character/template dependency chain | TweakDB; it is not a depot path |
-| Entity template | `*.ent`, commonly rooted at `entEntityTemplate` | Template-specific components, slots, appearances, interactions, and other entity composition | Referenced from records or world entity nodes; current custom character/device authoring remains deferred |
-| Appearance resource | `*.app` | Appearance definitions in a character/template chain | Referenced by the owning template chain; current book only identifies the boundary |
+| Entity template | `*.ent`, commonly rooted at `entEntityTemplate` | Template-specific components, slots, appearances, interactions, and other entity composition | Referenced from records or world entity nodes; advanced authoring is bounded by the compatible mod-owned-shell requirement |
+| Appearance resource | `*.app` rooted at `appearanceAppearanceResource` | Internal appearance definitions and their component graphs | An entity template's exposed appearance mapping; advanced custom behavior remains **Experimental** |
 | Workspot | `*.workspot` | Referenced activity/animation behavior | `worldAISpotNode.spot.resource`; the AI spot still owns placement |
 
 The exact Lab 5 join is developed in [Registries and compiled
 areas](../communities/registries-and-areas.md) and [Entries, phases, and AI
-spots](../communities/entries-phases-and-ai-spots.md). A standalone vanilla
-`.community`, `.ent`, `.app`, or `.workspot` is a research target unless a
-practical chapter explicitly authors or supplies it. Never add an extracted
-vanilla CR2W to a downloadable project.
+spots](../communities/entries-phases-and-ai-spots.md). The advanced chain and
+its legal-shell boundary are in [Character records, entities, and
+appearances](../communities/character-records-entities-and-appearances.md),
+while [AI roles, behavior, and
+workspots](../communities/ai-roles-behavior-and-workspots.md) separates actor,
+role, route, and activity ownership. Never add an extracted vanilla CR2W to a
+downloadable project.
 
 ## Referenced world and device surfaces
 
-These owners are present in the book's research model but are not a complete
-custom-device tutorial:
+These owners form the advanced device research model. Their linked procedure
+is complete as an **Experimental** authoring and acceptance boundary, not as a
+generic **Runtime-proven** custom-device recipe:
 
 | Surface | Owner | Boundary |
 | --- | --- | --- |
@@ -136,8 +142,10 @@ custom-device tutorial:
 | Global device tables | `*.devices` and `*.psrep` | Context-dependent; absence from one focused vanilla flow is not a universal no-registration rule |
 | Persistent device identity | Save plus world identity/NodeRef | A materially changed device may require both a clean save and deliberate identity policy |
 
-See [Devices and persistence](../world/devices-and-persistence.md) before using
-any of these surfaces. The current Labs 1–5 do not supply a custom device.
+See [Devices and persistence](../world/devices-and-persistence.md) and
+[Advanced devices and
+interactions](../world/advanced-devices-and-interactions.md) before using any
+of these surfaces. The current Labs 1–5 do not supply a custom device.
 
 ## Registration versus native reference
 
@@ -156,6 +164,9 @@ This is the quickest lookup for “which file do I put in ArchiveXL?”
 | Streaming block | Yes: `streaming.blocks` | Its descriptors reach sectors |
 | Streaming sector | No separate block registration | Descriptor `data` resource reference |
 | Scene | No quest-root registration | `questSceneNodeDefinition.sceneFile` |
+| Scene RID or animation-set leaf | No independent quest-root registration | Scene RID handlers and `resouresReferences` arrays |
+| Mod-owned character record | Not through ArchiveXL; use the locally pinned TweakXL `1.11.3` route | Record `entityTemplatePath` reaches the archived `.ent` |
+| Mod-owned entity/appearance resource | Archived at a unique depot path; no root merge | Character record reaches `.ent`; entity appearance mapping reaches `.app` |
 | Vanilla workspot or animation set | No new registration in the taught route | AI spot or scene resource-reference path |
 
 ## Save-state overlay

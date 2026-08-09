@@ -18,9 +18,10 @@ clean up durable world and quest state.
 ```text
 world/community                  .scene                         .questphase
 activate + spawn actor  ->  acquire + perform + named exit  ->  outcome + cleanup
-                                     |
-                                     v
-                         subtitle map/entries + VO map/WEM
+                               |             |
+                               |             +-> embedded choice locStore
+                               v
+                   subtitle map/entries + VO map/WEM
 ```
 
 That ownership boundary is the central rule of this section:
@@ -42,14 +43,14 @@ That ownership boundary is the central rule of this section:
 | **Structurally validated** | The exact First Contact `scnSceneResource` v5, its canonical four-node completed graph, its start checkpoint, and its questphase socket contract serialize and round-trip with WolvenKit `8.19.0`. |
 | **Runtime-proven** | Retained legacy archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` proved generic community spawn and passivity; later hostile-patrol archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` separately proved leave-area deactivation. Archive `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` proved a community-acquired conversation that completed after both actors used addressable lipsync slot `0`. These bounded results do not promote a newly assembled quest automatically. |
 | **Experimental** while the marker is pending/failed; **Runtime-proven** only when passed | The exact `cqa005` world, community, named pre-scene seed loads for Cases 3/4/7, ordinary one-line playback, named exit, fact handoff, cleanup, post-`contact_done` reload, completed reload, and clean-save integration follow the synchronized marker above. |
-| **Experimental** | Active-line interruption and `CutDestination` behavior, arbitrary or unlisted pre-scene active-child states, and facial/workspot-animation quality are outside the frozen campaign and remain experimental independently of the marker. |
+| **Experimental** | Active-line interruption and `CutDestination` behavior, arbitrary or unlisted pre-scene active-child states, general multi-exit choices, custom WEM/lipsync production, and animation/workspot quality are outside the frozen campaign and remain experimental independently of the marker. |
 
 The pinned practical baseline is Cyberpunk 2077 Windows GOG `2.31a`,
 WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
 `0.5.31`, reviewed on 2026-08-09. See [Tested
 versions](../reference/tested-versions.md).
 
-## Stage 6 reading route
+## Reading route
 
 Read these pages in order:
 
@@ -67,18 +68,29 @@ Read these pages in order:
 6. [Cleanup and save state](cleanup-and-save-state.md) — interruption versus
    completion, named-outcome handling, community teardown, and clean-save
    acceptance.
-7. [Lab 5: First Contact](lab-05.md) — the complete resource inventory,
+7. [Choices, outcomes, and scene-local
+   localization](choices-outcomes-and-localization.md) — native choice items,
+   padded socket observations, embedded locStore joins, and multi-exit quest
+   handoff.
+8. [External VO, WEM, and
+   lipsync](external-vo-wem-and-lipsync.md) — the parallel subtitle, audio, and
+   actor-slot chains plus cardinality-first diagnosis.
+9. [Animation events and scene
+   workspots](animation-events-and-workspots.md) — animation-set visibility,
+   timed cinematic events, scene workspot identity, and cleanup boundaries.
+10. [Lab 5: First Contact](lab-05.md) — the complete resource inventory,
    ownership model, exact graphs, and evidence boundary.
-8. [Author First Contact in WolvenKit](lab-05-authoring.md) — the field-level
+11. [Author First Contact in WolvenKit](lab-05-authoring.md) — the field-level
    construction and round-trip procedure.
-9. [Test First Contact](lab-05-test.md) — the hash-bound clean-save runtime
+12. [Test First Contact](lab-05-test.md) — the hash-bound clean-save runtime
    campaign and promotion rules.
 
-This first pass intentionally excludes choices, scene-local choice
-localization, cinematic animation production, combat, holocalls, complex
-devices, and exact WEM production. Those belong to later cookbook and advanced
-audio/scene work. The empty embedded `locStore` in this example is therefore a
-deliberate typed value, not missing spoken-line text.
+The First Contact lab intentionally remains a one-line scene with an empty
+embedded `locStore` and no cinematic-animation or scene-workspot payload. The
+advanced pages explain how those additional native structures are owned and
+inspected; they do not silently add them to the lab or promote unexecuted
+runtime behavior. Combat, holocalls, and complex devices remain owned by their
+cookbook and system chapters.
 
 ## Vanilla research anchors
 
@@ -89,6 +101,10 @@ inspect only the fields needed for comparison:
 - `base\quest\minor_quests\mq003\scenes\mq003_03_orbital_pod.scene`
 - `base\quest\minor_quests\mq007\scenes\mq007_01_gun_found.scene`
 - `base\quest\minor_quests\mq010\scenes\mq010_02_barry_talk.scene`
+- `base\animations\quest\minor_quests\mq007\anim\body\mq007__talking_gun__male_fpp.anims`
+- `base\workspots\common\wall\generic__stand_wall_lean_left__stand_around__01.workspot`
+- `base\localization\en-us\lipsync\base\quest\minor_quests\mq007\scenes\mq007_01_gun_found\skippy.anims`
+- `base\localization\en-us\lipsync\base\quest\minor_quests\mq007\scenes\mq007_01_gun_found\v.anims`
 
 These paths are citations, not redistributable examples. Do not publish the
 extracted CR2W files or complete serialized exports. Record focused types,
@@ -103,7 +119,11 @@ vanilla questphase](../start-here/inspecting-vanilla.md).
 | Crash or failure during scene startup | Actor acquisition, readiness, lipsync ID-to-array cardinality, and missing referenced resources |
 | Subtitle is absent | Scene line RUID, registered subtitle map, its subtitle-entry reference, and matching `stringId` |
 | Subtitle works but audio is silent | VO-map registration, matching `stringId`, both gender paths, WEM depot path, and audio logs |
+| Choice labels are blank or stale | Screenplay option locstring, unsigned locale-block ordering, descriptor/payload `variantId`, and `vpeIndex` |
+| Choice takes the wrong branch | Option order, output ordinal, destination, and stale active-scene state |
 | Line plays but the quest does not continue | Scene exit name and node, scene-node output socket name, and outgoing questphase connection |
+| Animation does not play or deforms the actor | Performer mapping, actor-visible animation-set slot, animation name, component/mask, and rig compatibility |
+| Scene workspot never succeeds | Actor reference, workspot data/instance IDs, transform, params, wrapper mapping, and output semantics |
 | Contact remains after completion | Leave condition, community `Deactivate`, and any durable community/device state; reaching `scnEndNode` is not cleanup |
 | A rebuild behaves like an older graph | Save provenance, active scene/checkpoint state, facts, and journal state before editing more resources |
 

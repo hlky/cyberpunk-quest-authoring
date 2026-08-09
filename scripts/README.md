@@ -15,8 +15,10 @@ Current utilities:
   contracts and reader-facing evidence status, mdBook SUMMARY coverage and
   internal links, first-release troubleshooting/reference coverage, canonical
   lab identities and navigation, the complete gameplay-cookbook inventory,
-  titles, version/evidence boundaries, copyable indexed vanilla paths, the
-  bounded legacy-runtime ledger and every reader-page hash occurrence,
+  titles, version/evidence boundaries, copyable indexed vanilla paths,
+  advanced scene/character/AI/device/cleanup coverage, the bounded
+  braindance ownership chain and eight-case promotion gate, the legacy-runtime
+  ledger and every reader-page hash occurrence,
   journal/localization semantics, cooked CR2W headers, graph fingerprints, and
   exact SVGs; and builds every checkpoint twice to verify ZIP entries,
   metadata, atomic failure behavior, and repeatability.

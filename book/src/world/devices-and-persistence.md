@@ -223,5 +223,6 @@ documented dependency chain.
 | Inplace extraction lacks controller data | Check node-local `instanceData`; do not conflate RedPackage with `.streamingsector_inplace` |
 | A copied controller works on one template only | Template-coupled components, slots, and CRUIDs were copied as hidden assumptions |
 
-Previous: [Markers and navigation](markers-and-navigation.md). Next: [Location
-research](location-research.md).
+Previous: [Markers and navigation](markers-and-navigation.md). Next: [Advanced
+devices, interactions, and persistent
+state](advanced-devices-and-interactions.md).

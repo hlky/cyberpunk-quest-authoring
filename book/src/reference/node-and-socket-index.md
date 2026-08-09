@@ -108,6 +108,9 @@ wiring cuts.
 | --- | --- | --- | --- |
 | `questRewardManagerNodeDefinition` | Grant one or more reward records | `questGiveReward_NodeType.rewards[]` | The focused arrangement is covered in [Rewards and completion](../journal/rewards-and-completion.md); it is not a Labs 1–5 dependency |
 | `questPuppetAIManagerNodeDefinition` | Request a puppet AI tier or operation | Target entity reference and operation-specific fields | Lab 5 wraps one Cinematic-tier request inside `scnQuestNode`; see [Entry, exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md) |
+| `questMiscAICommandNode` | Assign or clear a temporary scripted AI role | Typed command params, target actor, follow/path/role data | [AI roles, behavior, and workspots](../communities/ai-roles-behavior-and-workspots.md) |
+| `questUseWorkspotNodeDefinition` | Put a selected actor into a world or scene-local workspot contract | Actor reference plus versioned workspot params/instance ID | [Animation events and workspots](../scenes/animation-events-and-workspots.md) |
+| `questInteractiveObjectManagerNodeDefinition` | Issue a typed operation to an interactive object/device | `questDeviceManager_NodeType`, controller/action names, target and action properties | [Advanced devices and interactions](../world/advanced-devices-and-interactions.md) |
 
 These manager nodes perform their own operation only. A reward node does not
 set a completion fact or succeed the journal, and a PuppetAI request does not
@@ -155,12 +158,14 @@ Scene nodes use `scnNodeId` and scene socket stamps. They do not use
 `questSocketDefinition` directly, except when `scnQuestNode` wraps a quest
 node.
 
-| Scene RED type | Job in the four-node First Contact scene | Boundary data |
+| Scene RED type | Job | Boundary data |
 | --- | --- | --- |
 | `scnStartNode` | Receive the published `start` entry and fan one `0/0` output to two destinations | Listed in `sceneGraph.startNodes`; targeted by `entryPoints[].nodeId` |
 | `scnSectionNode` | Own actor behavior, timed line events, duration, and normal/cancel outputs | Normal `0/0` reaches End; cancel `1/0` is unconnected in the fixture |
 | `scnQuestNode` | Wrap a scene-local quest node; First Contact wraps `questPuppetAIManagerNodeDefinition` | Input/output mappings connect scene stamps to the wrapped quest sockets |
 | `scnEndNode` | Terminate the normal scene route | Listed in `sceneGraph.endNodes`; targeted by the named `contact_done` exit |
+| `scnChoiceNode` | Present scene-local screenplay options and route the selected branch | Option-to-screenplay IDs, choice conditions, output ordinals, and later named exits are separate joins |
+| `scnRewindableSectionNode` | Own a seekable/rewindable timed-event collection | Playback strategies, duration, RID/clue/camera events, and side-effect reconstruction policy |
 
 The exact scene topology is:
 

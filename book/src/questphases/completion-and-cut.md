@@ -160,5 +160,6 @@ Before adding another child or parallel branch, verify:
 - the exact version set, installed hashes, and clean-save provenance are
   recorded.
 
-Previous: [Prefab dependencies](prefab-dependencies.md). Next: [Lab 4: Handoff
-Point](lab-04.md).
+Previous: [Prefab dependencies](prefab-dependencies.md). Next: [Complex
+cleanup, interruption, and
+cancellation](cleanup-interruption-and-cancellation.md).

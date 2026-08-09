@@ -5,7 +5,6 @@ a Cyberpunk quest resource.
 
 Before contributing, read:
 
-- [HANDOFF.md](HANDOFF.md) for scope and delivery order;
 - [STYLE.md](STYLE.md) for the editorial and visual contract;
 - [AGENTS.md](AGENTS.md) for repository guardrails.
 

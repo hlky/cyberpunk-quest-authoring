@@ -53,7 +53,7 @@ model](../foundations/resource-model.md), [identifier
 domains](../foundations/identifier-domains.md), and [persistent
 state](../foundations/persistent-state.md).
 
-## Stage 4 reading route
+## Reading route
 
 Read the chapters in order:
 
@@ -70,13 +70,17 @@ Read the chapters in order:
    journal pins, navigation endpoints, and route expectations.
 6. [Devices and persistence](devices-and-persistence.md) — entity nodes,
    slots, controller state, and fresh NodeRef identity.
-7. [Location research](location-research.md) — extracting quest-safe vanilla
+7. [Advanced devices, interactions, and persistent
+   state](advanced-devices-and-interactions.md) — world identity,
+   template/component binding, command-versus-observation semantics,
+   cancellation, and a clean-save device matrix.
+8. [Location research](location-research.md) — extracting quest-safe vanilla
    references without redistributing them.
-8. [Lab 3: Boundary Check](lab-03.md) — the learner-facing resource and graph
+9. [Lab 3: Boundary Check](lab-03.md) — the learner-facing resource and graph
    contract.
-9. [Author Boundary Check in WolvenKit](lab-03-authoring.md) — every supplied
+10. [Author Boundary Check in WolvenKit](lab-03-authoring.md) — every supplied
    resource and property explained.
-10. [Test Boundary Check](lab-03-test.md) — clean-save, reload, streaming, and
+11. [Test Boundary Check](lab-03-test.md) — clean-save, reload, streaming, and
     boundary acceptance cases.
 
 ## Lab 3 design boundary
@@ -108,6 +112,8 @@ surface.
 | The object exists but quest logic cannot resolve it | `phasePrefabs`, descriptor `questPrefabNodeRef`, full sector NodeRef, and local questphase NodeRef |
 | The wrong object or transform is used | `nodeData.NodeIndex`, the corresponding `nodes[]` entry, position, orientation, scale, and bounds |
 | A journal pin has UI state but no expected world anchor | Journal mappin data and the marker node/NodeRef are separate owners; inspect both |
+| A device is visible but its prompt or authored content is absent | Entity-template interaction/controller components, CRUID binding, node-local `RedPackage`, workspots, slots, and placement clearance |
+| A device works on a fresh save but exposes old state on another save | Persistent NodeRef identity, controller state, active graph/journal history, and whether that save streamed an earlier package |
 | A result changes between new game, reload, and an old save | Treat save-backed facts and journal state as a separate variable before editing more CR2W fields |
 
 Packing, registration, and a clean WolvenKit round trip are intermediate

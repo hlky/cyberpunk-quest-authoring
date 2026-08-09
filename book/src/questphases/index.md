@@ -21,7 +21,11 @@ into exact native resource contracts:
    universal inheritance rule.
 6. [Completion and interruption](completion-and-cut.md) reviews terminating
    outputs, parent continuation, re-entry, and cut obligations.
-7. [Lab 4: Handoff Point](lab-04.md) moves Lab 3's world activity into an
+7. [Complex cleanup, interruption, and
+   cancellation](cleanup-interruption-and-cancellation.md) expands those
+   obligations into an owner ledger for scenes, communities, AI, devices,
+   markers, vehicles, monitors, and durable state.
+8. [Lab 4: Handoff Point](lab-04.md) moves Lab 3's world activity into an
    external child and makes the boundary inspectable.
 
 The practical pages target the exact
@@ -92,5 +96,10 @@ automatically lends every prefab to every possible child.
 Inline phases, non-zero `saveLock`, non-zero unfreezing refs, and wired cut
 routes remain outside the beginner contract until isolated evidence supports
 them.
+
+Advanced teardown does not promote those cut routes. The checked labs keep
+their `CutDestination` sockets unwired; the advanced cleanup chapter shows how
+to design and test a separate mixed-owner cancellation candidate without
+presenting one as already **Runtime-proven**.
 
 Next: [Questphase resource anatomy](anatomy.md).

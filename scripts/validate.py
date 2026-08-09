@@ -45,8 +45,6 @@ LAYOUT = ROOT / "assets" / "diagrams" / "lab-01" / "cqa001.questphase.layout.jso
 SVG = ROOT / "book" / "src" / "images" / "lab-01" / "cqa001.questphase.svg"
 LAB_STATUS_PAGES = (
     ROOT / "README.md",
-    ROOT / "HANDOFF.md",
-    ROOT / "ROADMAP.md",
     ROOT / "examples" / "lab-01-one-shot" / "README.md",
     ROOT / "examples" / "lab-01-one-shot" / "completed" / "README.md",
     ROOT / "book" / "src" / "introduction.md",
@@ -94,7 +92,7 @@ LAB_SEQUENCE_FOOTERS = {
     LAB_SEQUENCE_PAGES[6]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author Boundary Check in WolvenKit](lab-03-authoring.md).",
     LAB_SEQUENCE_PAGES[7]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 3: Boundary Check](lab-03.md) · Next: [Test Boundary Check](lab-03-test.md).",
     LAB_SEQUENCE_PAGES[8]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author Boundary Check in WolvenKit](lab-03-authoring.md) · Next lab: [Lab 4: Handoff Point](../questphases/lab-04.md).",
-    LAB_SEQUENCE_PAGES[9]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic: [Completion and interruption](completion-and-cut.md) · Next: [Author Handoff Point in WolvenKit](lab-04-authoring.md).",
+    LAB_SEQUENCE_PAGES[9]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic: [Complex cleanup, interruption, and cancellation](cleanup-interruption-and-cancellation.md) · Next: [Author Handoff Point in WolvenKit](lab-04-authoring.md).",
     LAB_SEQUENCE_PAGES[10]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 4: Handoff Point](lab-04.md) · Next: [Test Handoff Point](lab-04-test.md).",
     LAB_SEQUENCE_PAGES[11]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author Handoff Point in WolvenKit](lab-04-authoring.md) · Next lab: [Lab 5: First Contact](../scenes/lab-05.md).",
     LAB_SEQUENCE_PAGES[12]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author First Contact in WolvenKit](lab-05-authoring.md).",
@@ -139,6 +137,30 @@ GAMEPLAY_PATTERN_PAGES = {
     "mount-ride-drive-and-theft.md": "Mount, ride, drive, and theft",
     "vehicle-delivery-cleanup-chase-race.md": "Vehicle delivery, cleanup, chase, and race",
     "rewards-switches-and-outcomes.md": "Rewards, switches, and outcomes",
+}
+ADVANCED_SYSTEM_PAGES = {
+    "questphases/cleanup-interruption-and-cancellation.md": (
+        "Complex cleanup, interruption, and cancellation"
+    ),
+    "world/advanced-devices-and-interactions.md": (
+        "Advanced devices, interactions, and persistent state"
+    ),
+    "communities/character-records-entities-and-appearances.md": (
+        "Character records, entities, and appearances"
+    ),
+    "communities/ai-roles-behavior-and-workspots.md": (
+        "AI roles, behavior, and workspots"
+    ),
+    "scenes/choices-outcomes-and-localization.md": (
+        "Choices, outcomes, and scene-local localization"
+    ),
+    "scenes/external-vo-wem-and-lipsync.md": "External VO, WEM, and lipsync",
+    "scenes/animation-events-and-workspots.md": "Animation events and workspots",
+    "braindance/ownership-and-resource-chain.md": "Ownership and resource chain",
+    "braindance/rid-playback-and-rewind.md": "RID playback and rewind",
+    "braindance/clue-layers-cleanup-and-acceptance.md": (
+        "Clue layers, cleanup, and acceptance"
+    ),
 }
 LAB_RUNTIME_MANIFESTS = (
     (1, ROOT / "examples" / "lab-01-one-shot" / "completed" / "example.json"),
@@ -1205,8 +1227,6 @@ def validate_first_release_hardening() -> None:
 
     evidence_label_pages = [
         ROOT / "README.md",
-        ROOT / "HANDOFF.md",
-        ROOT / "ROADMAP.md",
         *BOOK_SRC.rglob("*.md"),
         *(ROOT / "examples").rglob("README.md"),
     ]
@@ -1401,6 +1421,185 @@ def validate_gameplay_cookbook() -> None:
     )
 
 
+def validate_advanced_systems() -> None:
+    summary_text = SUMMARY.read_text(encoding="utf-8")
+    depot_index = (BOOK_SRC / "reference" / "vanilla-depot-paths.md").read_text(
+        encoding="utf-8"
+    )
+    evidence_matrix = (
+        BOOK_SRC / "reference" / "evidence-version-matrix.md"
+    ).read_text(encoding="utf-8")
+    ledger_records = load_json(LEGACY_RUNTIME_LEDGER)["records"]
+    record_by_hash = {
+        record["archive_sha256"]: record
+        for record in ledger_records
+        if record["evidence_class"] == "runtime-proven"
+    }
+    depot_path_pattern = re.compile(
+        r"base\\(?:[A-Za-z0-9_.-]+\\)+[A-Za-z0-9_.-]+\."
+        r"[A-Za-z0-9_.-]+"
+    )
+
+    for relative, title in ADVANCED_SYSTEM_PAGES.items():
+        page = BOOK_SRC.joinpath(*PurePosixPath(relative).parts)
+        require(page.is_file(), f"missing advanced-system page {display(page)}")
+        text = page.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        require(
+            lines and lines[0] == f"# {title}",
+            f"{display(page)}: expected exact H1 {title!r}",
+        )
+        require(
+            summary_text.count(f"({relative})") == 1,
+            f"{display(SUMMARY)}: expected one link to {relative}",
+        )
+
+        normalized = " ".join(markdown_visible_text(text).split())
+        for token in (
+            "Cyberpunk 2077",
+            "2.31a",
+            "WolvenKit",
+            "8.19.0",
+            "**Observed in vanilla**",
+            "**Structurally validated**",
+            "**Experimental**",
+        ):
+            require(
+                token in normalized,
+                f"{display(page)}: missing advanced evidence/version token {token!r}",
+            )
+        require(
+            re.search(
+                r"\b(?:clean[- ]save|clean retest|clean replay|"
+                r"untouched (?:pre-install )?save|save-backed)\b",
+                normalized,
+                flags=re.IGNORECASE,
+            )
+            is not None,
+            f"{display(page)}: missing explicit clean/save-backed boundary",
+        )
+        require(
+            re.search(
+                r"^## .*?(?:WolvenKit|inspect|author|composition|workflow)",
+                text,
+                flags=re.IGNORECASE | re.MULTILINE,
+            )
+            is not None,
+            f"{display(page)}: missing manual inspection/authoring section",
+        )
+        require(
+            re.search(
+                r"^## .*?(?:acceptance|test|matrix|lifecycle|failure)",
+                text,
+                flags=re.IGNORECASE | re.MULTILINE,
+            )
+            is not None,
+            f"{display(page)}: missing acceptance/lifecycle/failure section",
+        )
+        for stale_phrase in (
+            "planned research subjects",
+            "this page will cover",
+            "chapter to be written",
+        ):
+            require(
+                stale_phrase not in normalized.lower(),
+                f"{display(page)}: placeholder text remains at {stale_phrase!r}",
+            )
+        for forbidden in (
+            "Ghostline generator",
+            "Ghostline compiler",
+            "Ghostline explorer",
+            "tools/braindance_",
+            "tools\\braindance_",
+        ):
+            require(
+                forbidden not in normalized,
+                f"{display(page)}: reader-facing Ghostline tooling dependency found",
+            )
+
+        for line_number, line in enumerate(lines, start=1):
+            if "base\\" not in line:
+                continue
+            require(
+                depot_path_pattern.search(line) is not None,
+                f"{display(page)}:{line_number}: incomplete base depot-path occurrence",
+            )
+            require(
+                not line.rstrip().endswith("\\"),
+                f"{display(page)}:{line_number}: depot path is wrapped instead of copyable",
+            )
+
+        cited_paths = set(depot_path_pattern.findall(text))
+        require(cited_paths, f"{display(page)}: no exact vanilla depot path cited")
+        for depot_path in sorted(cited_paths):
+            require(
+                f"`{depot_path}`" in depot_index,
+                f"{display(page)}: depot path missing from vanilla index: {depot_path}",
+            )
+
+        cited_runtime_hashes = set(re.findall(r"\b[0-9A-F]{64}\b", text)) & set(
+            record_by_hash
+        )
+        for archive_hash in cited_runtime_hashes:
+            require(
+                archive_hash in evidence_matrix,
+                f"{display(page)}: runtime hash missing from evidence/version matrix: "
+                f"{archive_hash}",
+            )
+            require(
+                page.relative_to(ROOT).as_posix()
+                in record_by_hash[archive_hash]["reader_pages"],
+                f"{display(page)}: runtime hash lacks reader-page backlink: {archive_hash}",
+            )
+
+    braindance_index = BOOK_SRC / "braindance" / "index.md"
+    braindance_text = braindance_index.read_text(encoding="utf-8")
+    require(
+        summary_text.count("(braindance/index.md)") == 1,
+        f"{display(SUMMARY)}: expected one braindance landing-page link",
+    )
+    for filename in (
+        "ownership-and-resource-chain.md",
+        "rid-playback-and-rewind.md",
+        "clue-layers-cleanup-and-acceptance.md",
+    ):
+        require(
+            braindance_text.count(f"({filename})") >= 1,
+            f"{display(braindance_index)}: missing route to {filename}",
+        )
+    for token in (
+        "There is no **Runtime-proven** custom-braindance claim",
+        "complete as an ownership, inspection, and acceptance guide",
+        "WolvenKit `8.19.0`",
+        "**Experimental**",
+    ):
+        require(
+            token in braindance_text,
+            f"{display(braindance_index)}: missing bounded status token {token!r}",
+        )
+
+    acceptance = (
+        BOOK_SRC / "braindance" / "clue-layers-cleanup-and-acceptance.md"
+    ).read_text(encoding="utf-8")
+    required_cases = (
+        "Case 1 — forward seek",
+        "Case 2 — backward rewind",
+        "Case 3 — visual layer",
+        "Case 4 — audio layer",
+        "Case 5 — thermal layer",
+        "Case 6 — normal cleanup",
+        "Case 7 — interrupted cleanup",
+        "Case 8 — replay after cleanup",
+    )
+    for case in required_cases:
+        require(case in acceptance, f"braindance acceptance matrix missing {case!r}")
+    require(
+        "all eight cases passed" in acceptance.lower()
+        and "exact package" in acceptance.lower(),
+        "braindance promotion rule must require all eight cases and exact package binding",
+    )
+
+
 def validate_legacy_runtime_ledger() -> None:
     ledger = load_json(LEGACY_RUNTIME_LEDGER)
     require(
@@ -1436,7 +1635,7 @@ def validate_legacy_runtime_ledger() -> None:
         "legacy runtime ledger IDs must be the exact ordered inventory",
     )
     reader_pages = {
-        *(path.resolve() for path in (ROOT / "README.md", ROOT / "HANDOFF.md", ROOT / "ROADMAP.md")),
+        (ROOT / "README.md").resolve(),
         *(path.resolve() for path in BOOK_SRC.rglob("*.md")),
         *(path.resolve() for path in (ROOT / "examples").rglob("README.md")),
     }
@@ -2252,6 +2451,7 @@ def main() -> int:
         ("book links and SUMMARY coverage", validate_book_links_and_summary),
         ("first-release references and lab navigation", validate_first_release_hardening),
         ("gameplay cookbook coverage and evidence boundaries", validate_gameplay_cookbook),
+        ("advanced systems, braindance boundary, and acceptance", validate_advanced_systems),
         ("bounded legacy runtime evidence ledger", validate_legacy_runtime_ledger),
         ("Lab 1 journal and localization lookups", validate_lab01_journal_contract),
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),

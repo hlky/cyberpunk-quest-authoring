@@ -59,6 +59,8 @@
         "The corrected candidate's facial-animation quality."
       ],
       "reader_pages": [
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/scenes/external-vo-wem-and-lipsync.md",
         "book/src/troubleshooting/actors-scenes-lipsync.md",
         "book/src/troubleshooting/controlled-isolation-evidence.md"
       ]
@@ -85,6 +87,8 @@
         "book/src/patterns/rewards-switches-and-outcomes.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/reference/localization-reference.md",
+        "book/src/scenes/choices-outcomes-and-localization.md",
+        "book/src/scenes/external-vo-wem-and-lipsync.md",
         "book/src/troubleshooting/journal-localization-audio.md",
         "book/src/troubleshooting/noderefs-streaming-placement.md",
         "book/src/troubleshooting/save-state-clean-retests.md"
@@ -106,7 +110,7 @@
         "Cigarette-animation quality."
       ],
       "reader_pages": [
-        "HANDOFF.md",
+        "book/src/communities/character-records-entities-and-appearances.md",
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/entries-phases-and-ai-spots.md",
         "book/src/communities/index.md",
@@ -149,7 +153,9 @@
         "Equivalence to the pinned current book environment."
       ],
       "reader_pages": [
+        "book/src/communities/ai-roles-behavior-and-workspots.md",
         "book/src/patterns/rescue-escort-defend-and-carry.md",
+        "book/src/questphases/cleanup-interruption-and-cancellation.md",
         "book/src/reference/evidence-version-matrix.md"
       ]
     },
@@ -169,6 +175,7 @@
       ],
       "reader_pages": [
         "book/src/patterns/vehicle-delivery-cleanup-chase-race.md",
+        "book/src/questphases/cleanup-interruption-and-cancellation.md",
         "book/src/reference/evidence-version-matrix.md"
       ]
     },
@@ -188,7 +195,8 @@
       ],
       "reader_pages": [
         "book/src/patterns/items-shards-files-and-scans.md",
-        "book/src/reference/evidence-version-matrix.md"
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/world/advanced-devices-and-interactions.md"
       ]
     },
     {
@@ -230,6 +238,7 @@
       "reader_pages": [
         "book/src/patterns/mount-ride-drive-and-theft.md",
         "book/src/patterns/vehicle-delivery-cleanup-chase-race.md",
+        "book/src/questphases/cleanup-interruption-and-cancellation.md",
         "book/src/reference/evidence-version-matrix.md"
       ]
     },
@@ -249,7 +258,6 @@
         "The current Lab 5 package."
       ],
       "reader_pages": [
-        "HANDOFF.md",
         "book/src/communities/activation-readiness-and-acquisition.md",
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/index.md",
@@ -260,6 +268,7 @@
         "book/src/reference/evidence-version-matrix.md",
         "book/src/reference/localization-reference.md",
         "book/src/scenes/actors-and-performers.md",
+        "book/src/scenes/external-vo-wem-and-lipsync.md",
         "book/src/scenes/index.md",
         "book/src/troubleshooting/actors-scenes-lipsync.md",
         "book/src/troubleshooting/controlled-isolation-evidence.md"
@@ -302,7 +311,7 @@
         "Generic access-point controller/action combinations, movement recovery, carry, or trunk placement."
       ],
       "reader_pages": [
-        "HANDOFF.md",
+        "book/src/communities/ai-roles-behavior-and-workspots.md",
         "book/src/patterns/areas-devices-and-hacking.md",
         "book/src/patterns/rescue-escort-defend-and-carry.md",
         "book/src/patterns/stealth-combat-and-destruction.md",
@@ -365,7 +374,8 @@
         "book/src/patterns/items-shards-files-and-scans.md",
         "book/src/patterns/stealth-combat-and-destruction.md",
         "book/src/patterns/workspots-and-interactions.md",
-        "book/src/reference/evidence-version-matrix.md"
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/world/advanced-devices-and-interactions.md"
       ]
     },
     {
@@ -382,10 +392,10 @@
         "A combined passive-and-cleanup result under one archive hash."
       ],
       "reader_pages": [
-        "HANDOFF.md",
         "book/src/communities/cleanup-and-character-safety.md",
         "book/src/communities/index.md",
         "book/src/patterns/areas-devices-and-hacking.md",
+        "book/src/questphases/cleanup-interruption-and-cancellation.md",
         "book/src/reference/evidence-version-matrix.md",
         "book/src/scenes/index.md",
         "book/src/scenes/lab-05.md"

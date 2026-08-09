@@ -151,7 +151,11 @@ payloads account for all 60 definitions:
 | `questScan_ConditionType` | 3 | Scannable target identity and scan event/state owner |
 | `questDestruction_ConditionType` | 2 | Target identity and destruction-state producer |
 
-All four rows are **Observed in vanilla** inventory, not current property
+All four rows are **Observed in vanilla** inventory. The device row now has a
+bounded property/ownership procedure in [Advanced devices and
+interactions](../world/advanced-devices-and-interactions.md), while a new
+custom-device lifecycle remains **Experimental** until its exact matrix
+passes. The other rows remain discovery entries rather than complete property
 recipes. The shared wrapper does not imply shared fields or runtime behavior.
 
 ## Character, combat, and workspot families

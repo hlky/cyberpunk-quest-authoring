@@ -28,6 +28,19 @@ Treat those as cooperating owners. A valid `TweakDBID` does not place an actor,
 an AI spot does not activate its community, and a scene actor definition does
 not spawn the character it intends to acquire.
 
+Advanced characters add two more chains without replacing the community:
+
+```text
+Character record -> .ent exposed mapping -> .app internal definition
+
+spawned community actor -> Gameplay AI tier -> temporary role/workspot
+  -> observed result -> scene/phase/cleanup handoff
+```
+
+The first controls gameplay defaults and renderable presentation. The second
+temporarily changes what one spawned actor is doing. Neither should borrow a
+story-unique character or mutate a shared vanilla resource.
+
 The beginner-safe lifecycle is:
 
 ```text
@@ -68,7 +81,9 @@ promote a new package merely because it follows the same shape.
 
 The practical acceptance target remains Cyberpunk 2077 Windows GOG `2.31a`,
 WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`. See [Tested versions](../reference/tested-versions.md).
+`0.5.31`. Advanced mod-owned character records additionally use TweakXL
+`1.11.3` in their tested authoring boundary. See [Tested
+versions](../reference/tested-versions.md).
 
 ## Native ownership map
 
@@ -79,8 +94,14 @@ WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
 | `worldAISpotNode` | Places an `AIActionSpot` and names the workspot resource an actor can use there. |
 | `communitySpawnEntry` | Associates one community entry name with a character `TweakDBID` and one or more spawn phases. |
 | `communitySpawnPhase` | Selects the phase name, appearance set, and time-period behavior for that entry. |
+| `Character.*` TweakDB record | Selects the entity template and supplies inherited reaction, faction, action-map, archetype, equipment, voice, and other gameplay defaults. |
+| `entEntityTemplate` | Owns the puppet scaffold, root components, default exposed appearance, and exposed-to-internal appearance mappings. |
+| `appearanceAppearanceResource` | Owns internal appearance definitions, component graphs, frame type, and render/runtime dependencies. |
 | `questSpawnManagerNodeDefinition` | Sends `Activate` or `Deactivate` to a community reference; it does not prove the actor already exists or is gone. |
 | `questCharacterSpawned_ConditionType` | Waits for the configured spawned-character comparison to become true. |
+| `questPuppetAIManagerNodeDefinition` | Requests an AI/story tier for selected spawned actors. |
+| `questMiscAICommandNode` | Carries a typed AI command such as follower/patrol role assignment or role clear. |
+| `questUseWorkspotNodeDefinition` | Issues a direct workspot command to an actor; its output does not replace state observation. |
 | `scnActorDef` with `acquisitionPlan: community` | Acquires an already available community entry for scene performance. |
 | Save | Retains quest, scene, community, and actor-related state that can invalidate a dirty retest. |
 
@@ -123,6 +144,12 @@ Read these chapters in order:
 4. [Cleanup and character safety](cleanup-and-character-safety.md) — delayed
    deactivation, save-aware tests, unique-character hazards, and the bounded
    generic-character recommendation.
+5. [Character records, entities, and appearances](character-records-entities-and-appearances.md)
+   — the native record-to-entity-to-appearance chain, typed identities,
+   mod-owned authoring boundary, and render/lifecycle acceptance matrix.
+6. [AI roles, behavior, and workspots](ai-roles-behavior-and-workspots.md) —
+   record behavior, Gameplay tier, follower/patrol roles, direct workspot
+   commands, state observation, and ownership transfer.
 
 The later scene chapters own screenplay, actor/performer, entry-point, and
 named-exit details. This section explains only the community side of their
@@ -139,6 +166,11 @@ or redistribute the extracted CR2W files.
 | `base\quest\minor_quests\mq003\phases\mq003_homeless.questphase` | How named community entries change phase and how the activity eventually deactivates them. |
 | `base\quest\minor_quests\mq003\scenes\mq003_01_homeless.scene` | How scene actors use `acquisitionPlan: community`, a community `NodeRef`, and an entry `CName`. |
 | `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community` | How a vanilla `communityCommunityTemplate` stores generic Tyger Claw entries, phases, appearances, time periods, quantities, and AI-spot references. |
+| `ep1\characters\entities\gang\gang__ep1_tyger_wa.ent` | How one installed entity exposes external appearance mappings, internal names, a shared `.app`, and a root default. Requires Phantom Liberty. |
+| `base\characters\appearances\gang\gang__tyger_wa.app` | How one appearance resource stores multiple internal definitions and a `WomanAverage` frame contract. |
+| `base\quest\side_quests\sq031\phases\sq031_rogue.questphase` | How one actor is promoted to `Gameplay` AI and how direct `questUseWorkspotNodeDefinition` objects are shaped. |
+| `base\open_world\street_stories\watson\kabuki\sts_wat_kab_02\phases\sts_wat_kab_02_openworld.questphase` | How a named community actor receives an `AIFollowerRole` targeting `#player` and later receives role clear. |
+| `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03_gameplay.questphase` | How six `AIPatrolRole` payloads reference separate spline paths and explicit patrol parameters. |
 
 Each path supplies **Observed in vanilla** evidence for its own focused shape.
 It is not a template for copying unrelated IDs, records, appearances, or world
@@ -152,6 +184,10 @@ positions.
 | Spawn wait never opens | Whether activation addressed the same community, `entireCommunity`/count comparison, area streaming, and the requested entry phase |
 | Actor exists but the scene cannot bind it | Scene `acquisitionPlan`, `communityParams.reference`, `communityParams.entryName`, and scene start ordering |
 | Actor appears at the wrong place or pose | AI-spot placement, exact full spot `NodeRef`, area `spotNodeIds`, registry `spotNodeRefs`, and workspot resource |
+| Actor exists logically but is invisible or malformed | Character record entity path, exposed entity appearance, internal `.app` name, frame/component graph, and saved appearance history |
+| Actor is unexpectedly hostile or armed | Character-record base, reaction/faction, action map, archetype, abilities, and equipment |
+| Role command fires but the actor does not move | Spawn readiness, AI tier, command target, concrete typed params, path/workspot streaming, and navmesh |
+| Actor walks back when the next activity starts | Follower/patrol role was cleared before the next scene, defend, phase, or cleanup owner took over |
 | Actor vanishes during the scene | Cleanup edge ordering, scene outcome handoff, and the distance/trigger used before `Deactivate` |
 | A clean resource change behaves like an older build | Starting save, community activation history, scene state, checkpoints, and installed archive hash |
 

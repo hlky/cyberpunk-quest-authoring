@@ -233,5 +233,6 @@ interaction, or reload behavior.
 | Result changes after reinstall | Save-backed facts, journal, checkpoints, or device state contaminated the comparison |
 | Research folder is too large to review | Whole vanilla resources were retained instead of focused excerpts and a provenance table |
 
-Previous: [Devices and persistence](devices-and-persistence.md). Next: [Lab 3:
-Boundary Check](lab-03.md).
+Previous: [Advanced devices, interactions, and persistent
+state](advanced-devices-and-interactions.md). Next: [Lab 3: Boundary
+Check](lab-03.md).

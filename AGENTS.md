@@ -1,8 +1,8 @@
 # Cyberpunk Quest Authoring Agent Guide
 
 This repository contains first-principles documentation for authoring native
-Cyberpunk 2077 quest resources. Read `HANDOFF.md` before broad planning or
-content work.
+Cyberpunk 2077 quest resources. The rules below are the durable scope for broad
+planning and content work.
 
 ## Core rules
 

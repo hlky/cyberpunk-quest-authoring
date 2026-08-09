@@ -28,4 +28,5 @@ Implemented examples:
   checkpoints for the `cqa005` community-backed contact, one-line scene,
   named outcome, and delayed cleanup lifecycle.
 
-The longer release sequence remains in [`../HANDOFF.md`](../HANDOFF.md).
+Runtime status and evidence-promotion boundaries are recorded in the book's
+[evidence and version matrix](../book/src/reference/evidence-version-matrix.md).

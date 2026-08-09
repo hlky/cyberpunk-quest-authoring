@@ -76,16 +76,35 @@ not a self-contained recipe.
 | `base\quest\minor_quests\mq003\scenes\mq003_03_orbital_pod.scene` | Comparable scene resource, actor, screenplay, event, and locStore structures |
 | `base\quest\minor_quests\mq007\scenes\mq007_01_gun_found.scene` | Comparable scene graph and embedded locStore ordering |
 | `base\quest\minor_quests\mq010\scenes\mq010_02_barry_talk.scene` | Comparable dialogue scene and embedded locStore ordering |
+| `base\animations\quest\minor_quests\mq007\anim\body\mq007__talking_gun__male_fpp.anims` | Direct scene-animation resource ownership and event-reference comparison; not a reusable custom clip |
+| `base\localization\en-us\lipsync\base\quest\minor_quests\mq007\scenes\mq007_01_gun_found\skippy.anims` | English Skippy lipsync-set resource selected by the scene's lipsync reference row |
+| `base\localization\en-us\lipsync\base\quest\minor_quests\mq007\scenes\mq007_01_gun_found\v.anims` | Separate English V lipsync-set resource and performer-slot/cardinality comparison |
 | `base\quest\side_quests\sq011\scenes\sq011_09_nancy_call.scene` | Holocall scene invocation, entry/exit, and quest handoff comparison |
 | `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community` | Generic Tyger Claw entries, phases, appearances, time periods, quantities, and AI-spot references |
+| `ep1\characters\entities\gang\gang__ep1_tyger_wa.ent` | Entity-template appearance mappings exposed by the focused `Character.*` record inheritance chain |
+| `base\characters\appearances\gang\gang__tyger_wa.app` | Internal appearance definitions selected by the focused entity's exposed mapping; not a portable appearance template |
 | `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot` | The stationary workspot byte-bound to the retained generic-character research lineage used by Lab 5 |
 | `base\workspots\common\ground\generic__stand_ground__guard__02.workspot` | A different standing-guard lineage; do not substitute it for the cigarette mapping without new evidence |
+| `base\workspots\common\wall\generic__stand_wall_lean_left__stand_around__01.workspot` | A scene-referenced wall-lean workspot used to distinguish workspot acquisition from direct animation events |
 | `base\workspots\patrolling\guard_stand.workspot` | Finite-patrol research only; not a universal guard workspot |
 | `base\animations\facial\generic\interactive_scene\generic_facial_lipsync_gestures.anims` | Generic scene lipsync resource row and slot-cardinality comparison, not proof of facial quality |
 
 Keep actor ID, performer ID, screenplay item ID, localization RUID, event ID,
 community identity, AI-spot identity, NodeRef, and CR2W handle separate while
 recording a comparison.
+
+## Braindance resources
+
+| Depot path | Focused question |
+| --- | --- |
+| `base\quest\side_quests\sq012\scenes\sq012_02a_braindance.scene` | Rewindable section, RID handlers/references, support props, layered clue events, entry/exit, and interruption ownership |
+| `base\animations\quest\side_quests\sq012\sq012_braindance\rid\sq012_braindance__part_a.scenerid` | Version-5 RID actor/camera tags, body/facial/cyberware channels, serials, cardinalities, and compressed buffers |
+| `base\quest\side_quests\sq012\entities\sq012_02a_braindance_bdview.ent` | BD-view entity template selected through a scene prop record and global spawn marker |
+| `base\quest\side_quests\sq012\entities\sq012_02a_braindance_bdfog.ent` | BD-fog entity template selected through a separate scene prop record |
+| `base\quest\side_quests\sq012\entities\sq012_02a_braindance_bdsetup.ent` | Render-to-texture BD-setup entity template selected through a separate scene prop record |
+| `base\quest\main_quests\prologue\q004\scenes\q004_05_bd_yorinobu.scene` | Larger main-quest rewindable scene with visual/audio/thermal conditions, clue discovery, RID playback, visibility, and BD action management |
+| `base\quest\main_quests\prologue\q004\phases\q004_braindance.questphase` | Quest-side setup/teardown decomposition around the Q004 braindance; not a self-contained custom-scene template |
+| `engine\scenesystem\camera.ent` | Scene-camera entity shape used for a placed RID-camera comparison; it does not supply a candidate's world placement |
 
 ## World, placement, and devices
 

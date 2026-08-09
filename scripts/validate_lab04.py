@@ -1590,8 +1590,6 @@ def validate_reader_status(info: ManifestInfo) -> None:
 
     status_pages = (
         ROOT / "README.md",
-        ROOT / "HANDOFF.md",
-        ROOT / "ROADMAP.md",
         ROOT / "book" / "src" / "introduction.md",
         BOOK_QUESTPHASES / "index.md",
         ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",

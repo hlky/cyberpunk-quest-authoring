@@ -23,6 +23,11 @@ frameworks.
 
 **Lab 5 runtime evidence:** **Experimental** — pending.
 
+**Documentation status:** Stages 0–9 are complete and published. Completion
+means the resource contracts, procedures, evidence boundaries, and release
+checks are present; it does not promote the five pending lab campaigns or the
+custom braindance pipeline beyond their retained evidence.
+
 The repository contains:
 
 - a published mdBook and GitHub Pages workflow;
@@ -71,8 +76,14 @@ The repository contains:
   areas/devices/items/scans/workspots/doors, NPC and combat lifecycles,
   rescue/escort/defend/carry, vehicle objectives, and rewards/outcomes, with
   exact evidence boundaries and clean-save matrices;
-- an audited [completion roadmap](ROADMAP.md) with staged release gates;
-- a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
+- advanced scene guides covering choices and outcomes, external VO/WEM/
+  lipsync, animation events, and workspots;
+- advanced character, appearance, AI-role, device-interaction, and complex
+  cleanup guides, with TweakXL `1.11.3` scoped only to mod-owned TweakDB
+  character records;
+- a bounded braindance resource-chain, RID/rewind, clue-layer, cleanup, and
+  eight-case acceptance set that remains **Experimental** for custom runtime
+  behavior.
 
 Lab 1's downloadable checkpoints, exact graph, artifact hashes, and
 runtime-acceptance record live under `examples/lab-01-one-shot`. Its native

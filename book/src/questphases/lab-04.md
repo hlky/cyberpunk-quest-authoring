@@ -303,5 +303,6 @@ directly. Phase node `13` and the matching interface names are the handoff.
 | An interruption route behaves unpredictably | Confirm every `CutDestination` remains unwired | Lab 4 makes no cut-safety claim |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic:
-[Completion and interruption](completion-and-cut.md) · Next: [Author Handoff
-Point in WolvenKit](lab-04-authoring.md).
+[Complex cleanup, interruption, and
+cancellation](cleanup-interruption-and-cancellation.md) · Next: [Author
+Handoff Point in WolvenKit](lab-04-authoring.md).
