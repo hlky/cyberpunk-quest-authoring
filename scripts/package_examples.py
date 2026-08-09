@@ -17,6 +17,7 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 ROOT = Path(__file__).resolve().parents[1]
 LAB01 = ROOT / "examples" / "lab-01-one-shot"
 LAB02 = ROOT / "examples" / "lab-02-signal-race"
+LAB03 = ROOT / "examples" / "lab-03-boundary-check"
 
 
 def lab02_retained_evidence_files() -> tuple[str, ...]:
@@ -56,6 +57,47 @@ def lab02_retained_evidence_files() -> tuple[str, ...]:
             source = LAB02 / "completed" / Path(*relative.parts)
             if not source.is_file() or source.is_symlink():
                 raise ValueError(f"missing or linked Lab 2 evidence file: {reference}")
+            references.add(reference)
+    return tuple(sorted(references))
+
+
+def lab03_retained_evidence_files() -> tuple[str, ...]:
+    """Return only acceptance-record evidence paths safe to ship in Lab 3."""
+
+    record_path = LAB03 / "completed" / "runtime-acceptance.json"
+    try:
+        record = json.loads(record_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read Lab 3 acceptance record: {error}") from error
+
+    cases = record.get("cases") if isinstance(record, dict) else None
+    if not isinstance(cases, list):
+        raise ValueError("Lab 3 acceptance record cases must be an array")
+
+    references: set[str] = set()
+    for case_index, case in enumerate(cases):
+        evidence = case.get("evidence") if isinstance(case, dict) else None
+        if not isinstance(evidence, list):
+            raise ValueError(f"Lab 3 case {case_index} evidence must be an array")
+        for evidence_index, item in enumerate(evidence):
+            reference = item.get("reference") if isinstance(item, dict) else None
+            if not isinstance(reference, str) or not reference:
+                raise ValueError(
+                    f"Lab 3 case {case_index} evidence {evidence_index} needs a reference"
+                )
+            relative = PurePosixPath(reference)
+            if (
+                reference != relative.as_posix()
+                or relative.is_absolute()
+                or "\\" in reference
+                or len(relative.parts) < 2
+                or relative.parts[0] != "evidence"
+                or any(part in {"", ".", ".."} for part in relative.parts)
+            ):
+                raise ValueError(f"unsafe Lab 3 evidence path: {reference!r}")
+            source = LAB03 / "completed" / Path(*relative.parts)
+            if not source.is_file() or source.is_symlink():
+                raise ValueError(f"missing or linked Lab 3 evidence file: {reference}")
             references.add(reference)
     return tuple(sorted(references))
 
@@ -141,6 +183,75 @@ LAB02_COMPLETED_TEXT_FILES = frozenset(
     }
 )
 
+LAB03_START_FILES = (
+    "CQA_Lab03_BoundaryCheck_Start.cpmodproj",
+    "README.md",
+    "source/archive/mod/cqa/cqa003/journal/cqa003.journal",
+    "source/archive/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json",
+    "source/archive/mod/cqa/cqa003/phases/cqa003.questphase",
+    "source/archive/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector",
+    "source/archive/mod/cqa/cqa003/world/cqa003_boundary.streamingblock",
+    "source/archive/mod/cqa/cqa003/world/cqa003_boundary.streamingsector",
+    "source/raw/mod/cqa/cqa003/journal/cqa003.journal.json",
+    "source/raw/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json.json",
+    "source/raw/mod/cqa/cqa003/phases/cqa003.questphase.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingblock.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingsector.json",
+    "source/resources/CQA_Lab03_BoundaryCheck_Start.archive.xl",
+)
+LAB03_START_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab03_BoundaryCheck_Start.cpmodproj",
+        "README.md",
+        "source/raw/mod/cqa/cqa003/journal/cqa003.journal.json",
+        "source/raw/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json.json",
+        "source/raw/mod/cqa/cqa003/phases/cqa003.questphase.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingblock.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingsector.json",
+        "source/resources/CQA_Lab03_BoundaryCheck_Start.archive.xl",
+    }
+)
+LAB03_COMPLETED_BASE_FILES = (
+    "CQA_Lab03_BoundaryCheck.cpmodproj",
+    "README.md",
+    "example.json",
+    "runtime-acceptance.json",
+    "source/archive/mod/cqa/cqa003/journal/cqa003.journal",
+    "source/archive/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json",
+    "source/archive/mod/cqa/cqa003/phases/cqa003.questphase",
+    "source/archive/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector",
+    "source/archive/mod/cqa/cqa003/world/cqa003_boundary.streamingblock",
+    "source/archive/mod/cqa/cqa003/world/cqa003_boundary.streamingsector",
+    "source/raw/mod/cqa/cqa003/journal/cqa003.journal.json",
+    "source/raw/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json.json",
+    "source/raw/mod/cqa/cqa003/phases/cqa003.questphase.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingblock.json",
+    "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingsector.json",
+    "source/resources/CQA_Lab03_BoundaryCheck.archive.xl",
+)
+LAB03_COMPLETED_FILES = (
+    *LAB03_COMPLETED_BASE_FILES,
+    *lab03_retained_evidence_files(),
+)
+LAB03_COMPLETED_TEXT_FILES = frozenset(
+    {
+        "CQA_Lab03_BoundaryCheck.cpmodproj",
+        "README.md",
+        "example.json",
+        "runtime-acceptance.json",
+        "source/raw/mod/cqa/cqa003/journal/cqa003.journal.json",
+        "source/raw/mod/cqa/cqa003/localization/en-us/onscreens/cqa003.json.json",
+        "source/raw/mod/cqa/cqa003/phases/cqa003.questphase.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingblock.json",
+        "source/raw/mod/cqa/cqa003/world/cqa003_boundary.streamingsector.json",
+        "source/resources/CQA_Lab03_BoundaryCheck.archive.xl",
+    }
+)
+
 CHECKPOINTS = {
     "cqa-lab-01-start.zip": (
         LAB01 / "start",
@@ -169,6 +280,20 @@ CHECKPOINTS = {
         LAB02_COMPLETED_FILES,
         LAB02_COMPLETED_TEXT_FILES,
         LAB02 / "LICENSE.md",
+    ),
+    "cqa-lab-03-start.zip": (
+        LAB03 / "start",
+        "CQA_Lab03_BoundaryCheck_Start",
+        LAB03_START_FILES,
+        LAB03_START_TEXT_FILES,
+        LAB03 / "LICENSE.md",
+    ),
+    "cqa-lab-03-completed.zip": (
+        LAB03 / "completed",
+        "CQA_Lab03_BoundaryCheck",
+        LAB03_COMPLETED_FILES,
+        LAB03_COMPLETED_TEXT_FILES,
+        LAB03 / "LICENSE.md",
     ),
 }
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)

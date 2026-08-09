@@ -97,6 +97,7 @@ BUILD_SCRIPT = ROOT / "scripts" / "build_lab01_sources.py"
 RENDER_SCRIPT = ROOT / "scripts" / "render_quest_graph.py"
 PACKAGE_SCRIPT = ROOT / "scripts" / "package_examples.py"
 LAB02_VALIDATOR = ROOT / "scripts" / "validate_lab02.py"
+LAB03_VALIDATOR = ROOT / "scripts" / "validate_lab03.py"
 SHARED_LICENSE = LAB / "LICENSE.md"
 JSON_SIZE_LIMIT = 16 * 1024 * 1024
 ZIP_TIMESTAMP = (2026, 1, 1, 0, 0, 0)
@@ -217,6 +218,8 @@ GENERATED_DOWNLOAD_NAMES = frozenset(
         "cqa-lab-01-completed.zip",
         "cqa-lab-02-start.zip",
         "cqa-lab-02-completed.zip",
+        "cqa-lab-03-start.zip",
+        "cqa-lab-03-completed.zip",
     }
 )
 
@@ -1482,6 +1485,44 @@ def validate_packages() -> None:
         finally:
             packager.LAB02 = original_lab02
 
+        evidence_record.write_text(
+            json.dumps(
+                {
+                    "cases": [
+                        {"evidence": [{"reference": "evidence/run-note.md"}]},
+                    ]
+                }
+            ),
+            encoding="utf-8",
+            newline="\n",
+        )
+        original_lab03 = packager.LAB03
+        try:
+            packager.LAB03 = evidence_fixture
+            require(
+                packager.lab03_retained_evidence_files() == ("evidence/run-note.md",),
+                "package_examples.py did not admit acceptance-bound Lab 3 evidence",
+            )
+            evidence_record.write_text(
+                json.dumps(
+                    {
+                        "cases": [
+                            {"evidence": [{"reference": "../private-save.dat"}]},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+                newline="\n",
+            )
+            try:
+                packager.lab03_retained_evidence_files()
+            except ValueError:
+                pass
+            else:
+                raise ValidationError("package_examples.py accepted an unsafe Lab 3 evidence path")
+        finally:
+            packager.LAB03 = original_lab03
+
         preserved = first / "preserved.zip"
         sentinel = b"previous valid download"
         preserved.write_bytes(sentinel)
@@ -1545,6 +1586,24 @@ def validate_lab02() -> None:
     )
 
 
+def validate_lab03() -> None:
+    environment = os.environ.copy()
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    result = subprocess.run(
+        [sys.executable, str(LAB03_VALIDATOR)],
+        cwd=ROOT,
+        env=environment,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    require(
+        result.returncode == 0,
+        f"validate_lab03.py failed:\n{result.stdout}{result.stderr}".rstrip(),
+    )
+
+
 def run_check(name: str, check: Callable[[], None]) -> bool:
     try:
         check()
@@ -1575,6 +1634,7 @@ def main() -> int:
         ("cooked CR2W and review-source provenance", lambda: validate_cr2w_pairs(info)),
         ("Lab 1 graph fingerprint and exact SVG", lambda: validate_graph(info)),
         ("Lab 2 project, evidence, semantics, and graph", validate_lab02),
+        ("Lab 3 project, world resources, evidence, and graph", validate_lab03),
         ("deterministic example ZIPs", validate_packages),
     )
     results = [run_check(name, check) for name, check in checks]

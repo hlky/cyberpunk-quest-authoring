@@ -7,9 +7,9 @@ with older tools.
 | --- | --- | --- |
 | Cyberpunk 2077 for Windows | `2.31a` | Exact GOG Windows build; CD Projekt RED calls the underlying public patch `2.31` |
 | WolvenKit | `8.19.0` | Project editing, CR2W inspection, conversion, packing, and deployment |
-| ArchiveXL | `1.27.0` | Root questphase, journal, and localization registration |
+| ArchiveXL | `1.27.0` | Root questphase, journal, localization, and streaming-block registration |
 | RED4ext | `1.30.0` | Runtime required by ArchiveXL |
-| redscript | `0.5.31` | Runtime dependency declared by ArchiveXL 1.27.0, even though Lab 1 contains no `.reds` source |
+| redscript | `0.5.31` | Runtime dependency declared by ArchiveXL 1.27.0, even though Labs 1–3 contain no `.reds` source |
 | mdBook | `0.5.4` | Documentation build only; not a reader authoring prerequisite |
 
 Version check date: **2026-08-09**. The ArchiveXL 1.27.0 compatibility contract

@@ -1,0 +1,16 @@
+quest:
+  phases:
+  - path: mod\cqa\cqa003\phases\cqa003.questphase
+    parent: base\quest\cyberpunk2077.quest
+
+journal:
+- mod\cqa\cqa003\journal\cqa003.journal
+
+localization:
+  onscreens:
+    en-us:
+    - mod\cqa\cqa003\localization\en-us\onscreens\cqa003.json
+
+streaming:
+  blocks:
+  - mod\cqa\cqa003\world\cqa003_boundary.streamingblock

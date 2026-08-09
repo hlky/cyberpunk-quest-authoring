@@ -1,0 +1,508 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa003\\world\\cqa003_boundary.streamingsector"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "worldStreamingSector",
+      "category": "Quest",
+      "cookingPlatform": "PLATFORM_None",
+      "externInplaceResource": {
+        "DepotPath": {
+          "$type": "ResourcePath",
+          "$storage": "uint64",
+          "$value": "0"
+        },
+        "Flags": "Soft"
+      },
+      "level": 255,
+      "localInplaceResource": [],
+      "nodeData": {
+        "BufferId": "0",
+        "Flags": 0,
+        "Type": "WolvenKit.RED4.Archive.Buffer.worldNodeDataBuffer, WolvenKit.RED4, Version=8.19.0.0, Culture=neutral, PublicKeyToken=null",
+        "Data": [
+          {
+            "Id": "0",
+            "NodeIndex": 0,
+            "Position": {
+              "$type": "Vector4",
+              "W": 0,
+              "X": -1000.02,
+              "Y": 1497.2208,
+              "Z": 2.3
+            },
+            "Orientation": {
+              "$type": "Quaternion",
+              "i": 0,
+              "j": 0,
+              "k": 0.6984152854310058,
+              "r": 0.7156927337037359
+            },
+            "Scale": {
+              "$type": "Vector3",
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            },
+            "Pivot": {
+              "$type": "Vector3",
+              "X": -1000.02,
+              "Y": 1497.2208,
+              "Z": 2.3
+            },
+            "Bounds": {
+              "$type": "Box",
+              "Max": {
+                "$type": "Vector4",
+                "W": 0,
+                "X": -1000.02,
+                "Y": 1497.2208,
+                "Z": 2.3
+              },
+              "Min": {
+                "$type": "Vector4",
+                "W": 0,
+                "X": -1000.02,
+                "Y": 1497.2208,
+                "Z": 2.3
+              }
+            },
+            "QuestPrefabRefHash": {
+              "$type": "NodeRef",
+              "$storage": "string",
+              "$value": "$/mod/cqa/cqa003/#cqa003_pr_boundary/#cqa003_tr_reach"
+            },
+            "UkHash1": {
+              "$type": "NodeRef",
+              "$storage": "uint64",
+              "$value": "0"
+            },
+            "CookedPrefabData": {
+              "DepotPath": {
+                "$type": "ResourcePath",
+                "$storage": "uint64",
+                "$value": "0"
+              },
+              "Flags": "Default"
+            },
+            "MaxStreamingDistance": 320,
+            "UkFloat1": 280,
+            "Uk10": 1024,
+            "Uk11": 512,
+            "Uk12": 0,
+            "Uk13": "0",
+            "Uk14": "0"
+          },
+          {
+            "Id": "0",
+            "NodeIndex": 1,
+            "Position": {
+              "$type": "Vector4",
+              "W": 0,
+              "X": -1000.02,
+              "Y": 1497.2208,
+              "Z": 0.3
+            },
+            "Orientation": {
+              "$type": "Quaternion",
+              "i": 0,
+              "j": 0,
+              "k": 0.6984152854310058,
+              "r": 0.7156927337037359
+            },
+            "Scale": {
+              "$type": "Vector3",
+              "X": 1.0,
+              "Y": 1.0,
+              "Z": 1.0
+            },
+            "Pivot": {
+              "$type": "Vector3",
+              "X": -1000.02,
+              "Y": 1497.2208,
+              "Z": 0.3
+            },
+            "Bounds": {
+              "$type": "Box",
+              "Max": {
+                "$type": "Vector4",
+                "W": 0,
+                "X": -1000.02,
+                "Y": 1497.2208,
+                "Z": 0.3
+              },
+              "Min": {
+                "$type": "Vector4",
+                "W": 0,
+                "X": -1000.02,
+                "Y": 1497.2208,
+                "Z": 0.3
+              }
+            },
+            "QuestPrefabRefHash": {
+              "$type": "NodeRef",
+              "$storage": "string",
+              "$value": "$/mod/cqa/cqa003/#cqa003_pr_boundary/#cqa003_tr_leave"
+            },
+            "UkHash1": {
+              "$type": "NodeRef",
+              "$storage": "uint64",
+              "$value": "0"
+            },
+            "CookedPrefabData": {
+              "DepotPath": {
+                "$type": "ResourcePath",
+                "$storage": "uint64",
+                "$value": "0"
+              },
+              "Flags": "Default"
+            },
+            "MaxStreamingDistance": 360,
+            "UkFloat1": 320,
+            "Uk10": 1024,
+            "Uk11": 512,
+            "Uk12": 0,
+            "Uk13": "0",
+            "Uk14": "0"
+          }
+        ]
+      },
+      "nodeRefs": [
+        {
+          "$type": "NodeRef",
+          "$storage": "string",
+          "$value": "$/mod/cqa/cqa003/#cqa003_pr_boundary/#cqa003_tr_reach"
+        },
+        {
+          "$type": "NodeRef",
+          "$storage": "string",
+          "$value": "$/mod/cqa/cqa003/#cqa003_pr_boundary/#cqa003_tr_leave"
+        }
+      ],
+      "nodes": [
+        {
+          "HandleId": "2",
+          "Data": {
+            "$type": "worldTriggerAreaNode",
+            "color": {
+              "$type": "Color",
+              "Alpha": 0,
+              "Blue": 0,
+              "Green": 0,
+              "Red": 0
+            },
+            "debugName": {
+              "$type": "CName",
+              "$storage": "string",
+              "$value": "{cqa003_tr_reach}"
+            },
+            "isHostOnly": 0,
+            "isVisibleInGame": 1,
+            "notifiers": [
+              {
+                "HandleId": "0",
+                "Data": {
+                  "$type": "questTriggerNotifier_Quest",
+                  "excludeChannels": 0,
+                  "includeChannels": "TC_Default",
+                  "isEnabled": 1
+                }
+              }
+            ],
+            "outline": {
+              "HandleId": "1",
+              "Data": {
+                "$type": "AreaShapeOutline",
+                "buffer": "EAAAAAAAyEEAAAAAAAAAAAAAgD+ixrhByRIZQQAAAAAAAIA/3muNQd5rjUEAAAAAAACAP8kSGUGixrhBAAAAAAAAgD/dnNwmAADIQQAAAAAAAIA/yRIZwaLGuEEAAAAAAACAP95rjcHea41BAAAAAAAAgD+ixrjByRIZQQAAAAAAAIA/AADIwd2cXCcAAAAAAACAP6LGuMHJEhnBAAAAAAAAgD/ea43B3muNwQAAAAAAAIA/yRIZwaLGuMEAAAAAAACAP6Z1pacAAMjBAAAAAAAAgD/JEhlBosa4wQAAAAAAAIA/3muNQd5rjcEAAAAAAACAP6LGuEHJEhnBAAAAAAAAgD8AAEBB",
+                "height": 12,
+                "points": [
+                  {
+                    "$type": "Vector3",
+                    "X": 25.0,
+                    "Y": 0.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 23.09698831278217,
+                    "Y": 9.567085809127244,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 17.67766952966369,
+                    "Y": 17.67766952966369,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 9.567085809127246,
+                    "Y": 23.09698831278217,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 1.5308084989341915e-15,
+                    "Y": 25.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -9.567085809127244,
+                    "Y": 23.09698831278217,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -17.677669529663685,
+                    "Y": 17.67766952966369,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -23.09698831278217,
+                    "Y": 9.567085809127247,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -25.0,
+                    "Y": 3.061616997868383e-15,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -23.09698831278217,
+                    "Y": -9.567085809127242,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -17.677669529663692,
+                    "Y": -17.677669529663685,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -9.567085809127258,
+                    "Y": -23.096988312782162,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -4.592425496802574e-15,
+                    "Y": -25.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 9.56708580912725,
+                    "Y": -23.096988312782166,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 17.677669529663685,
+                    "Y": -17.677669529663692,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 23.096988312782162,
+                    "Y": -9.56708580912726,
+                    "Z": 0
+                  }
+                ]
+              }
+            },
+            "proxyScale": null,
+            "sourcePrefabHash": "0",
+            "tag": "None",
+            "tagExt": "None"
+          }
+        },
+        {
+          "HandleId": "5",
+          "Data": {
+            "$type": "worldTriggerAreaNode",
+            "color": {
+              "$type": "Color",
+              "Alpha": 0,
+              "Blue": 0,
+              "Green": 0,
+              "Red": 0
+            },
+            "debugName": {
+              "$type": "CName",
+              "$storage": "string",
+              "$value": "{cqa003_tr_leave}"
+            },
+            "isHostOnly": 0,
+            "isVisibleInGame": 1,
+            "notifiers": [
+              {
+                "HandleId": "3",
+                "Data": {
+                  "$type": "questTriggerNotifier_Quest",
+                  "excludeChannels": 0,
+                  "includeChannels": "TC_Default",
+                  "isEnabled": 1
+                }
+              }
+            ],
+            "outline": {
+              "HandleId": "4",
+              "Data": {
+                "$type": "AreaShapeOutline",
+                "buffer": "FAAAAAAA3EIAAAAAAAAAAAAAgD+BO9FCrfcHQgAAAAAAAIA/1vuxQhFQgUIAAAAAAACAPxFQgULW+7FCAAAAAAAAgD+t9wdCgTvRQgAAAAAAAIA/jazyJwAA3EIAAAAAAACAP633B8KBO9FCAAAAAAAAgD8RUIHC1vuxQgAAAAAAAIA/1vuxwhFQgUIAAAAAAACAP4E70cKt9wdCAAAAAAAAgD8AANzCjaxyKAAAAAAAAIA/gTvRwq33B8IAAAAAAACAP9b7scIRUIHCAAAAAAAAgD8RUIHC1vuxwgAAAAAAAIA/rfcHwoE70cIAAAAAAACAP2oBtqgAANzCAAAAAAAAgD+t9wdCgTvRwgAAAAAAAIA/EVCBQtb7scIAAAAAAACAP9b7sUIRUIHCAAAAAAAAgD+BO9FCrfcHwgAAAAAAAIA/AACAQQ==",
+                "height": 16,
+                "points": [
+                  {
+                    "$type": "Vector3",
+                    "X": 110.0,
+                    "Y": 0.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 104.61621679246689,
+                    "Y": 33.991869381244214,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 88.99186938124421,
+                    "Y": 64.65637775217205,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 64.65637775217205,
+                    "Y": 88.99186938124421,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 33.99186938124422,
+                    "Y": 104.61621679246689,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 6.735557395310443e-15,
+                    "Y": 110.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -33.99186938124421,
+                    "Y": 104.6162167924669,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -64.65637775217203,
+                    "Y": 88.99186938124421,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -88.99186938124421,
+                    "Y": 64.65637775217206,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -104.61621679246689,
+                    "Y": 33.99186938124423,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -110.0,
+                    "Y": 1.3471114790620885e-14,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -104.61621679246691,
+                    "Y": -33.99186938124416,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -88.99186938124421,
+                    "Y": -64.65637775217203,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -64.65637775217206,
+                    "Y": -88.99186938124421,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -33.99186938124423,
+                    "Y": -104.61621679246689,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": -2.0206672185931328e-14,
+                    "Y": -110.0,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 33.99186938124419,
+                    "Y": -104.6162167924669,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 64.65637775217202,
+                    "Y": -88.99186938124423,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 88.99186938124421,
+                    "Y": -64.65637775217206,
+                    "Z": 0
+                  },
+                  {
+                    "$type": "Vector3",
+                    "X": 104.61621679246689,
+                    "Y": -33.99186938124424,
+                    "Z": 0
+                  }
+                ]
+              }
+            },
+            "proxyScale": null,
+            "sourcePrefabHash": "0",
+            "tag": "None",
+            "tagExt": "None"
+          }
+        }
+      ],
+      "persistentNodeIndex": 0,
+      "persistentNodes": [],
+      "variantIndices": [
+        0
+      ],
+      "variantNodes": [],
+      "version": 62
+    },
+    "EmbeddedFiles": []
+  }
+}

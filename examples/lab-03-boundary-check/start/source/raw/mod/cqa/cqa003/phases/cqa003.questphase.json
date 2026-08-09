@@ -1,0 +1,136 @@
+{
+  "Header": {
+    "WolvenKitVersion": "8.19.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "1970-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": "mod\\cqa\\cqa003\\phases\\cqa003.questphase"
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "questQuestPhaseResource",
+      "cookingPlatform": "PLATFORM_PC",
+      "graph": {
+        "HandleId": "0",
+        "Data": {
+          "$type": "questGraphDefinition",
+          "nodes": [
+            {
+              "HandleId": "1",
+              "Data": {
+                "$type": "questInputNodeDefinition",
+                "id": 0,
+                "sockets": [
+                  {
+                    "HandleId": "2",
+                    "Data": {
+                      "$type": "questSocketDefinition",
+                      "connections": [],
+                      "name": {
+                        "$type": "CName",
+                        "$storage": "string",
+                        "$value": "CutDestination"
+                      },
+                      "type": "CutDestination"
+                    }
+                  },
+                  {
+                    "HandleId": "3",
+                    "Data": {
+                      "$type": "questSocketDefinition",
+                      "connections": [
+                        {
+                          "HandleId": "7",
+                          "Data": {
+                            "$type": "graphGraphConnectionDefinition",
+                            "destination": {
+                              "HandleId": "6",
+                              "Data": {
+                                "$type": "questSocketDefinition",
+                                "connections": [
+                                  {
+                                    "HandleRefId": "7"
+                                  }
+                                ],
+                                "name": {
+                                  "$type": "CName",
+                                  "$storage": "string",
+                                  "$value": "In"
+                                },
+                                "type": "Input"
+                              }
+                            },
+                            "source": {
+                              "HandleRefId": "3"
+                            }
+                          }
+                        }
+                      ],
+                      "name": {
+                        "$type": "CName",
+                        "$storage": "string",
+                        "$value": "Out"
+                      },
+                      "type": "Output"
+                    }
+                  }
+                ],
+                "socketName": {
+                  "$type": "CName",
+                  "$storage": "string",
+                  "$value": "In1"
+                }
+              }
+            },
+            {
+              "HandleId": "4",
+              "Data": {
+                "$type": "questOutputNodeDefinition",
+                "id": 1,
+                "sockets": [
+                  {
+                    "HandleId": "5",
+                    "Data": {
+                      "$type": "questSocketDefinition",
+                      "connections": [],
+                      "name": {
+                        "$type": "CName",
+                        "$storage": "string",
+                        "$value": "CutDestination"
+                      },
+                      "type": "CutDestination"
+                    }
+                  },
+                  {
+                    "HandleRefId": "6"
+                  }
+                ],
+                "socketName": {
+                  "$type": "CName",
+                  "$storage": "string",
+                  "$value": "Out1"
+                },
+                "type": "Terminating"
+              }
+            }
+          ]
+        }
+      },
+      "inplacePhases": [],
+      "phasePrefabs": [
+        {
+          "$type": "questQuestPrefabEntry",
+          "prefabNodeRef": {
+            "$type": "NodeRef",
+            "$storage": "string",
+            "$value": "#cqa003_pr_boundary"
+          }
+        }
+      ]
+    },
+    "EmbeddedFiles": []
+  }
+}

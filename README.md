@@ -17,6 +17,8 @@ frameworks.
 
 **Lab 2 runtime evidence:** **Experimental** — pending.
 
+**Lab 3 runtime evidence:** **Experimental** — pending.
+
 The repository contains:
 
 - a published mdBook and GitHub Pages workflow;
@@ -32,6 +34,11 @@ The repository contains:
   signal topology, with an observed condition-family catalog;
 - Lab 2's start/completed WolvenKit projects, exact 21-node graph, manual
   authoring path, and two-variant runtime protocol;
+- a complete world-integration section covering streaming ownership, prefab
+  and NodeRef chains, placements, triggers, markers/navigation, devices, and
+  safe vanilla-location research;
+- Lab 3's start/completed WolvenKit projects, exact 16-node graph, resource
+  and volume diagrams, manual authoring path, and eight-run runtime protocol;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
@@ -44,6 +51,12 @@ Lab 2's `cqa002` resources are structurally validated with the exact pinned
 WolvenKit 8.19.0 CLI. Its timing, convergence, reload, and re-entry behaviors
 remain Experimental until both hash-bound candidates and all six executions
 pass the canonical schema-version-3 acceptance record.
+
+Lab 3's `cqa003` resources are structurally validated with WolvenKit 8.19.0.
+Its block mounting, sector/NodeRef resolution, trigger boundaries, marker/GPS
+presentation, streaming return, and save behavior remain Experimental until
+the hash-bound canonical candidate passes all eight executions in its
+schema-version-3 acceptance record.
 
 ## Local preview
 

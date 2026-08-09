@@ -14,42 +14,53 @@ phasePrefabs:
       prefabNodeRef: #cqa..._pr_...
 ```
 
-The supported ownership rule is:
+For the book's mod-owned examples, the conservative authoring convention is:
 
-> A questphase declares each quest-prefab root it uses directly.
+> Declare a quest-prefab root on the root questphase that activates the
+> world-aware flow. When an independently registered external child directly
+> uses the same root, duplicate the declaration only as an explicit
+> compatibility choice and test that exact arrangement.
 
-“Uses directly” includes nodes in that resource whose journal/mappin, spawn,
-scene, trigger, device, or other world behavior resolves a NodeRef beneath the
-prefab root.
+This is a supported convention for the examples, not a universal native
+ownership law. A retained vanilla external child directly uses trigger
+NodeRefs while its own root `phasePrefabs` is empty; its parent root declares
+the prefab. That is **Observed in vanilla**, but the inheritance and activation
+lifetime responsible for it have not been isolated.
 
 **Structurally validated:** Lab 1 has `phasePrefabs: []` because its
 questphase has no NodeRef. Its journal resource contains default zero-valued
 world fields, but the executable graph does not address a world object.
 
-## Child resources own their dependencies
+## External-child dependency boundary
 
 An external child is a separate `questQuestPhaseResource` with its own
-`phasePrefabs` list. In the validated research shape:
+`phasePrefabs` list. Inspected resources show more than one arrangement:
 
-- the parent lists prefab roots it uses directly;
-- the child lists prefab roots it uses directly;
-- the parent's `questPhaseNodeDefinition.phaseInstancePrefabs` can remain
-  empty when the external child declares its own root dependencies.
+- a mod-owned research shape duplicates a directly used root on parent and
+  child;
+- a retained vanilla street-story root declares the prefab while its external
+  open-world child has empty root `phasePrefabs` and still uses nested trigger
+  NodeRefs;
+- the inspected phase nodes in that vanilla pair have empty
+  `phaseInstancePrefabs`.
 
-Do not infer transitive inheritance. If both parent and child directly address
-objects under the same prefab root, both resources declare that root.
+These observations disprove mandatory child duplication, but they do not prove
+a general transitive-inheritance rule. Treat both omission and duplication as
+lifecycle-sensitive until the exact root/child activation shape is tested.
 
 ```text
-parent.questphase
-  directly uses #quest_pr_root/... -> parent.phasePrefabs includes root
+root.questphase
+  phasePrefabs includes #quest_pr_root
   invokes child.questphase
 
 child.questphase
-  directly uses #quest_pr_root/... -> child.phasePrefabs includes root
+  directly uses #quest_pr_root/...
+  phasePrefabs may be empty or may duplicate the root in inspected shapes
 ```
 
-This duplication reflects direct ownership in two resources; it is not the
-same as copying every child dependency into every ancestor.
+When using duplication as the book's conservative mod convention, record it
+as a deliberate tested choice. Do not copy every child dependency into every
+ancestor without understanding which phase activates the world-aware flow.
 
 ## Phase-instance dependencies
 
@@ -58,10 +69,10 @@ location associated with the phase-node activation shape, including inspected
 inline-phase patterns. It is not interchangeable with the child resource's
 root `phasePrefabs`.
 
-The external-child examples used by this book keep
-`phaseInstancePrefabs: []` and let each child resource declare what it uses.
-Treat other arrangements as **Observed in vanilla** or **Experimental** until
-their inline/external lifecycle has been isolated.
+The inspected external-child examples keep `phaseInstancePrefabs: []`, but
+their root-level declarations differ as described above. Treat any claimed
+relationship among root `phasePrefabs`, node `phaseInstancePrefabs`, and
+external-child lifetime as **Experimental** until that arrangement is isolated.
 
 ## A prefab entry does not create the world
 
@@ -89,13 +100,16 @@ dependency was not declared.
 For each phase resource:
 
 1. Inventory every non-zero NodeRef used by its nodes and payloads.
-2. Group relative `#...` references by quest-prefab root.
-3. Confirm each directly used root appears in `phasePrefabs`.
-4. Confirm the world-side resources bind that root and register each child.
-5. Inspect each external child independently.
-6. Review `phaseInstancePrefabs` on phase nodes instead of assuming it inherits
-   or replaces root dependencies.
-7. Test activation and cleanup from a controlled save.
+2. Group local `#...` references by the root that gives them context.
+3. Inventory root `phasePrefabs` and node `phaseInstancePrefabs` without
+   assuming either collection automatically owns every direct use.
+4. Confirm the world-side resources bind the intended root and register each
+   child.
+5. Inspect each external child independently and record whether its root
+   declaration is present, duplicated, or omitted.
+6. Choose a deliberate arrangement, keep it stable for the candidate, and do
+   not infer transitive inheritance from one successful lookup.
+7. Test activation, unload/reload, and cleanup from a controlled save.
 
 World-aware examples must retain depot paths and hashes for the mod-owned
 resources. Vanilla comparisons should cite paths and teach extraction; they

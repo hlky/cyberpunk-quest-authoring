@@ -14,13 +14,16 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 
 **Lab 2 runtime evidence:** **Experimental** — pending.
 
+**Lab 3 runtime evidence:** **Experimental** — pending.
+
 | Stage | Status on 2026-08-09 |
 | --- | --- |
 | 0 — audit and validation baseline | Complete; committed and published |
 | 1 — zero-assumption start and Lab 1 closeout | Complete; runtime evidence is governed by the dedicated marker and canonical acceptance record |
 | 2 — journal, UI, and localization | Complete; seven substantive chapters, a deterministic lookup diagram, and Lab 1 semantic checks |
 | 3 — conditions and gates plus Lab 2 | Complete; eight control/reference chapters, a three-page practical lab, two deterministic checkpoints, an exact 21-node graph, and schema-v3 two-variant acceptance |
-| 4–9 | Planned below |
+| 4 — world integration plus Lab 3 | Complete; ten world chapters, two deterministic six-resource checkpoints, three exact/conceptual SVGs, and schema-v3 eight-run acceptance |
+| 5–9 | Planned below |
 
 ## Completion standard
 
@@ -54,14 +57,14 @@ record supports that label.
 | Lab 1 — First Signal | Structurally validated design and completed checkpoint | Manual WolvenKit procedure and retained clean-save runtime acceptance |
 | Conditions and gates | Placeholder | All control semantics, condition families, and Lab 2 |
 | Journal, UI, and localization | Placeholder | Journal trees, states, mappins, messages/files, and three localization lookup systems |
-| World integration | Placeholder | Streaming ownership, prefabs, NodeRefs, triggers, markers, devices, and Lab 3 |
+| World integration | Complete Stage 4 first pass | Lab 3 runtime class is governed by its retained clean-save acceptance record |
 | Communities and characters | Placeholder | Community lifecycle, spawn readiness, AI, entity, appearance, and Lab 5 prerequisites |
 | Scenes | Placeholder | Resource anatomy, screenplay graph, IDs, localization, quest handoff, audio, and cleanup |
 | Gameplay patterns | Placeholder | Evidence-backed cookbook pages organized by player behavior |
 | Braindance | Experimental scope notice | Bounded conceptual/resource pages and the eight-case runtime boundary |
 | Troubleshooting | Placeholder | Symptom-led diagnosis, isolation, logs, clean-save tests, and crash boundaries |
 | Reference | Three focused notes | Glossary, resource/node/condition indexes, evidence matrix, and vanilla path index |
-| Labs 2–5 | Absent | Projects, exact diagrams, tutorials, downloads, and acceptance records |
+| Labs 4–5 | Absent | Projects, exact diagrams, tutorials, downloads, and acceptance records |
 
 At audit time, the table of contents had no missing file targets or orphaned
 reader-facing Markdown. Its weakness was depth: nine category pages were short
@@ -149,6 +152,9 @@ to succeed, and smoke-test affected pages and downloads.
 - ship Lab 2 start/completed checkpoints and exact graphs.
 
 ### Stage 4 — world integration plus Lab 3
+
+Status: **Complete** on 2026-08-09. Runtime behavior is governed by the Lab 3
+acceptance record and synchronized status marker above.
 
 - teach streaming blocks/sectors, inplace packages, quest prefabs, NodeRefs,
   triggers, markers, mappins, navigation endpoints, and device identity;

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa003 resource ownership and reference chain — Experimental</title>
+<desc id="svg-desc">Resource ownership and NodeRef lookup chain for cqa003. The questphase phasePrefabs entry matches the Quest descriptor&#x27;s prefab root, which resolves the quest sector containing reach and leave triggers. A separate AlwaysLoaded descriptor resolves the sector that owns the marker. Diagram evidence state: pending; runtime test date: Not yet recorded.</desc>
+<metadata>{&quot;evidence&quot;:{&quot;class&quot;:&quot;experimental&quot;,&quot;date&quot;:null,&quot;status&quot;:&quot;pending&quot;},&quot;sources&quot;:[&quot;mod/cqa/cqa003/phases/cqa003.questphase&quot;,&quot;mod/cqa/cqa003/world/cqa003_boundary.streamingblock&quot;,&quot;mod/cqa/cqa003/world/cqa003_boundary.streamingsector&quot;,&quot;mod/cqa/cqa003/world/cqa003_always_loaded.streamingsector&quot;]}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/>
+</marker>
+<style>
+    .background { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 29px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 15px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .panel { fill: #181f2a; stroke: #465266; stroke-width: 1.5; }
+    .panel-title { fill: #f7f9fc; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .edge-label { fill: #d7dde7; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace;
+                  text-anchor: middle; paint-order: stroke; stroke: #10151d;
+                  stroke-width: 5px; stroke-linejoin: round; }
+    .lookup-edge { fill: none; stroke: #d8dee9; stroke-width: 2.2; stroke-dasharray: 3 8;
+                   stroke-linecap: round; marker-end: url(#arrow); }
+    .quest-resource { fill: #293a63; stroke: #84a9ff; stroke-width: 2; }
+    .world-resource { fill: #174f54; stroke: #62d7dc; stroke-width: 2; }
+    .descriptor { fill: #233b46; stroke: #88ced2; stroke-width: 1.5; }
+    .owned-node { fill: #255a55; stroke: #83e1cf; stroke-width: 1.5; }
+    .resource-title { fill: #ffffff; font: 700 16px system-ui, sans-serif; }
+    .resource-type { fill: #dce2eb; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .resource-value { fill: #f3f5f8; font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .ownership-note { fill: #8ee6d9; font: 700 12px system-ui, sans-serif; letter-spacing: .04em; }
+
+</style>
+</defs>
+<rect class="background" width="1600" height="900"/>
+<text class="title" x="48" y="52">cqa003 resource ownership and reference chain</text>
+<text class="subtitle" x="48" y="82">Dotted arrows are resource or NodeRef lookups; nesting shows ownership.</text>
+<rect class="badge" x="1340" y="29" width="212" height="38" rx="19"/>
+<text class="badge-text" x="1446" y="54">cqa003 • Experimental</text>
+<rect class="panel" x="28" y="110" width="1544" height="742" rx="16"/>
+<text class="ownership-note" x="52" y="142">QUESTPHASE DEPENDENCY</text>
+<rect class="quest-resource" x="52" y="230" width="360" height="210" rx="12"/>
+<text class="resource-title" x="76" y="266">questQuestPhaseResource</text>
+<text class="resource-type" x="76" y="296">phases\cqa003.questphase</text>
+<text class="resource-type" x="76" y="324">phasePrefabs[0].prefabNodeRef</text>
+<text class="resource-type" x="76" y="352">#cqa003_pr_boundary</text>
+<text class="note" x="76" y="409">Declares dependency; does not place nodes</text>
+<rect class="world-resource" x="470" y="145" width="500" height="625" rx="14"/>
+<text class="resource-title" x="494" y="180">worldStreamingBlock</text>
+<text class="resource-type" x="494" y="205">world\cqa003_boundary.streamingblock</text>
+<text class="ownership-note" x="494" y="232">OWNS TWO DESCRIPTORS</text>
+<rect class="descriptor" x="500" y="258" width="440" height="205" rx="10"/>
+<text class="resource-title" x="522" y="291">Quest descriptor</text>
+<text class="resource-value" x="522" y="320">category: Quest</text>
+<text class="resource-value" x="522" y="347">questPrefabNodeRef:</text>
+<text class="resource-value" x="522" y="374">$/mod/cqa/cqa003/#cqa003_pr_boundary</text>
+<text class="resource-value" x="522" y="401">data → cqa003_boundary.streamingsector</text>
+<rect class="descriptor" x="500" y="520" width="440" height="180" rx="10"/>
+<text class="resource-title" x="522" y="553">AlwaysLoaded descriptor</text>
+<text class="resource-value" x="522" y="582">category: AlwaysLoaded</text>
+<text class="resource-value" x="522" y="611">data →</text>
+<text class="resource-value" x="522" y="640">cqa003_always_loaded.streamingsector</text>
+<rect class="world-resource" x="1040" y="145" width="500" height="340" rx="14"/>
+<text class="resource-title" x="1064" y="180">Quest streaming sector</text>
+<text class="resource-type" x="1064" y="205">cqa003_boundary.streamingsector</text>
+<text class="ownership-note" x="1064" y="232">OWNS PLACED TRIGGER NODES</text>
+<rect class="owned-node" x="1070" y="260" width="210" height="175" rx="10"/>
+<text class="resource-title" x="1091" y="294">Reach trigger</text>
+<text class="resource-value" x="1091" y="324">#cqa003_tr_reach</text>
+<text class="resource-value" x="1091" y="349">full child ref:</text>
+<text class="resource-value" x="1091" y="374">…/#cqa003_tr_reach</text>
+<text class="resource-value" x="1091" y="399">r=25m • h=12m</text>
+<rect class="owned-node" x="1300" y="260" width="210" height="175" rx="10"/>
+<text class="resource-title" x="1321" y="294">Leave trigger</text>
+<text class="resource-value" x="1321" y="324">#cqa003_tr_leave</text>
+<text class="resource-value" x="1321" y="349">full child ref:</text>
+<text class="resource-value" x="1321" y="374">…/#cqa003_tr_leave</text>
+<text class="resource-value" x="1321" y="399">r=110m • h=16m</text>
+<rect class="world-resource" x="1040" y="520" width="500" height="210" rx="14"/>
+<text class="resource-title" x="1064" y="555">AlwaysLoaded streaming sector</text>
+<text class="resource-type" x="1064" y="580">cqa003_always_loaded.streamingsector</text>
+<text class="ownership-note" x="1064" y="608">OWNS PLACED MARKER NODE</text>
+<rect class="owned-node" x="1080" y="630" width="420" height="70" rx="10"/>
+<text class="resource-title" x="1102" y="659">Checkpoint marker</text>
+<text class="resource-value" x="1102" y="684">#cqa003_mp_checkpoint  •  full child ref …/#cqa003_mp_checkpoint</text>
+<path class="lookup-edge" d="M 412 335 H 500"/>
+<text class="edge-label" x="456" y="320">prefab root</text>
+<path class="lookup-edge" d="M 940 360 H 1040"/>
+<text class="edge-label" x="990" y="345">resource path</text>
+<path class="lookup-edge" d="M 940 610 H 1040"/>
+<text class="edge-label" x="990" y="595">resource path</text>
+<text class="note" x="52" y="818">Matching the prefab root permits lookup; the sector still owns each concrete placed node.</text>
+<text class="note" x="1540" y="818" text-anchor="end">Experimental — runtime evidence pending • test date: Not yet recorded</text>
+</svg>

@@ -41,6 +41,8 @@ The project originated from:
 
 **Lab 2 runtime evidence:** **Experimental** — pending.
 
+**Lab 3 runtime evidence:** **Experimental** — pending.
+
 The local repository is initialized at:
 
 `H:\cyberpunk-quest-authoring`
@@ -71,7 +73,14 @@ It has:
   catalog chapters;
 - a designed and structurally validated Lab 2 reference project with start and
   completed checkpoints, an exact 21-node/22-edge SVG, manual WolvenKit
-  authoring, and a two-candidate acceptance record.
+  authoring, and a two-candidate acceptance record;
+- substantive world-integration chapters covering streaming ownership,
+  prefab/NodeRef chains, sector placement, triggers, markers/navigation,
+  devices/persistence, and vanilla-location research;
+- a designed and structurally validated Lab 3 reference project with two
+  six-resource checkpoints, an exact 16-node/16-edge graph, resource and
+  trigger-volume diagrams, manual WolvenKit authoring, and an eight-run
+  acceptance record.
 
 ## Research evidence available in Ghostline
 
@@ -602,11 +611,11 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0–3 completed the validation baseline, zero-assumption
+published. Stages 0–4 completed the validation baseline, zero-assumption
 onboarding, Lab 1, Journal/UI/localization, Conditions and gates, and the
-structurally validated Lab 2. The next delivery stage is World integration
-with Lab 3. Runtime labels are promoted only when retained clean-save evidence
-supports them.
+structurally validated Labs 2 and 3 plus World integration. The next delivery
+stage is root/child composition with Lab 4. Runtime labels are promoted only
+when retained clean-save evidence supports them.
 
 ## Resolved decisions
 
@@ -616,6 +625,9 @@ supports them.
 - Lab 2 is `cqa002`, titled “Signal Race”; its canonical project sets test
   mode `2`, while a single-property source edit to mode `1` exercises the
   alternate acceptance route on a separate untouched save.
+- Lab 3 is `cqa003`, titled “Boundary Check”; it keeps triggers in a Quest
+  sector, the marker in a separate AlwaysLoaded sector, and uses state-shaped
+  `IsInside`/`IsOutside` gates whose runtime behavior remains Experimental.
 - Exact diagrams use WolvenKit CR2W-JSON plus layout-only overrides and a
   checked structural fingerprint.
 - Release ZIPs will be built automatically from the checked example projects.

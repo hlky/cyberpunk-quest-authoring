@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: CC-BY-4.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">cqa003 polygonal trigger-volume plan — Experimental</title>
+<desc id="svg-desc">Top-down and orthographic elevation views of the cqa003 concentric polygonal trigger prisms centered at x minus 1000.02 and y 1497.2208. The reach trigger is a 16-gon with circumradius 25 metres, base z 2.3, and height 12 metres; the leave trigger is a 20-gon with circumradius 110 metres, base z 0.3, and height 16 metres. Both volume centers are at z 8.3. A marker sits at the common x and y center and a player path enters the reach volume before leaving the larger volume. Diagram evidence state: pending; runtime test date: Not yet recorded.</desc>
+<metadata>{&quot;center&quot;:{&quot;x&quot;:-1000.02,&quot;y&quot;:1497.2208},&quot;evidence&quot;:{&quot;class&quot;:&quot;experimental&quot;,&quot;date&quot;:null,&quot;status&quot;:&quot;pending&quot;},&quot;leave&quot;:{&quot;base_z&quot;:0.3,&quot;circumradius_m&quot;:110,&quot;height_m&quot;:16,&quot;point_count&quot;:20,&quot;top_z&quot;:16.3},&quot;reach&quot;:{&quot;base_z&quot;:2.3,&quot;circumradius_m&quot;:25,&quot;height_m&quot;:12,&quot;point_count&quot;:16,&quot;top_z&quot;:14.3}}</metadata>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+        markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+  <path d="M 0 0 L 10 5 L 0 10 z" fill="#c9d1dc"/>
+</marker>
+<marker id="dim-arrow" viewBox="0 0 10 10" refX="5" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M 10 0 L 0 5 L 10 10" fill="none" stroke="#d8dee9" stroke-width="1.5"/>
+</marker>
+<style>
+    .background { fill: #10151d; }
+    .title { fill: #f7f9fc; font: 700 29px system-ui, sans-serif; }
+    .subtitle { fill: #aeb8c8; font: 15px system-ui, sans-serif; }
+    .badge { fill: #4a3200; stroke: #f5b942; stroke-width: 1.5; }
+    .badge-text { fill: #ffd982; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .panel { fill: #181f2a; stroke: #465266; stroke-width: 1.5; }
+    .panel-title { fill: #f7f9fc; font: 700 18px system-ui, sans-serif; }
+    .label { fill: #f7f9fc; font: 600 14px system-ui, sans-serif; }
+    .detail { fill: #dce2eb; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .note { fill: #bac4d3; font: 13px system-ui, sans-serif; }
+    .edge-label { fill: #d7dde7; font: 12px ui-monospace, SFMono-Regular, Consolas, monospace;
+                  text-anchor: middle; paint-order: stroke; stroke: #10151d;
+                  stroke-width: 5px; stroke-linejoin: round; }
+    .leave-volume { fill: #174f54; fill-opacity: .32; stroke: #62d7dc; stroke-width: 3;
+                    stroke-dasharray: 10 8; }
+    .reach-volume { fill: #6b4a00; fill-opacity: .56; stroke: #f5b942; stroke-width: 3; }
+    .center-line { fill: none; stroke: #9aa4b2; stroke-width: 1.5; stroke-dasharray: 4 6; }
+    .player-path { fill: none; stroke: #f2f5f8; stroke-width: 4; stroke-linecap: round;
+                   marker-end: url(#arrow); }
+    .marker-pin { fill: #c35a91; stroke: #ffadd4; stroke-width: 2; }
+    .step { fill: #293a63; stroke: #9cb8ff; stroke-width: 2; }
+    .step-number { fill: #ffffff; font: 700 14px system-ui, sans-serif; text-anchor: middle; }
+    .dimension { fill: none; stroke: #d8dee9; stroke-width: 1.5; marker-start: url(#dim-arrow);
+                 marker-end: url(#dim-arrow); }
+    .prism-line { stroke-width: 3; }
+    .leave-line { stroke: #62d7dc; stroke-dasharray: 10 8; }
+    .reach-line { stroke: #f5b942; }
+    .volume-label { fill: #ffffff; font: 700 15px system-ui, sans-serif;
+                    paint-order: stroke; stroke: #10151d; stroke-width: 4px; }
+
+</style>
+</defs>
+<rect class="background" width="1600" height="900"/>
+<text class="title" x="48" y="52">cqa003 trigger-volume plan</text>
+<text class="subtitle" x="48" y="82">Concentric 16/20-gon prisms centered at (-1000.02, 1497.2208) • dimensions in metres</text>
+<rect class="badge" x="1340" y="29" width="212" height="38" rx="19"/>
+<text class="badge-text" x="1446" y="54">cqa003 • Experimental</text>
+<rect class="panel" x="30" y="112" width="900" height="720" rx="16"/>
+<text class="panel-title" x="56" y="148">Top-down plan</text>
+<polygon class="leave-volume" points="750.000,470.000 736.785,553.435 698.435,628.702 638.702,688.435 563.435,726.785 480.000,740.000 396.565,726.785 321.298,688.435 261.565,628.702 223.215,553.435 210.000,470.000 223.215,386.565 261.565,311.298 321.298,251.565 396.565,213.215 480.000,200.000 563.435,213.215 638.702,251.565 698.435,311.298 736.785,386.565"/>
+<polygon class="reach-volume" points="541.364,470.000 536.693,493.483 523.391,513.391 503.483,526.693 480.000,531.364 456.517,526.693 436.609,513.391 423.307,493.483 418.636,470.000 423.307,446.517 436.609,426.609 456.517,413.307 480.000,408.636 503.483,413.307 523.391,426.609 536.693,446.517"/>
+<path class="center-line" d="M 190 470 H 770 M 480 180 V 760"/>
+<path class="player-path" d="M 110 720 C 190 635 280 575 390 520 C 430 500 460 480 480 470 C 585 410 690 300 835 170"/>
+<circle class="step" cx="170" cy="655" r="15"/>
+<text class="step-number" x="170" y="660">1</text>
+<text class="label" x="105" y="684">approach</text>
+<circle class="step" cx="447" cy="487" r="15"/>
+<text class="step-number" x="447" y="492">2</text>
+<text class="label" x="382" y="545">IsInside reach</text>
+<circle class="step" cx="756" cy="241" r="15"/>
+<text class="step-number" x="756" y="246">3</text>
+<text class="label" x="700" y="215">IsOutside leave</text>
+<path class="marker-pin" d="M 480 427 C 458 427 446 444 446 461 C 446 487 480 516 480 516 C 480 516 514 487 514 461 C 514 444 502 427 480 427 Z"/>
+<circle cx="480" cy="461" r="9" fill="#10151d"/>
+<text class="label" x="526" y="451">checkpoint marker</text>
+<text class="detail" x="526" y="474">same X/Y center</text>
+<text class="volume-label" x="222" y="184">Leave trigger</text>
+<text class="detail" x="222" y="207">20-gon • circumradius 110m • dashed</text>
+<text class="volume-label" x="495" y="360">Reach trigger</text>
+<text class="detail" x="495" y="383">16-gon • circumradius 25m • solid</text>
+<path class="dimension" d="M 480 774 H 750"/>
+<text class="edge-label" x="615" y="801">110m radius</text>
+<text class="note" x="56" y="814">Player sequence: enter the 25m reach prism, then exit the 110m leave prism.</text>
+<rect class="panel" x="970" y="112" width="600" height="720" rx="16"/>
+<text class="panel-title" x="996" y="148">Orthographic elevation</text>
+<text class="note" x="996" y="174">World-Z bases and tops • both centers at z = 8.3</text>
+<path class="center-line" d="M 1020 510 H 1520"/>
+<rect class="leave-volume prism-line" x="1085" y="310" width="370" height="400"/>
+<rect class="reach-volume prism-line" x="1228" y="360" width="84" height="300"/>
+<path class="dimension" d="M 1490 310 V 710"/>
+<text class="volume-label" x="1512" y="517">h = 16m</text>
+<path class="dimension" d="M 1190 360 V 660"/>
+<text class="volume-label" x="1172" y="517" text-anchor="end">h = 12m</text>
+<text class="volume-label" x="1004" y="250">Leave prism</text>
+<text class="detail" x="1004" y="274">20-gon prism • circumradius 110m</text>
+<text class="volume-label" x="1004" y="370">Reach prism</text>
+<text class="detail" x="1004" y="394">16-gon prism • circumradius 25m</text>
+<text class="detail" x="1458" y="304">top z = 16.3</text>
+<text class="detail" x="1458" y="730">base z = 0.3</text>
+<text class="detail" x="1218" y="354" text-anchor="end">top z = 14.3</text>
+<text class="detail" x="1218" y="680" text-anchor="end">base z = 2.3</text>
+<text class="detail" x="1518" y="505" text-anchor="end">center z = 8.3</text>
+<text class="note" x="1270" y="785" text-anchor="middle">Orthographic resource geometry — not a terrain profile</text>
+<text class="note" x="1540" y="818" text-anchor="end">Experimental — runtime evidence pending • test date: Not yet recorded</text>
+</svg>

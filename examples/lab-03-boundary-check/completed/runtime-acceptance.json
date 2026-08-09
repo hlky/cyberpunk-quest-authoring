@@ -1,0 +1,375 @@
+{
+  "schema_version": 3,
+  "example_id": "cqa003",
+  "status": "pending",
+  "evidence_class": "experimental",
+  "required_environment": {
+    "cyberpunk_2077": "2.31a",
+    "wolvenkit": "8.19.0",
+    "archive_xl": "1.27.0",
+    "red4ext": "1.30.0",
+    "redscript": "0.5.31"
+  },
+  "candidates": [
+    {
+      "id": "canonical",
+      "manifest": "example.json",
+      "installed_files": [
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab03_BoundaryCheck.archive",
+          "sha256": null
+        },
+        {
+          "path": "archive\\pc\\mod\\CQA_Lab03_BoundaryCheck.archive.xl",
+          "sha256": null
+        }
+      ],
+      "depot_paths": [
+        "mod\\cqa\\cqa003\\phases\\cqa003.questphase",
+        "mod\\cqa\\cqa003\\journal\\cqa003.journal",
+        "mod\\cqa\\cqa003\\localization\\en-us\\onscreens\\cqa003.json",
+        "mod\\cqa\\cqa003\\world\\cqa003_boundary.streamingblock",
+        "mod\\cqa\\cqa003\\world\\cqa003_boundary.streamingsector",
+        "mod\\cqa\\cqa003\\world\\cqa003_always_loaded.streamingsector"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "id": "clean-walk",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-reach",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "pre-reach-reload",
+      "candidate_id": "canonical",
+      "save_state": "active-before-reach",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "between-boundaries-reload",
+      "candidate_id": "canonical",
+      "save_state": "reach-succeeded-inside-leave",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "stream-away-return",
+      "candidate_id": "canonical",
+      "save_state": "active-before-reach",
+      "save_provenance": "canonical-clean-derived",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "fast-travel-exit",
+      "candidate_id": "canonical",
+      "save_state": "reach-succeeded-inside-leave",
+      "save_provenance": "fast-travel-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "completed-reload",
+      "candidate_id": "canonical",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "completed-reinstall",
+      "candidate_id": "canonical",
+      "save_state": "completed",
+      "save_provenance": "canonical-completed",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    },
+    {
+      "id": "clean-replay",
+      "candidate_id": "canonical",
+      "save_state": "untouched-preinstall-outside-reach",
+      "save_provenance": "canonical-original",
+      "performed_at": null,
+      "tester": null,
+      "observed_environment": {
+        "cyberpunk_2077": null,
+        "wolvenkit": null,
+        "archive_xl": null,
+        "red4ext": null,
+        "redscript": null
+      },
+      "save": {
+        "label": null,
+        "slot_directory": null,
+        "artifact": "sav.dat",
+        "created_before_first_install": null,
+        "sha256": null
+      },
+      "logs": [
+        { "path": "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log", "sha256": null },
+        { "path": "red4ext\\logs\\red4ext.log", "sha256": null },
+        { "path": "red4ext\\logs\\game.log", "sha256": null },
+        { "path": "r6\\logs\\redscript_rCURRENT.log", "sha256": null }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "outside-negative-control-and-foot-route",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-walk"],
+      "precondition": "Install the canonical candidate and load an untouched pre-Lab-3 save with the player outside the 25-metre reach volume.",
+      "expected": "Waiting outside does not advance the reach objective. Entering the reach volume retires the pin and succeeds the reach objective once; remaining inside the 110-metre leave volume does not complete; crossing its boundary on foot succeeds the leave objective and quest once.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "marker-and-navigation",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-walk"],
+      "precondition": "Observe the journal objective, map pin, minimap, and route before entering the reach volume.",
+      "expected": "The checkpoint pin is visible at the intended location and any GPS route is usable; record missing, displaced, inaccessible, or unstable presentation without inferring the hidden sector owner from UI alone.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "pre-reach-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["pre-reach-reload"],
+      "precondition": "Save after activation while still outside the reach volume, then reload without changing the installation.",
+      "expected": "The active reach objective and pin return once; entering the reach volume advances once with no duplicate journal update.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "between-boundaries-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["between-boundaries-reload"],
+      "precondition": "Save after reach succeeds while the player remains inside the 110-metre leave volume, then reload.",
+      "expected": "The leave objective remains active and does not complete until the player crosses outside the leave volume after reload.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "stream-away-and-return",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["stream-away-return"],
+      "precondition": "Restore the exact hash-bound pre-reach save used by the pre-reach-reload run; by ordinary movement travel from Allen Street well beyond the finite Quest descriptor box without using fast travel, return by ordinary movement, and then walk the full route.",
+      "expected": "The visible objective and pin remain coherent and the returned reach and leave crossings each advance once. Logs contain no cqa003 streaming or NodeRef resolution error. No precise unload or reload moment is claimed without independent instrumentation.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "fast-travel-characterization",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["fast-travel-exit"],
+      "precondition": "From a separate between-boundaries save, reach the unlocked Allen Street terminal by ordinary movement while the leave objective remains visibly active; record the pre-activation position and Z, use an unlocked destination independently known to be outside the 110-metre leave outline, and record the arrival position.",
+      "expected": "If leave completes before the terminal opens, mark this required case failed and retain the position evidence; do not continue it as a fast-travel characterization. Otherwise record whether the state-shaped IsOutside gate completes after arrival and bind the result to the exact candidate and logs.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reload",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["completed-reload"],
+      "precondition": "Save after ordinary completion and reload without changing the installation.",
+      "expected": "No quest, objective, or pin reactivation occurs. Exact graph evidence maps the bypass to the cqa003_completed guard's False route.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "completed-save-reinstall",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["completed-reinstall"],
+      "precondition": "Remove and reinstall the identical canonical candidate, then load its completed save.",
+      "expected": "The quest remains completed, the pin stays inactive, and no duplicate activation occurs.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "clean-replay",
+      "required": true,
+      "status": "pending",
+      "run_ids": ["clean-replay"],
+      "precondition": "Reload the original untouched pre-install save with the canonical candidate still installed and walk the route again.",
+      "expected": "The same visible activation, reach, leave, and completion sequence occurs once.",
+      "observed": null,
+      "evidence": []
+    },
+    {
+      "id": "registration-and-lookup-logs",
+      "required": true,
+      "status": "pending",
+      "run_ids": [
+        "clean-walk",
+        "pre-reach-reload",
+        "between-boundaries-reload",
+        "stream-away-return",
+        "fast-travel-exit",
+        "completed-reload",
+        "completed-reinstall",
+        "clean-replay"
+      ],
+      "precondition": "Retain a fresh four-file RED4ext, ArchiveXL, game, and redscript log set from every execution.",
+      "expected": "All eight log sets contain no cqa003 registration, depot-path, streaming-block, sector, NodeRef, journal, localization, or condition error.",
+      "observed": null,
+      "evidence": []
+    }
+  ],
+  "promotion_rule": "Set status to passed and evidence_class to runtime-proven only when every required case passes and evidence binds the exact candidate build, all eight executions, the untouched pre-install save and every derived save, exact versions, visible observations, and all four logs for every execution."
+}

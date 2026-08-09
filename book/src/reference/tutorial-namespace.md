@@ -12,9 +12,11 @@ Authoring.
 | Localization keys | `cqa_cqa001_*` | Namespace and quest remain visible in global lookup tables |
 | WolvenKit project | `CQA_Lab01_OneShot` | Human-readable checkpoint name |
 
-Later labs extend the same quest rather than claiming unrelated global names.
-For example, Lab 2 uses `cqa002_*` only if it is a separate installed quest; an
-incremental checkpoint that still represents Lab 1 keeps `cqa001`.
+Each numbered lab is a separate installed quest and uses its own ID. Lab 2 is
+`cqa002` / `CQA_Lab02_SignalRace`; Lab 3 is `cqa003` /
+`CQA_Lab03_BoundaryCheck`. Start and completed checkpoints within one lab keep
+the same depot root, so they are alternatives and must not be installed
+together.
 
 The prefix is intentionally not `q`, `mq`, `sq`, `sts`, or another
 vanilla-looking family. Tutorial resources should be recognizable as mod-owned

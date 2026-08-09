@@ -25,6 +25,13 @@ source-edited runtime candidates.
 
 **Lab 2 runtime evidence:** **Experimental** — pending.
 
+The third tutorial, `cqa003`, adds a registered streaming block, Quest and
+AlwaysLoaded sectors, a quest-prefab/NodeRef chain, concentric reach/leave
+triggers, a static marker, and a journal map pin. Its six-resource checkpoints
+are structurally validated; the eight-run world/save matrix is still pending.
+
+**Lab 3 runtime evidence:** **Experimental** — pending.
+
 ## What this book will cover
 
 Cyberpunk quests span several resource systems:
