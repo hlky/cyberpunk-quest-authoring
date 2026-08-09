@@ -14,6 +14,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -21,13 +22,17 @@ from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path, PurePosixPath
 from types import ModuleType
+from collections.abc import Iterator
 from typing import Any, Callable
+from urllib.parse import unquote
 from zipfile import ZIP_DEFLATED, ZipFile
 
 
 sys.dont_write_bytecode = True
 
 ROOT = Path(__file__).resolve().parents[1]
+BOOK_SRC = ROOT / "book" / "src"
+SUMMARY = BOOK_SRC / "SUMMARY.md"
 LAB = ROOT / "examples" / "lab-01-one-shot"
 COMPLETED = LAB / "completed"
 SOURCE_ROOT = COMPLETED / "source"
@@ -50,6 +55,11 @@ LAB_STATUS_PAGES = (
     ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
     ROOT / "book" / "src" / "start-here" / "install-and-test.md",
     ROOT / "book" / "src" / "questphases" / "index.md",
+    ROOT / "book" / "src" / "journal" / "index.md",
+    ROOT / "book" / "src" / "journal" / "trees-and-paths.md",
+    ROOT / "book" / "src" / "journal" / "quest-state.md",
+    ROOT / "book" / "src" / "journal" / "localization-paths.md",
+    ROOT / "book" / "src" / "journal" / "rewards-and-completion.md",
 )
 LAB_PRACTICAL_PAGES = (
     ROOT / "book" / "src" / "start-here" / "lab-01.md",
@@ -59,6 +69,29 @@ LAB_PRACTICAL_PAGES = (
 QUEST_SOURCE_RELPATH = Path(
     "examples/lab-01-one-shot/completed/source/raw/"
     "mod/cqa/cqa001/phases/cqa001.questphase.json"
+)
+QUEST_RAW = ROOT / QUEST_SOURCE_RELPATH
+JOURNAL_RAW = (
+    COMPLETED
+    / "source"
+    / "raw"
+    / "mod"
+    / "cqa"
+    / "cqa001"
+    / "journal"
+    / "cqa001.journal.json"
+)
+LOCALIZATION_RAW = (
+    COMPLETED
+    / "source"
+    / "raw"
+    / "mod"
+    / "cqa"
+    / "cqa001"
+    / "localization"
+    / "en-us"
+    / "onscreens"
+    / "cqa001.json.json"
 )
 BUILD_SCRIPT = ROOT / "scripts" / "build_lab01_sources.py"
 RENDER_SCRIPT = ROOT / "scripts" / "render_quest_graph.py"
@@ -183,6 +216,9 @@ EXPECTED_ROOT_TYPES = {
     ".questphase": "questQuestPhaseResource",
     ".json": "JsonResource",
 }
+MARKDOWN_LINK_PATTERN = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+MARKDOWN_FENCE_PATTERN = re.compile(r"^\s*(`{3,}|~{3,})")
+MARKDOWN_HEADING_PATTERN = re.compile(r"^\s{0,3}#{1,6}\s+(.+?)\s*$")
 
 
 class ValidationError(RuntimeError):
@@ -846,6 +882,301 @@ def validate_reader_evidence_status(info: ManifestInfo) -> None:
         )
 
 
+def markdown_target(raw_target: str) -> str:
+    target = raw_target.strip()
+    if target.startswith("<"):
+        end = target.find(">")
+        require(end > 1, f"invalid angle-bracket Markdown target {raw_target!r}")
+        return target[1:end]
+    return target.split(maxsplit=1)[0]
+
+
+def markdown_visible_text(text: str) -> str:
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.DOTALL)
+    visible: list[str] = []
+    fence_char: str | None = None
+    fence_length = 0
+    for line in text.splitlines():
+        match = MARKDOWN_FENCE_PATTERN.match(line)
+        if match:
+            marker = match.group(1)
+            if fence_char is None:
+                fence_char = marker[0]
+                fence_length = len(marker)
+            elif marker[0] == fence_char and len(marker) >= fence_length:
+                fence_char = None
+                fence_length = 0
+            continue
+        if fence_char is None:
+            visible.append(line)
+    require(fence_char is None, "unterminated Markdown code fence")
+    return "\n".join(visible)
+
+
+def markdown_heading_ids(text: str) -> set[str]:
+    counts: dict[str, int] = {}
+    heading_ids: set[str] = set()
+    for line in markdown_visible_text(text).splitlines():
+        match = MARKDOWN_HEADING_PATTERN.match(line)
+        if not match:
+            continue
+        heading = re.sub(r"\s+#+\s*$", "", match.group(1)).strip()
+        heading = re.sub(r"<[^>]*>", "", heading)
+        heading = re.sub(r"[^\w\-\s]", "", heading, flags=re.UNICODE)
+        base = re.sub(r"\s+", "-", heading.strip().lower())
+        if not base:
+            continue
+        duplicate_index = counts.get(base, 0)
+        counts[base] = duplicate_index + 1
+        heading_ids.add(base if duplicate_index == 0 else f"{base}-{duplicate_index}")
+    return heading_ids
+
+
+def validate_book_links_and_summary() -> None:
+    summary_text = markdown_visible_text(SUMMARY.read_text(encoding="utf-8"))
+    raw_summary_targets = [
+        markdown_target(match.group(1))
+        for match in MARKDOWN_LINK_PATTERN.finditer(summary_text)
+    ]
+    summary_targets = [target for target in raw_summary_targets if target.split("#", 1)[0].endswith(".md")]
+    normalized_summary: list[str] = []
+    for target in summary_targets:
+        path_only = target.split("#", 1)[0]
+        require(
+            not path_only.startswith("/")
+            and "\\" not in path_only
+            and ":" not in path_only.split("/", 1)[0]
+            and all(part not in {"", ".", ".."} for part in path_only.split("/")),
+            f"{display(SUMMARY)}: unsafe chapter target {target!r}",
+        )
+        normalized = PurePosixPath(path_only).as_posix()
+        require((BOOK_SRC / normalized).is_file(), f"{display(SUMMARY)}: missing chapter {normalized}")
+        normalized_summary.append(normalized)
+
+    require(
+        len(normalized_summary) == len(set(normalized_summary)),
+        f"{display(SUMMARY)}: duplicate chapter target",
+    )
+    actual_pages = {
+        path.relative_to(BOOK_SRC).as_posix()
+        for path in BOOK_SRC.rglob("*.md")
+        if path.resolve() != SUMMARY.resolve()
+    }
+    require(
+        set(normalized_summary) == actual_pages,
+        f"{display(SUMMARY)} chapter coverage: "
+        + describe_set_difference(actual_pages, set(normalized_summary)),
+    )
+
+    generated_downloads = {f"downloads/{name}" for name in CHECKPOINTS}
+    heading_cache: dict[Path, set[str]] = {}
+    for page in sorted(BOOK_SRC.rglob("*.md")):
+        visible_text = markdown_visible_text(page.read_text(encoding="utf-8"))
+        for match in MARKDOWN_LINK_PATTERN.finditer(visible_text):
+            target = markdown_target(match.group(1))
+            if re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", target):
+                require(
+                    target.startswith(("https://", "http://", "mailto:")),
+                    f"{display(page)}: unsupported link scheme in {target!r}",
+                )
+                continue
+            target_without_query = target.split("?", 1)[0]
+            path_only, separator, fragment = target_without_query.partition("#")
+            require(not path_only.startswith(("/", "\\")), f"{display(page)}: absolute local link {target!r}")
+            require("\\" not in path_only, f"{display(page)}: local Markdown link must use forward slashes: {target!r}")
+            resolved = page.resolve() if not path_only else (
+                page.parent / Path(*PurePosixPath(path_only).parts)
+            ).resolve()
+            try:
+                relative = resolved.relative_to(BOOK_SRC.resolve()).as_posix()
+            except ValueError as error:
+                raise ValidationError(f"{display(page)}: local link escapes book/src: {target!r}") from error
+            if relative in generated_downloads:
+                continue
+            require(resolved.is_file(), f"{display(page)}: missing local link target {target!r}")
+            if separator and resolved.suffix.lower() == ".md":
+                if resolved not in heading_cache:
+                    heading_cache[resolved] = markdown_heading_ids(
+                        resolved.read_text(encoding="utf-8")
+                    )
+                decoded_fragment = unquote(fragment)
+                require(
+                    decoded_fragment in heading_cache[resolved],
+                    f"{display(page)}: missing Markdown heading #{decoded_fragment} in {display(resolved)}",
+                )
+
+
+def iter_json_objects(value: Any) -> Iterator[dict[str, Any]]:
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from iter_json_objects(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from iter_json_objects(child)
+
+
+def validate_lab01_journal_contract() -> None:
+    journal = load_json(JOURNAL_RAW)
+    quest = load_json(QUEST_RAW)
+    localization = load_json(LOCALIZATION_RAW)
+
+    root = journal["Data"]["RootChunk"]
+    require(root.get("$type") == "gameJournalResource", f"{display(JOURNAL_RAW)}: wrong root type")
+    root_entry = root.get("entry", {}).get("Data")
+    require(
+        isinstance(root_entry, dict) and root_entry.get("$type") == "gameJournalRootFolderEntry",
+        f"{display(JOURNAL_RAW)}: missing root folder entry",
+    )
+    descriptor = root_entry.get("descriptor", {})
+    require(
+        descriptor.get("DepotPath", {}).get("$value") == "base\\journal\\descriptor.journaldesc"
+        and descriptor.get("Flags") == "Soft",
+        f"{display(JOURNAL_RAW)}: descriptor contract changed",
+    )
+
+    journal_entries: dict[str, str] = {}
+    journal_entry_objects: dict[str, dict[str, Any]] = {}
+
+    def visit_entry(entry: Any, parent_parts: tuple[str, ...]) -> None:
+        require(isinstance(entry, dict), f"{display(JOURNAL_RAW)}: journal entry must be an object")
+        entry_id = entry.get("id")
+        parts = parent_parts
+        if entry_id is not None:
+            require(isinstance(entry_id, str) and entry_id, f"{display(JOURNAL_RAW)}: invalid journal entry id")
+            parts = (*parent_parts, entry_id)
+            real_path = "/".join(parts)
+            require(real_path not in journal_entries, f"{display(JOURNAL_RAW)}: duplicate journal path {real_path}")
+            journal_entries[real_path] = entry.get("$type")
+            journal_entry_objects[real_path] = entry
+        children = entry.get("entries", [])
+        require(isinstance(children, list), f"{display(JOURNAL_RAW)}: entries must be an array")
+        for child in children:
+            require(
+                isinstance(child, dict) and isinstance(child.get("Data"), dict),
+                f"{display(JOURNAL_RAW)}: journal child must be a populated handle",
+            )
+            visit_entry(child["Data"], parts)
+
+    visit_entry(root_entry, ())
+    expected_entries = {
+        "quests": "gameJournalPrimaryFolderEntry",
+        "quests/minor_quest": "gameJournalFolderEntry",
+        "quests/minor_quest/cqa001": "gameJournalQuest",
+        "quests/minor_quest/cqa001/cqa001_01": "gameJournalQuestPhase",
+        "quests/minor_quest/cqa001/cqa001_01/cqa001_01_obj_wait": "gameJournalQuestObjective",
+    }
+    require(journal_entries == expected_entries, f"{display(JOURNAL_RAW)}: Lab 1 journal tree changed")
+
+    quest_entry = journal_entry_objects["quests/minor_quest/cqa001"]
+    objective_entry = journal_entry_objects[
+        "quests/minor_quest/cqa001/cqa001_01/cqa001_01_obj_wait"
+    ]
+    require(
+        quest_entry.get("title") == {"unk1": "0", "value": "cqa_cqa001_title"},
+        f"{display(JOURNAL_RAW)}: quest title localization join changed",
+    )
+    require(
+        objective_entry.get("description")
+        == {"unk1": "0", "value": "cqa_cqa001_objective_wait"},
+        f"{display(JOURNAL_RAW)}: objective localization join changed",
+    )
+
+    journal_nodes = [
+        item
+        for item in iter_json_objects(quest)
+        if item.get("$type") == "questJournalNodeDefinition"
+        and item.get("type", {}).get("Data", {}).get("$type")
+        == "questJournalQuestEntry_NodeType"
+    ]
+    require(len(journal_nodes) == 4, f"{display(QUEST_RAW)}: expected four journal nodes")
+    nodes_by_id = {node.get("id"): node for node in journal_nodes}
+    expected_node_paths = {
+        11: ("quests/minor_quest/cqa001", "gameJournalQuest"),
+        12: (
+            "quests/minor_quest/cqa001/cqa001_01/cqa001_01_obj_wait",
+            "gameJournalQuestObjective",
+        ),
+        14: (
+            "quests/minor_quest/cqa001/cqa001_01/cqa001_01_obj_wait",
+            "gameJournalQuestObjective",
+        ),
+        16: ("quests/minor_quest/cqa001", "gameJournalQuest"),
+    }
+    require(
+        set(nodes_by_id) == set(expected_node_paths),
+        f"{display(QUEST_RAW)}: journal node ID inventory changed",
+    )
+    for node_id, (expected_path, expected_class) in expected_node_paths.items():
+        node_type = nodes_by_id[node_id]["type"]["Data"]
+        require(
+            node_type.get("optional") == 0
+            and node_type.get("sendNotification") == 1
+            and node_type.get("trackQuest") == 1
+            and node_type.get("version") == "Initial",
+            f"{display(QUEST_RAW)}: journal node {node_id} presentation contract changed",
+        )
+        path = node_type.get("path", {}).get("Data")
+        require(
+            isinstance(path, dict) and path.get("$type") == "gameJournalPath",
+            f"{display(QUEST_RAW)}: journal node {node_id} has no gameJournalPath",
+        )
+        real_path = path.get("realPath")
+        class_name = path.get("className", {}).get("$value")
+        require(
+            real_path == expected_path
+            and class_name == expected_class
+            and journal_entries.get(real_path) == class_name
+            and path.get("editorPath") == "",
+            f"{display(QUEST_RAW)}: journal node {node_id} path/class does not resolve",
+        )
+        parts = real_path.split("/")
+        file_entry_index = path.get("fileEntryIndex")
+        require(file_entry_index == 2, f"{display(QUEST_RAW)}: Lab 1 journal fileEntryIndex must be 2")
+        containing_path = "/".join(parts[: file_entry_index + 1])
+        require(
+            journal_entries.get(containing_path) == "gameJournalQuest",
+            f"{display(QUEST_RAW)}: fileEntryIndex does not identify the containing quest",
+        )
+
+    journal_keys = {
+        item["value"]
+        for item in iter_json_objects(journal)
+        if "unk1" in item and isinstance(item.get("value"), str) and item["value"]
+    }
+    expected_text = {
+        "cqa_cqa001_title": "First Signal",
+        "cqa_cqa001_objective_wait": "Wait for the signal.",
+    }
+    require(journal_keys == set(expected_text), f"{display(JOURNAL_RAW)}: localization key inventory changed")
+
+    localization_root = localization["Data"]["RootChunk"].get("root", {}).get("Data")
+    require(
+        isinstance(localization_root, dict)
+        and localization_root.get("$type") == "localizationPersistenceOnScreenEntries",
+        f"{display(LOCALIZATION_RAW)}: wrong onscreen localization root",
+    )
+    localized_entries = localization_root.get("entries")
+    require(isinstance(localized_entries, list), f"{display(LOCALIZATION_RAW)}: missing localization entries")
+    localized_text: dict[str, str] = {}
+    for index, entry in enumerate(localized_entries):
+        require(
+            isinstance(entry, dict)
+            and entry.get("$type") == "localizationPersistenceOnScreenEntry"
+            and str(entry.get("primaryKey")) == "0"
+            and entry.get("maleVariant") == "",
+            f"{display(LOCALIZATION_RAW)}: invalid onscreen entry {index}",
+        )
+        key = entry.get("secondaryKey")
+        value = entry.get("femaleVariant")
+        require(
+            isinstance(key, str) and key and isinstance(value, str) and value and key not in localized_text,
+            f"{display(LOCALIZATION_RAW)}: invalid or duplicate onscreen key at entry {index}",
+        )
+        localized_text[key] = value
+    require(localized_text == expected_text, f"{display(LOCALIZATION_RAW)}: journal text lookup contract changed")
+
+
 def parse_archive_xl(
     path: Path,
 ) -> tuple[list[tuple[str, str]], set[str], set[str]]:
@@ -1144,6 +1475,8 @@ def main() -> int:
         ("Lab 1 checkpoint inventories and line endings", validate_checkpoint_inventories),
         ("Lab 1 hashes and runtime acceptance", lambda: validate_evidence_record(info)),
         ("Lab 1 reader-facing evidence status", lambda: validate_reader_evidence_status(info)),
+        ("book links and SUMMARY coverage", validate_book_links_and_summary),
+        ("Lab 1 journal and localization lookups", validate_lab01_journal_contract),
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),
         ("cooked CR2W and review-source provenance", lambda: validate_cr2w_pairs(info)),
         ("Lab 1 graph fingerprint and exact SVG", lambda: validate_graph(info)),

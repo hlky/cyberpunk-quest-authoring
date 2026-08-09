@@ -61,7 +61,10 @@ It has:
 - zero-assumption onboarding and a complete Lab 1 manual authoring/test path;
 - a designed and structurally validated Lab 1 reference project with a
   machine-readable runtime-acceptance record;
-- a deterministic CR2W-JSON graph renderer and first exact SVG.
+- a deterministic CR2W-JSON graph renderer and first exact SVG;
+- substantive journal, UI, localization, mappin, message/document, reward, and
+  completion chapters, backed by an exact lookup diagram and Lab 1 semantic
+  validation.
 
 ## Research evidence available in Ghostline
 

@@ -23,6 +23,9 @@ The repository contains:
 - complete first-pass Foundations chapters;
 - zero-assumption setup, project, vanilla-inspection, and install/test guides;
 - the complete Lab 1 resource reference and manual WolvenKit walkthrough;
+- a substantive journal, UI, and localization section covering typed paths,
+  state, mappins, messages and documents, three localization systems, rewards,
+  and completion;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 

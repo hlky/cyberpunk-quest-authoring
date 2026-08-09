@@ -16,7 +16,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 | --- | --- |
 | 0 — audit and validation baseline | Complete; committed and published |
 | 1 — zero-assumption start and Lab 1 closeout | Complete; runtime evidence is governed by the dedicated marker and canonical acceptance record |
-| 2–9 | Planned below |
+| 2 — journal, UI, and localization | Complete; seven substantive chapters, a deterministic lookup diagram, and Lab 1 semantic checks |
+| 3–9 | Planned below |
 
 ## Completion standard
 

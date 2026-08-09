@@ -1,5 +1,7 @@
 /book/site/
 /.tools/
 /.tmp/
+__pycache__/
+*.py[cod]
 *.dot
 *.svg.tmp
