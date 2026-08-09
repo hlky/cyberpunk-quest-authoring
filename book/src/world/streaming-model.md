@@ -12,7 +12,7 @@ extracts retained as WolvenKit JSON `0.0.9`, serialized by WolvenKit `8.17.4`,
 with CR2W `GameVersion: 2310`. The most useful comparison paths are:
 
 ```text
-base\worlds\03_night_city\03_night_city.streamingworld
+base\worlds\03_night_city\_compiled\default\03_night_city.streamingworld
 base\worlds\03_night_city\_compiled\default\blocks\all.streamingblock
 base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector
 base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector

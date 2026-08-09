@@ -70,6 +70,13 @@ Before installing either checkpoint:
 8. derive a separate parent-active save during the 30-second confirmation;
 9. preserve the completed save used by both completed-state cases.
 
+Use a fresh working-copy slot directory for every execution, even when two
+runs restore the same preserved source. The `clean-walk`/`clean-replay`,
+`pre-reach-reload`/`stream-away-return`, and
+`completed-reload`/`completed-reinstall` pairs must each record one shared
+`sav.dat` hash. Those three source classes, the between-boundaries save, and
+the parent-confirmation save must have distinct hashes from one another.
+
 Do not obtain “clean” evidence by writing `cqa004_completed = 0`, removing the
 mod after a prior load, or reusing a slot that saw the start checkpoint.
 FactsDB, journal, phase, mappin, and world state can all survive those actions.
@@ -344,9 +351,10 @@ by `completed/example.json`. From the repository root, recompute it with:
 ```
 
 Replace `artifacts.files["runtime-acceptance.json"]` in the completed manifest
-with that value. When derived status changes, also update
-`evidence.runtime.status`, `class`, and `date`. Then run
-`python -B scripts\validate.py`; a stale record hash must fail validation.
+with that value. After any case is completed, update
+`evidence.runtime.status`, `class`, and `date` to match the derived state. The
+date is the calendar date of the chronologically latest completed execution;
+it remains `null` only while every case is pending.
 
 Status rules are:
 
@@ -357,18 +365,26 @@ Status rules are:
 - only all required cases passed permits status `passed` and class
   `runtime-proven`.
 
-If the full matrix passes, change the synchronized marker to exactly:
+Synchronize the first Lab 4 marker on every marked status surface, including
+the evidence/version matrix. If the full matrix passes, that marker is exactly:
 
 ```text
 **Lab 4 runtime evidence:** **Runtime-proven** — passed.
 ```
 
-and record the runtime test date on every Lab 4 practical page in the same
-commit. A failed matrix uses:
+A failed matrix uses:
 
 ```text
 **Lab 4 runtime evidence:** **Experimental** — failed.
 ```
+
+Record the derived runtime date on all three Lab 4 practical pages for any
+completed execution, including a failed result or a partially completed
+matrix. As a repository-maintainer step, regenerate the four deterministic
+Lab 4 SVGs with `python -B scripts\build_lab04_diagrams.py` so their evidence
+footer carries the same status and date, then run
+`python -B scripts\validate.py`. Stale record hashes, markers, dates, or
+diagrams must fail validation.
 
 `CutDestination` remains **Experimental** even after normal-handoff promotion,
 because the candidate contains no cut edge and the promotion rule excludes it.
@@ -387,4 +403,6 @@ because the candidate contains no cut edge and the promotion rule excludes it.
 | A cut path is untested | Expected scope boundary; do not mark cut runtime-proven |
 | One log is missing | That execution cannot satisfy promotion until rerun with complete evidence |
 
-Previous: [Author Handoff Point in WolvenKit](lab-04-authoring.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
+Handoff Point in WolvenKit](lab-04-authoring.md) · Next lab: [Lab 5: First
+Contact](../scenes/lab-05.md).

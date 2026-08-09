@@ -302,5 +302,6 @@ directly. Phase node `13` and the matching interface names are the handoff.
 | Reload restarts or skips work | Save provenance, active owner at save time, fact write order, journal state | A console fact reset is not a clean save |
 | An interruption route behaves unpredictably | Confirm every `CutDestination` remains unwired | Lab 4 makes no cut-safety claim |
 
-Previous: [Completion and interruption](completion-and-cut.md). Next: [Author
-Handoff Point in WolvenKit](lab-04-authoring.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic:
+[Completion and interruption](completion-and-cut.md) · Next: [Author Handoff
+Point in WolvenKit](lab-04-authoring.md).

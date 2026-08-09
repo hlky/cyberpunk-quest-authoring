@@ -78,6 +78,7 @@ STATUS_PAGE_RELATIVES = (
     "book/src/scenes/lab-05.md",
     "book/src/scenes/lab-05-authoring.md",
     "book/src/scenes/lab-05-test.md",
+    "book/src/reference/evidence-version-matrix.md",
     "examples/lab-05-first-contact/README.md",
     "examples/lab-05-first-contact/start/README.md",
     "examples/lab-05-first-contact/completed/README.md",
@@ -1512,8 +1513,8 @@ def validate_acceptance_manifest_and_diagrams() -> None:
     marker_prefix = "**Lab 5 runtime evidence:**"
     test_page = ROOT / "book" / "src" / "scenes" / "lab-05-test.md"
     require(
-        len(STATUS_PAGE_RELATIVES) == len(set(STATUS_PAGE_RELATIVES)) == 22,
-        "Lab 5 runtime marker inventory must contain exactly 22 unique pages",
+        len(STATUS_PAGE_RELATIVES) == len(set(STATUS_PAGE_RELATIVES)) == 23,
+        "Lab 5 runtime marker inventory must contain exactly 23 unique pages",
     )
     for page in STATUS_PAGES:
         marker_lines = [line for line in page.read_text(encoding="utf-8").splitlines() if line.startswith(marker_prefix)]
@@ -1557,7 +1558,7 @@ def validate_acceptance_manifest_and_diagrams() -> None:
     expected_checklist_lines = [f"- [ ] `{relative}`" for relative in STATUS_PAGE_RELATIVES]
     require(
         checklist_lines == expected_checklist_lines,
-        "Lab 5 test marker checklist must enumerate the exact 22-page marker inventory in order",
+        "Lab 5 test marker checklist must enumerate the exact 23-page marker inventory in order",
     )
 
     expected_date_row = f"| Runtime test date | {recorded_date} |" if recorded_date is not None else "| Runtime test date | Not yet recorded |"

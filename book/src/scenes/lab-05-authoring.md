@@ -527,5 +527,5 @@ checkpoint for the canonical runtime candidate.
 | Built game archive contains the WAV | Move authoring provenance outside project `source`; only the WEM belongs in the game archive |
 | Start project invokes a line | Restore the start graphs; its phase shells must not invoke the scene shell |
 
-Previous: [Lab 5: First Contact](lab-05.md). Next: [Test First
-Contact](lab-05-test.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 5:
+First Contact](lab-05.md) · Next: [Test First Contact](lab-05-test.md).

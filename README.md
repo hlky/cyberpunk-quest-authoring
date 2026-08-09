@@ -58,6 +58,15 @@ The repository contains:
 - Lab 5's start/completed WolvenKit projects, exact root/child/scene graphs,
   seven deterministic diagrams, a synthetic hash-pinned voice asset, manual
   authoring path, and eleven-case runtime protocol;
+- a symptom-led troubleshooting section that isolates serialization,
+  registration, handle/socket/resource, NodeRef/streaming, scene/lipsync,
+  localization/audio, save-state, and evidence failures;
+- a release reference set covering canonical lab identities, terminology,
+  resource ownership, nodes/sockets, condition families, identifier domains,
+  journal and localization lookup, ArchiveXL registration, evidence/version
+  boundaries, and named vanilla depot paths;
+- synchronized five-lab status lookup plus canonical navigation across all
+  overview, authoring, and test pages;
 - an audited [completion roadmap](ROADMAP.md) with staged release gates;
 - a detailed implementation handoff in [HANDOFF.md](HANDOFF.md).
 
@@ -86,8 +95,9 @@ eight executions in its acceptance record.
 
 Lab 5's `cqa005` checkpoints each contain eleven CR2W resources and one WEM.
 All twenty-two CR2W source/cooked pairs are structurally validated with
-WolvenKit 8.19.0. The generic contact's spawn/passivity/cleanup lineage and a
-community-acquired conversation have bounded legacy runtime evidence, but the
+WolvenKit 8.19.0. Generic-actor spawn/passivity, a later candidate's cleanup,
+and a community-acquired conversation have separate bounded legacy runtime
+evidence, but the
 exact `cqa005` mount, ordinary line/subtitle/audio playback, named exit,
 stream-away/return, delayed cleanup, post-`contact_done` reload, and completed
 reload follow the synchronized marker above. This includes the exact named

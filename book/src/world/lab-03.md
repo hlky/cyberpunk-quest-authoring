@@ -259,3 +259,6 @@ hashes, save provenance, observations, and fresh logs.
 | Leave completes immediately | Confirm the starting save is inside the outer volume when leave activates and the condition is `IsOutside` | A dirty save or bad vertical coverage changes the initial state |
 | Area works until streaming away | Finite Quest bounds, sector logs, return route, and NodeRef resolution | One successful nearby crossing does not prove unload/reload behavior |
 | Quest reactivates after reload | `completed` write order, guard comparison, exact candidate hash, and untouched/completed save identity | Console resets are diagnostic, not clean acceptance |
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
+Boundary Check in WolvenKit](lab-03-authoring.md).

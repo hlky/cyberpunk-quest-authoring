@@ -48,8 +48,9 @@ candidate deliberately used a unique vanilla character record for isolation;
 it is evidence for the exact historical lifecycle, not safe character-selection
 guidance.
 
-**Acceptance-gated:** the exact `cqa005` registry node, compiled area, streaming
-placement, identities, ordinary scene join, stream-away/return route,
+**Experimental** while the synchronized marker is pending or failed, and
+**Runtime-proven** only when it passes: the exact `cqa005` registry node,
+compiled area, streaming placement, identities, ordinary scene join, stream-away/return route,
 post-`contact_done` reload, and completed reload follow the synchronized marker
 above, including the named pre-scene seed loads in Cases 3, 4, and 7.
 Arbitrary or unlisted pre-scene active-child states and

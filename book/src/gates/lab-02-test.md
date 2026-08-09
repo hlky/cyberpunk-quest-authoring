@@ -263,3 +263,7 @@ archive is a test artifact, not a second shipped example.
 | Reload result is ambiguous | Record whether the timer resumed or restarted, but require only eventual single completion without duplicate activation |
 | One evidence note is reused for every execution | Retain a fresh four-log set per run and reference focused, hash-bound evidence beneath `completed/evidence/` for each completed case |
 | Internal node or socket behavior is claimed from the journal UI | Record only visible states and timing; use the exact graph for structural route mapping and leave winner/cancellation/tie policy **Experimental** |
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
+Signal Race in WolvenKit](lab-02-authoring.md) · Next lab: [Lab 3: Boundary
+Check](../world/lab-03.md).

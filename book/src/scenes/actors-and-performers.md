@@ -158,12 +158,13 @@ Alternative/failure quest routing remains a separate design problem.
   behaviors round-trip in the First Contact resource.
 - **Runtime-proven:** retained legacy archive
   `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-  establishes the generic community-spawn lifecycle; archive
+  establishes generic community spawn and passive state; archive
   `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
   establishes the corrected shared-slot conversation route.
-- **Acceptance-gated:** acquisition of the exact `cqa005` Tyger Claw entry by
-  the exact First Contact scene, at its new world marker and through its new
-  phase, follows the synchronized marker above.
+- **Experimental** while the synchronized marker is pending or failed, and
+  **Runtime-proven** only when it passes: acquisition of the exact `cqa005`
+  Tyger Claw entry by the exact First Contact scene, at its new world marker and
+  through its new phase, follows the synchronized marker above.
 
 Previous: [Scene resource anatomy](resource-anatomy.md). Next: [Screenplay,
 sections, and events](screenplay-sections-and-events.md).

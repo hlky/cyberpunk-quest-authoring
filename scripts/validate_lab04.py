@@ -21,7 +21,9 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 from collections.abc import Iterator
-from pathlib import Path
+from dataclasses import dataclass
+from datetime import date, datetime
+from pathlib import Path, PurePosixPath
 from types import ModuleType
 from typing import Any
 
@@ -96,6 +98,99 @@ PUBLISHED_FILES = {
     "cqa004.handoff-contract.svg",
 }
 
+MANIFEST = COMPLETED / "example.json"
+ACCEPTANCE = COMPLETED / "runtime-acceptance.json"
+BOOK_QUESTPHASES = ROOT / "book" / "src" / "questphases"
+MANIFEST_BASELINE = {"recorded": "2026-08-09", **BASELINE}
+EXPECTED_INSTALLED_FILES = (
+    "archive\\pc\\mod\\CQA_Lab04_HandoffPoint.archive",
+    "archive\\pc\\mod\\CQA_Lab04_HandoffPoint.archive.xl",
+)
+EXPECTED_LOGS = (
+    "red4ext\\plugins\\ArchiveXL\\ArchiveXL.log",
+    "red4ext\\logs\\red4ext.log",
+    "red4ext\\logs\\game.log",
+    "r6\\logs\\redscript_rCURRENT.log",
+)
+EXPECTED_RUNS = (
+    ("clean-walk", "untouched-preinstall-outside-reach", "canonical-original"),
+    ("pre-reach-reload", "child-active-before-reach", "canonical-clean-derived"),
+    (
+        "between-boundaries-reload",
+        "child-active-reach-succeeded-inside-leave",
+        "canonical-clean-derived",
+    ),
+    ("post-return-reload", "parent-confirmation-delay-active", "canonical-clean-derived"),
+    ("stream-away-return", "child-active-before-reach", "canonical-clean-derived"),
+    ("completed-reload", "completed", "canonical-completed"),
+    ("completed-reinstall", "completed", "canonical-completed"),
+    ("clean-replay", "untouched-preinstall-outside-reach", "canonical-original"),
+)
+EXPECTED_CASES: dict[str, tuple[list[str], str, str]] = {
+    "clean-walk": (
+        ["clean-walk"],
+        "Install the canonical candidate and load an untouched pre-Lab-4 save with the player outside the reach volume.",
+        "The root invokes the external child once; reach and leave advance once; child Out1 activates the parent confirmation objective; thirty realtime seconds later the quest completes once. Logs contain no cqa004 registration, child phaseResource, NodeRef, journal, localization, or streaming error.",
+    ),
+    "pre-reach-reload": (
+        ["pre-reach-reload"],
+        "Save after the child activates but before entering the reach volume, then reload without changing the installation.",
+        "The active child, reach objective, and pin return once; entering and leaving advance once and return through child Out1. Logs contain no child-resolution or duplicated-activation error.",
+    ),
+    "between-boundaries-reload": (
+        ["between-boundaries-reload"],
+        "Save after reach succeeds while the child waits inside the leave volume, then reload.",
+        "The child remains at the leave wait, does not complete until the boundary is crossed, and then returns to the parent once. Logs contain no child-state or NodeRef error.",
+    ),
+    "post-return-reload": (
+        ["post-return-reload"],
+        "Cross outside, verify the child returned, save while the parent's thirty-second confirmation delay is active, and reload.",
+        "The child does not restart; the confirmation objective resumes coherently and completes once. Record whether elapsed realtime resumes or restarts. Logs contain no phase continuation error.",
+    ),
+    "stream-away-return": (
+        ["stream-away-return"],
+        "While the child is active before reach, travel by ordinary movement beyond the finite Quest descriptor box, return by ordinary movement, and finish the route.",
+        "The active child remains coherent; the returned trigger crossings advance once; child Out1 continues the parent once. Logs contain no cqa004 streaming, phaseResource, or NodeRef resolution error.",
+    ),
+    "completed-reload": (
+        ["completed-reload"],
+        "Save after ordinary completion and reload without changing the installation.",
+        "The cqa004_completed guard bypasses the child; no objective, pin, confirmation delay, or quest state reactivates. Logs remain free of cqa004 errors.",
+    ),
+    "completed-reinstall": (
+        ["completed-reinstall"],
+        "Remove and reinstall the identical canonical candidate, then load its completed save.",
+        "The quest remains completed and the child is not reinvoked. ArchiveXL logs show the root registered without a separate child-phase registration and no cqa004 error.",
+    ),
+    "clean-replay": (
+        ["clean-replay"],
+        "Reload the original untouched pre-install save with the canonical candidate still installed and walk the full route again.",
+        "The root-to-child-to-root sequence, visible journal states, world gates, confirmation delay, and completion reproduce once with no cqa004 errors in any retained log.",
+    ),
+}
+PROMOTION_RULE = (
+    "Set status to passed and evidence_class to runtime-proven only when all eight required cases pass and evidence "
+    "binds the exact candidate build, all eight executions, the untouched pre-install save and every derived save, "
+    "exact versions, visible observations, and all four logs for every execution. CutDestination remains outside "
+    "this promotion rule because the lab leaves it unwired."
+)
+EVIDENCE_TYPES = {"screenshot", "video", "log", "save-metadata", "notes"}
+WINDOWS_RESERVED_NAMES = {
+    "aux",
+    "con",
+    "nul",
+    "prn",
+    *(f"com{index}" for index in range(1, 10)),
+    *(f"lpt{index}" for index in range(1, 10)),
+}
+SAVE_EQUIVALENCE_CLASSES = (
+    ("clean-walk", "clean-replay"),
+    ("pre-reach-reload", "stream-away-return"),
+    ("completed-reload", "completed-reinstall"),
+    ("between-boundaries-reload",),
+    ("post-return-reload",),
+)
+
 ROOT_COMPLETED_TYPES = {
     0: "questInputNodeDefinition",
     1: "questOutputNodeDefinition",
@@ -153,9 +248,98 @@ class ValidationError(RuntimeError):
     pass
 
 
+@dataclass(frozen=True)
+class ManifestInfo:
+    runtime_status: str
+    runtime_class: str
+    runtime_date: str | None
+
+
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise ValidationError(message)
+
+
+def display(path: Path) -> str:
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return str(path)
+
+
+def normalize_relative(value: Any, context: str) -> str:
+    require(isinstance(value, str) and value, f"{context}: expected a non-empty path")
+    normalized = value.replace("\\", "/")
+    parsed = PurePosixPath(normalized)
+    require(not parsed.is_absolute(), f"{context}: path must be relative")
+    require(".." not in parsed.parts and "." not in parsed.parts, f"{context}: path traversal is not allowed")
+    return parsed.as_posix()
+
+
+def safe_evidence_path(reference: Any, *, label: str) -> Path:
+    require(isinstance(reference, str) and reference, f"{label}: missing reference")
+    relative = PurePosixPath(reference)
+    require(
+        reference == relative.as_posix()
+        and not relative.is_absolute()
+        and "\\" not in reference
+        and len(relative.parts) >= 2
+        and relative.parts[0] == "evidence"
+        and all(part not in {"", ".", ".."} for part in relative.parts),
+        f"{label}: unsafe POSIX evidence path {reference!r}",
+    )
+    for part in relative.parts:
+        stem = part.split(".", 1)[0].casefold()
+        require(
+            stem not in WINDOWS_RESERVED_NAMES
+            and not part.endswith((" ", "."))
+            and not any(character in '<>:"|?*' or ord(character) < 32 for character in part),
+            f"{label}: unsafe Windows path component {part!r}",
+        )
+    source = COMPLETED.joinpath(*relative.parts)
+    cursor = COMPLETED
+    for part in relative.parts:
+        cursor /= part
+        require(not cursor.is_symlink(), f"{label}: linked evidence path is forbidden: {reference}")
+    require(source.is_file(), f"{label}: missing retained evidence file: {reference}")
+    require(
+        source.resolve().is_relative_to((COMPLETED / "evidence").resolve()),
+        f"{label}: evidence path escapes completed/evidence: {reference}",
+    )
+    require(
+        source.name.casefold() != "sav.dat" and source.suffix.casefold() != ".dat",
+        f"{label}: private save binaries cannot be retained",
+    )
+    return source
+
+
+def valid_sha256(value: Any) -> bool:
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
+
+
+def valid_observed_date(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    try:
+        return date.fromisoformat(value).isoformat() == value
+    except ValueError:
+        return False
+
+
+def observed_timestamp(value: Any) -> datetime | None:
+    if not isinstance(value, str) or "T" not in value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None or parsed.utcoffset() is None:
+        return None
+    return parsed
 
 
 def reject_duplicate_keys(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
@@ -180,6 +364,29 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def actual_files(root: Path) -> set[str]:
     return {path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_file()}
+
+
+def retained_evidence_inventory() -> set[str]:
+    acceptance = load_json(ACCEPTANCE)
+    cases = acceptance.get("cases")
+    require(isinstance(cases, list), f"{display(ACCEPTANCE)}: cases must be an array")
+    references: set[str] = set()
+    for case_index, case in enumerate(cases):
+        require(isinstance(case, dict), f"{display(ACCEPTANCE)}: cases[{case_index}] must be an object")
+        evidence = case.get("evidence")
+        require(isinstance(evidence, list), f"{display(ACCEPTANCE)}: cases[{case_index}].evidence must be an array")
+        for evidence_index, item in enumerate(evidence):
+            require(
+                isinstance(item, dict),
+                f"{display(ACCEPTANCE)}: cases[{case_index}].evidence[{evidence_index}] must be an object",
+            )
+            label = (
+                f"{display(ACCEPTANCE)}: cases[{case_index}]"
+                f".evidence[{evidence_index}]"
+            )
+            source = safe_evidence_path(item.get("reference"), label=label)
+            references.add(source.relative_to(COMPLETED).as_posix())
+    return references
 
 
 def raw_relative(depot_path: str) -> str:
@@ -213,8 +420,17 @@ def generate_into(root: Path, name: str) -> None:
 
 
 def validate_inventories_and_generation() -> None:
+    retained_evidence = retained_evidence_inventory()
     require(actual_files(START) == expected_checkpoint_files(completed=False), "Lab 4 start inventory changed")
-    require(actual_files(COMPLETED) == expected_checkpoint_files(completed=True), "Lab 4 completed inventory changed")
+    require(
+        actual_files(COMPLETED) == expected_checkpoint_files(completed=True) | retained_evidence,
+        "Lab 4 completed inventory changed",
+    )
+    evidence_root = COMPLETED / "evidence"
+    if evidence_root.exists() or evidence_root.is_symlink():
+        require(not evidence_root.is_symlink(), "Lab 4 retained evidence directory cannot be a symlink")
+        for path in evidence_root.rglob("*"):
+            require(not path.is_symlink(), f"{display(path)}: retained evidence paths cannot contain symlinks")
     require(actual_files(ASSETS) == ASSET_FILES, "Lab 4 diagram-source inventory changed")
     require(actual_files(PUBLISHED) == PUBLISHED_FILES, "Lab 4 published-diagram inventory changed")
 
@@ -837,51 +1053,632 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def validate_manifest_acceptance_and_diagrams() -> None:
-    manifest = load_json(COMPLETED / "example.json")
-    require(manifest.get("schema_version") == 2 and manifest.get("id") == "cqa004" and manifest.get("title") == "Handoff Point", "Lab 4 manifest identity changed")
-    require({key: manifest["baseline"][key] for key in BASELINE} == BASELINE, "Lab 4 baseline versions changed")
-    require(tuple(manifest["depot_paths"]) == DEPOT_PATHS, "Lab 4 manifest depot inventory changed")
-    require(tuple(manifest["registered_depot_paths"]) == REGISTERED_PATHS, "Lab 4 registered depot inventory changed")
-    require(DEPOT_PATHS[1] not in manifest["registered_depot_paths"], "Lab 4 child phase must not be registered")
-    require(manifest["persistent_facts"] == ["cqa004_completed"], "Lab 4 persistent fact inventory changed")
-    structure = manifest["evidence"]["structure"]
-    require(structure == {"status": "structurally-validated", "date": "2026-08-09", "method": "WolvenKit 8.19.0 deserialize and serialize round-trip inspection", "resource_pairs": 14}, "Lab 4 round-trip evidence metadata changed")
-    require(manifest["evidence"]["runtime"] == {"status": "pending", "class": "experimental", "date": None, "record": "runtime-acceptance.json"}, "Lab 4 runtime evidence must remain pending/Experimental")
-    artifacts = manifest["artifacts"]
-    require(artifacts.get("algorithm") == "sha256" and len(artifacts["files"]) == 17, "Lab 4 artifact hash inventory changed")
-    for relative, expected in artifacts["files"].items():
-        require(sha256(COMPLETED / relative) == expected, f"Lab 4 artifact hash drift: {relative}")
+def validate_manifest() -> ManifestInfo:
+    manifest = load_json(MANIFEST)
+    require(
+        set(manifest)
+        == {
+            "schema_version",
+            "id",
+            "title",
+            "book_chapter",
+            "baseline",
+            "depot_paths",
+            "registered_depot_paths",
+            "persistent_facts",
+            "evidence",
+            "graphs",
+            "artifacts",
+        },
+        f"{display(MANIFEST)}: top-level schema changed",
+    )
+    require(
+        manifest.get("schema_version") == 2
+        and manifest.get("id") == "cqa004"
+        and manifest.get("title") == "Handoff Point",
+        f"{display(MANIFEST)}: identity/schema changed",
+    )
+    chapter = normalize_relative(manifest.get("book_chapter"), f"{display(MANIFEST)} book_chapter")
+    require(
+        chapter == "book/src/questphases/lab-04.md" and (ROOT / chapter).is_file(),
+        f"{display(MANIFEST)}: wrong or missing book chapter",
+    )
+    require(manifest.get("baseline") == MANIFEST_BASELINE, f"{display(MANIFEST)}: pinned baseline changed")
+    require(manifest.get("depot_paths") == list(DEPOT_PATHS), f"{display(MANIFEST)}: depot inventory changed")
+    require(
+        manifest.get("registered_depot_paths") == list(REGISTERED_PATHS),
+        f"{display(MANIFEST)}: registered depot inventory changed",
+    )
+    require(
+        DEPOT_PATHS[1] not in manifest["registered_depot_paths"],
+        f"{display(MANIFEST)}: child phase must not be registered",
+    )
+    require(
+        manifest.get("persistent_facts") == ["cqa004_completed"],
+        f"{display(MANIFEST)}: persistent fact inventory changed",
+    )
 
-    acceptance = load_json(COMPLETED / "runtime-acceptance.json")
-    require(acceptance.get("schema_version") == 3 and acceptance.get("example_id") == "cqa004", "Lab 4 acceptance identity changed")
-    require(acceptance.get("status") == "pending" and acceptance.get("evidence_class") == "experimental", "Lab 4 acceptance must remain pending/Experimental")
-    require(acceptance.get("required_environment") == BASELINE, "Lab 4 acceptance environment changed")
-    expected_ids = ["clean-walk", "pre-reach-reload", "between-boundaries-reload", "post-return-reload", "stream-away-return", "completed-reload", "completed-reinstall", "clean-replay"]
-    runs = acceptance.get("runs")
+    evidence = manifest.get("evidence")
+    require(
+        isinstance(evidence, dict) and set(evidence) == {"structure", "runtime"},
+        f"{display(MANIFEST)}: evidence object changed",
+    )
+    require(
+        evidence.get("structure")
+        == {
+            "status": "structurally-validated",
+            "date": "2026-08-09",
+            "method": "WolvenKit 8.19.0 deserialize and serialize round-trip inspection",
+            "resource_pairs": 14,
+        },
+        f"{display(MANIFEST)}: round-trip evidence metadata changed",
+    )
+    runtime = evidence.get("runtime")
+    require(
+        isinstance(runtime, dict) and set(runtime) == {"status", "class", "date", "record"},
+        f"{display(MANIFEST)}: runtime evidence object changed",
+    )
+    runtime_status = runtime.get("status")
+    runtime_class = runtime.get("class")
+    runtime_date = runtime.get("date")
+    require(runtime_status in {"pending", "failed", "passed"}, f"{display(MANIFEST)}: invalid runtime status")
+    require(
+        runtime_class == ("runtime-proven" if runtime_status == "passed" else "experimental"),
+        f"{display(MANIFEST)}: runtime status and class disagree",
+    )
+    if runtime_date is not None:
+        require(valid_observed_date(runtime_date), f"{display(MANIFEST)}: runtime date must be null or YYYY-MM-DD")
+    require(
+        runtime.get("record") == "runtime-acceptance.json" and ACCEPTANCE.is_file(),
+        f"{display(MANIFEST)}: runtime acceptance record changed or is missing",
+    )
+
+    graphs = manifest.get("graphs")
+    require(isinstance(graphs, dict) and set(graphs) == {"root", "child"}, f"{display(MANIFEST)}: graph inventory changed")
+    for key, expected_layout in (
+        ("root", "assets/diagrams/lab-04/cqa004.questphase.layout.json"),
+        ("child", "assets/diagrams/lab-04/cqa004_boundary.questphase.layout.json"),
+    ):
+        graph = graphs.get(key)
+        require(
+            isinstance(graph, dict) and set(graph) == {"layout", "source_fingerprint"},
+            f"{display(MANIFEST)}: {key} graph shape changed",
+        )
+        require(graph.get("layout") == expected_layout, f"{display(MANIFEST)}: {key} graph layout changed")
+        fingerprint = graph.get("source_fingerprint")
+        require(
+            isinstance(fingerprint, str)
+            and fingerprint.startswith("sha256:")
+            and valid_sha256(fingerprint.removeprefix("sha256:")),
+            f"{display(MANIFEST)}: {key} graph fingerprint is invalid",
+        )
+
+    artifacts = manifest.get("artifacts")
+    require(
+        isinstance(artifacts, dict) and set(artifacts) == {"algorithm", "files"},
+        f"{display(MANIFEST)}: artifact hash schema changed",
+    )
+    require(artifacts.get("algorithm") == "sha256", f"{display(MANIFEST)}: artifact algorithm must be sha256")
+    raw_hashes = artifacts.get("files")
+    require(isinstance(raw_hashes, dict), f"{display(MANIFEST)}: artifact files must be an object")
+    hashes: dict[str, str] = {}
+    for raw_path, digest in raw_hashes.items():
+        relative = normalize_relative(raw_path, f"{display(MANIFEST)} artifact path")
+        require(relative not in hashes, f"{display(MANIFEST)}: duplicate artifact path {relative}")
+        require(valid_sha256(digest), f"{display(MANIFEST)}: invalid SHA-256 for {relative}")
+        hashes[relative] = digest
+    expected_artifacts = expected_checkpoint_files(completed=True) - {"README.md", "example.json"}
+    require(set(hashes) == expected_artifacts, f"{display(MANIFEST)}: artifact inventory changed")
+    for relative, expected in hashes.items():
+        require(sha256(COMPLETED / relative) == expected, f"{display(MANIFEST)}: stale SHA-256 for {relative}")
+
+    return ManifestInfo(
+        runtime_status=runtime_status,
+        runtime_class=runtime_class,
+        runtime_date=runtime_date,
+    )
+
+
+def validate_candidates(value: Any) -> dict[str, tuple[str | None, ...]]:
+    require(isinstance(value, list), f"{display(ACCEPTANCE)}: candidates must be an array")
+    require(
+        [item.get("id") if isinstance(item, dict) else None for item in value] == ["canonical"],
+        f"{display(ACCEPTANCE)}: exact one-candidate identity/order changed",
+    )
+    candidate = value[0]
+    require(
+        isinstance(candidate, dict) and set(candidate) == {"id", "manifest", "installed_files", "depot_paths"},
+        f"{display(ACCEPTANCE)}: canonical candidate shape changed",
+    )
+    require(candidate.get("manifest") == "example.json", f"{display(ACCEPTANCE)}: canonical manifest reference changed")
+    installed = candidate.get("installed_files")
+    require(isinstance(installed, list) and len(installed) == 2, f"{display(ACCEPTANCE)}: expected two installed files")
+    expected_paths = [normalize_relative(path, "installed path") for path in EXPECTED_INSTALLED_FILES]
+    installed_paths: list[str] = []
+    installed_hashes: list[str | None] = []
+    for index, item in enumerate(installed):
+        require(
+            isinstance(item, dict) and set(item) == {"path", "sha256"},
+            f"{display(ACCEPTANCE)}: installed_files[{index}] shape changed",
+        )
+        installed_paths.append(
+            normalize_relative(item.get("path"), f"{display(ACCEPTANCE)}: installed_files[{index}].path")
+        )
+        digest = item.get("sha256")
+        require(digest is None or valid_sha256(digest), f"{display(ACCEPTANCE)}: invalid installed-file SHA-256")
+        installed_hashes.append(digest)
+    require(installed_paths == expected_paths, f"{display(ACCEPTANCE)}: installed-file inventory changed")
+    require(candidate.get("depot_paths") == list(DEPOT_PATHS), f"{display(ACCEPTANCE)}: candidate depot paths changed")
+    return {"canonical": tuple(installed_hashes)}
+
+
+def save_was_created_before_install(save_state: str) -> bool:
+    return save_state.startswith("untouched-preinstall")
+
+
+def validate_runs(value: Any) -> dict[str, dict[str, Any]]:
+    require(isinstance(value, list), f"{display(ACCEPTANCE)}: runs must be an array")
+    require(
+        [item.get("id") if isinstance(item, dict) else None for item in value]
+        == [item[0] for item in EXPECTED_RUNS],
+        f"{display(ACCEPTANCE)}: immutable eight-run identity/order changed",
+    )
+    expected_log_paths = [normalize_relative(path, "runtime log path") for path in EXPECTED_LOGS]
+    runs: dict[str, dict[str, Any]] = {}
+    for run, (run_id, save_state, save_provenance) in zip(value, EXPECTED_RUNS, strict=True):
+        require(
+            isinstance(run, dict)
+            and set(run)
+            == {
+                "id",
+                "candidate_id",
+                "save_state",
+                "save_provenance",
+                "performed_at",
+                "tester",
+                "observed_environment",
+                "save",
+                "logs",
+            },
+            f"{display(ACCEPTANCE)}:{run_id}: run shape changed",
+        )
+        require(
+            run.get("candidate_id") == "canonical"
+            and run.get("save_state") == save_state
+            and run.get("save_provenance") == save_provenance,
+            f"{display(ACCEPTANCE)}:{run_id}: immutable candidate/save provenance changed",
+        )
+        timestamp = run.get("performed_at")
+        require(
+            timestamp is None or observed_timestamp(timestamp) is not None,
+            f"{display(ACCEPTANCE)}:{run_id}: performed_at must be null or an offset ISO 8601 timestamp",
+        )
+        tester = run.get("tester")
+        require(
+            tester is None or (isinstance(tester, str) and tester.strip()),
+            f"{display(ACCEPTANCE)}:{run_id}: tester must be null or a non-empty string",
+        )
+        environment = run.get("observed_environment")
+        require(
+            isinstance(environment, dict) and set(environment) == set(BASELINE),
+            f"{display(ACCEPTANCE)}:{run_id}: observed-environment shape changed",
+        )
+        for key, observed in environment.items():
+            require(
+                observed is None or observed == BASELINE[key],
+                f"{display(ACCEPTANCE)}:{run_id}: observed {key} must be null or the pinned value",
+            )
+        save = run.get("save")
+        require(
+            isinstance(save, dict)
+            and set(save) == {"label", "slot_directory", "artifact", "created_before_first_install", "sha256"},
+            f"{display(ACCEPTANCE)}:{run_id}: save shape changed",
+        )
+        require(save.get("artifact") == "sav.dat", f"{display(ACCEPTANCE)}:{run_id}: save artifact must remain sav.dat")
+        for key in ("label", "slot_directory"):
+            entry = save.get(key)
+            require(
+                entry is None or (isinstance(entry, str) and entry.strip()),
+                f"{display(ACCEPTANCE)}:{run_id}: save.{key} must be null or a non-empty string",
+            )
+        created = save.get("created_before_first_install")
+        require(
+            created is None or created is save_was_created_before_install(save_state),
+            f"{display(ACCEPTANCE)}:{run_id}: created_before_first_install disagrees with save_state",
+        )
+        digest = save.get("sha256")
+        require(digest is None or valid_sha256(digest), f"{display(ACCEPTANCE)}:{run_id}: invalid save SHA-256")
+        logs = run.get("logs")
+        require(isinstance(logs, list) and len(logs) == 4, f"{display(ACCEPTANCE)}:{run_id}: expected four logs")
+        log_paths: list[str] = []
+        for index, item in enumerate(logs):
+            require(
+                isinstance(item, dict) and set(item) == {"path", "sha256"},
+                f"{display(ACCEPTANCE)}:{run_id}: logs[{index}] shape changed",
+            )
+            log_paths.append(
+                normalize_relative(item.get("path"), f"{display(ACCEPTANCE)}:{run_id}: logs[{index}].path")
+            )
+            log_digest = item.get("sha256")
+            require(log_digest is None or valid_sha256(log_digest), f"{display(ACCEPTANCE)}:{run_id}: invalid log SHA-256")
+        require(log_paths == expected_log_paths, f"{display(ACCEPTANCE)}:{run_id}: exact four-log inventory changed")
+        runs[run_id] = run
+    return runs
+
+
+def validate_retained_evidence(case_id: str, value: Any) -> None:
+    require(isinstance(value, list) and value, f"{display(ACCEPTANCE)}:{case_id}: completed case needs retained evidence")
+    references: set[str] = set()
+    for index, item in enumerate(value):
+        require(
+            isinstance(item, dict) and set(item) == {"type", "reference", "sha256"},
+            f"{display(ACCEPTANCE)}:{case_id}: evidence[{index}] shape changed",
+        )
+        evidence_type = item.get("type")
+        require(
+            evidence_type in EVIDENCE_TYPES,
+            f"{display(ACCEPTANCE)}:{case_id}: evidence[{index}] has an invalid type",
+        )
+        label = f"{display(ACCEPTANCE)}:{case_id}: evidence[{index}]"
+        evidence_path = safe_evidence_path(
+            item.get("reference"),
+            label=label,
+        )
+        reference = evidence_path.relative_to(COMPLETED).as_posix()
+        require(reference not in references, f"{display(ACCEPTANCE)}:{case_id}: duplicate evidence reference {reference}")
+        references.add(reference)
+        digest = item.get("sha256")
+        require(valid_sha256(digest), f"{display(ACCEPTANCE)}:{case_id}: evidence[{index}] needs a SHA-256")
+        if evidence_type == "save-metadata":
+            require(
+                evidence_path.suffix.lower() in {".md", ".txt", ".json"},
+                f"{display(evidence_path)}: save metadata must be sanitized text",
+            )
+        require(sha256(evidence_path) == digest, f"{display(evidence_path)}: retained evidence SHA-256 mismatch")
+
+
+def validate_completed_run(
+    run_id: str,
+    run: dict[str, Any],
+    candidates: dict[str, tuple[str | None, ...]],
+) -> datetime:
+    require(
+        all(valid_sha256(digest) for digest in candidates[run["candidate_id"]]),
+        f"{display(ACCEPTANCE)}:{run_id}: completed run needs both installed candidate hashes",
+    )
+    timestamp = observed_timestamp(run.get("performed_at"))
+    require(timestamp is not None, f"{display(ACCEPTANCE)}:{run_id}: completed run needs an offset timestamp")
+    require(
+        isinstance(run.get("tester"), str) and run["tester"].strip(),
+        f"{display(ACCEPTANCE)}:{run_id}: completed run needs a tester",
+    )
+    require(
+        run.get("observed_environment") == BASELINE,
+        f"{display(ACCEPTANCE)}:{run_id}: completed run must record the exact observed environment",
+    )
+    save = run["save"]
+    require(
+        isinstance(save.get("label"), str)
+        and save["label"].strip()
+        and isinstance(save.get("slot_directory"), str)
+        and save["slot_directory"].strip()
+        and valid_sha256(save.get("sha256")),
+        f"{display(ACCEPTANCE)}:{run_id}: completed run needs a labelled, hash-bound save",
+    )
+    require(
+        save.get("created_before_first_install") is save_was_created_before_install(run["save_state"]),
+        f"{display(ACCEPTANCE)}:{run_id}: untouched saves must be pre-install and derived saves must not be",
+    )
+    require(
+        all(valid_sha256(item.get("sha256")) for item in run["logs"]),
+        f"{display(ACCEPTANCE)}:{run_id}: completed run needs four hash-bound logs",
+    )
+    return timestamp
+
+
+def validate_pending_run(run_id: str, run: dict[str, Any]) -> None:
+    require(
+        run.get("performed_at") is None and run.get("tester") is None,
+        f"{display(ACCEPTANCE)}:{run_id}: pending run execution identity must be null",
+    )
+    require(
+        all(value is None for value in run["observed_environment"].values()),
+        f"{display(ACCEPTANCE)}:{run_id}: pending observed environment must be null",
+    )
+    save = run["save"]
+    require(
+        all(save.get(key) is None for key in ("label", "slot_directory", "created_before_first_install", "sha256")),
+        f"{display(ACCEPTANCE)}:{run_id}: pending save result fields must be null",
+    )
+    require(
+        all(item.get("sha256") is None for item in run["logs"]),
+        f"{display(ACCEPTANCE)}:{run_id}: pending log hashes must be null",
+    )
+
+
+def require_related_save_hash(runs: dict[str, dict[str, Any]], source_id: str, reuse_id: str) -> None:
+    source_digest = runs[source_id]["save"].get("sha256")
+    reuse_digest = runs[reuse_id]["save"].get("sha256")
+    require(
+        valid_sha256(source_digest) and valid_sha256(reuse_digest) and source_digest == reuse_digest,
+        f"{display(ACCEPTANCE)}:{reuse_id}: save hash must match {source_id}",
+    )
+
+
+def validate_runtime_acceptance(info: ManifestInfo) -> None:
+    acceptance = load_json(ACCEPTANCE)
+    require(
+        set(acceptance)
+        == {
+            "schema_version",
+            "example_id",
+            "status",
+            "evidence_class",
+            "required_environment",
+            "candidates",
+            "runs",
+            "cases",
+            "promotion_rule",
+        },
+        f"{display(ACCEPTANCE)}: top-level schema changed",
+    )
+    require(
+        acceptance.get("schema_version") == 3 and acceptance.get("example_id") == "cqa004",
+        f"{display(ACCEPTANCE)}: identity/schema changed",
+    )
+    require(acceptance.get("required_environment") == BASELINE, f"{display(ACCEPTANCE)}: required environment changed")
+    candidates = validate_candidates(acceptance.get("candidates"))
+    runs = validate_runs(acceptance.get("runs"))
     cases = acceptance.get("cases")
-    require(isinstance(runs, list) and [run.get("id") for run in runs] == expected_ids, "Lab 4 acceptance run matrix changed")
-    require(isinstance(cases, list) and [case.get("id") for case in cases] == expected_ids, "Lab 4 acceptance case matrix changed")
-    for run in runs:
-        require(run.get("performed_at") is None and run.get("tester") is None, f"{run.get('id')}: pending run execution fields must be null")
-        require(all(value is None for value in run["observed_environment"].values()), f"{run.get('id')}: pending observed environment must be null")
-        require(run["save"]["label"] is None and run["save"]["slot_directory"] is None and run["save"]["created_before_first_install"] is None and run["save"]["sha256"] is None, f"{run.get('id')}: pending save fields must be null")
-        require(len(run["logs"]) == 4 and all(item["sha256"] is None for item in run["logs"]), f"{run.get('id')}: pending log hashes must be null")
-    for case in cases:
-        require(case.get("required") is True and case.get("status") == "pending" and case.get("observed") is None and case.get("evidence") == [], f"{case.get('id')}: pending case fields changed")
-        require(case.get("run_ids") == [case.get("id")], f"{case.get('id')}: case/run binding changed")
-    require("CutDestination remains outside" in acceptance.get("promotion_rule", ""), "Lab 4 promotion rule must exclude unwired CutDestination")
+    require(isinstance(cases, list), f"{display(ACCEPTANCE)}: cases must be an array")
+    require(
+        [case.get("id") if isinstance(case, dict) else None for case in cases] == list(EXPECTED_CASES),
+        f"{display(ACCEPTANCE)}: immutable eight-case identity/order changed",
+    )
+    statuses: list[str] = []
+    completed_run_ids: set[str] = set()
+    for case, (case_id, (run_ids, precondition, expected)) in zip(cases, EXPECTED_CASES.items(), strict=True):
+        require(
+            isinstance(case, dict)
+            and set(case) == {"id", "required", "status", "run_ids", "precondition", "expected", "observed", "evidence"},
+            f"{display(ACCEPTANCE)}:{case_id}: case shape changed",
+        )
+        require(case.get("required") is True, f"{display(ACCEPTANCE)}:{case_id}: every case must remain required")
+        require(case.get("run_ids") == run_ids, f"{display(ACCEPTANCE)}:{case_id}: immutable run_ids changed")
+        require(case.get("precondition") == precondition, f"{display(ACCEPTANCE)}:{case_id}: immutable precondition changed")
+        require(case.get("expected") == expected, f"{display(ACCEPTANCE)}:{case_id}: immutable expected result changed")
+        status = case.get("status")
+        require(status in {"pending", "passed", "failed"}, f"{display(ACCEPTANCE)}:{case_id}: invalid status")
+        statuses.append(status)
+        if status == "pending":
+            require(
+                case.get("observed") is None and case.get("evidence") == [],
+                f"{display(ACCEPTANCE)}:{case_id}: pending case cannot claim observations/evidence",
+            )
+            for run_id in run_ids:
+                validate_pending_run(run_id, runs[run_id])
+        else:
+            require(
+                isinstance(case.get("observed"), str) and case["observed"].strip(),
+                f"{display(ACCEPTANCE)}:{case_id}: completed case needs a non-empty observation",
+            )
+            validate_retained_evidence(case_id, case.get("evidence"))
+            completed_run_ids.update(run_ids)
 
-    result = subprocess.run([sys.executable, str(DIAGRAM_BUILDER), "--check"], cwd=ROOT, check=False, capture_output=True, text=True, encoding="utf-8")
-    require(result.returncode == 0, f"Lab 4 diagrams are stale:\n{result.stdout}{result.stderr}".rstrip())
+    if any(status == "failed" for status in statuses):
+        expected_status = "failed"
+    elif all(status == "passed" for status in statuses):
+        expected_status = "passed"
+    else:
+        expected_status = "pending"
+    expected_class = "runtime-proven" if expected_status == "passed" else "experimental"
+    require(
+        acceptance.get("status") == expected_status,
+        f"{display(ACCEPTANCE)}: top-level status disagrees with required cases",
+    )
+    require(
+        acceptance.get("evidence_class") == expected_class,
+        f"{display(ACCEPTANCE)}: evidence_class disagrees with derived status",
+    )
+    require(info.runtime_status == expected_status, f"{display(MANIFEST)}: runtime status disagrees with acceptance cases")
+    require(info.runtime_class == expected_class, f"{display(MANIFEST)}: runtime class disagrees with acceptance cases")
+
+    completed_timestamps: dict[str, datetime] = {}
+    completed_slot_directories: dict[str, str] = {}
+    for run_id in sorted(completed_run_ids):
+        completed_timestamps[run_id] = validate_completed_run(run_id, runs[run_id], candidates)
+        slot_directory = runs[run_id]["save"]["slot_directory"].strip().replace("/", "\\").rstrip("\\").casefold()
+        require(slot_directory, f"{display(ACCEPTANCE)}:{run_id}: slot directory normalizes to empty")
+        completed_slot_directories[run_id] = slot_directory
+    require(
+        len(set(completed_timestamps.values())) == len(completed_timestamps),
+        f"{display(ACCEPTANCE)}: completed executions must use distinct performed_at instants",
+    )
+    require(
+        len(set(completed_slot_directories.values())) == len(completed_slot_directories),
+        f"{display(ACCEPTANCE)}: completed executions must use distinct normalized save slot directories",
+    )
+    completed_log_bundles = {
+        run_id: tuple(item["sha256"] for item in runs[run_id]["logs"])
+        for run_id in completed_run_ids
+    }
+    require(
+        len(set(completed_log_bundles.values())) == len(completed_log_bundles),
+        f"{display(ACCEPTANCE)}: completed executions must use distinct four-log hash bundles",
+    )
+
+    related_saves = SAVE_EQUIVALENCE_CLASSES[:3]
+    for source_id, reuse_id in related_saves:
+        source_digest = runs[source_id]["save"].get("sha256")
+        reuse_digest = runs[reuse_id]["save"].get("sha256")
+        if source_digest is not None and reuse_digest is not None:
+            require(
+                source_digest == reuse_digest,
+                f"{display(ACCEPTANCE)}:{reuse_id}: populated save hash must match {source_id}",
+            )
+        if reuse_id in completed_run_ids:
+            require_related_save_hash(runs, source_id, reuse_id)
+
+    completed_class_hashes: dict[str, str] = {}
+    for save_class in SAVE_EQUIVALENCE_CLASSES:
+        class_runs = [run_id for run_id in save_class if run_id in completed_run_ids]
+        if not class_runs:
+            continue
+        class_hashes = {runs[run_id]["save"]["sha256"] for run_id in class_runs}
+        require(
+            len(class_hashes) == 1,
+            f"{display(ACCEPTANCE)}: save-equivalence class {save_class!r} must share one hash",
+        )
+        completed_class_hashes[save_class[0]] = next(iter(class_hashes))
+    require(
+        len(set(completed_class_hashes.values())) == len(completed_class_hashes),
+        f"{display(ACCEPTANCE)}: unrelated original/derived/completed save classes must have distinct hashes",
+    )
+
+    expected_date = (
+        max(completed_timestamps.values()).date().isoformat()
+        if completed_timestamps
+        else None
+    )
+    require(
+        info.runtime_date == expected_date,
+        f"{display(MANIFEST)}: runtime date must equal the latest completed execution date {expected_date!r}",
+    )
+    require(acceptance.get("promotion_rule") == PROMOTION_RULE, f"{display(ACCEPTANCE)}: promotion rule changed")
+
+
+def marker_lines(path: Path) -> list[str]:
+    require(path.is_file(), f"{display(path)}: missing reader-facing Lab 4 page")
+    return [
+        line
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.startswith("**Lab 4 runtime evidence:**")
+    ]
+
+
+def validate_reader_status(info: ManifestInfo) -> None:
+    marker_by_state = {
+        ("pending", "experimental"): "**Lab 4 runtime evidence:** **Experimental** — pending.",
+        ("failed", "experimental"): "**Lab 4 runtime evidence:** **Experimental** — failed.",
+        ("passed", "runtime-proven"): "**Lab 4 runtime evidence:** **Runtime-proven** — passed.",
+    }
+    state = (info.runtime_status, info.runtime_class)
+    require(state in marker_by_state, f"{display(MANIFEST)}: runtime status/class cannot produce a reader marker")
+    expected_marker = marker_by_state[state]
+    expected_date = info.runtime_date if info.runtime_date is not None else "Not yet recorded"
+    date_row = f"| Runtime test date | {expected_date} |"
+    practical_pages = (
+        BOOK_QUESTPHASES / "lab-04.md",
+        BOOK_QUESTPHASES / "lab-04-authoring.md",
+        BOOK_QUESTPHASES / "lab-04-test.md",
+    )
+    passed_example = marker_by_state[("passed", "runtime-proven")]
+    failed_example = marker_by_state[("failed", "experimental")]
+    for page in practical_pages:
+        text_value = page.read_text(encoding="utf-8")
+        expected_markers = (
+            [expected_marker, passed_example, failed_example]
+            if page.name == "lab-04-test.md"
+            else [expected_marker]
+        )
+        require(
+            marker_lines(page) == expected_markers,
+            f"{display(page)}: Lab 4 runtime evidence markers are stale or duplicated",
+        )
+        date_rows = [line for line in text_value.splitlines() if line.startswith("| Runtime test date |")]
+        require(date_rows == [date_row], f"{display(page)}: runtime test date must be {expected_date!r}")
+
+    status_pages = (
+        ROOT / "README.md",
+        ROOT / "HANDOFF.md",
+        ROOT / "ROADMAP.md",
+        ROOT / "book" / "src" / "introduction.md",
+        BOOK_QUESTPHASES / "index.md",
+        ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
+        LAB / "README.md",
+        START / "README.md",
+        COMPLETED / "README.md",
+    )
+    for page in status_pages:
+        require(
+            marker_lines(page) == [expected_marker],
+            f"{display(page)}: missing, stale, or duplicate Lab 4 runtime evidence marker",
+        )
+
+
+def validate_diagram_reader_status(info: ManifestInfo, manifest: dict[str, Any]) -> None:
+    result = subprocess.run(
+        [sys.executable, "-B", str(DIAGRAM_BUILDER), "--check"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    output = "".join(part for part in (result.stdout, result.stderr) if part)
+    require(result.returncode == 0, f"Lab 4 diagrams are stale:\n{output}".rstrip())
     graphs = manifest["graphs"]
-    for key, layout_name in (("root", "cqa004.questphase.layout.json"), ("child", "cqa004_boundary.questphase.layout.json")):
+    for key, layout_name in (
+        ("root", "cqa004.questphase.layout.json"),
+        ("child", "cqa004_boundary.questphase.layout.json"),
+    ):
         layout = load_json(ASSETS / layout_name)
-        require(graphs[key]["source_fingerprint"] == layout["source_fingerprint"], f"Lab 4 {key} graph fingerprint drift")
+        require(
+            graphs[key]["source_fingerprint"] == layout["source_fingerprint"],
+            f"Lab 4 {key} graph fingerprint drift",
+        )
+
+    display_class = {
+        "experimental": "Experimental",
+        "runtime-proven": "Runtime-proven",
+    }[info.runtime_class]
+    date_suffix = f" • test date: {info.runtime_date}" if info.runtime_date is not None else ""
+    expected_footers = {
+        "cqa004.root.questphase.svg": f"{display_class} — runtime acceptance {info.runtime_status}{date_suffix}",
+        "cqa004.child.questphase.svg": f"{display_class} — runtime acceptance {info.runtime_status}{date_suffix}",
+        "cqa004.resource-chain.svg": f"{display_class} — runtime behavior {info.runtime_status}{date_suffix}",
+        "cqa004.handoff-contract.svg": f"{display_class} — parent/child runtime acceptance {info.runtime_status}{date_suffix}",
+    }
+    namespace = "http://www.w3.org/2000/svg"
     for name in PUBLISHED_FILES:
-        require((ASSETS / name).read_bytes() == (PUBLISHED / name).read_bytes(), f"Lab 4 published {name} differs from source")
-        text_value = (PUBLISHED / name).read_text(encoding="utf-8")
-        require("Experimental" in text_value and "WolvenKit" not in text_value, f"Lab 4 {name}: evidence label or screenshot boundary changed")
+        asset = ASSETS / name
+        published = PUBLISHED / name
+        require(asset.read_bytes() == published.read_bytes(), f"Lab 4 published {name} differs from source")
+        text_value = published.read_text(encoding="utf-8")
+        require("WolvenKit" not in text_value, f"Lab 4 {name}: WolvenKit screenshot boundary changed")
+        try:
+            root = ET.parse(asset).getroot()
+        except (OSError, ET.ParseError) as error:
+            raise ValidationError(f"{display(asset)}: invalid SVG XML: {error}") from error
+        metadata = root.find(f"{{{namespace}}}metadata")
+        require(metadata is not None and isinstance(metadata.text, str), f"{display(asset)}: missing SVG metadata")
+        try:
+            metadata_value = json.loads(metadata.text, object_pairs_hook=reject_duplicate_keys)
+        except json.JSONDecodeError as error:
+            raise ValidationError(f"{display(asset)}: invalid SVG metadata JSON: {error}") from error
+        require(
+            isinstance(metadata_value, dict) and metadata_value.get("evidence_class") == display_class,
+            f"{display(asset)}: stale evidence class in SVG metadata",
+        )
+        text_values = [
+            element.text
+            for element in root.findall(f".//{{{namespace}}}text")
+            if isinstance(element.text, str)
+        ]
+        require(
+            text_values.count(expected_footers[name]) == 1,
+            f"{display(asset)}: stale or duplicate runtime evidence footer",
+        )
+        if name in {"cqa004.root.questphase.svg", "cqa004.child.questphase.svg"}:
+            require(text_values.count(display_class) == 1, f"{display(asset)}: stale or duplicate graph evidence badge")
+
+
+def validate_manifest_acceptance_and_diagrams() -> None:
+    manifest = load_json(MANIFEST)
+    info = validate_manifest()
+    validate_runtime_acceptance(info)
+    validate_reader_status(info)
+    validate_diagram_reader_status(info, manifest)
 
 
 def run_wkit(wkit: Path) -> None:

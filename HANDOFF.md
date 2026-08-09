@@ -173,13 +173,16 @@ Stage 6 narrowed the community and scene evidence further:
 
 - **Runtime-proven:** retained archive
   `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-  spawned all three configured generic guards, kept them passive, and cleaned
-  them up. Its exact Tyger Claw entry is joined to
+  spawned all three configured generic guards and kept them passive. Its exact
+  Tyger Claw entry is joined to
   `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot`.
-  Retained archive
+  Later archive
+  `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A`
+  confirmed leave-area cleanup for a different hostile-patrol candidate; those
+  results must not be merged into one hash-bound claim. Retained archive
   `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
-  completed its community-readiness and scene-acquisition meeting route. Both
-  are bounded legacy results, not proof of `cqa005`.
+  completed its community-readiness and scene-acquisition meeting route. All
+  three are bounded legacy results, not proof of `cqa005`.
 - **Observed in vanilla:** the cited `mq003`, `mq007`, and `mq010` scenes and
   `mq003` questphases expose comparable actor, community, entry/exit,
   screenplay, readiness, and delayed-lifecycle shapes. The Japantown
@@ -190,8 +193,9 @@ Stage 6 narrowed the community and scene evidence further:
   cooked and serialized with WolvenKit `8.19.0`. The exact seven-node root,
   fifteen-node child, four-node completed scene, world identity joins,
   localization paths, and the checked synthetic WEM contract are retained.
-- **Acceptance-gated:** the exact `cqa005` mount, passive spawn, ordinary
-  line/subtitle/WEM playback, `contact_done` return, delayed deactivation,
+- **Experimental** while the synchronized marker is pending or failed, and
+  **Runtime-proven** only when it passes: the exact `cqa005` mount, passive
+  spawn, ordinary line/subtitle/WEM playback, `contact_done` return, delayed deactivation,
   stream-away/return, post-`contact_done` reload, completed reload, clean-save
   replay, removal isolation, and the exact named pre-scene seed loads in Cases
   3, 4, and 7 follow the synchronized marker above.
@@ -685,13 +689,13 @@ Completed on 2026-07-27:
 
 The live next-action list is now maintained in [ROADMAP.md](ROADMAP.md). The
 2026-08-09 audit confirmed that both Lab 1 checkpoint ZIPs are generated and
-published. Stages 0–6 completed the validation baseline, zero-assumption
+published. Stages 0–7 completed the validation baseline, zero-assumption
 onboarding, Lab 1, Journal/UI/localization, Conditions and gates, World
-integration, root/child composition, communities, scene basics, and the
-structurally validated Labs 2–5. Stage 7 is the first-release hardening pass;
-Stages 8–9 retain the cookbook, advanced-systems, and final-publication work in the
-roadmap. Runtime labels are promoted only when retained clean-save evidence
-supports them.
+integration, root/child composition, communities, scene basics, the
+structurally validated Labs 2–5, symptom-led troubleshooting, and the complete
+first-release lookup set. Stage 8 is the gameplay cookbook; Stage 9 retains
+advanced systems and the final publication audit. Runtime labels are promoted
+only when retained clean-save evidence supports them.
 
 ## Resolved decisions
 

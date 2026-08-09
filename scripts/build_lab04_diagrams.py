@@ -15,6 +15,7 @@ import html
 import json
 import sys
 from dataclasses import dataclass
+from datetime import date
 from pathlib import Path
 from typing import Iterable
 
@@ -32,6 +33,7 @@ RAW_PHASES = LAB / "source" / "raw" / "mod" / "cqa" / "cqa004" / "phases"
 ROOT_SOURCE = RAW_PHASES / "cqa004.questphase.json"
 CHILD_SOURCE = RAW_PHASES / "cqa004_boundary.questphase.json"
 ACCEPTANCE = LAB / "runtime-acceptance.json"
+MANIFEST = LAB / "example.json"
 ASSET_DIR = ROOT / "assets" / "diagrams" / "lab-04"
 PUBLISH_DIR = ROOT / "book" / "src" / "images" / "lab-04"
 
@@ -56,6 +58,18 @@ class EdgeSpec:
     destination: int
     destination_socket: str
     route: tuple[tuple[int, int], ...] = ()
+
+
+@dataclass(frozen=True)
+class EvidenceState:
+    status: str
+    evidence_class: str
+    display_class: str
+    test_date: str | None
+
+    @property
+    def date_suffix(self) -> str:
+        return f" • test date: {self.test_date}" if self.test_date is not None else ""
 
 
 ROOT_NODES = (
@@ -118,18 +132,46 @@ def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 
 
-def evidence_label() -> str:
+def evidence_state() -> EvidenceState:
     record = load_json(ACCEPTANCE)
-    status = record.get("status")
-    evidence_class = record.get("evidence_class")
-    expected = {
-        "pending": "experimental",
-        "failed": "experimental",
-        "passed": "runtime-proven",
-    }.get(status)
-    if expected is None or evidence_class != expected:
+    cases = record.get("cases")
+    if not isinstance(cases, list) or not cases:
+        raise ValueError("Lab 4 acceptance cases are missing")
+    statuses = []
+    for case in cases:
+        if not isinstance(case, dict) or case.get("required") is not True:
+            raise ValueError("Lab 4 acceptance cases must remain required objects")
+        case_status = case.get("status")
+        if case_status not in {"pending", "failed", "passed"}:
+            raise ValueError("Lab 4 acceptance case has an invalid status")
+        statuses.append(case_status)
+    if any(status == "failed" for status in statuses):
+        status = "failed"
+    elif all(status == "passed" for status in statuses):
+        status = "passed"
+    else:
+        status = "pending"
+    evidence_class = "runtime-proven" if status == "passed" else "experimental"
+    if record.get("status") != status or record.get("evidence_class") != evidence_class:
         raise ValueError("Lab 4 acceptance status and evidence class disagree")
-    return "Runtime-proven" if evidence_class == "runtime-proven" else "Experimental"
+
+    manifest = load_json(MANIFEST)
+    runtime = manifest.get("evidence", {}).get("runtime", {})
+    if runtime.get("status") != status or runtime.get("class") != evidence_class:
+        raise ValueError("Lab 4 manifest and acceptance evidence states disagree")
+    test_date = runtime.get("date")
+    if test_date is not None:
+        try:
+            if date.fromisoformat(test_date).isoformat() != test_date:
+                raise ValueError
+        except (TypeError, ValueError) as error:
+            raise ValueError("Lab 4 runtime test date must be null or YYYY-MM-DD") from error
+    return EvidenceState(
+        status=status,
+        evidence_class=evidence_class,
+        display_class="Runtime-proven" if evidence_class == "runtime-proven" else "Experimental",
+        test_date=test_date,
+    )
 
 
 def graph_fingerprint(
@@ -288,8 +330,9 @@ def render_graph(
     nodes: tuple[NodeSpec, ...],
     edges: tuple[EdgeSpec, ...],
     source_fingerprint: str,
-    evidence: str,
+    state: EvidenceState,
 ) -> str:
+    evidence = state.display_class
     description = (
         f"Exact {title_value} graph with {len(nodes)} nodes and {len(edges)} edges. "
         "Socket labels come from serialized graph connections. "
@@ -373,7 +416,13 @@ def render_graph(
     parts.extend(
         [
             text(40, height - 35, "All CutDestination sockets are present and unwired.", "warn"),
-            text(width - 40, height - 35, f"{evidence} — runtime acceptance pending", "note", anchor="end"),
+            text(
+                width - 40,
+                height - 35,
+                f"{evidence} — runtime acceptance {state.status}{state.date_suffix}",
+                "note",
+                anchor="end",
+            ),
             "</svg>",
         ]
     )
@@ -424,7 +473,8 @@ def panel(parts: list[str], x: int, y: int, width: int, height: int, css: str, t
         parts.append(text(x + 18, y + 61 + index * 22, line, "detail"))
 
 
-def render_resource_chain(evidence: str) -> str:
+def render_resource_chain(state: EvidenceState) -> str:
+    evidence = state.display_class
     parts = svg_open(
         1580,
         720,
@@ -459,14 +509,21 @@ def render_resource_chain(evidence: str) -> str:
     parts.extend(
         [
             text(40, 660, "Archived does not mean registered: the parent resolves the child by depot path.", "warn"),
-            text(1540, 660, f"{evidence} — runtime behavior pending", "note", anchor="end"),
+            text(
+                1540,
+                660,
+                f"{evidence} — runtime behavior {state.status}{state.date_suffix}",
+                "note",
+                anchor="end",
+            ),
             "</svg>",
         ]
     )
     return "\n".join(parts) + "\n"
 
 
-def render_handoff_contract(evidence: str) -> str:
+def render_handoff_contract(state: EvidenceState) -> str:
+    evidence = state.display_class
     parts = svg_open(
         1500,
         720,
@@ -493,7 +550,13 @@ def render_handoff_contract(evidence: str) -> str:
             text(745, 523, "CutDestination • present on nodes • deliberately unwired", "edge-label"),
             text(60, 590, "Structural contract: exact sockets and terminating output.", "label"),
             text(60, 618, "Runtime interpretation of CutDestination: Experimental; this lab creates no cut edge.", "warn"),
-            text(1430, 665, f"{evidence} — parent/child runtime acceptance pending", "note", anchor="end"),
+            text(
+                1430,
+                665,
+                f"{evidence} — parent/child runtime acceptance {state.status}{state.date_suffix}",
+                "note",
+                anchor="end",
+            ),
             "</svg>",
         ]
     )
@@ -501,7 +564,7 @@ def render_handoff_contract(evidence: str) -> str:
 
 
 def outputs() -> dict[str, str]:
-    evidence = evidence_label()
+    state = evidence_state()
     root_fingerprint = graph_fingerprint(ROOT_SOURCE, ROOT_NODES, ROOT_EDGES)
     child_fingerprint = graph_fingerprint(CHILD_SOURCE, CHILD_NODES, CHILD_EDGES)
     return {
@@ -522,7 +585,7 @@ def outputs() -> dict[str, str]:
             ROOT_NODES,
             ROOT_EDGES,
             root_fingerprint,
-            evidence,
+            state,
         ),
         "cqa004_boundary.questphase.layout.json": layout_json(
             "cqa004 Handoff Point external child questphase",
@@ -541,10 +604,10 @@ def outputs() -> dict[str, str]:
             CHILD_NODES,
             CHILD_EDGES,
             child_fingerprint,
-            evidence,
+            state,
         ),
-        "cqa004.resource-chain.svg": render_resource_chain(evidence),
-        "cqa004.handoff-contract.svg": render_handoff_contract(evidence),
+        "cqa004.resource-chain.svg": render_resource_chain(state),
+        "cqa004.handoff-contract.svg": render_handoff_contract(state),
     }
 
 

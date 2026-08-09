@@ -1593,6 +1593,7 @@ def validate_reader_status(info: ManifestInfo) -> None:
         ROOT / "ROADMAP.md",
         ROOT / "book" / "src" / "introduction.md",
         BOOK_WORLD / "index.md",
+        ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
         LAB / "README.md",
         START / "README.md",
         COMPLETED / "README.md",

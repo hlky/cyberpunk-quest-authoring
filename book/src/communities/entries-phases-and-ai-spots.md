@@ -44,8 +44,9 @@ spawned all three configured generic Tyger Claw entries at the retained cache
 site. Its exact character/spot recommendation is bounded further in [Cleanup
 and character safety](cleanup-and-character-safety.md).
 
-**Acceptance-gated:** the exact `cqa005` entry name, phase, appearance, spot
-placement, spawn, scene join, ordinary lifecycle, post-`contact_done` reload,
+**Experimental** while the synchronized marker is pending or failed, and
+**Runtime-proven** only when it passes: the exact `cqa005` entry name, phase,
+appearance, spot placement, spawn, scene join, ordinary lifecycle, post-`contact_done` reload,
 completed reload, and the named pre-scene seed loads in Cases 3, 4, and 7
 follow the synchronized marker above. Workspot/cigarette animation quality,
 combat or interruption behavior, arbitrary/unlisted pre-scene states, and

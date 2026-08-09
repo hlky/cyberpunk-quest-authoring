@@ -216,3 +216,6 @@ validated** and its gameplay behavior as **Experimental**.
 | Optional objective never resolves | Check the matching writer fact, its listener comparison, the delay payload, and the listener's journal-state socket | Do not infer XOR or cleanup behavior before the route reaches convergence |
 | Quest completes twice after reload | Verify the `27 -> 28` order, node `10` completed guard, and a truly untouched versus completed save | A console fact reset is diagnosis, not clean-save evidence |
 | Graph looks right but validation fails | Compare node IDs, RED types, socket names, resolved edges, and decisive payloads—not canvas placement or handle IDs | Layout is not serialized behavior |
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
+Signal Race in WolvenKit](lab-02-authoring.md).

@@ -949,6 +949,7 @@ def validate_reader_status(info: ManifestInfo) -> None:
         ROOT / "ROADMAP.md",
         ROOT / "book" / "src" / "introduction.md",
         BOOK_GATES / "index.md",
+        ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
         LAB / "README.md",
         START / "README.md",
         COMPLETED / "README.md",
@@ -1375,7 +1376,7 @@ def validate_graph_semantics() -> None:
         require(len(rendered_nodes) == 21, "Lab 2 completed graph must have exactly 21 nodes")
         edges = [(edge.source, edge.source_socket, edge.destination, edge.destination_socket) for edge in rendered_edges]
         require(len(edges) == 22 and len(set(edges)) == 22, "Lab 2 completed graph must have exactly 22 unique resolved edges")
-        require(set(edges) == set(EXPECTED_EDGES), f"Lab 2 completed graph exact edge contract changed")
+        require(set(edges) == set(EXPECTED_EDGES), "Lab 2 completed graph exact edge contract changed")
         connection_count = sum(1 for item in handles.values() if item.get("$type") == "graphGraphConnectionDefinition")
         require(connection_count == 22, "Lab 2 completed source must define exactly 22 graph connections")
     finally:

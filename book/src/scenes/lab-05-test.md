@@ -708,7 +708,7 @@ Status derivation is:
 - only eleven passed required cases permit status `passed` and class
   `runtime-proven`.
 
-The synchronized marker set contains exactly 22 pages. Use this checklist for
+The synchronized marker set contains exactly 23 pages. Use this checklist for
 every pending, failed, or passed evidence update:
 
 - [ ] `README.md`
@@ -730,11 +730,12 @@ every pending, failed, or passed evidence update:
 - [ ] `book/src/scenes/lab-05.md`
 - [ ] `book/src/scenes/lab-05-authoring.md`
 - [ ] `book/src/scenes/lab-05-test.md`
+- [ ] `book/src/reference/evidence-version-matrix.md`
 - [ ] `examples/lab-05-first-contact/README.md`
 - [ ] `examples/lab-05-first-contact/start/README.md`
 - [ ] `examples/lab-05-first-contact/completed/README.md`
 
-If the full matrix passes, change all 22 markers in the same evidence commit
+If the full matrix passes, change all 23 markers in the same evidence commit
 to:
 
 ```text
@@ -752,8 +753,8 @@ date` row of the overview, authoring, and test pages with the exact top-level
 acceptance `date`. Keep that row unchanged while the derived status is
 `pending`.
 
-The synchronized marker is authoritative for acceptance-gated `cqa005` claims:
-pending or failed remains **Experimental**, while eleven passed cases permit
+The synchronized marker is authoritative for its listed `cqa005` runtime
+claims: pending or failed remains **Experimental**, while eleven passed cases permit
 **Runtime-proven**. A failure is retained evidence, not permission to loosen
 the case or cite the old archive hashes as proof.
 
@@ -787,4 +788,5 @@ before editing anything.
 | Packaged project contains a tweak or script mutation | Reject the candidate; Lab 5 may reference the generic record but must not override or mutate it |
 | One log or hash is missing | Execution cannot satisfy promotion; rerun from the recorded source state |
 
-Previous: [Author First Contact in WolvenKit](lab-05-authoring.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
+First Contact in WolvenKit](lab-05-authoring.md) · Next: [Troubleshooting](../troubleshooting/index.md).

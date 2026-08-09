@@ -288,5 +288,6 @@ retain the page's
 **Structurally validated** and **Experimental** labels even if a casual run
 looks correct.
 
-Return to [Lab 1: First Signal](lab-01.md) for the exact graph and resource
-explanation.
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
+First Signal in WolvenKit](lab-01-authoring.md) · Next lab: [Lab 2: Signal
+Race](../gates/lab-02.md).

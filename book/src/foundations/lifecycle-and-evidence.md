@@ -99,8 +99,10 @@ evidence, not completion.
 
 Use the narrowest label supported:
 
-- **Runtime-proven:** exercised successfully in the game in the documented
-  arrangement.
+- **Runtime-proven:** the stated bounded behavior or result was observed in
+  game for the exact retained arrangement. The observed result can be a
+  success or a failure; a failed campaign remains **Experimental** for the
+  intended behavior that did not occur.
 - **Structurally validated:** serialized, round-tripped, and inspected, but not
   yet proven in game in that arrangement.
 - **Observed in vanilla:** present in one or more cited vanilla resources.

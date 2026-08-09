@@ -367,9 +367,10 @@ not a universal safe radius.
 | Claim | Current class | Boundary |
 | --- | --- | --- |
 | Eleven CR2W types, graphs, handles, sockets, paths, IDs, buffers, and registration sections | **Structurally validated** | WolvenKit `8.19.0` cook and serialize round trip |
-| Generic character/workspot pair and delayed community lifecycle in the named retained candidate | **Runtime-proven** | Applies only to that hash-bound historical archive |
+| Generic character/workspot pair, spawn, and passive state in archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` | **Runtime-proven** | Applies only to that hash-bound historical candidate; its retained result does not explicitly confirm cleanup |
+| Leave-boundary community deactivation in later hostile-patrol archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` | **Runtime-proven** | Separate candidate and actor behavior; do not merge it with the passive-candidate claim |
 | Comparable community, readiness, actor, screenplay, and scene structures in cited base-game resources | **Observed in vanilla** | Comparative depot-path evidence only |
-| Exact `cqa005` mount, spawn, passivity, named pre-scene seed loads in Cases 3/4/7, ordinary line/subtitle/audio playback, named exit, post-`contact_done` reload, completed reload, cleanup, and persistence | **Acceptance-gated** | Follows the synchronized marker above and requires every hash-bound Lab 5 acceptance case |
+| Exact `cqa005` mount, spawn, passivity, named pre-scene seed loads in Cases 3/4/7, ordinary line/subtitle/audio playback, named exit, post-`contact_done` reload, completed reload, cleanup, and persistence | **Experimental** while pending/failed; **Runtime-proven** only when passed | Follows the synchronized marker above and requires every hash-bound Lab 5 acceptance case |
 | Active-line interruption or `CutDestination`, arbitrary/unlisted pre-scene active-child states, active-line/interruption reload, and facial/workspot-animation quality | **Experimental** | Outside the frozen campaign; unaffected by marker promotion |
 
 ## Common failure modes
@@ -385,4 +386,5 @@ not a universal safe radius.
 | Contact disappears in view | Cleanup `IsOutside` radius and deactivation order |
 | Completed save starts again | `cqa005_completed`, write order, exact installed candidate, and original save provenance |
 
-Next: [Author First Contact in WolvenKit](lab-05-authoring.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
+First Contact in WolvenKit](lab-05-authoring.md).

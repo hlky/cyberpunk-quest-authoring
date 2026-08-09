@@ -26,7 +26,7 @@ or custom compiler is a reader prerequisite.
 | RED4ext | `1.30.0` |
 | redscript | `0.5.31` |
 | Structural status | **Structurally validated** |
-| Exact Lab 5 runtime status | Acceptance-gated — see synchronized marker above |
+| Exact Lab 5 runtime status | **Experimental** while pending/failed; **Runtime-proven** only when the synchronized marker passes |
 
 > **Clean-save requirement:** authoring and structural checks can use any
 > disposable project copy, but runtime acceptance establishes two untouched

@@ -50,7 +50,10 @@ that matrix.
 
 **Lab 5 runtime evidence:** **Experimental** — pending.
 
-## What this book will cover
+[Compare all five labs, downloads, identities, and evidence
+boundaries](reference/labs-at-a-glance.md).
+
+## What the resource model covers
 
 Cyberpunk quests span several resource systems:
 
@@ -66,8 +69,10 @@ Cyberpunk quests span several resource systems:
 - entity, appearance, and TweakDB resources provide custom characters and
   gameplay records.
 
-The practical guides will explain who owns each responsibility and how to test
-the boundaries between them.
+The practical guides explain who owns each responsibility and how to test the
+boundaries between them. Later cookbook and advanced-system chapters retain
+their evidence limits rather than treating broad engine coverage as proof of
+every custom composition.
 
 ## Evidence
 

@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "purpose": "Bound legacy Ghostline runtime observations cited by the reader-facing book; this is research provenance, not a reader dependency or proof under the pinned practical baseline.",
+  "environment_boundary": {
+    "wolvenkit": "8.17.4-nightly.2026-03-20 in surrounding metadata",
+    "archive_xl": "1.27.0 in surrounding metadata",
+    "tweak_xl": "1.11.3 in surrounding metadata",
+    "cyberpunk_2077_executable": null,
+    "red4ext": null
+  },
+  "records": [
+    {
+      "id": "gq000-direct-device-mappin-failure",
+      "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
+      "archive_sha256": "0F971F97877421C181C5D4B114F5090D015DEE97B3FE7FFCF9091F57FD476158",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "failed",
+      "bounded_observations": [
+        "ArchiveXL reported that the direct cooked cross-world device NodeRef could not resolve the journal mappin position."
+      ],
+      "not_proven": [
+        "A universal rule requiring a duplicate marker for every native NodeRef.",
+        "The later marker-split candidate."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/noderefs-streaming-placement.md"
+      ]
+    },
+    {
+      "id": "gq000-scene-launch-crash",
+      "source_commit": "68f311c8f2511aeba679b76a68062ef5e446aaa0",
+      "archive_sha256": "177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "failed",
+      "bounded_observations": [
+        "The candidate reproduced the meeting-scene launch crash before the lipsync-cardinality correction."
+      ],
+      "not_proven": [
+        "That every multi-row lipsync table crashes.",
+        "The corrected candidate's facial-animation quality."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/actors-scenes-lipsync.md",
+        "book/src/troubleshooting/controlled-isolation-evidence.md"
+      ]
+    },
+    {
+      "id": "gq000-complete-route",
+      "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
+      "archive_sha256": "1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "passed",
+      "bounded_observations": [
+        "The complete retained route displayed intended onscreen text, five meeting choice labels, spoken subtitles and VO, phone choices, completion presentation, and the separate always-loaded marker strategy."
+      ],
+      "not_proven": [
+        "Equivalence to the pinned current book baseline.",
+        "That the earlier FEAEC candidate carried the complete-route result."
+      ],
+      "reader_pages": [
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/reference/localization-reference.md",
+        "book/src/troubleshooting/journal-localization-audio.md",
+        "book/src/troubleshooting/noderefs-streaming-placement.md",
+        "book/src/troubleshooting/save-state-clean-retests.md"
+      ]
+    },
+    {
+      "id": "gq000-generic-guards-passive",
+      "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
+      "archive_sha256": "2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "All three configured generic Tyger Claws spawned.",
+        "The guards remained passive on the recorded route."
+      ],
+      "not_proven": [
+        "Cleanup; the retained result does not explicitly record it.",
+        "The later hostile-patrol candidate's behavior.",
+        "Cigarette-animation quality."
+      ],
+      "reader_pages": [
+        "HANDOFF.md",
+        "book/src/communities/cleanup-and-character-safety.md",
+        "book/src/communities/entries-phases-and-ai-spots.md",
+        "book/src/communities/index.md",
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/scenes/actors-and-performers.md",
+        "book/src/scenes/index.md",
+        "book/src/scenes/lab-05.md"
+      ]
+    },
+    {
+      "id": "gqt004-truncated-writer-crash",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "355C442781509F69B61745AF0889CDD32EEA825BA0E480AAD97A8DAF2CCE90BE",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "failed",
+      "bounded_observations": [
+        "The truncated vehicle-lab candidate crashed reproducibly while loading the test save."
+      ],
+      "not_proven": [
+        "The behavior of WolvenKit 8.19.0.",
+        "That every serializer omission produces the same crash."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/serialization-vs-runtime.md"
+      ]
+    },
+    {
+      "id": "gq000-shared-lipsync-meeting-pass",
+      "source_commit": "68f311c8f2511aeba679b76a68062ef5e446aaa0",
+      "archive_sha256": "87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "passed",
+      "bounded_observations": [
+        "The community-acquired meeting route completed after both actors selected addressable lipsync slot 0.",
+        "Spoken subtitles and VO on that route resolved."
+      ],
+      "not_proven": [
+        "Final facial-animation quality.",
+        "A universal one-slot policy.",
+        "The current Lab 5 package."
+      ],
+      "reader_pages": [
+        "HANDOFF.md",
+        "book/src/communities/activation-readiness-and-acquisition.md",
+        "book/src/communities/cleanup-and-character-safety.md",
+        "book/src/communities/index.md",
+        "book/src/communities/registries-and-areas.md",
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/reference/localization-reference.md",
+        "book/src/scenes/actors-and-performers.md",
+        "book/src/scenes/index.md",
+        "book/src/troubleshooting/actors-scenes-lipsync.md",
+        "book/src/troubleshooting/controlled-isolation-evidence.md"
+      ]
+    },
+    {
+      "id": "gqt003-root-owned-prefab-pass",
+      "source_commit": "6e959d2149e664432eaff3b7d4905e8b1d342f2f",
+      "archive_sha256": "B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "passed",
+      "bounded_observations": [
+        "One root-owned quest prefab remained usable across four external children whose phasePrefabs arrays were empty."
+      ],
+      "not_proven": [
+        "A universal inheritance law.",
+        "Lab 4 behavior under the pinned baseline."
+      ],
+      "reader_pages": [
+        "HANDOFF.md",
+        "book/src/questphases/index.md",
+        "book/src/questphases/prefab-dependencies.md",
+        "book/src/reference/evidence-version-matrix.md"
+      ]
+    },
+    {
+      "id": "gqt004-placeholder-fix-candidate",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "B5C9527AEAC233D3D9885B276E4898EE67114CA0FBDE3A7EBC57413EC06AB04A",
+      "evidence_class": "experimental",
+      "runtime_result": "unretained",
+      "bounded_observations": [
+        "The candidate followed a round trip that exposed and corrected literal placeholder scalars."
+      ],
+      "not_proven": [
+        "Any successful runtime route; no retained passing result is bound to this candidate."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/serialization-vs-runtime.md"
+      ]
+    },
+    {
+      "id": "gqt004-rebuilt-topology-partial",
+      "source_commit": "a24c341c1e2eca43f05a100f5776baba377b2260",
+      "archive_sha256": "BA94F1F88E91DA2E5C1E15D956E1AE867048029F4894C65F0A7B6DA6403436C1",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "The WolvenKit-rebuilt topology loaded without the preceding save-load crash.",
+        "The intended journal and vehicles were still absent."
+      ],
+      "not_proven": [
+        "A successful vehicle-lab route.",
+        "Correct bound scalar values."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/serialization-vs-runtime.md"
+      ]
+    },
+    {
+      "id": "gq000-hostile-patrol-cleanup",
+      "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
+      "archive_sha256": "DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A",
+      "evidence_class": "runtime-proven",
+      "runtime_result": "partial",
+      "bounded_observations": [
+        "The later hostile-patrol candidate established surviving-actor deactivation after the leave-area boundary."
+      ],
+      "not_proven": [
+        "The earlier passive candidate's cleanup.",
+        "A combined passive-and-cleanup result under one archive hash."
+      ],
+      "reader_pages": [
+        "HANDOFF.md",
+        "book/src/communities/cleanup-and-character-safety.md",
+        "book/src/communities/index.md",
+        "book/src/reference/evidence-version-matrix.md",
+        "book/src/scenes/index.md",
+        "book/src/scenes/lab-05.md"
+      ]
+    },
+    {
+      "id": "gq000-sorted-locstore-intermediate",
+      "source_commit": "97b5c5330acfc259bc1e5b814a83b7902cbd70bf",
+      "archive_sha256": "FEAEC7D66E6C3E492ACE2454A0E32FFB7E1DCBA6B8C08B7E44A427745BF21CAC",
+      "evidence_class": "experimental",
+      "runtime_result": "intermediate",
+      "bounded_observations": [
+        "The artifact is the earlier sorted locStore candidate in the retained investigation."
+      ],
+      "not_proven": [
+        "The complete five-choice, subtitle, VO, and exit route; that result is bound to 1C669335 instead."
+      ],
+      "reader_pages": [
+        "book/src/troubleshooting/journal-localization-audio.md"
+      ]
+    }
+  ]
+}

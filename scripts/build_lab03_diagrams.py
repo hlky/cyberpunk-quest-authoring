@@ -27,7 +27,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from render_quest_graph import fingerprint, load_json, parse_graph
+from render_quest_graph import fingerprint, load_json, parse_graph  # noqa: E402
 
 
 ROOT = Path(__file__).resolve().parents[1]

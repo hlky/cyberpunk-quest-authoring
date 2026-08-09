@@ -193,3 +193,6 @@ Until those checks pass, expected behavior is not runtime proof.
   second run.
 - If a test appears fixed after editing a device, journal, scene, or fact,
   repeat it on a clean save before attributing the change to the resource edit.
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
+First Signal in WolvenKit](lab-01-authoring.md).

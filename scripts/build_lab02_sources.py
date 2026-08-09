@@ -22,7 +22,6 @@ from build_lab01_sources import (  # noqa: E402
     GraphBuilder,
     GraphNode,
     Handles,
-    cname,
     input_node,
     journal_entry,
     journal_node,

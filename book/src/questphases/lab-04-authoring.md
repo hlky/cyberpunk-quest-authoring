@@ -424,4 +424,5 @@ archive\pc\mod\CQA_Lab04_HandoffPoint.archive.xl
 | Graph changes after reopen | Renumber through temporary IDs, save/reopen before wiring, then compare semantics |
 | Canonical hashes do not match | Use the unmodified completed checkpoint; a manually expanded `_Start` build is not byte-identical evidence |
 
-Continue with [the Lab 4 runtime protocol](lab-04-test.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 4:
+Handoff Point](lab-04.md) · Next: [Test Handoff Point](lab-04-test.md).

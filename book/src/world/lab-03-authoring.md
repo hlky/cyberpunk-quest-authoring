@@ -381,4 +381,5 @@ follow the acceptance record.
 | Build succeeds but nothing starts | Confirm installed archive plus loose registration file and inspect logs for all four registered top-level resources |
 | Canonical hashes no longer match | Use the supplied completed checkpoint; a manually expanded `_Start` project is not byte-identical evidence |
 
-Continue with [the Lab 3 runtime protocol](lab-03-test.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 3:
+Boundary Check](lab-03.md) · Next: [Test Boundary Check](lab-03-test.md).

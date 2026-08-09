@@ -32,7 +32,7 @@ game with WolvenKit. Do not commit or distribute the extracted CR2W files.
 
 | Depot path | Question it can answer |
 | --- | --- |
-| `base\worlds\03_night_city\03_night_city.streamingworld` | Which global resources and compiled block list the native world root references |
+| `base\worlds\03_night_city\_compiled\default\03_night_city.streamingworld` | Which global resources and compiled block list the native world root references |
 | `base\worlds\03_night_city\_compiled\default\blocks\all.streamingblock` | Which descriptor points to a sector, with which category, level, box, and quest-prefab root |
 | `base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector` | How one focused Quest sector relates nodes, placements, NodeRefs, triggers, and a quest-prefab namespace |
 | `base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector` | How one AlwaysLoaded sector registers references and marker-related content without assuming compact array pairing |

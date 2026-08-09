@@ -56,8 +56,9 @@ guidance.
 described below. The commit is legacy research, not the book's pinned baseline
 and not evidence that a regenerated package behaves identically.
 
-**Acceptance-gated:** the exact `cqa005` community action, readiness condition,
-broad-setup join, scene acquisition, ordinary route, post-`contact_done`
+**Experimental** while the synchronized marker is pending or failed, and
+**Runtime-proven** only when it passes: the exact `cqa005` community action,
+readiness condition, broad-setup join, scene acquisition, ordinary route, post-`contact_done`
 reload, completed reload, and the exact named pre-scene seed loads in Cases 3,
 4, and 7 follow the synchronized marker above. Arbitrary or unlisted
 pre-scene active-child states remain **Experimental** independently of that

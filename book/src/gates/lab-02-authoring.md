@@ -344,4 +344,6 @@ the player-visible outcome; it does not directly observe that internal signal.
 | Build succeeds but the quest is absent | Install both the packed archive and loose `.archive.xl`, then inspect ArchiveXL and RED4ext logs for the three depot paths |
 | Canonical hashes no longer match | Restore node `11` to exact value `2` and use the supplied completed project; a manually expanded `_Start` project is only a comparison candidate |
 
-Continue with [the two-variant runtime protocol](lab-02-test.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 2:
+Signal Race](lab-02.md) · Next: [Test both Signal Race
+routes](lab-02-test.md).

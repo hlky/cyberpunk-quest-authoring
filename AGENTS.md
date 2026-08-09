@@ -34,6 +34,8 @@ content work.
 - `examples` is reserved for downloadable incremental WolvenKit projects.
 - `assets/diagrams` is reserved for generated SVG source and outputs that are
   shared across chapters.
+- `evidence` contains machine-readable provenance and acceptance boundaries
+  used by repository validators. It must not become a reader prerequisite.
 - `scripts` is reserved for documentation-author infrastructure. Scripts here
   must not become reader prerequisites unless a guide explicitly teaches them.
 - `.github/workflows/pages.yml` builds and deploys the book through GitHub

@@ -29,7 +29,8 @@ WolvenKit, ArchiveXL, the game, and tools explicitly introduced by the book.
 | 4 — world integration plus Lab 3 | Complete; ten world chapters, two deterministic six-resource checkpoints, three exact/conceptual SVGs, and schema-v3 eight-run acceptance |
 | 5 — root/child composition plus Lab 4 | Complete; six focused questphase chapters, a three-page practical lab, two deterministic seven-resource checkpoints, exact parent/child graphs, and an eight-run acceptance matrix |
 | 6 — communities, scene basics, and Lab 5 | Complete; twelve focused community/scene chapters, a three-page practical lab, two deterministic twelve-artifact checkpoints, seven diagrams, and an eleven-case acceptance matrix |
-| 7–9 | Planned below |
+| 7 — first-release hardening | Complete; eight symptom-led troubleshooting guides, eleven lookup/reference pages, canonical five-lab navigation, synchronized release status, a validated legacy-evidence ledger, and full-repository lint/build/package checks |
+| 8–9 | Planned below |
 
 ## Completion standard
 
@@ -202,6 +203,9 @@ pre-scene active-child states, and facial/workspot-animation quality remain
 - ship the first-contact Lab 5 without hiding setup or cleanup in a template.
 
 ### Stage 7 — first-release hardening
+
+Status: **Complete** on 2026-08-09. The reference matrix mirrors all five
+canonical runtime records; it does not promote pending gameplay claims.
 
 - add symptom-led troubleshooting and clean-save isolation procedures;
 - add the glossary, resource map, node/socket/condition indexes, ID-domain

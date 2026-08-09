@@ -60,12 +60,94 @@ LAB_STATUS_PAGES = (
     ROOT / "book" / "src" / "journal" / "quest-state.md",
     ROOT / "book" / "src" / "journal" / "localization-paths.md",
     ROOT / "book" / "src" / "journal" / "rewards-and-completion.md",
+    ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
 )
 LAB_PRACTICAL_PAGES = (
     ROOT / "book" / "src" / "start-here" / "lab-01.md",
     ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
     ROOT / "book" / "src" / "start-here" / "install-and-test.md",
 )
+LAB_SEQUENCE_PAGES = (
+    ROOT / "book" / "src" / "start-here" / "lab-01.md",
+    ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
+    ROOT / "book" / "src" / "start-here" / "install-and-test.md",
+    ROOT / "book" / "src" / "gates" / "lab-02.md",
+    ROOT / "book" / "src" / "gates" / "lab-02-authoring.md",
+    ROOT / "book" / "src" / "gates" / "lab-02-test.md",
+    ROOT / "book" / "src" / "world" / "lab-03.md",
+    ROOT / "book" / "src" / "world" / "lab-03-authoring.md",
+    ROOT / "book" / "src" / "world" / "lab-03-test.md",
+    ROOT / "book" / "src" / "questphases" / "lab-04.md",
+    ROOT / "book" / "src" / "questphases" / "lab-04-authoring.md",
+    ROOT / "book" / "src" / "questphases" / "lab-04-test.md",
+    ROOT / "book" / "src" / "scenes" / "lab-05.md",
+    ROOT / "book" / "src" / "scenes" / "lab-05-authoring.md",
+    ROOT / "book" / "src" / "scenes" / "lab-05-test.md",
+)
+LAB_SEQUENCE_FOOTERS = {
+    LAB_SEQUENCE_PAGES[0]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author First Signal in WolvenKit](lab-01-authoring.md).",
+    LAB_SEQUENCE_PAGES[1]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 1: First Signal](lab-01.md) · Next: [Install, test, and reset](install-and-test.md).",
+    LAB_SEQUENCE_PAGES[2]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author First Signal in WolvenKit](lab-01-authoring.md) · Next lab: [Lab 2: Signal Race](../gates/lab-02.md).",
+    LAB_SEQUENCE_PAGES[3]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author Signal Race in WolvenKit](lab-02-authoring.md).",
+    LAB_SEQUENCE_PAGES[4]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 2: Signal Race](lab-02.md) · Next: [Test both Signal Race routes](lab-02-test.md).",
+    LAB_SEQUENCE_PAGES[5]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author Signal Race in WolvenKit](lab-02-authoring.md) · Next lab: [Lab 3: Boundary Check](../world/lab-03.md).",
+    LAB_SEQUENCE_PAGES[6]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author Boundary Check in WolvenKit](lab-03-authoring.md).",
+    LAB_SEQUENCE_PAGES[7]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 3: Boundary Check](lab-03.md) · Next: [Test Boundary Check](lab-03-test.md).",
+    LAB_SEQUENCE_PAGES[8]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author Boundary Check in WolvenKit](lab-03-authoring.md) · Next lab: [Lab 4: Handoff Point](../questphases/lab-04.md).",
+    LAB_SEQUENCE_PAGES[9]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic: [Completion and interruption](completion-and-cut.md) · Next: [Author Handoff Point in WolvenKit](lab-04-authoring.md).",
+    LAB_SEQUENCE_PAGES[10]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 4: Handoff Point](lab-04.md) · Next: [Test Handoff Point](lab-04-test.md).",
+    LAB_SEQUENCE_PAGES[11]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author Handoff Point in WolvenKit](lab-04-authoring.md) · Next lab: [Lab 5: First Contact](../scenes/lab-05.md).",
+    LAB_SEQUENCE_PAGES[12]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author First Contact in WolvenKit](lab-05-authoring.md).",
+    LAB_SEQUENCE_PAGES[13]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 5: First Contact](lab-05.md) · Next: [Test First Contact](lab-05-test.md).",
+    LAB_SEQUENCE_PAGES[14]: "Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author First Contact in WolvenKit](lab-05-authoring.md) · Next: [Troubleshooting](../troubleshooting/index.md).",
+}
+FIRST_RELEASE_HARDENING_PAGES = tuple(
+    BOOK_SRC / relative
+    for relative in (
+        "troubleshooting/index.md",
+        "troubleshooting/serialization-vs-runtime.md",
+        "troubleshooting/registration-and-depot-paths.md",
+        "troubleshooting/handles-sockets-resources.md",
+        "troubleshooting/noderefs-streaming-placement.md",
+        "troubleshooting/actors-scenes-lipsync.md",
+        "troubleshooting/journal-localization-audio.md",
+        "troubleshooting/save-state-clean-retests.md",
+        "troubleshooting/controlled-isolation-evidence.md",
+        "reference/index.md",
+        "reference/labs-at-a-glance.md",
+        "reference/glossary.md",
+        "reference/resource-map.md",
+        "reference/node-and-socket-index.md",
+        "reference/condition-index.md",
+        "reference/identifier-domain-reference.md",
+        "reference/journal-path-reference.md",
+        "reference/localization-reference.md",
+        "reference/archivexl-registration.md",
+        "reference/evidence-version-matrix.md",
+        "reference/vanilla-depot-paths.md",
+    )
+)
+LAB_RUNTIME_MANIFESTS = (
+    (1, ROOT / "examples" / "lab-01-one-shot" / "completed" / "example.json"),
+    (2, ROOT / "examples" / "lab-02-signal-race" / "completed" / "example.json"),
+    (3, ROOT / "examples" / "lab-03-boundary-check" / "completed" / "example.json"),
+    (4, ROOT / "examples" / "lab-04-handoff-point" / "completed" / "example.json"),
+    (5, ROOT / "examples" / "lab-05-first-contact" / "completed" / "example.json"),
+)
+LEGACY_RUNTIME_LEDGER = ROOT / "evidence" / "legacy-runtime.json"
+EXPECTED_LEGACY_ARCHIVES = {
+    "gq000-direct-device-mappin-failure": "0F971F97877421C181C5D4B114F5090D015DEE97B3FE7FFCF9091F57FD476158",
+    "gq000-scene-launch-crash": "177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD",
+    "gq000-complete-route": "1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC",
+    "gq000-generic-guards-passive": "2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80",
+    "gqt004-truncated-writer-crash": "355C442781509F69B61745AF0889CDD32EEA825BA0E480AAD97A8DAF2CCE90BE",
+    "gq000-shared-lipsync-meeting-pass": "87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D",
+    "gqt003-root-owned-prefab-pass": "B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF",
+    "gqt004-placeholder-fix-candidate": "B5C9527AEAC233D3D9885B276E4898EE67114CA0FBDE3A7EBC57413EC06AB04A",
+    "gqt004-rebuilt-topology-partial": "BA94F1F88E91DA2E5C1E15D956E1AE867048029F4894C65F0A7B6DA6403436C1",
+    "gq000-hostile-patrol-cleanup": "DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A",
+    "gq000-sorted-locstore-intermediate": "FEAEC7D66E6C3E492ACE2454A0E32FFB7E1DCBA6B8C08B7E44A427745BF21CAC",
+}
 QUEST_SOURCE_RELPATH = Path(
     "examples/lab-01-one-shot/completed/source/raw/"
     "mod/cqa/cqa001/phases/cqa001.questphase.json"
@@ -306,6 +388,8 @@ def json_path_is_allowed(path: Path) -> bool:
         MANIFEST.resolve(strict=False),
         ACCEPTANCE.resolve(strict=False),
         LAYOUT.resolve(strict=False),
+        *(path.resolve(strict=False) for _, path in LAB_RUNTIME_MANIFESTS),
+        LEGACY_RUNTIME_LEDGER.resolve(strict=False),
     }:
         return True
     try:
@@ -1024,6 +1108,223 @@ def validate_book_links_and_summary() -> None:
                     decoded_fragment in heading_cache[resolved],
                     f"{display(page)}: missing Markdown heading #{decoded_fragment} in {display(resolved)}",
                 )
+
+
+def validate_first_release_hardening() -> None:
+    for page in FIRST_RELEASE_HARDENING_PAGES:
+        require(page.is_file(), f"missing first-release hardening page {display(page)}")
+
+    for page in LAB_SEQUENCE_PAGES:
+        text = " ".join(
+            markdown_visible_text(page.read_text(encoding="utf-8")).split()
+        )
+        expected_footer = LAB_SEQUENCE_FOOTERS[page]
+        require(
+            text.count(expected_footer) == 1,
+            f"{display(page)}: expected exactly one canonical lab-sequence footer",
+        )
+
+    lab_index = (BOOK_SRC / "reference" / "labs-at-a-glance.md").read_text(
+        encoding="utf-8"
+    )
+    for lab_number, quest_id, title, project in (
+        (1, "cqa001", "First Signal", "CQA_Lab01_OneShot"),
+        (2, "cqa002", "Signal Race", "CQA_Lab02_SignalRace"),
+        (3, "cqa003", "Boundary Check", "CQA_Lab03_BoundaryCheck"),
+        (4, "cqa004", "Handoff Point", "CQA_Lab04_HandoffPoint"),
+        (5, "cqa005", "First Contact", "CQA_Lab05_FirstContact"),
+    ):
+        reading_prefix = f"| {lab_number} | **{title}** · `{quest_id}` |"
+        checkpoint_prefix = f"| {lab_number} | `{project}` |"
+        require(
+            reading_prefix in lab_index,
+            f"labs-at-a-glance missing canonical reading row prefix {reading_prefix!r}",
+        )
+        require(
+            checkpoint_prefix in lab_index,
+            f"labs-at-a-glance missing canonical checkpoint row prefix {checkpoint_prefix!r}",
+        )
+
+    evidence_matrix = (
+        BOOK_SRC / "reference" / "evidence-version-matrix.md"
+    ).read_text(encoding="utf-8")
+    marker_by_state = {
+        ("pending", "experimental"): ("Experimental", "pending"),
+        ("failed", "experimental"): ("Experimental", "failed"),
+        ("passed", "runtime-proven"): ("Runtime-proven", "passed"),
+    }
+    for lab_number, manifest_path in LAB_RUNTIME_MANIFESTS:
+        manifest = load_json(manifest_path)
+        runtime = manifest.get("evidence", {}).get("runtime", {})
+        state = (runtime.get("status"), runtime.get("class"))
+        require(
+            state in marker_by_state,
+            f"{display(manifest_path)}: unsupported runtime status/class for release marker",
+        )
+        display_class, display_status = marker_by_state[state]
+        expected_marker = (
+            f"**Lab {lab_number} runtime evidence:** **{display_class}** — "
+            f"{display_status}."
+        )
+        actual_markers = [
+            line
+            for line in evidence_matrix.splitlines()
+            if line.startswith(f"**Lab {lab_number} runtime evidence:**")
+        ]
+        require(
+            actual_markers == [expected_marker],
+            "book/src/reference/evidence-version-matrix.md: "
+            f"Lab {lab_number} marker must be exactly {expected_marker!r}",
+        )
+
+    for relative in ("troubleshooting/index.md", "reference/index.md"):
+        text = (BOOK_SRC / relative).read_text(encoding="utf-8").lower()
+        require("will cover" not in text, f"{relative}: placeholder future-tense remains")
+        require("planned references" not in text, f"{relative}: placeholder plan remains")
+
+    evidence_label_pages = [
+        ROOT / "README.md",
+        ROOT / "HANDOFF.md",
+        ROOT / "ROADMAP.md",
+        *BOOK_SRC.rglob("*.md"),
+        *(ROOT / "examples").rglob("README.md"),
+    ]
+    for page in evidence_label_pages:
+        text = page.read_text(encoding="utf-8")
+        require(
+            "**Acceptance-gated" not in text,
+            f"{display(page)}: use one of the four canonical evidence labels",
+        )
+
+    runtime_definition_fragments = {
+        BOOK_SRC / "foundations" / "lifecycle-and-evidence.md": (
+            "the stated bounded behavior or result was observed in game for the exact "
+            "retained arrangement",
+            "failed campaign remains **Experimental** for the intended behavior",
+        ),
+        BOOK_SRC / "troubleshooting" / "index.md": (
+            "the stated bounded behavior or result was observed in game for the exact "
+            "retained arrangement",
+            "failed lab campaign remains **Experimental** for the intended behavior",
+        ),
+        BOOK_SRC / "reference" / "glossary.md": (
+            "the stated bounded behavior or result was observed in game for the exact "
+            "retained arrangement",
+            "failed campaign remains **Experimental** for the intended behavior",
+        ),
+    }
+    for page, fragments in runtime_definition_fragments.items():
+        text = " ".join(
+            markdown_visible_text(page.read_text(encoding="utf-8")).split()
+        ).lower()
+        for fragment in fragments:
+            require(
+                fragment.lower() in text,
+                f"{display(page)}: Runtime-proven definition drifted at {fragment!r}",
+            )
+
+
+def validate_legacy_runtime_ledger() -> None:
+    ledger = load_json(LEGACY_RUNTIME_LEDGER)
+    require(
+        set(ledger) == {
+            "schema_version",
+            "purpose",
+            "environment_boundary",
+            "records",
+        },
+        f"{display(LEGACY_RUNTIME_LEDGER)}: top-level contract changed",
+    )
+    require(ledger["schema_version"] == 1, "legacy runtime ledger schema must be 1")
+    require(
+        isinstance(ledger["purpose"], str) and "not a reader dependency" in ledger["purpose"],
+        "legacy runtime ledger must state its non-dependency boundary",
+    )
+    require(
+        ledger["environment_boundary"]
+        == {
+            "wolvenkit": "8.17.4-nightly.2026-03-20 in surrounding metadata",
+            "archive_xl": "1.27.0 in surrounding metadata",
+            "tweak_xl": "1.11.3 in surrounding metadata",
+            "cyberpunk_2077_executable": None,
+            "red4ext": None,
+        },
+        "legacy runtime ledger environment boundary changed",
+    )
+
+    records = ledger["records"]
+    require(isinstance(records, list), "legacy runtime ledger records must be an array")
+    require(
+        [record.get("id") for record in records] == list(EXPECTED_LEGACY_ARCHIVES),
+        "legacy runtime ledger IDs must be the exact ordered inventory",
+    )
+    reader_pages = {
+        *(path.resolve() for path in (ROOT / "README.md", ROOT / "HANDOFF.md", ROOT / "ROADMAP.md")),
+        *(path.resolve() for path in BOOK_SRC.rglob("*.md")),
+        *(path.resolve() for path in (ROOT / "examples").rglob("README.md")),
+    }
+    expected_keys = {
+        "id",
+        "source_commit",
+        "archive_sha256",
+        "evidence_class",
+        "runtime_result",
+        "bounded_observations",
+        "not_proven",
+        "reader_pages",
+    }
+    for record in records:
+        require(isinstance(record, dict) and set(record) == expected_keys, "legacy evidence record shape changed")
+        record_id = record["id"]
+        archive_hash = record["archive_sha256"]
+        require(
+            archive_hash == EXPECTED_LEGACY_ARCHIVES[record_id],
+            f"{record_id}: archive hash changed",
+        )
+        require(re.fullmatch(r"[0-9a-f]{40}", record["source_commit"]) is not None, f"{record_id}: invalid source commit")
+        require(re.fullmatch(r"[0-9A-F]{64}", archive_hash) is not None, f"{record_id}: invalid archive SHA-256")
+        require(record["evidence_class"] in {"runtime-proven", "experimental"}, f"{record_id}: invalid evidence class")
+        require(record["runtime_result"] in {"passed", "failed", "partial", "intermediate", "unretained"}, f"{record_id}: invalid runtime result")
+        if record["evidence_class"] == "experimental":
+            require(record["runtime_result"] in {"intermediate", "unretained"}, f"{record_id}: experimental record overclaims a runtime result")
+        for field in ("bounded_observations", "not_proven"):
+            values = record[field]
+            require(
+                isinstance(values, list)
+                and values
+                and all(isinstance(value, str) and value.strip() for value in values),
+                f"{record_id}: {field} must contain non-empty statements",
+            )
+
+        declared_pages = record["reader_pages"]
+        require(
+            isinstance(declared_pages, list)
+            and declared_pages == sorted(set(declared_pages)),
+            f"{record_id}: reader_pages must be a sorted unique list",
+        )
+        declared_resolved: set[Path] = set()
+        for relative in declared_pages:
+            require(
+                isinstance(relative, str)
+                and "\\" not in relative
+                and not relative.startswith("/")
+                and all(part not in {"", ".", ".."} for part in PurePosixPath(relative).parts),
+                f"{record_id}: unsafe reader page {relative!r}",
+            )
+            page = ROOT.joinpath(*PurePosixPath(relative).parts).resolve()
+            require(page in reader_pages and page.is_file(), f"{record_id}: unknown reader page {relative}")
+            require(archive_hash in page.read_text(encoding="utf-8"), f"{record_id}: hash missing from {relative}")
+            declared_resolved.add(page)
+
+        actual_resolved = {
+            page
+            for page in reader_pages
+            if archive_hash in page.read_text(encoding="utf-8")
+        }
+        require(
+            actual_resolved == declared_resolved,
+            f"{record_id}: reader-page hash inventory differs from the ledger",
+        )
 
 
 def iter_json_objects(value: Any) -> Iterator[dict[str, Any]]:
@@ -1772,6 +2073,8 @@ def main() -> int:
         ("Lab 1 hashes and runtime acceptance", lambda: validate_evidence_record(info)),
         ("Lab 1 reader-facing evidence status", lambda: validate_reader_evidence_status(info)),
         ("book links and SUMMARY coverage", validate_book_links_and_summary),
+        ("first-release references and lab navigation", validate_first_release_hardening),
+        ("bounded legacy runtime evidence ledger", validate_legacy_runtime_ledger),
         ("Lab 1 journal and localization lookups", validate_lab01_journal_contract),
         ("example.json and ArchiveXL registrations", lambda: validate_archive_xl(info)),
         ("cooked CR2W and review-source provenance", lambda: validate_cr2w_pairs(info)),

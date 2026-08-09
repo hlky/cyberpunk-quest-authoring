@@ -376,3 +376,7 @@ pass uses `**Lab 3 runtime evidence:** **Runtime-proven** — passed.`.
 | Reinstall is not identical | Compare both installed hashes; a new build is a new candidate even when source looks unchanged |
 | One screenshot is used for every case | Retain separate run identity, saves, timestamps, observations, and four-log bundles |
 | UI is treated as proof of sector ownership | Use exact structural evidence for ownership and runtime evidence only for what the player/logs expose |
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
+Boundary Check in WolvenKit](lab-03-authoring.md) · Next lab: [Lab 4: Handoff
+Point](../questphases/lab-04.md).

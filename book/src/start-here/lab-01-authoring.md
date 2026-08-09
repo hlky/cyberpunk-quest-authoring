@@ -540,3 +540,6 @@ to the graph.
 Serialization, validation, packing, ArchiveXL registration, and runtime
 behavior are different evidence steps. Keep the **Experimental** label until
 the clean-save matrix—not merely the successful build—has been retained.
+
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Lab 1:
+First Signal](lab-01.md) · Next: [Install, test, and reset](install-and-test.md).

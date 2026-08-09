@@ -37,11 +37,13 @@ community entry phases and later deactivates the activity's community-backed
 actors. It demonstrates that cleanup belongs to later quest lifecycle logic,
 not to the scene actor definition itself.
 
-**Runtime-proven:** legacy fixture only. Archive
+**Runtime-proven:** separate legacy fixtures prove separate claims. Archive
 `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-spawned its three configured generic Tyger Claw entries, kept them passive,
-and cleaned them up. That result is bound to its exact archive, entry/spot
-joins, placement, and route; it did not separately isolate cigarette-animation
+spawned its three configured generic Tyger Claw entries and kept them passive.
+Later hostile-patrol archive
+`DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A`
+confirmed surviving-actor deactivation after the leave-area boundary. Neither
+result proves the other candidate's complete lifecycle or cigarette-animation
 quality.
 
 **Structurally validated:** retained resources at commit
@@ -49,8 +51,9 @@ quality.
 community actions with the relationships described here. This legacy commit
 is not a pinned practical baseline.
 
-**Acceptance-gated:** the exact `cqa005` ordinary outcome-to-progression order,
-cleanup volume, delay, visible despawn behavior, post-`contact_done` reload,
+**Experimental** while the synchronized marker is pending or failed, and
+**Runtime-proven** only when it passes: the exact `cqa005` ordinary
+outcome-to-progression order, cleanup volume, delay, visible despawn behavior, post-`contact_done` reload,
 completed reload, and named pre-scene seed loads in Cases 3, 4, and 7 follow
 the synchronized marker above. Active-line interruption or `CutDestination`
 behavior, combat, arbitrary/unlisted pre-scene active-child states, and
@@ -246,8 +249,8 @@ identity/topology test. Then cover all lifecycle boundaries:
 
 This design matrix is broader than the frozen campaign. The exact named
 `seed-pre-scene-outside-setup` loads and routes in Cases 3, 4, and 7 are
-acceptance-gated. The generic pre-scene row below means any arbitrary or
-unlisted active-child save point; it, active-scene reload, alternate outcomes,
+governed by the synchronized marker. The generic pre-scene row below means any
+arbitrary or unlisted active-child save point; it, active-scene reload, alternate outcomes,
 and interruption/combat remain supplemental **Experimental** work even if the
 synchronized marker passes.
 
