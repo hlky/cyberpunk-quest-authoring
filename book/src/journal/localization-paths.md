@@ -9,13 +9,11 @@ other two.
 | --- | --- |
 | Chapter review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Lab 1 UI resource | **Structurally validated**; runtime status is shown by the dedicated marker below |
+| Lab 1 UI resource | Structure checked; verify presentation with the Lab 1 test guide |
 | Vanilla scene references | **Observed in vanilla** |
 | Complete retained localization fixture | **Runtime-proven** in a legacy environment, not in one fully bound pinned-book run |
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-> **Evidence boundary:** the exact resource types and joins below have been
+> **Research note:** the exact resource types and joins below have been
 > structurally inspected, and the choice-store shape is also supported by
 > focused vanilla observations. A retained quest fixture displayed onscreen
 > text, subtitles, voiceover, and all intended choice labels in game. That run

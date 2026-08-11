@@ -11,7 +11,7 @@ authoring model.
 | Reference review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1–5 path resources | **Structurally validated** |
-| Exact Lab 1–5 in-game state transitions | Governed by each lab's canonical marker: pending/failed is **Experimental**; passed promotes only its recorded cases to **Runtime-proven** |
+| In-game state transitions | Verify with the relevant lab's save and reload cases |
 
 Journal activation, visited state, tracking, success, and failure can persist
 in a save. Use an untouched save made before the candidate journal was first

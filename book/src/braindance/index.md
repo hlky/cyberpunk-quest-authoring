@@ -21,24 +21,6 @@ For example, a `.scenerid` can serialize while its scene event points at the
 wrong resource/serial pair, and a clue can appear on a timeline while its
 world entity or discovery handoff is absent.
 
-## Evidence and version boundary
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | Focused extractions from the installed Cyberpunk 2077 `2.31a` archives show `scnRewindableSectionNode`, RID resource handlers and event references, body/facial/cyberware/camera channels, support props, layered clue events, and quest-side BD management in the exact depot paths cited by these chapters. |
-| **Structurally validated** | A retained mod-owned research chain consisting of one `.questphase`, one rewindable `.scene`, and one `.scenerid` serialized to JSON and back to CR2W with WolvenKit `8.19.0` on 2026-08-09. This proves readable shapes and internal serialization, not gameplay. |
-| **Experimental** | Custom animation playback, recorded-perspective camera behavior, seek/rewind, analysis-layer switching, clue discovery, normal cleanup, interrupted cleanup, and replay all remain experimental until the exact packaged candidate passes the eight-case matrix in [Clue layers, cleanup, and acceptance](clue-layers-cleanup-and-acceptance.md). |
-
-There is no **Runtime-proven** custom-braindance claim in this section. No
-retained eight-case record exists, so a structurally complete candidate cannot
-be promoted by inference.
-
-The practical inspection baseline is Cyberpunk 2077 Windows GOG `2.31a`,
-WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`. The current structural round trip did not launch the game and did not
-exercise ArchiveXL, RED4ext, or redscript behavior. See [Tested
-versions](../reference/tested-versions.md).
-
 ## Reading route
 
 Read these pages in order:
@@ -51,7 +33,7 @@ Read these pages in order:
    facial, cyberware, camera, duration, and rewindability form one contract.
 3. [Clue layers, cleanup, and acceptance](clue-layers-cleanup-and-acceptance.md)
    — visual/audio/thermal clue ownership, normal and interrupted exits,
-   save-backed state, replay policy, and the mandatory eight-case campaign.
+   save-backed state, replay policy, and a practical eight-case test campaign.
 
 Read [Scene resource anatomy](../scenes/resource-anatomy.md), [Screenplay
 sections and events](../scenes/screenplay-sections-and-events.md), [Entry,
@@ -82,7 +64,7 @@ events, six clue events, and two braindance-visibility events. Those counts are
 **Observed in vanilla** for that exact resource only, not minimums or a
 copy-ready design.
 
-## What completion means here
+## What you will learn
 
 This section is complete when a reader can:
 
@@ -93,14 +75,13 @@ This section is complete when a reader can:
   behavior;
 - design a mod-owned candidate and its cleanup contract without relying on a
   hidden generator;
-- execute and retain the eight acceptance cases required for any future
-  **Runtime-proven** promotion.
+- run the eight test cases that cover forward playback, rewind, clue layers,
+  normal cleanup, interrupted cleanup, and replay.
 
 It does not promise that WolvenKit exposes a one-click custom-braindance
 wizard, that a vanilla RID may be redistributed as a template, or that a
 custom Blender/export pipeline is part of the reader workflow. Creating new
 compressed animation buffers is a specialized production problem; this book
-documents the native contract they must satisfy and the evidence needed to
-claim that they work.
+documents the native contract they must satisfy and how to test the result.
 
 Next: [Ownership and resource chain](ownership-and-resource-chain.md).

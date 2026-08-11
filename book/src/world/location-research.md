@@ -5,26 +5,6 @@ fixture. It does not produce a folder of redistributed vanilla CR2W files. The
 goal is to answer where a native object lives, which resources own it, how it
 is addressed, and which observations still require an in-game test.
 
-## Evidence and version boundary
-
-This workflow keeps three ledgers:
-
-| Ledger | Confidence label | What belongs in it |
-| --- | --- | --- |
-| Vanilla structure | **Observed in vanilla** | Exact depot path, focused property excerpt, node type, NodeRef, transform, and owner chain extracted from the researcher's installation |
-| Mod-owned structure | **Structurally validated** | Round-trip, handle/reference checks, packed paths, block registration shape, and deterministic fixture fingerprints |
-| Runtime behavior | **Runtime-proven** | Exact installed fixture, clean starting save, test route, visible behavior, reload cases, logs, and result |
-
-An untested idea belongs under **Experimental**, even when every input was
-copied accurately into research notes.
-
-The retained reference extracts use WolvenKit JSON `0.0.9`, serialized by
-WolvenKit `8.17.4`, with CR2W `GameVersion: 2310`. The practical authoring and
-acceptance target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`,
-ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`. Record the
-versions actually used for every new extraction and test; do not silently
-merge evidence from the two environments.
-
 ## Retained comparison paths
 
 These depot paths form a focused research route. Extract them from your own

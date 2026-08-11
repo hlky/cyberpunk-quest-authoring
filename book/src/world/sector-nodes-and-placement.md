@@ -7,10 +7,10 @@ identity is registered in `nodeRefs`. Cooked vanilla sectors show that these
 collections are not universally parallel, so review their explicit
 relationships before assuming a marker or trigger is complete.
 
-## Evidence and version boundary
+## Vanilla references
 
-**Observed in vanilla:** the node/data/reference relationships described here
-occur in focused extracts from:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector
@@ -18,20 +18,6 @@ base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector
 base\worlds\03_night_city\_compiled\default\exterior_-18_28_0_0.streamingsector
 base\worlds\03_night_city\_compiled\default\bd21168eed6c6d62.streamingsector_inplace
 ```
-
-The retained extracts use WolvenKit JSON `0.0.9`, serialized by WolvenKit
-`8.17.4`, with CR2W `GameVersion: 2310`. Extract your own copies for
-inspection; this book does not ship the vanilla CR2W resources.
-
-**Structurally validated:** the basic three-part placement shape and separate
-`.streamingsector_inplace` reference survived round-trip inspection in prior
-mod-owned research under WolvenKit `8.17.4`. Lab 3's three concrete nodes,
-placement records, transforms, full child refs, and registered refs were
-separately cooked and serialized back with WolvenKit `8.19.0`.
-
-**Experimental:** the placement and streaming behavior has not passed the
-target runtime stack: Cyberpunk 2077 Windows GOG `2.31a`, ArchiveXL `1.27.0`,
-RED4ext `1.30.0`, and redscript `0.5.31`.
 
 ## The placement triad
 

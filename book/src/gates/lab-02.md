@@ -11,8 +11,6 @@ relying on an untested cancellation claim.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 2 runtime evidence:** **Experimental** — pending.
-
 **Implementation status:** both supplied checkpoints are **Structurally
 validated** after all six mod-owned CR2W resources were cooked and serialized
 back with WolvenKit 8.19.0. Runtime timing, active-listener persistence, XOR
@@ -191,21 +189,6 @@ socket; socket count is not connection count.
 These names are reserved to Lab 2. Do not use console writes or another mod to
 drive them during canonical acceptance; doing so changes which producer owns
 the result.
-
-## Evidence still required
-
-Structural checks do not answer whether an active Pause Condition survives a
-reload, whether the XOR output can emit again, or whether terminating the phase
-cleans up its other listener. The runtime matrix therefore requires both
-variants and records each player-visible journal outcome. The exact graph—not
-the runtime observation—maps those controlled routes to the two XOR inputs.
-The matrix separately covers a mid-route reload, completed reload/reinstall,
-clean replay, exact hashes, and fresh logs. It does not stimulate a second XOR
-input in one run, so repeat-emission and tie behavior remain explicitly
-untested.
-
-Until every required case passes, describe Signal Race as **Structurally
-validated** and its gameplay behavior as **Experimental**.
 
 ## Common failure modes
 

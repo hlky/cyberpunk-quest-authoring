@@ -1,13 +1,12 @@
-# Evidence and version matrix
+# Lab status and research provenance
 
 An evidence label belongs to one claim, one artifact set, and one tested
 boundary. It does not automatically transfer to a similar graph or to a later
 archive.
 
-This page is the release-wide lookup for the first five labs and the legacy
-research claims already used by the book. The canonical machine-readable
-status of each lab remains its supplied `runtime-acceptance.json`.
-The repository's
+This page is the optional provenance lookup for the first five labs and the
+older runtime observations cited by some advanced chapters. You do not need it
+to follow the authoring guides. The repository's
 [legacy runtime ledger](https://github.com/hlky/cyberpunk-quest-authoring/blob/main/evidence/legacy-runtime.json)
 separately freezes each historical archive hash, source commit, bounded
 observation, exclusion, and exact reader-page inventory.
@@ -26,30 +25,11 @@ Use the narrowest applicable statement. For example, a legacy archive can be
 community remains **Experimental** and its CR2W joins remain **Structurally
 validated**.
 
-## Pinned first-release baseline
-
-| Component | Exact version | Applies to |
-| --- | --- | --- |
-| Cyberpunk 2077 for Windows | `2.31a` GOG build; public patch `2.31` | Practical runtime target |
-| WolvenKit | `8.19.0` | CR2W inspection, conversion, round trips, packing, deployment |
-| ArchiveXL | `1.27.0` | Quest, journal, localization, and streaming-root registration |
-| RED4ext | `1.30.0` | ArchiveXL runtime |
-| redscript | `0.5.31` | ArchiveXL dependency; Labs 1–5 add no `.reds` source |
-| TweakXL | `1.11.3` | Scope-specific advanced `Character.*`/TweakDB record registration; not required by Labs 1–5 |
-| mdBook | `0.5.4` | Publication build only |
-
-Version review date: **2026-08-09**. This is an exact supported combination,
-not a minimum-version claim. See [Tested versions](tested-versions.md) for
-release links and compatibility context.
-
 ## Current lab matrix
 
-All five completed checkpoints are mod-owned and retain hashes in
-`example.json`. Their resources have been deserialized, checked, and
-round-tripped with WolvenKit `8.19.0` as specified by their validators.
-
-These dedicated lines are checked directly against the five manifests by the
-release validator:
+All five completed checkpoints are mod-owned. Their resources have been
+deserialized, checked, and round-tripped with WolvenKit `8.19.0`. The lines
+below show whether each lab's full in-game test campaign has been completed:
 
 **Lab 1 runtime evidence:** **Experimental** — pending.
 
@@ -63,24 +43,16 @@ release validator:
 
 | Lab | Structural status | Canonical runtime status | Save-backed hold points | Acceptance guide |
 | --- | --- | --- | --- | --- |
-| `cqa001` — First Signal | **Structurally validated** | Synchronized Lab 1 marker above | Completion fact, journal activation/success, graph state | [Install, test, and reset](../start-here/install-and-test.md#run-the-save-matrix) |
-| `cqa002` — Signal Race | **Structurally validated** | Synchronized Lab 2 marker above | Variant facts, race/monitor state, journal state, completion | [Test Signal Race](../gates/lab-02-test.md) |
-| `cqa003` — Boundary Check | **Structurally validated** | Synchronized Lab 3 marker above | Trigger state, journal/mappin state, streaming return, completion | [Test Boundary Check](../world/lab-03-test.md) |
-| `cqa004` — Handoff Point | **Structurally validated** | Synchronized Lab 4 marker above | Active child, parent confirmation, stream return, completion | [Test Handoff Point](../questphases/lab-04-test.md) |
-| `cqa005` — First Contact | **Structurally validated** | Synchronized Lab 5 marker above | Community/actor, scene, named outcome, delayed cleanup, completion | [Test First Contact](../scenes/lab-05-test.md) |
+| `cqa001` — First Signal | **Structurally validated** | See Lab 1 status above | Completion fact, journal activation/success, graph state | [Install, test, and reset](../start-here/install-and-test.md#run-the-save-matrix) |
+| `cqa002` — Signal Race | **Structurally validated** | See Lab 2 status above | Variant facts, race/monitor state, journal state, completion | [Test Signal Race](../gates/lab-02-test.md) |
+| `cqa003` — Boundary Check | **Structurally validated** | See Lab 3 status above | Trigger state, journal/mappin state, streaming return, completion | [Test Boundary Check](../world/lab-03-test.md) |
+| `cqa004` — Handoff Point | **Structurally validated** | See Lab 4 status above | Active child, parent confirmation, stream return, completion | [Test Handoff Point](../questphases/lab-04-test.md) |
+| `cqa005` — First Contact | **Structurally validated** | See Lab 5 status above | Community/actor, scene, named outcome, delayed cleanup, completion | [Test First Contact](../scenes/lab-05-test.md) |
 
-Pending and failed records map to **Experimental**. A passed record may promote
-only the cases explicitly frozen in that record. Lab 5 Cases 3, 4, and 7 load
-distinct full-slot copies of the named `seed-pre-scene-outside-setup` capture;
-those exact loads follow its synchronized marker. Lab 5 active-line
-interruption, `CutDestination`, arbitrary or unlisted pre-scene states, and
-facial/workspot-animation quality remain **Experimental** even if its ordinary
-eleven-case campaign passes.
-
-Do not edit this table alone to promote a lab. Complete the canonical
-acceptance record with exact installed hashes, versions, distinct execution
-evidence, and save provenance; then update every synchronized status marker
-through the repository's validation workflow.
+Pending and failed campaigns remain **Experimental**. A passing campaign
+applies only to the routes it actually exercises; for example, Lab 5 does not
+cover active-line interruption, `CutDestination`, arbitrary pre-scene states,
+or facial and workspot-animation quality.
 
 ## Retained legacy runtime evidence
 
@@ -127,29 +99,3 @@ RED4ext version. These results support their exact claims; they do not promote
 Vanilla resources are citations only. Readers extract them from their own
 installed archives; this repository does not redistribute their cooked files
 or complete serialized exports.
-
-## Promotion checklist
-
-A runtime promotion requires all of the following for the exact claim:
-
-1. Record the game and framework versions, game distribution/build, test date,
-   and relevant authoring-tool version.
-2. Hash the installed archive and every loose configuration payload that can
-   affect the route.
-3. Identify the original untouched save and every derived manual save or full
-   slot copy used by the matrix.
-4. Close the game before installing, removing, or cloning candidates.
-5. Freeze unrelated mods and prove that no competing lab checkpoint or older
-   candidate is enabled.
-6. Retain startup/registration logs and route-specific game evidence for each
-   required execution.
-7. Exercise reload, revisit, clean-save replay, and removal isolation where
-   the claim depends on them.
-8. Mark out-of-matrix branches **Experimental** instead of inheriting the
-   ordinary-route result.
-9. Re-run structural, package, documentation, and synchronization validators.
-
-Changing a resource identity, graph topology, registration root, save-backed
-state boundary, or installed hash creates a new candidate. A later candidate
-may cite an earlier observation as research, but it cannot silently inherit
-the earlier **Runtime-proven** label.

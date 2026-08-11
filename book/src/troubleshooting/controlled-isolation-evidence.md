@@ -5,24 +5,6 @@ explains the different result? It requires a known-good or known-failing
 baseline, one intentional delta, the same eligible inputs, and retained
 evidence for both sides.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for current campaigns.
-
-**Runtime-proven:** the strongest retained legacy scene differential changed
-only the meeting scene between archive
-`177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD`
-and archive
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`.
-The former reproduced the launch crash; the latter made one addressable
-lipsync row and selected slot `0` for both actors, then completed the meeting
-route. That supports the bounded legacy cardinality diagnosis.
-
-**Experimental:** facial-animation quality, active-line interruption, and
-current-stack equivalence remained outside that differential. A controlled
-test never proves untested neighboring behavior.
-
 ## Freeze the baseline
 
 Before creating a candidate, record:

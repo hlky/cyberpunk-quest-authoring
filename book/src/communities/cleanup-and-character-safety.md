@@ -1,15 +1,5 @@
 # Cleanup and character safety
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 Community cleanup is a quest-owned lifecycle transition, not the last line of
 a scene. Preserve the actor until the scene has exited, its outcome has been
 consumed, the relevant journal or branch state has advanced, and V has left a
@@ -28,37 +18,6 @@ scene named exit
 This ordering protects the scene, AI, and workspot from losing their actor
 while they may still own it. It also gives reload tests an explicit durable
 state to resume from.
-
-## Evidence boundary
-
-**Observed in vanilla:** the extracted
-`base\quest\minor_quests\mq003\phases\mq003_homeless.questphase` changes named
-community entry phases and later deactivates the activity's community-backed
-actors. It demonstrates that cleanup belongs to later quest lifecycle logic,
-not to the scene actor definition itself.
-
-**Runtime-proven:** separate legacy fixtures prove separate claims. Archive
-`2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-spawned its three configured generic Tyger Claw entries and kept them passive.
-Later hostile-patrol archive
-`DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A`
-confirmed surviving-actor deactivation after the leave-area boundary. Neither
-result proves the other candidate's complete lifecycle or cigarette-animation
-quality.
-
-**Structurally validated:** retained resources at commit
-`68f311c8f2511aeba679b76a68062ef5e446aaa0` serialize delayed cleanup and
-community actions with the relationships described here. This legacy commit
-is not a pinned practical baseline.
-
-**Experimental** while the synchronized marker is pending or failed, and
-**Runtime-proven** only when it passes: the exact `cqa005` ordinary
-outcome-to-progression order, cleanup volume, delay, visible despawn behavior, post-`contact_done` reload,
-completed reload, and named pre-scene seed loads in Cases 3, 4, and 7 follow
-the synchronized marker above. Active-line interruption or `CutDestination`
-behavior, combat, arbitrary/unlisted pre-scene active-child states, and
-workspot/facial-animation quality remain **Experimental** outside the frozen
-campaign.
 
 ## `Deactivate` is a command, not a disappearance proof
 
@@ -155,8 +114,7 @@ round trip cannot reveal:
 - a test save can make the character appear reliable when a different save
   legitimately cannot provide it.
 
-The historical archive
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
+The [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 used `Character.Judy` to isolate a failing scene/community path. That bounded
 result is **Runtime-proven** for the legacy fixture only. It is evidence that
 the tested lifecycle once completed; it is not a recommendation to author new
@@ -183,20 +141,18 @@ Why this pair is preferred:
   `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community`
   supplies **Observed in vanilla** evidence for the record's use in a native
   community entry;
-- the files inside archive
-  `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
+- the [retained candidate files](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
   bind that entry, its spot identity, and the cigarette workspot, and the
   legacy fixture spawned all three configured guards. The spawn result is
   **Runtime-proven** only for that hash-bound fixture and placement.
 
 This is not a promise that the actor will stand safely at a new transform,
 provide an appropriate voice, remain passive, acquire into a new scene, or
-clean up correctly. At the exact `cqa005` transform, ordinary passivity,
-acquisition, and cleanup follow the synchronized marker above. Voice casting,
-workspot/facial-animation quality, combat, and interruption remain separate
-**Experimental** claims.
+clean up correctly. Lab 5 tests ordinary passivity, acquisition, and cleanup
+for its supplied contact. Voice casting, workspot and facial-animation quality,
+combat, and interruption need their own checks.
 
-## Evidence hierarchy for workspot mappings
+## How to verify workspot mappings
 
 When retained sources disagree, prefer evidence bound to the installed runtime
 artifact:
@@ -209,14 +165,15 @@ hash-bound archive bytes + runtime observation
   > array order, debug-name proximity, or memory
 ```
 
-The `2C517934...` archive bytes and their typed entry-to-spot joins support the
-cigarette workspot above. A later source-only snapshot named a different
+The [retained archive](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+and its typed entry-to-spot joins support the cigarette workspot above. A later
+source-only snapshot named a different
 standing workspot, but it is not byte-bound to that runtime archive and does
 not supersede the archive-bound mapping.
 
 The later
 `base\workspots\common\ground\generic__stand_ground__guard__02.workspot`
-appears in a different source/runtime lineage; it is not the `2C517934...`
+appears in a different source/runtime lineage; it is not the retained
 stationary-contact mapping. Separate
 `base\workspots\patrolling\guard_stand.workspot` evidence belongs to a
 finite-patrol candidate and is not a universal guard workspot. Always follow
@@ -247,12 +204,10 @@ their own evidence and acceptance tests.
 Use a clean save made before the community was ever activated for the first
 identity/topology test. Then cover all lifecycle boundaries:
 
-This design matrix is broader than the frozen campaign. The exact named
-`seed-pre-scene-outside-setup` loads and routes in Cases 3, 4, and 7 are
-governed by the synchronized marker. The generic pre-scene row below means any
-arbitrary or unlisted active-child save point; it, active-scene reload, alternate outcomes,
-and interruption/combat remain supplemental **Experimental** work even if the
-synchronized marker passes.
+This design matrix is broader than the supplied Lab 5 cases. The generic
+pre-scene row below means any arbitrary or unlisted active-child save point;
+active-scene reload, alternate outcomes, interruption, and combat require
+additional testing if your quest uses them.
 
 | Starting point | Action | Required observation |
 | --- | --- | --- |

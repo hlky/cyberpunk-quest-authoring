@@ -1,15 +1,5 @@
 # Registries and compiled areas
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 A compact quest community has two world-side owners with different streaming
 jobs:
 
@@ -32,29 +22,6 @@ Quest sector
 The registry describes what the community can spawn. The compiled area places
 the community source in the streamed world and binds its entry/phase periods to
 world AI-spot identities. Neither substitutes for the other.
-
-## Evidence boundary
-
-**Structurally validated:** legacy mod-owned resources retained at commit
-`68f311c8f2511aeba679b76a68062ef5e446aaa0` contain the focused
-registry/area shape described here. Their CR2W exports record WolvenKit
-`8.17.4`, WKit JSON `0.0.9`, and `GameVersion: 2310`.
-
-**Runtime-proven:** legacy fixture only. Installed archive
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
-resolved its registry, streamable area, and AI spot strongly enough to spawn
-the configured meeting actor and complete the later meeting route. That
-candidate deliberately used a unique vanilla character record for isolation;
-it is evidence for the exact historical lifecycle, not safe character-selection
-guidance.
-
-**Experimental** while the synchronized marker is pending or failed, and
-**Runtime-proven** only when it passes: the exact `cqa005` registry node,
-compiled area, streaming placement, identities, ordinary scene join, stream-away/return route,
-post-`contact_done` reload, and completed reload follow the synchronized marker
-above, including the named pre-scene seed loads in Cases 3, 4, and 7.
-Arbitrary or unlisted pre-scene active-child states and
-active-line/interruption reload remain out-of-matrix **Experimental** claims.
 
 ## Registry responsibility
 

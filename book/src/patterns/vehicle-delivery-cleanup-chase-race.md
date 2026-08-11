@@ -5,13 +5,10 @@ and races are large authored systems with vehicles, occupants, splines,
 world-space gates, UI, recovery, and failure handling. Treating all four as
 “vehicle nodes” hides the boundaries most likely to break.
 
-| Record | Value |
-| --- | --- |
-| Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Vanilla inspection date | 2026-08-09 |
-| Reduced delivery provenance | Ghostline commits `fd78ab7c7aa75c4a8744ac7f7a6dd8952f4d951f` and `29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e` |
-| Exact legacy vehicle campaign | **Runtime-proven** only for archive SHA-256 `84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B`; its delivery child observed trigger arrival, not the stopped chain below |
-| Generic mod-owned chase/race candidate | None retained; **Experimental** |
+Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
+versions](../reference/tested-versions.md). The stopped-delivery chain below is
+a new composition and needs its own in-game test.
 
 ## Recipe: record arrival, then a later stop
 
@@ -121,20 +118,21 @@ Choose cleanup from the way the vehicle entered the activity.
 `questEnablePlayerVehicle_NodeType` is not a generic world-entity despawner.
 GQT004 originally put an `sq031_porsche`-style player-record operation in an
 intermediate contact-cleanup child. The **Runtime-proven** partial result for
-archive `707CA5603E84D802B11400CF98761624A1B9156E56BF6752B695C30AA29B5D19`
+a [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 is that the separately authored theft vehicle existed during the contact drive
 but disappeared exactly at that cleanup handoff while both custom
 player-vehicle records had live instances. It does not establish a universal
 cause.
 
-The later fact-only intermediate child also failed: archive
-`0BB4540D0EF1C74BFBAF3BEA3F84CF290A72CF62B10D4C1DA473602F57E815A8`
+The later fact-only intermediate child also failed: a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 reached that child, did not hand off, and lost the theft vehicle as the child
 was entered. That bounded failure is **Runtime-proven** for its own hash; a
 generic fact-only-child rule is not. The passing six-stage route removed the
 intermediate cleanup entirely. Its dedicated final child targeted the exact
-`Vehicle.GhostlineGQT004Theft` player-vehicle record and ran on the retained
-`84BA33E9...` route. That is **Runtime-proven** only for that record, ordering,
+`Vehicle.GhostlineGQT004Theft` player-vehicle record and ran on the
+[retained route](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
+That is **Runtime-proven** only for that record, ordering,
 and archive; it is not generic community/world-vehicle cleanup.
 
 **Observed in vanilla:** extract
@@ -290,22 +288,3 @@ For a chase or race, add route departure, catch-up/recovery, competitor death or
 destruction, mid-route reload, normal finish, failure, interruption, and
 post-completion replay. Record vehicle/occupant counts and every restored
 restriction, not only the final quest fact.
-
-## Evidence boundary
-
-| Claim | Evidence |
-| --- | --- |
-| A vehicle-activator trigger and low-speed comparison occur in `sq004_02_drive`; a moving-vehicle comparison occurs separately in `sts_wat_nid_02_gameplay` | **Observed in vanilla**; neither is the candidate's exact `CT_EQUAL`/`0` chain |
-| A reduced sequential child round-trips with arrival followed by speed waits | **Structurally validated** at the recorded Ghostline research boundary; it proves “entered earlier, stopped later,” not simultaneous stopped-inside delivery |
-| The fresh-identity theft vehicle disappeared at the intermediate contact-cleanup handoff | **Runtime-proven** only for partial archive `707CA5603E84D802B11400CF98761624A1B9156E56BF6752B695C30AA29B5D19`; it does not prove a universal cause |
-| The fact-only intermediate cleanup failed to hand off and lost the theft vehicle as it was entered | **Runtime-proven** only for failed archive `0BB4540D0EF1C74BFBAF3BEA3F84CF290A72CF62B10D4C1DA473602F57E815A8`; it does not prove generic fact-only child behavior |
-| GQT004 completed its trigger-arrival delivery and dedicated final player-vehicle cleanup | **Runtime-proven** only for archive `84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B`; it does not prove the stopped chain or another cleanup owner |
-| A player-record enable/despawn payload occurs in `sq031_porsche` | **Observed in vanilla**; its record/system context is required |
-| A redesigned intermediate cleanup safely targets only one selected vehicle | **Experimental**; the two exact failed archives above do not prove another design |
-| The named `ina_07` chase and `sq024` race contain the listed composite shapes | **Observed in vanilla** from focused Cyberpunk `2.31a` extraction |
-| A generic mod-owned chase or race built from this page works | **Experimental**; no retained reduced runtime candidate exists |
-
-Continue with [Mount, ride, drive, and
-theft](mount-ride-drive-and-theft.md), [Mappins](../journal/mappins.md),
-[Monitors and cancellation](../gates/monitors-and-cancellation.md), and
-[Completion and cut](../questphases/completion-and-cut.md).

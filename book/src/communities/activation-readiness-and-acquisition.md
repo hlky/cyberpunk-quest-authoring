@@ -1,15 +1,5 @@
 # Activation, readiness, and acquisition
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 Community activation, actor readiness, player approach, and scene acquisition
 are four separate runtime events. Connecting them in that order prevents the
 scene from racing the world streamer:
@@ -27,42 +17,16 @@ The third gives world and scene setup an approach boundary. The fourth asks an
 already-running scene to bind a performer to the available community entry.
 None substitutes for another.
 
-## Evidence boundary
+## Vanilla references
 
-**Observed in vanilla:** extract these resources from your own game:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\quest\minor_quests\mq003\mq003_orbitals.questphase
 base\quest\minor_quests\mq003\phases\mq003_homeless.questphase
 base\quest\minor_quests\mq003\scenes\mq003_01_homeless.scene
 ```
-
-Together, they show the useful lifecycle division: whole-community activation,
-a spawned-character readiness condition, a child activity phase, and scene
-actors acquired from named community entries. The scene keeps narrower
-awareness and engagement work inside an already-started scene rather than
-using the narrowest approach boundary as its launch point.
-
-**Runtime-proven:** legacy fixture only. Archive
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
-completed its phone, travel, approach, dialogue, acceptance, and cache-objective
-route after the retained community readiness and scene-acquisition join. That
-result proves only the installed historical fixture represented by the hash.
-It used a unique story character for isolation and is not current authoring
-guidance.
-
-**Structurally validated:** retained resources at commit
-`68f311c8f2511aeba679b76a68062ef5e446aaa0` serialize the node and actor fields
-described below. The commit is legacy research, not the book's pinned baseline
-and not evidence that a regenerated package behaves identically.
-
-**Experimental** while the synchronized marker is pending or failed, and
-**Runtime-proven** only when it passes: the exact `cqa005` community action,
-readiness condition, broad-setup join, scene acquisition, ordinary route, post-`contact_done`
-reload, completed reload, and the exact named pre-scene seed loads in Cases 3,
-4, and 7 follow the synchronized marker above. Arbitrary or unlisted
-pre-scene active-child states remain **Experimental** independently of that
-marker.
 
 ## `Activate` requests community state
 
@@ -135,8 +99,8 @@ spawn waits converging on an explicit `And` rendezvous make that requirement
 visible in the graph. This follows from the comparison semantics; it is not a
 claim that every vanilla multi-actor scene uses that exact graph. Check a
 vanilla resource with the same actor count and lifecycle before treating the
-arrangement as a reusable precedent. For the single-entry `cqa005` contact,
-the final condition and join follow the synchronized marker above.
+arrangement as a reusable precedent. The single-entry `cqa005` contact uses the
+same ordering and is exercised by the Lab 5 test guide.
 
 ## Broad setup is an approach boundary
 
@@ -233,12 +197,10 @@ community count.
 
 Test the complete join in game, not only in WolvenKit:
 
-This authoring matrix is broader than the frozen Lab 5 promotion campaign.
-The exact `seed-pre-scene-outside-setup` loads and routes for Cases 3, 4, and 7
-inherit the synchronized marker, as does Case 2's separate near-site original
-load. Generic fast-travel arrival, arbitrary pre-scene save points or states,
-active-line/interruption reload, and alternate named outcomes are supplemental
-**Experimental** probes until separately retained evidence proves them.
+The Lab 5 cases cover the supplied pre-scene save and the separate near-site
+arrival save. Generic fast-travel arrival, arbitrary pre-scene save points,
+active-line/interruption reload, and alternate named outcomes are additional
+tests for a quest that uses them.
 
 | Route | Required observation |
 | --- | --- |

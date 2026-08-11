@@ -4,26 +4,6 @@ Registration makes a root resource reachable. Packing makes a resource
 available at a depot path. A working quest usually needs both, but not every
 resource is registered in the same way.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for the first-release
-procedure.
-
-**Structurally validated:** Labs 1–5 freeze their exact packed depot paths and
-ArchiveXL registrations. Lab 4 registers its root questphase once while its
-external child is only packed and reached through the parent's soft
-`phaseResource`.
-
-**Observed in vanilla:** the native parent path used by the labs is
-`base\quest\cyberpunk2077.quest`. It is referenced, not redistributed. Vanilla
-resource paths cited elsewhere in the book must likewise be extracted from the
-reader's own installation.
-
-Exact lab runtime behavior follows each lab's acceptance record. A clean
-registration log is intermediate loader evidence; it does not promote any
-quest route beyond the label already supported by that route's record.
-
 ## Separate the four edges
 
 ```text

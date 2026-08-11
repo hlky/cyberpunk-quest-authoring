@@ -10,7 +10,7 @@ editor.
 | Reference review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1–5 localization resources | **Structurally validated** |
-| Exact Lab 1–5 runtime presentation | Governed by each lab's canonical marker: pending/failed is **Experimental**; passed promotes only its recorded cases to **Runtime-proven** |
+| In-game presentation | Verify with the relevant lab's UI, subtitle, audio, and reload checks |
 
 The complete model and property tables are in [Localization
 paths](../journal/localization-paths.md). This page is the lookup and failure
@@ -108,7 +108,7 @@ First Contact uses this exact identity and path set:
 
 The supplied scene, maps, subtitle entry, and WEM contract are
 **Structurally validated**. Audible playback and subtitle presentation on the
-exact tested `cqa005` route follow its synchronized marker. Male-versus-female
+exact `cqa005` route are covered by the Lab 5 test guide. Male-versus-female
 path selection remains **Experimental** even if that campaign passes, because
 both fields point to the same WEM and the matrix does not exercise distinct
 gender-path cases.
@@ -146,12 +146,12 @@ payload join.
 
 ## What the legacy runtime evidence proves
 
-Two retained Ghostline candidates bound useful, narrower results:
+Two retained research candidates provide useful, narrower results:
 
 | Source and artifact | **Runtime-proven** bounded result | Missing version binding |
 | --- | --- | --- |
-| Research commit `68f311c8f2511aeba679b76a68062ef5e446aaa0`; archive SHA-256 `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` | A community-acquired meeting scene completed; all spoken subtitles and VO in that route resolved while a slot-0 lipsync diagnostic avoided the prior startup crash | Not one acceptance record binding the game executable, RED4ext, and this book's package |
-| Research commit `97b5c5330acfc259bc1e5b814a83b7902cbd70bf`; complete-route archive SHA-256 `1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC` | The retained route displayed the intended onscreen quest text, all five meeting choice labels, spoken subtitles/VO, phone choices, and completion presentation | Legacy environment; not proof against the pinned Lab 1–5 payloads |
+| [Retained meeting candidate](evidence-version-matrix.md#retained-legacy-runtime-evidence) | A community-acquired meeting scene completed; all spoken subtitles and VO in that route resolved while a slot-0 lipsync diagnostic avoided the prior startup crash | Not one acceptance record binding the game executable, RED4ext, and this book's package |
+| [Retained complete-route candidate](evidence-version-matrix.md#retained-legacy-runtime-evidence) | The retained route displayed the intended onscreen quest text, all five meeting choice labels, spoken subtitles/VO, phone choices, and completion presentation | Legacy environment; not proof against the pinned Lab 1–5 payloads |
 
 The historical metadata mentions WolvenKit
 `8.17.4-nightly.2026-03-20`, ArchiveXL `1.27.0`, and TweakXL `1.11.3`, but not

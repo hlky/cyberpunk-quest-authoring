@@ -5,36 +5,6 @@ The game can receive a readable CR2W whose graph is smaller than the authored
 graph, whose nested values are stale, or whose external references cannot
 resolve.
 
-## Evidence and version boundary
-
-Run the current procedure with Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-
-**Structurally validated:** the five tutorial labs compare mod-owned authored
-resources with WolvenKit round trips, exact graph/resource contracts, archive
-manifests, and extracted package contents. Those checks prove retained
-structure, not in-game behavior.
-
-**Structurally validated:** a retained legacy vehicle-lab investigation at
-research commit `a24c341c1e2eca43f05a100f5776baba377b2260` showed a writer
-returning success while omitting three phase nodes, one vehicle assignment
-node, two spawn-set mappings, and later several bound scalar values.
-
-**Runtime-proven:** candidate archive
-`355C442781509F69B61745AF0889CDD32EEA825BA0E480AAD97A8DAF2CCE90BE`
-crashed reproducibly while loading a save. WolvenKit-rebuilt topology produced
-candidate
-`BA94F1F88E91DA2E5C1E15D956E1AE867048029F4894C65F0A7B6DA6403436C1`,
-which loaded without that crash but still lacked the intended journal and
-vehicles. These are bounded runtime observations, not a successful route.
-
-**Experimental:** a later round trip exposed literal placeholder scalars and
-led to candidate
-`B5C9527AEAC233D3D9885B276E4898EE67114CA0FBDE3A7EBC57413EC06AB04A`.
-No retained successful runtime result is bound to that candidate. The complete
-legacy sequence supports the validation method, not WolvenKit `8.19.0`, the
-current labs, or a claim that the final candidate worked in game.
-
 ## Recognize the misleading success
 
 | Symptom | Likely boundary | Decisive test |

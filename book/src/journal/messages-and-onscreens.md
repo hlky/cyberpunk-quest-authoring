@@ -281,22 +281,6 @@ authoring. TweakXL is not required for phone threads or computer files, and it
 is not a hidden prerequisite of this chapter. Defer that layer to a dedicated
 readable-item guide rather than presenting a copied record as magic.
 
-## Evidence boundary
-
-| Claim | Evidence |
-| --- | --- |
-| Dex phone hierarchy and properties | **Observed in vanilla** in `base\journal\cooked_journal.journal` |
-| SQ021 file/email paths, controller consumption, file-read fact, and quest reaction | **Observed in vanilla** in the four named resources above |
-| Files-only custom laptop, file-read fact, timed handoff, and two-choice phone exchange | **Runtime-proven** in a retained legacy fixture |
-| That legacy fixture's final quest-complete presentation and tracker removal after either reply | **Experimental**; the final acceptance observation was not retained |
-| A fully custom email authored with the fields above | **Observed in vanilla** as a resource shape; no pinned-baseline custom runtime proof is claimed here |
-| A new mod-owned phone/device arrangement on the pinned book baseline | **Experimental** until its own controlled run passes |
-
-The legacy runtime fixture used older authoring provenance and does not bind
-one complete Cyberpunk/WolvenKit/ArchiveXL/RED4ext/redscript set matching this
-book's pinned baseline. It supports the bounded behavior named above, not a
-compatibility promise.
-
 ## Save-backed state
 
 Phone entry state, message `visited` state, journal content, questphase waits,

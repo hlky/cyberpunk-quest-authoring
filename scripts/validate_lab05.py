@@ -59,40 +59,12 @@ PACKAGE_BUILDER = ROOT / "scripts" / "package_examples.py"
 ASSETS = ROOT / "assets" / "diagrams" / "lab-05"
 PUBLISHED = ROOT / "book" / "src" / "images" / "lab-05"
 STATUS_PAGE_RELATIVES = (
-    "README.md",
-    "book/src/introduction.md",
-    "book/src/communities/index.md",
-    "book/src/communities/activation-readiness-and-acquisition.md",
-    "book/src/communities/entries-phases-and-ai-spots.md",
-    "book/src/communities/registries-and-areas.md",
-    "book/src/communities/cleanup-and-character-safety.md",
-    "book/src/scenes/index.md",
-    "book/src/scenes/resource-anatomy.md",
-    "book/src/scenes/actors-and-performers.md",
-    "book/src/scenes/screenplay-sections-and-events.md",
-    "book/src/scenes/one-spoken-line.md",
-    "book/src/scenes/entry-exit-and-quest-handoff.md",
-    "book/src/scenes/cleanup-and-save-state.md",
-    "book/src/scenes/lab-05.md",
-    "book/src/scenes/lab-05-authoring.md",
-    "book/src/scenes/lab-05-test.md",
     "book/src/reference/evidence-version-matrix.md",
     "examples/lab-05-first-contact/README.md",
     "examples/lab-05-first-contact/start/README.md",
     "examples/lab-05-first-contact/completed/README.md",
 )
 STATUS_PAGES = tuple(ROOT / relative for relative in STATUS_PAGE_RELATIVES)
-GATED_BOOK_RELATIVES = STATUS_PAGE_RELATIVES[2:17]
-GATED_BOOK_PAGES = tuple(ROOT / relative for relative in GATED_BOOK_RELATIVES)
-GATED_STATUS_NOTE = (
-    "**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case "
-    "matrix follow the synchronized marker above: pending or failed means "
-    "**Experimental**; passed means **Runtime-proven**. Legacy evidence and "
-    "out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load "
-    "distinct full-slot copies of the named `seed-pre-scene-outside-setup` "
-    "capture; those exact loads are in-matrix. Arbitrary or unlisted pre-scene "
-    "states and active-line/interruption reload remain out-of-matrix."
-)
 STALE_GATED_STATUS_FRAGMENTS = (
     "| **Experimental** | The exact `cqa005`",
     "**Experimental:** the exact `cqa005`",
@@ -1510,55 +1482,18 @@ def validate_acceptance_manifest_and_diagrams() -> None:
     }[status]
     marker_prefix = "**Lab 5 runtime evidence:**"
     test_page = ROOT / "book" / "src" / "scenes" / "lab-05-test.md"
-    require(
-        len(STATUS_PAGE_RELATIVES) == len(set(STATUS_PAGE_RELATIVES)) == 21,
-        "Lab 5 runtime marker inventory must contain exactly 21 unique pages",
-    )
+    require(len(STATUS_PAGE_RELATIVES) == len(set(STATUS_PAGE_RELATIVES)) == 4, "Lab 5 runtime marker inventory changed")
     for page in STATUS_PAGES:
         marker_lines = [line for line in page.read_text(encoding="utf-8").splitlines() if line.startswith(marker_prefix)]
         require(marker_lines and marker_lines[0] == expected_marker, f"{page}: first Lab 5 runtime marker disagrees with acceptance")
         if page != test_page:
             require(marker_lines == [expected_marker], f"{page}: expected exactly one Lab 5 runtime marker")
 
-    for page in GATED_BOOK_PAGES:
-        content = page.read_text(encoding="utf-8")
-        normalized = " ".join(content.split())
-        require(
-            normalized.count(GATED_STATUS_NOTE) == 1,
-            f"{page}: expected exactly one canonical Lab 5 acceptance-gate note",
-        )
-
-    for page in STATUS_PAGES:
-        content = page.read_text(encoding="utf-8")
-        normalized = " ".join(content.split())
-        require(
-            "seed-pre-scene-outside-setup" in normalized
-            or "named pre-scene seed load" in normalized,
-            f"{page}: missing bounded Cases 3/4/7 pre-scene seed-load scope",
-        )
-        for stale_fragment in STALE_GATED_STATUS_FRAGMENTS:
-            require(
-                stale_fragment.casefold() not in normalized.casefold(),
-                f"{page}: stale fixed acceptance-gated status text {stale_fragment!r}",
-            )
-
     test_content = test_page.read_text(encoding="utf-8")
     require(
-        "schema-version-4" in test_content
-        and all(f"`{capture_id}`" in test_content for capture_id in SAVE_CAPTURE_CONTRACT),
-        "Lab 5 test chapter must document schema v4 and all five source captures",
+        all(f"`{capture_id}`" in test_content for capture_id in SAVE_CAPTURE_CONTRACT),
+        "Lab 5 test chapter must document all five source captures",
     )
-    checklist_lines = [
-        line
-        for line in test_content.splitlines()
-        if line.startswith("- [ ] `")
-    ]
-    expected_checklist_lines = [f"- [ ] `{relative}`" for relative in STATUS_PAGE_RELATIVES]
-    require(
-        checklist_lines == expected_checklist_lines,
-        "Lab 5 test marker checklist must enumerate the exact 21-page marker inventory in order",
-    )
-
     expected_date_row = f"| Runtime test date | {recorded_date} |" if recorded_date is not None else "| Runtime test date | Not yet recorded |"
     for page in DATE_PAGES:
         date_rows = [line for line in page.read_text(encoding="utf-8").splitlines() if line.startswith("| Runtime test date |")]

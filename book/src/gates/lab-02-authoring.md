@@ -11,8 +11,6 @@ infrastructure, not reader prerequisites.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 2 runtime evidence:** **Experimental** — pending.
-
 Use Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext
 `1.30.0`, and redscript `0.5.31`. Other versions may expose different editor
 wrappers or runtime behavior.

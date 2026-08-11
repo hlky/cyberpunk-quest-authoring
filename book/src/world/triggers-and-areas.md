@@ -16,24 +16,6 @@ questphase
      -> Entered / Exited / IsInside / IsOutside
 ```
 
-## Evidence and version boundary
-
-Keep the evidence layers separate:
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The node, outline, notifier, and condition property shapes occur in focused extracts from `base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector` and `base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase`. |
-| **Structurally validated** | A prior mod-owned fixture round-tripped trigger nodes under WolvenKit `8.17.4`; Lab 3's exact two nodes, notifiers, full/local refs, state-condition payloads, and decoded 16/20-point outline buffers separately round-tripped under WolvenKit `8.19.0`. |
-| **Runtime-proven** | Retained legacy runs exercised nested `IsInside` and `IsOutside` areas, and a separate fixture exercised `Entered` and `Exited`. Those records do not pin the complete current book environment or prove Lab 3's new geometry. |
-| Lab 3 exact candidate | Its retained matrix governs in-game volume coverage, state-condition evaluation, streaming/reload behavior, and clean-save acceptance. Pending or failed evidence is **Experimental**; only an all-pass record is **Runtime-proven**. |
-
-The retained vanilla extracts are WolvenKit JSON `0.0.9`, serialized by
-WolvenKit `8.17.4`, with CR2W `GameVersion: 2310`. That header is not a runtime
-test. The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Extract the named vanilla resources from your own installation; this book does
-not redistribute them.
-
 ## The world node owns the volume
 
 The concrete sector node supplies type-specific behavior. Its compact shape

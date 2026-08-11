@@ -36,43 +36,6 @@ Use a clean save made before community activation whenever you change the
 actor reference, AI tier, role subtype, path/workspot reference, community
 phase, record behavior, or cleanup topology.
 
-## Evidence boundary
-
-**Observed in vanilla:** extract these resources from your own installation:
-
-| Depot path | Focused shape |
-| --- | --- |
-| `base\quest\side_quests\sq031\phases\sq031_rogue.questphase` | One `questPuppetAIManagerNodeDefinition` promotes `#rogue` to `Gameplay`; four `questUseWorkspotNodeDefinition` objects use `questUseWorkspotParamsV1`. |
-| `base\open_world\street_stories\watson\kabuki\sts_wat_kab_02\phases\sts_wat_kab_02_openworld.questphase` | A `questMiscAICommandNode` assigns `AIFollowerRole` to community entry `chester`, following `#player`, and a later node carries `AIClearRoleCommandParams`. |
-| `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03_gameplay.questphase` | Six `AIPatrolRole` assignments contain path parameters for distinct actors and spline NodeRefs. |
-
-These are focused comparisons, not complete templates. Their paths, actors,
-roles, workspots, and interruption policies belong to their original quests.
-
-**Runtime-proven:** archive SHA-256
-`B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF`
-promoted its exact released target to gameplay AI, assigned a follower role,
-advanced through three ordered actor-position gates, retained the role through
-its timed defend handoff, and cleared the role after success. The earlier
-archive SHA-256
-`3EB9FCB4DBD1CA8BA6730C02CDF81B8A89B855C75372FFF8927DC66F0423D597`
-cleared at the third gate and the persistent actor walked back toward the
-original AI spot. Those results prove the difference in those two artifacts;
-they do not prove a different actor, route, patrol, workspot, combat response,
-or reload policy.
-
-**Structurally validated:** the exact AI-manager, follower assignment, role
-clear, entity-reference, and ordered actor-gate shapes used by the later
-fixture serialize and are hash-bound to the retained candidate above. A
-WolvenKit round trip remains only a structural check for a newly composed
-role.
-
-**Experimental:** direct quest-driven NPC workspot completion, finite patrol
-completion, `questCharacterRoleFinished_ConditionType`, workspot interruption,
-arbitrary save/load while a role is active, alternate navmesh, and all new
-patrol/role combinations remain experimental until isolated runtime fixtures
-retain their exact artifacts and acceptance results.
-
 ## Five behavior owners
 
 | Owner | What it contributes | What it does not prove |

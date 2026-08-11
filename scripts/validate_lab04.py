@@ -1572,26 +1572,12 @@ def validate_reader_status(info: ManifestInfo) -> None:
         BOOK_QUESTPHASES / "lab-04-authoring.md",
         BOOK_QUESTPHASES / "lab-04-test.md",
     )
-    passed_example = marker_by_state[("passed", "runtime-proven")]
-    failed_example = marker_by_state[("failed", "experimental")]
     for page in practical_pages:
         text_value = page.read_text(encoding="utf-8")
-        expected_markers = (
-            [expected_marker, passed_example, failed_example]
-            if page.name == "lab-04-test.md"
-            else [expected_marker]
-        )
-        require(
-            marker_lines(page) == expected_markers,
-            f"{display(page)}: Lab 4 runtime evidence markers are stale or duplicated",
-        )
         date_rows = [line for line in text_value.splitlines() if line.startswith("| Runtime test date |")]
         require(date_rows == [date_row], f"{display(page)}: runtime test date must be {expected_date!r}")
 
     status_pages = (
-        ROOT / "README.md",
-        ROOT / "book" / "src" / "introduction.md",
-        BOOK_QUESTPHASES / "index.md",
         ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
         LAB / "README.md",
         START / "README.md",

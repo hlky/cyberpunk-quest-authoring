@@ -6,12 +6,9 @@ seat, observe the vehicle inside a trigger, update Journal presentation, and
 preserve an outcome fact. It does not create the vehicle's community entry,
 placement, driving AI, road route, or cleanup policy.
 
-| Record | Value |
-| --- | --- |
-| Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Vanilla inspection date | 2026-08-09 |
-| Reduced-candidate provenance | Ghostline research commit `29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e` |
-| Exact legacy vehicle campaign | **Runtime-proven** only for archive SHA-256 `84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B` at source commit `a24c341c1e2eca43f05a100f5776baba377b2260` |
+Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
+versions](../reference/tested-versions.md).
 
 The reduced mount, paired-ride, destination, and theft candidates are
 **Structurally validated** at their recorded WolvenKit `8.17.4` research
@@ -202,8 +199,10 @@ Use distinct facts for “mounted,” “delivered,” and “cleaned” when la
 needs to diagnose partial progress. One overloaded completion fact makes
 reload repair ambiguous.
 
-**Runtime-proven:** `84BA33E9...` completed this exact sequence with its two
-named community vehicles: V mounted the contact vehicle, Patch was assigned as
+**Runtime-proven:** a
+[retained vehicle candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+completed this exact sequence with its two named community vehicles: V mounted
+the contact vehicle, Patch was assigned as
 passenger, the contact vehicle reached its destination, V mounted the
 designated theft vehicle, that vehicle reached its delivery trigger, and the
 final player-vehicle cleanup ran. Its delivery child did not contain the
@@ -277,17 +276,3 @@ validated:
 Vehicle and device state can be save-backed. Follow [Save state and clean
 retests](../troubleshooting/save-state-clean-retests.md) before changing a
 NodeRef or entry name and declaring the edit causal.
-
-## Evidence boundary
-
-| Claim | Evidence |
-| --- | --- |
-| Mount, paired-ride, arrival, and steal-by-mount reduced graphs serialize and round-trip at their recorded research boundary | **Structurally validated** in Ghostline commit `29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e`; this is source evidence, not a reader tool |
-| Comparable mount, assignment, and vehicle-route shapes exist in `sq004_02_drive` | **Observed in vanilla** on the cited depot path |
-| The final GQT004 vehicle-lab route completed its exact six-stage mount/passenger/arrival/theft/delivery-trigger/final-cleanup sequence | **Runtime-proven** only for archive `84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B` and the source/environment boundary above |
-| A new mod-owned vehicle, contact, seats, triggers, reloads, and interruption behave as intended | **Experimental** until that exact arrangement passes retained in-game cases |
-
-Continue with [Vehicle delivery, cleanup, chase, and
-race](vehicle-delivery-cleanup-chase-race.md), [Triggers and
-areas](../world/triggers-and-areas.md), and [Lifecycle, cleanup, and
-evidence](../foundations/lifecycle-and-evidence.md).

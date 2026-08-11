@@ -16,16 +16,6 @@ reader prerequisites and not an alternate quest authoring system.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 ## Required environment and clean-save rule
 
 | Component | Exact version |
@@ -219,7 +209,8 @@ generic__stand_ground_cigarette__smoke__01.workspot
 ```
 
 Do not substitute `generic__stand_ground__guard__02.workspot` while claiming
-the retained `2C517934...` provenance. That later workspot belongs to a
+the [retained candidate's](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+provenance. That later workspot belongs to a
 different candidate lineage.
 
 ## 6. Audit geometry before behavior
@@ -330,11 +321,9 @@ The default `scnInterruptionScenario` is ID `0`, name `Default`, and enabled.
 Its speaker-distance interrupt condition is `Greater 6`; its return condition
 is `Less 5`. Retain `playInterruptLine: 1` and `talkOnReturn: 1`.
 
-This structurally valid policy does not make interrupted Lab 5 playback
-runtime-proven. Active-line interruption/return and `CutDestination` behavior
-remain **Experimental** independently of the synchronized marker. The frozen
-acceptance matrix covers ordinary lifecycle, the exact named pre-scene seed
-loads in Cases 3/4/7, and post-`contact_done` plus completed reload; arbitrary
+This lab does not exercise active-line interruption/return or
+`CutDestination`. Its test guide covers the ordinary lifecycle, the supplied
+pre-scene seed loads, and post-`contact_done` plus completed reload; arbitrary
 pre-scene states and broader interruption claims need their own observed
 outcomes.
 

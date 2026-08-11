@@ -8,37 +8,6 @@ This chapter explains the resource and lookup contract behind the journal
 portion of [Lab 1](../start-here/lab-01.md#journal-tree). State transitions are
 covered in [Journal state and tracking](quest-state.md).
 
-## Evidence and tested boundary
-
-The manual paths in this chapter target this baseline:
-
-| Component | Version |
-| --- | --- |
-| Cyberpunk 2077 for Windows | `2.31a` (GOG) |
-| WolvenKit | `8.19.0` |
-| ArchiveXL | `1.27.0` |
-| RED4ext | `1.30.0` |
-| redscript | `0.5.31` |
-
-Review date: **2026-08-09**.
-
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-- **Structurally validated:** the supplied Lab 1 journal has the CR2W root,
-  handle tree, descriptor, entry types, IDs, and ArchiveXL registration shown
-  here. Its questphase paths resolve against that tree.
-- **Runtime evidence:** the dedicated marker above mirrors the canonical Lab 1
-  acceptance record. Structural validity alone does not prove that a new
-  journal merge and localized presentation work in game.
-- **Observed in vanilla:** the focused vanilla trees named below were observed
-  in base-game resources. Extract them from your own installation; this book
-  does not redistribute them.
-
-The retained vanilla research predates one fully bound version record. Treat
-its shapes as inspection evidence, then compare them with resources extracted
-from the pinned `2.31a` installation before relying on a version-sensitive
-detail.
-
 ## The ownership chain
 
 Four different addresses participate in the Lab 1 lookup:

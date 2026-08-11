@@ -12,9 +12,7 @@ targets, resolve every kind of text, or grant rewards by itself.
 | Mod-owned reference | `cqa001` / **First Signal** |
 | Reference status | Lab 1 journal and onscreen resources are **Structurally validated** |
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-> **Evidence boundary:** this section distinguishes the structurally validated
+> **Scope note:** this section distinguishes the structurally validated
 > Lab 1 resources, focused structures **Observed in vanilla**, legacy
 > **Runtime-proven** research fixtures whose environment is not identical to
 > the pinned book baseline, and untested combinations that remain
@@ -114,7 +112,7 @@ variable. This affects every practical experiment in this section:
 
 The complete procedure is in [Install, test, and reset](../start-here/install-and-test.md).
 
-## Evidence routes readers can reproduce
+## How to verify these resources
 
 The chapters cite exact depot paths rather than shipping extracted game files.
 Use a disposable inspection project and the procedure in

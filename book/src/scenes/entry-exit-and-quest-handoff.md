@@ -1,15 +1,5 @@
 # Entry, exit, and quest handoff
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 The scene graph and the questphase graph meet through names, but they remain
 different graph systems. First Contact exposes scene entry `start`, exposes
 named scene exit `contact_done`, and gives a `questSceneNodeDefinition` sockets
@@ -150,21 +140,3 @@ It still declares `startNodes[1]`, `endNodes[3]`, entry `start`, and exit
 scene node. The shell exists so the learner edits a native resource with its
 actor/debug/localization/reference scaffold intact; it is not a playable
 pre-completion shortcut.
-
-## Evidence boundary
-
-Comparable Start/Section/End and scene-local quest-node arrangements are
-**Observed in vanilla** in the cited minor-quest scenes. The exact four nodes,
-stamps, mappings, public entry/exit, scene-node sockets, soft path, and marker
-are **Structurally validated** in First Contact. Resolution of
-`#cqa005_sm_contact`, the exact `start` launch, `contact_done` return, and the
-post-`contact_done` and completed reload paths named by the frozen Lab 5
-campaign follow the synchronized marker above, as do the exact named
-pre-scene seed loads in Cases 3, 4, and 7. Arbitrary or unlisted pre-scene
-active-child states, active-line interruption/return or reload, and
-`CutDestination` behavior remain **Experimental** and require separate runtime
-records.
-
-Previous: [Screenplay, sections, and
-events](screenplay-sections-and-events.md). Next: [Author one spoken
-line](one-spoken-line.md).

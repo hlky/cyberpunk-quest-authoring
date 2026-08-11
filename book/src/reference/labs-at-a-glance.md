@@ -3,7 +3,7 @@
 The five labs form one progression from a registered root questphase to a
 community-backed spoken scene. Each lab is a complete, mod-owned WolvenKit
 project with a start checkpoint, a completed checkpoint, an exact structural
-contract, and a separate runtime-acceptance record.
+contract, and an in-game test guide.
 
 Use the title, namespace, and project name in this table consistently. `Lab 1`
 is the reader-facing number; `cqa001` is its resource namespace;
@@ -40,26 +40,17 @@ edited timing variant is another separately hash-bound candidate. Install only
 the candidate named by the current test case, with the game and framework
 processes closed.
 
-## What every evidence label means here
+## How to use the checkpoints
 
-All five completed checkpoint structures have passed the repository's exact
-source, graph, package, and WolvenKit `8.19.0` round-trip gates. That supports
-**Structurally validated** claims about the resources and their serialized
-relationships. It does not by itself prove mounting, presentation, timing,
-streaming, scene playback, cleanup, or reload behavior.
+All five completed checkpoints pass the repository's source, graph, package,
+and WolvenKit `8.19.0` round-trip checks. Use them to compare resource types,
+properties, graphs, paths, and registration with your own work.
 
-The dedicated marker on each linked lab page mirrors that lab's canonical
-runtime-acceptance record:
-
-- a pending or failed campaign leaves its in-game claims **Experimental**;
-- a complete passing campaign promotes only the exact hash-bound cases it
-  records to **Runtime-proven**;
-- a comparable base-game extract may support **Observed in vanilla**, but does
-  not prove the mod-owned candidate;
-- legacy Ghostline results remain evidence for their named historical
-  candidate and version record, not an automatic promotion of a lab.
-
-Do not rewrite a label from memory. Follow the lab marker and its test page.
+Structural success does not guarantee that a resource mounts, streams, plays,
+cleans up, or resumes correctly after a reload. Run the linked test guide for
+the lab you are using, starting from the required clean save. Current project
+status and deeper provenance are available in [Lab status and research
+provenance](evidence-version-matrix.md).
 
 ## Shared practical baseline
 

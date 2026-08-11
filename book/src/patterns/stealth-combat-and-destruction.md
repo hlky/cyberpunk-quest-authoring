@@ -40,22 +40,10 @@ areas](../world/triggers-and-areas.md), [Devices and persistent
 state](../world/devices-and-persistence.md), and [Parallel monitors and
 cancellation](../gates/monitors-and-cancellation.md).
 
-## Evidence and version boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-The retained vanilla corpus was extracted on an older tool lineage; re-extract
-the paths from your own current installation.
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The named resources below contain parallel stealth, character combat/resolution, device, plant, and destruction condition shapes. They establish that the native types and focused topologies exist, not that an arbitrary target or community will work. |
-| **Structurally validated** | Research commit `29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e` retains the focused vanilla building-block corpus. Commit `6e959d2149e664432eaff3b7d4905e8b1d342f2f` retains reduced stealth, plant, encounter, and defend resources that passed handle checks and WolvenKit `8.17.4` round trips. That does not prove a newly assembled package. |
-| **Runtime-proven** | At source commit `6e959d2149e664432eaff3b7d4905e8b1d342f2f`, archive SHA-256 `C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD` completed the exact quiet-install harness: ordinary guard awareness could fail stealth, the quiet route exposed the laptop interaction, the timed plant presentation completed, the item was consumed, guards cleaned up, and the quest completed. This does not prove another controller/action pair or a generic monitor-cancellation law. |
-| **Runtime-proven** | At the same source commit, archive SHA-256 `B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF` spawned and engaged one three-attacker defend wave and completed the tested survival route. It does not prove arbitrary wave composition, an all-defeated encounter, simultaneous race ordering, or the failure route. |
-| **Experimental** | A newly assembled encounter; multiple waves; custom cyberpsycho authoring; arbitrary destruction thresholds; monitor cut/re-entry semantics; and every untested failure, reload, or cleanup branch remain unproven until hash-, version-, and save-bound acceptance passes. |
-
-Useful vanilla comparison paths are:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\street_stories\westbrook\japantown\sts_wbr_jpn_03\phase\sts_wbr_jpn_03_streetstory.questphase
@@ -66,10 +54,6 @@ base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase
 base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03_openworld.questphase
 base\open_world\phases\cyberpsychos\open_world_cyberpsychos.questphase
 ```
-
-The [vanilla depot-path index](../reference/vanilla-depot-paths.md) explains
-what to inspect. Do not redistribute the extracted binaries or whole
-serialized resources.
 
 ## Optional stealth is a parallel monitor
 
@@ -235,8 +219,8 @@ not count toward the current wave. If several waves share one community,
 prove exactly how inactive, dead, despawned, or future entries affect every
 community-scoped comparison.
 
-The single three-attacker survival wave in archive
-`B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF`
+The single three-attacker survival wave in a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 is **Runtime-proven** only for its recorded activation, engagement, successful
 20-second route, and escort/defend handoff. General sequential waves remain
 **Experimental**.
@@ -320,7 +304,9 @@ The decisive ownership is:
 | Consume item | `questAddRemoveItem_NodeTypeParams`, exact item `TweakDBID`, player reference, quantity/removal policy, and notification policy |
 | Persist result | Dedicated fact set only after disconnection and inventory mutation succeed |
 
-That ordering is **Runtime-proven** only for archive `C3F76083...`. Sending the
+That ordering is **Runtime-proven** only for the
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
+Sending the
 disconnect action before the player connects would be a different and
 unsupported route.
 

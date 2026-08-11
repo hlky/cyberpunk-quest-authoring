@@ -11,7 +11,7 @@ working subtitle does not prove either of the other chains.
 | Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 5 external subtitle/VO resource chain | **Structurally validated** |
 | Focused vanilla lipsync slots and localized assets | **Observed in vanilla** |
-| Exact Lab 5 playback | **Experimental** while its synchronized marker is pending or failed; **Runtime-proven** only when that marker passes |
+| Exact Lab 5 playback | Verify with the Lab 5 subtitle, audio, reload, and cleanup cases |
 | Arbitrary WEM encoding and custom lipsync generation | **Experimental** |
 
 > **Clean-save requirement:** an active scene and its checkpoint may retain
@@ -127,10 +127,9 @@ assets appropriate for another actor or permit redistribution.
 ### The retained cardinality isolation
 
 One retained legacy candidate asked for slots `0` and `1` after two identical
-source paths cooked to one addressable import. Archive SHA-256
-`177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD`
-reproduced the scene-launch crash. Candidate
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
+source paths cooked to one addressable import. A
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+reproduced the scene-launch crash. A later candidate
 reduced the resource table to one row and made both actors select slot `0`;
 the full meeting route, subtitles, and VO then completed. Those two exact
 results are **Runtime-proven** in their recorded legacy environment.
@@ -235,29 +234,3 @@ license and provenance.
 Active-line save/reload, arbitrary encoder settings, generated custom lipsync,
 facial quality, interruption, and stream-return behavior remain
 **Experimental** until tested for the exact asset set.
-
-## Evidence boundary
-
-**Observed in vanilla**: the scene-local two-slot lipsync table and distinct
-installed localized assets are bounded observations from the cited `mq007`
-resource. The `mq003` and `mq010` scene paths listed on the [Scenes](index.md)
-page provide further focused comparisons.
-
-**Structurally validated:** Lab 5's scene line, subtitle map and entries, VO
-map, synthetic WEM paths, one-row lipsync collection, actor slot IDs, and
-WolvenKit `8.19.0` round trips are structurally checked.
-
-**Runtime-proven:** the two retained diagnostic archive results prove their
-crash and passing one-row meeting observations only. The complete retained
-route at archive SHA-256
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`
-also displayed its intended spoken subtitles and VO in its recorded legacy
-environment; it does not establish the pinned baseline or arbitrary assets.
-
-**Experimental:** new WEM production, a new VO-map chain, distinct custom
-lipsync resources, facial quality, active-line interruption/reload, and
-cleanup are experimental until their own hash-bound runtime evidence passes.
-
-Previous: [Choices, outcomes, and scene-local
-localization](choices-outcomes-and-localization.md). Next: [Animation events
-and scene workspots](animation-events-and-workspots.md).

@@ -11,7 +11,7 @@ part of a quest installation.
 | Runtime baseline | Cyberpunk 2077 `2.31a`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Runtime test date | Not yet recorded |
 
-> **Evidence boundary:** the project layout is the WolvenKit 8.19.0 layout
+> **Version note:** the project layout is the WolvenKit 8.19.0 layout
 > used by the supplied checkpoints. Lab 1's CR2W resources are **Structurally
 > validated**. This page makes no claim that an untested archive executes in
 > game.

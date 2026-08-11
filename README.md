@@ -2,124 +2,40 @@
 
 *The RED Questbook*
 
-First-principles documentation for Cyberpunk 2077 questphases, scenes,
-journals, world integration, localization, characters, devices, vehicles, and
-related gameplay systems.
+A standalone, first-principles guide to authoring native Cyberpunk 2077 quest
+resources with WolvenKit and standard modding frameworks.
 
-The project is intentionally separate from Ghostline's manifest-driven quest
-creation system. Ghostline supplies research and runtime evidence; this book
-teaches the underlying game resources using WolvenKit and standard modding
-frameworks.
+The book covers questphases, journals, localization, world integration,
+conditions, communities, scenes, characters, devices, combat, vehicles, and
+specialized systems. It begins with a one-objective quest and grows through
+five downloadable WolvenKit labs, so readers can learn the resource model
+without relying on a quest generator or an unexplained template.
 
-## Current state
+The project complements the broader [REDmodding quest and scene
+guides](https://wiki.redmodding.org/cyberpunk-2077-modding/modding-guides/quest).
+It is maintained separately so the material, examples, and tested tool
+boundaries can evolve together as native quest authoring develops.
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
+## Read the book
 
-**Lab 2 runtime evidence:** **Experimental** — pending.
+The published book is available at:
 
-**Lab 3 runtime evidence:** **Experimental** — pending.
+<https://hlky.github.io/cyberpunk-quest-authoring/>
 
-**Lab 4 runtime evidence:** **Experimental** — pending.
+New readers should begin with **Start here** and follow Labs 1–5 in order.
+Experienced modders can use the subject chapters, gameplay-pattern cookbook,
+troubleshooting guides, and reference indexes directly.
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
+## What is in this repository
 
-**Documentation status:** Stages 0–9 are complete and published. Completion
-means the resource contracts, procedures, evidence boundaries, and release
-checks are present; it does not promote the five pending lab campaigns or the
-custom braindance pipeline beyond their retained evidence.
+- `book/src` — the mdBook source;
+- `examples` — incremental start and completed WolvenKit projects;
+- `assets/diagrams` — deterministic diagram sources;
+- `evidence` — machine-readable research provenance for maintainers;
+- `scripts` — validation, diagram, and packaging infrastructure.
 
-The repository contains:
-
-- a published mdBook and GitHub Pages workflow;
-- the agreed information architecture;
-- editorial and diagram standards;
-- complete first-pass Foundations chapters;
-- zero-assumption setup, project, vanilla-inspection, and install/test guides;
-- the complete Lab 1 resource reference and manual WolvenKit walkthrough;
-- a substantive journal, UI, and localization section covering typed paths,
-  state, mappins, messages and documents, three localization systems, rewards,
-  and completion;
-- a complete conditions-and-gates section separating predicate trees from
-  signal topology, with an observed condition-family catalog;
-- Lab 2's start/completed WolvenKit projects, exact 21-node graph, manual
-  authoring path, and two-variant runtime protocol;
-- a complete world-integration section covering streaming ownership, prefab
-  and NodeRef chains, placements, triggers, markers/navigation, devices, and
-  safe vanilla-location research;
-- Lab 3's start/completed WolvenKit projects, exact 16-node graph, resource
-  and volume diagrams, manual authoring path, and eight-run runtime protocol;
-- a complete root/child questphase section covering root-only questphase
-  registration,
-  external `phaseResource` resolution, socket contracts, root-owned prefab
-  scope, completion handoff, and bounded interruption evidence;
-- Lab 4's start/completed WolvenKit projects, exact parent/child graphs, manual
-  authoring path, and eight-run runtime protocol;
-- a complete communities section covering registry/area identity joins,
-  entries, phases, AI spots, readiness, acquisition, delayed cleanup, and safe
-  generic-character selection;
-- a complete scene-basics section covering actors/performers, screenplay
-  items, timed events, entry/exit topology, external subtitle/VO lookup, and
-  scene-to-quest cleanup boundaries;
-- Lab 5's start/completed WolvenKit projects, exact root/child/scene graphs,
-  seven deterministic diagrams, a synthetic hash-pinned voice asset, manual
-  authoring path, and eleven-case runtime protocol;
-- a symptom-led troubleshooting section that isolates serialization,
-  registration, handle/socket/resource, NodeRef/streaming, scene/lipsync,
-  localization/audio, save-state, and evidence failures;
-- a release reference set covering canonical lab identities, terminology,
-  resource ownership, nodes/sockets, condition families, identifier domains,
-  journal and localization lookup, ArchiveXL registration, evidence/version
-  boundaries, and named vanilla depot paths;
-- synchronized five-lab status lookup plus canonical navigation across all
-  overview, authoring, and test pages;
-- a complete gameplay-pattern cookbook covering communications and choices,
-  areas/devices/items/scans/workspots/doors, NPC and combat lifecycles,
-  rescue/escort/defend/carry, vehicle objectives, and rewards/outcomes, with
-  exact evidence boundaries and clean-save matrices;
-- advanced scene guides covering choices and outcomes, external VO/WEM/
-  lipsync, animation events, and workspots;
-- advanced character, appearance, AI-role, device-interaction, and complex
-  cleanup guides, with TweakXL `1.11.3` scoped only to mod-owned TweakDB
-  character records;
-- a bounded braindance resource-chain, RID/rewind, clue-layer, cleanup, and
-  eight-case acceptance set that remains **Experimental** for custom runtime
-  behavior.
-
-Lab 1's downloadable checkpoints, exact graph, artifact hashes, and
-runtime-acceptance record live under `examples/lab-01-one-shot`. Its native
-resources are structurally validated; the dedicated marker above mirrors the
-canonical runtime record.
-
-Lab 2's `cqa002` resources are structurally validated with the exact pinned
-WolvenKit 8.19.0 CLI. Its timing, convergence, reload, and re-entry behaviors
-remain Experimental until both hash-bound candidates and all six executions
-pass the canonical schema-version-3 acceptance record.
-
-Lab 3's `cqa003` resources are structurally validated with WolvenKit 8.19.0.
-Its block mounting, sector/NodeRef resolution, trigger boundaries, marker/GPS
-presentation, streaming return, and save behavior remain Experimental until
-the hash-bound canonical candidate passes all eight executions in its
-schema-version-3 acceptance record.
-
-Lab 4's `cqa004` resources are structurally validated with WolvenKit 8.19.0.
-Only its root phase is registered through ArchiveXL; its archived child is
-resolved through `phaseResource`, while the root owns the shared quest-prefab
-scope. That exact child lifetime, handoff, stream return, and save behavior
-remains **Experimental** until the hash-bound canonical candidate passes all
-eight executions in its acceptance record.
-
-Lab 5's `cqa005` checkpoints each contain eleven CR2W resources and one WEM.
-All twenty-two CR2W source/cooked pairs are structurally validated with
-WolvenKit 8.19.0. Generic-actor spawn/passivity, a later candidate's cleanup,
-and a community-acquired conversation have separate bounded legacy runtime
-evidence, but the
-exact `cqa005` mount, ordinary line/subtitle/audio playback, named exit,
-stream-away/return, delayed cleanup, post-`contact_done` reload, and completed
-reload follow the synchronized marker above. This includes the exact named
-pre-scene seed loads in Cases 3, 4, and 7. Active-line interruption or
-`CutDestination`, arbitrary/unlisted pre-scene active-child states, and
-facial/workspot-animation quality remain **Experimental** outside that frozen
-campaign.
+Extracted vanilla CR2W resources are not redistributed. The book names depot
+paths and teaches readers to extract their own focused references.
 
 ## Local preview
 
@@ -137,18 +53,12 @@ mdbook build .\book
 
 The generated site is written to `book/site` and is ignored by Git.
 
-## Publishing
+## Contributing
 
-`.github/workflows/pages.yml` builds pull requests and deploys `main` through
-GitHub Pages.
-
-The repository is hosted at:
-
-`https://github.com/hlky/cyberpunk-quest-authoring`
-
-The published book is available at:
-
-`https://hlky.github.io/cyberpunk-quest-authoring/`
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the editorial, example, evidence,
+and validation workflow. Reader-facing procedures must use WolvenKit,
+ArchiveXL, the game, and chapter-specific standard tools; repository scripts
+and evidence records are maintainer infrastructure.
 
 ## License
 

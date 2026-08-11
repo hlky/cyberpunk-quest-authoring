@@ -31,16 +31,16 @@ boundary.
 | Decide what ArchiveXL registers and what the archive reaches indirectly | [ArchiveXL registration reference](archivexl-registration.md) |
 | Reuse the tutorial naming convention without colliding with it | [Tutorial namespace](tutorial-namespace.md) |
 
-## Evidence and research
+## Research references
 
 | Need | Reference |
 | --- | --- |
-| Check the supported game/tool baseline and the scope of legacy records | [Evidence and version matrix](evidence-version-matrix.md) |
+| Check lab status or audit the scope of older research | [Lab status and research provenance](evidence-version-matrix.md) |
 | Check the exact pinned practical versions | [Tested versions](tested-versions.md) |
 | Locate a named vanilla resource to extract and inspect yourself | [Vanilla depot paths](vanilla-depot-paths.md) |
 
 The vanilla index cites depot paths and focused properties; it does not contain
-extracted game resources. Legacy Ghostline results remain evidence for their
+extracted game resources. Legacy research results remain evidence for their
 named historical candidates, commits, and archive hashes. They are never a
 reader prerequisite and do not silently promote a new lab under the current
 pinned baseline.

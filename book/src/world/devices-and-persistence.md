@@ -16,16 +16,10 @@ worldEntityNode or worldDeviceNode
   -> context-dependent global device/persistence resources
 ```
 
-## Evidence and version boundary
+## Vanilla references
 
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The world-node, template, node-local package, slot, `.devices`, and `.psrep` relationships below come from focused extracts of the named depot resources. |
-| **Structurally validated** | Prior mod-owned research round-tripped a `worldDeviceNode`, entity-template reference, and nonzero RedPackage buffer without conflating it with sector inplace content. |
-| **Runtime-proven** | Retained device tests showed that preserving template-matched component CRUIDs restored one laptop's authored Files UI, and that a save could retain an earlier device package. This does not prove a universal controller recipe. |
-| **Experimental** | No custom-device procedure in the current book has passed the complete pinned clean-save matrix. Lab 3 deliberately contains no device. |
-
-The most useful vanilla paths are:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\worlds\03_night_city\_compiled\default\exterior_19_-8_0_0.streamingsector
@@ -33,12 +27,6 @@ base\worlds\03_night_city\_compiled\default\4fd0915183681e53.streamingsector_inp
 base\gameplay\devices\drop_points\drop_point.ent
 base\worlds\03_night_city\_compiled\default\03_night_city.devices
 ```
-
-The retained extracts are WolvenKit JSON `0.0.9`, serialized by WolvenKit
-`8.17.4`, with CR2W `GameVersion: 2310`. Extract your own comparison resources
-and keep excerpts focused. The practical target is Cyberpunk 2077 Windows GOG
-`2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`.
 
 ## `worldEntityNode` and `worldDeviceNode`
 

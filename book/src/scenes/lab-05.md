@@ -12,23 +12,13 @@ delays cleanup until V has left the outer area.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 **Implementation status:** both supplied checkpoints contain eleven mod-owned
 CR2W resources plus one WEM. The CR2W pairs are **Structurally validated** with
 WolvenKit `8.19.0`; the WEM's container, format, duration, path, and hash are
 checked separately. Mounting, actor materialization, scene playback, subtitle
 and VO lookup, named return, stream-away/return, post-`contact_done` reload,
-completed reload, named pre-scene seed loads for Cases 3/4/7, and cleanup
-follow the synchronized marker above.
+completed reload, pre-scene save loads, and cleanup are covered by the Lab 5
+test procedure.
 
 ## What the lab demonstrates
 
@@ -278,14 +268,13 @@ plain FNV hashes of debug labels, and the `#` alias marker has RED4-specific
 hash behavior. The registry's numeric placement identity is also not an
 ordinary string entry in the sector's `nodeRefs` array.
 
-The exact character/workspot pair occurs in retained runtime-proven community
-candidate archive
-`2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`.
+The exact character/workspot pair occurs in a
+[retained community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
 That result proves the pair was present in the successful candidate; it does
 not separately prove the quality of its cigarette animation in every context.
-The exact `cqa005` spawn, passivity, acquisition, and cleanup claims follow the
-synchronized marker above. Cigarette/workspot animation quality remains
-**Experimental** independently of that marker.
+The Lab 5 test guide checks spawn, passivity, acquisition, and cleanup.
+Cigarette and workspot animation quality are visual checks you should repeat
+for any actor or appearance you substitute.
 
 ## Exact scene contract
 
@@ -361,17 +350,6 @@ The broad setup area makes a fast arrival less likely to outrun actor
 readiness. The much larger cleanup area keeps the contact present while V can
 still see the meeting point. These dimensions are a candidate design choice,
 not a universal safe radius.
-
-## Evidence boundary
-
-| Claim | Current class | Boundary |
-| --- | --- | --- |
-| Eleven CR2W types, graphs, handles, sockets, paths, IDs, buffers, and registration sections | **Structurally validated** | WolvenKit `8.19.0` cook and serialize round trip |
-| Generic character/workspot pair, spawn, and passive state in archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` | **Runtime-proven** | Applies only to that hash-bound historical candidate; its retained result does not explicitly confirm cleanup |
-| Leave-boundary community deactivation in later hostile-patrol archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` | **Runtime-proven** | Separate candidate and actor behavior; do not merge it with the passive-candidate claim |
-| Comparable community, readiness, actor, screenplay, and scene structures in cited base-game resources | **Observed in vanilla** | Comparative depot-path evidence only |
-| Exact `cqa005` mount, spawn, passivity, named pre-scene seed loads in Cases 3/4/7, ordinary line/subtitle/audio playback, named exit, post-`contact_done` reload, completed reload, cleanup, and persistence | **Experimental** while pending/failed; **Runtime-proven** only when passed | Follows the synchronized marker above and requires every hash-bound Lab 5 acceptance case |
-| Active-line interruption or `CutDestination`, arbitrary/unlisted pre-scene active-child states, active-line/interruption reload, and facial/workspot-animation quality | **Experimental** | Outside the frozen campaign; unaffected by marker promotion |
 
 ## Common failure modes
 

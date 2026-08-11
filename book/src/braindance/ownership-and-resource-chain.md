@@ -12,7 +12,7 @@ quest lifecycle, clue-state, and cleanup owners that make playback usable.
 | Practical framework baseline | ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Runtime status | **Experimental** — no retained eight-case custom-candidate pass |
 
-> **Evidence boundary:** the named vanilla shapes on this page are
+> **Research note:** the named vanilla shapes on this page are
 > **Observed in vanilla**. The mod-owned `.questphase`/`.scene`/`.scenerid`
 > research chain is **Structurally validated** because each binary serialized
 > and deserialized with WolvenKit `8.19.0`. Its in-game playback, seek, rewind,
@@ -189,16 +189,12 @@ safely in the current WolvenKit UI, stop at a focused inspection/structural
 prototype. Do not substitute a hidden generator and call that a reader-facing
 manual procedure.
 
-## Structurally validated research boundary
+## Structural research result
 
-A retained mod-owned research snapshot at source commit
-`832e1f1a18cb4d6c63b083ec3699a9fddb91a184` contains these binary hashes:
-
-| Resource role | SHA-256 |
-| --- | --- |
-| `.scenerid` | `B08879CCE964E00CDDB4B2384B013FAE587CBC8496B7D6F8BE35B11CB0FD9257` |
-| rewindable `.scene` | `0F92C6B8E74DEEB657600FFCC3874D8A61C4A6F564F03DA8DD5D7CA466637D0F` |
-| owning `.questphase` | `23552A40E862915FE1C450DD96D423BA4400F7AED5FC4F766B0F61092720E53D` |
+A retained mod-owned snapshot contains a `.scenerid`, rewindable `.scene`, and
+owning `.questphase` built as one resource chain. Exact artifact identities are
+kept in [Lab status and research
+provenance](../reference/evidence-version-matrix.md#retained-structural-and-vanilla-evidence).
 
 On 2026-08-09, WolvenKit `8.19.0` serialized all three binaries to CR2W-JSON
 and deserialized those documents back to CR2W without error. This is

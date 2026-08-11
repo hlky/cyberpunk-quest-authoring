@@ -19,21 +19,10 @@ This is an advanced research workflow, not a universal device template. The
 current labs do not supply a custom device checkpoint, and a new device remains
 **Experimental** until its own clean-save matrix passes.
 
-## Evidence and tested boundary
+## Vanilla references
 
-Practical work on this page targets Cyberpunk 2077 Windows GOG `2.31a`,
-WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`.
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The SQ021 laptop chain below joins a sector placement, `laptop_1.ent`, matching component CRUIDs, node-local controller data, journal-backed files, and a fact wait. The cited Q108 phase contains door-manager operations with exact controller classes and NodeRefs. |
-| **Structurally validated** | WolvenKit exposes and round-trips the native manager and condition payload fields described below, and retained mod-owned resources preserve a non-empty node-local `RedPackage`. This establishes serialized shape, not runtime semantics for arbitrary strings or templates. |
-| **Runtime-proven** | Archive SHA-256 `791ED71FB1B443734153304DB609961D193BF7ECEE300CD09818BEEE10D5C166` exposed one Files-only laptop and advanced through its named document fact. Archive SHA-256 `C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD` exposed one `Steal Data` interaction and completed its exact personal-link route. These are separate, legacy, hash-bound results outside the pinned practical baseline. |
-| **Experimental** | A different device template, controller class, action, condition function, package, placement, interaction record, cancellation route, or persistent-state policy is a new claim. No generic custom-device lifecycle has passed the complete pinned matrix. |
-
-Extract the following comparisons from your own game installation. Do not
-redistribute their CR2W files:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\worlds\03_night_city\_compiled\default\exterior_19_-8_0_0.streamingsector
@@ -110,8 +99,9 @@ components in `laptop_1.ent`. In the retained comparison, the active computer
 controller uses `1131680419258347532` and the scanning component uses
 `1131680419258347552`.
 
-Archive `791ED71F...` used the template-matched binding and exposed its exact
-authored file; that passing result is **Runtime-proven** for the archived
+The [retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+used the template-matched binding and exposed its exact authored file; that
+passing result is **Runtime-proven** for the archived
 package. An earlier development comparison reported a visible laptop with
 empty authored content after those IDs were replaced, but the current ledger
 does not bind that negative control to a separate retained archive. Treat the
@@ -212,7 +202,8 @@ automatic controller rollback. Record the cancellation discriminator before
 any irreversible inventory or journal write, then route retry and terminal
 failure separately.
 
-The exact `C3F76083...` route waited for a personal-link connection, performed
+The exact [retained route](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+waited for a personal-link connection, performed
 its timed presentation, sent `QuestForceDisconnectPersonalLink`, consumed its
 item, and completed. That **Runtime-proven** route does not establish what an
 early disconnect, interrupted workspot, reload during connection, or a

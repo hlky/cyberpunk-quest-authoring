@@ -15,8 +15,6 @@ prerequisites and not an alternate quest authoring system.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 4 runtime evidence:** **Experimental** — pending.
-
 ## Required environment
 
 | Component | Exact version |

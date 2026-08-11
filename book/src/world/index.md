@@ -16,26 +16,6 @@ No link substitutes for another. A valid quest graph does not create its
 trigger, and a visible world marker does not prove that a questphase declared
 the prefab root needed to address it.
 
-**Lab 3 runtime evidence:** **Experimental** — pending.
-
-## Evidence and version boundary
-
-The world chapters deliberately separate retained research evidence from the
-book's current acceptance target.
-
-| Label | What it means in this section |
-| --- | --- |
-| **Observed in vanilla** | The named fields and arrangements occur in focused extracts from cited game depot paths. The retained extracts were serialized by WolvenKit `8.17.4` as WolvenKit JSON `0.0.9` with CR2W `GameVersion: 2310`. That header is a resource-format value, not proof of a particular running executable. |
-| **Structurally validated** | The stated `cqa003` block/sector/NodeRef arrangement was cooked and serialized back for decisive semantic inspection with WolvenKit `8.19.0`. Earlier mod-owned research shapes retain their own narrower version boundary. |
-| **Experimental** | This label applies to the new `cqa003` block mounting, sector resolution, marker/GPS, trigger, streaming-return, and save behavior while its required matrix is pending or failed. A design inherited from earlier research is not evidence that the new package works in game. |
-
-The pinned practical acceptance environment is Cyberpunk 2077 Windows GOG
-`2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and
-redscript `0.5.31`. See [Tested versions](../reference/tested-versions.md).
-Lab 3 has passed the structural and packaging gates. Its marker above and
-hash-bound acceptance record govern whether the exact runtime candidate is
-**Experimental** or **Runtime-proven**.
-
 ## What owns what
 
 | Owner | Responsibility in this section |

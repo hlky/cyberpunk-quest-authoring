@@ -9,22 +9,6 @@ Use [Boolean condition trees](boolean-trees.md) when several observations must
 be evaluated as one predicate. Use the nodes in this chapter when several
 already-running graph routes must meet, compete, or choose an output.
 
-## Evidence boundary
-
-The examples below come from a retained corpus of 41 vanilla questphases
-exported with WolvenKit 8.17.4 and game-resource version 2310. They are
-**Observed in vanilla**, not universal engine contracts. Extract the named
-depot paths from your own installation and compare them with the version you
-ship against.
-
-WolvenKit's generated RED types establish the available properties. The
-book-owned Lab 2 resource makes its exact two-input/one-output XOR and ordinary
-fan-in/fan-out shapes **Structurally validated**. The wider AND, XOR, Hub, and
-Switch arities listed below remain **Observed in vanilla** inventory. Arrival
-order, reset/re-arm behavior, simultaneous signals, save/load persistence, and
-cancellation remain **Experimental** unless a retained runtime test says
-otherwise.
-
 ## A connection is an edge
 
 A graph node owns `sockets`. Each socket has a `name`, a socket `type`, and a

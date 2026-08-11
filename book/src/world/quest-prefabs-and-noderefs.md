@@ -17,10 +17,10 @@ questphase local NodeRef
 This chain explains why copying a plausible `#child` string into a quest graph
 is insufficient.
 
-## Evidence and version boundary
+## Vanilla references
 
-**Observed in vanilla:** this page's chain is present in focused extracts from
-the following depot paths:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase
@@ -30,22 +30,6 @@ base\worlds\03_night_city\_compiled\default\blocks\all.streamingblock
 base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector
 base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector
 ```
-
-The retained evidence is WolvenKit JSON `0.0.9`, serialized by WolvenKit
-`8.17.4`, with CR2W `GameVersion: 2310`. Extract the named resources from your
-own installation rather than redistributing them. `GameVersion: 2310` is not
-a record of a runtime test.
-
-**Structurally validated:** the same local-root/full-child relationship
-round-tripped in a prior mod-owned fixture under WolvenKit `8.17.4`. Lab 3's
-single root, two trigger children, and marker child were separately cooked and
-serialized back with WolvenKit `8.19.0`.
-
-**Runtime classification:** Lab 3's retained matrix governs NodeRef resolution
-and activation in the target runtime stack: Cyberpunk 2077 Windows GOG
-`2.31a`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Pending or failed evidence is **Experimental**; only an all-pass record is
-**Runtime-proven**.
 
 ## A quest prefab is a namespace and binding
 

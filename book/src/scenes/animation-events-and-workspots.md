@@ -272,7 +272,7 @@ remain **Experimental** until the exact route passes.
 | Workspot works once but fails after reload | Saved scene/community/workspot state, retained actor role, stale instance identity |
 | Actor disappears at scene exit | Community cleanup/deactivation raced animation/workspot release |
 
-## Evidence boundary and depot anchors
+## Vanilla references and test scope
 
 **Observed in vanilla:** the focused fields and paths in this guide were
 inspected in installed Cyberpunk `2.31a` resources:

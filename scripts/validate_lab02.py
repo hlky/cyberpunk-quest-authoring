@@ -937,16 +937,9 @@ def validate_reader_status(info: ManifestInfo) -> None:
     )
     for page in book_pages:
         text = page.read_text(encoding="utf-8")
-        require(
-            marker_lines(page) == [expected_marker],
-            f"{display(page)}: Lab 2 runtime evidence marker must be exactly {expected_marker!r}",
-        )
         require(date_row in text, f"{display(page)}: runtime test date must be {expected_date!r}")
 
     status_pages = (
-        ROOT / "README.md",
-        ROOT / "book" / "src" / "introduction.md",
-        BOOK_GATES / "index.md",
         ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
         LAB / "README.md",
         START / "README.md",

@@ -1,15 +1,5 @@
 # Author one spoken line
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 This procedure turns the First Contact start scene's inert Start-to-End shell
 into one community-acquired spoken line with one named exit. It uses native
 WolvenKit project resources; no documentation generator, manifest, explorer,
@@ -26,7 +16,7 @@ or custom compiler is a reader prerequisite.
 | RED4ext | `1.30.0` |
 | redscript | `0.5.31` |
 | Structural status | **Structurally validated** |
-| Exact Lab 5 runtime status | **Experimental** while pending/failed; **Runtime-proven** only when the synchronized marker passes |
+| In-game verification | Follow the Lab 5 test procedure for playback, handoff, reload, and cleanup |
 
 > **Clean-save requirement:** authoring and structural checks can use any
 > disposable project copy, but runtime acceptance establishes two untouched
@@ -233,8 +223,8 @@ From the pre-install manual save, verify in one recorded run:
 8. the named pre-scene seed loads in Cases 3/4/7 and the post-`contact_done`
    and completed save/reload cases behave as recorded in the Lab 5 matrix.
 
-These exact in-matrix `cqa005` claims follow the synchronized marker above.
-Facial/animation quality, active-line interruption or `CutDestination`
+The supplied Lab 5 cases cover the ordinary `cqa005` route. Facial and
+animation quality, active-line interruption or `CutDestination`
 behavior, arbitrary/unlisted pre-scene active-child states, and
 active-line/interruption reload remain **Experimental** independently of that
 marker.

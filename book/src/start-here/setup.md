@@ -14,7 +14,7 @@ prove which runtime components loaded.
 | ArchiveXL script requirement | redscript `0.5.31` |
 | Runtime test date | Not yet recorded |
 
-> **Evidence boundary:** the version selection and file layouts below are
+> **Version note:** the version selection and file layouts below are
 > supported by the linked upstream releases and project documentation. The Lab
 > 1 resources are **Structurally validated**; installing the prerequisites does
 > not make Lab 1 **Runtime-proven**.

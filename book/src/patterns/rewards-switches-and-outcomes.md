@@ -4,14 +4,9 @@ An outcome, its debrief, its payout, journal success, and phase termination are
 independent effects. Compose them in an explicit order and preserve the
 outcome before presentation begins.
 
-| Record | Value |
-| --- | --- |
-| Guide review date | 2026-08-09 |
-| Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Native reward node | **Observed in vanilla** |
-| Legacy outcome-debrief resource | **Structurally validated**; its planned two-route runtime behavior remains **Experimental** |
-| Legacy acknowledged payout/completion chain | **Runtime-proven** for the exact GQ000 candidate below |
-| New combined outcome/reward route on the pinned baseline | **Experimental** until its own retained campaign passes |
+Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
+versions](../reference/tested-versions.md).
 
 Use [Rewards and completion](../journal/rewards-and-completion.md) for the
 reward node's full property shape and
@@ -142,11 +137,10 @@ debrief objective Active
 | Payout | `questRewardManagerNodeDefinition` → `questGiveReward_NodeType` |
 | Durable completion | `questSetVar_NodeType`, exact value `1` |
 
-**Structurally validated:** Ghostline research commit
-`5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb` retains the exact GQ002 debrief
-phase, and archive SHA-256
-`E37C3498B0AF0EE01697C4542D579252DE844E4D529F6381EDAF0D0CFCA1BF94`
-is the matching retained final-polish build candidate. Its runtime section is
+**Structurally validated:** the exact GQ002 debrief phase and matching
+final-polish build are kept in the
+[provenance record](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
+Its runtime section is
 the active next-test checklist and lists the expected branch, reply,
 completion, payout, and cleanup results. It does not retain those results.
 Both outcome-specific openings, both final response routes, payout, and
@@ -181,10 +175,9 @@ wait final debrief message visited
 | 4 | `questJournalNodeDefinition` → `questJournalQuestEntry_NodeType`, entered through `Succeeded` |
 | 5 | `questOutputNodeDefinition`, `type: Terminating` |
 
-**Runtime-proven:** Ghostline research commit
-`97b5c5330acfc259bc1e5b814a83b7902cbd70bf`, archive SHA-256
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`,
-retains the complete GQ000 route with phone choices, completion presentation,
+**Runtime-proven:** a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+completed the GQ000 route with phone choices, completion presentation,
 and the expected reward after its final-message gate.
 
 That legacy result and the GQ002 outcome-specific debrief are separate

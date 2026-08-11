@@ -24,21 +24,10 @@ There is no established native "clean up everything" operation. A cut edge,
 phase output, scene end, community deactivation, or vehicle command handles
 only its own bounded contract.
 
-## Evidence and tested boundary
+## Vanilla references
 
-Practical review on this page targets Cyberpunk 2077 Windows GOG `2.31a`,
-WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`.
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The cited resources expose explicit cut-to-target wiring, delayed community deactivation, scene/quest boundaries, and a player-vehicle operation in their own contexts. These are examples of separate owners, not one reusable teardown graph. |
-| **Structurally validated** | The checked labs serialize named scene and child outputs, journal/mappin transitions, spawn-manager actions, completion facts, and unwired `CutDestination` sockets in deliberate order. This proves graph shape, not interrupted runtime recovery. |
-| **Runtime-proven** | Retained archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` deactivated surviving actors after one leave-area boundary. Archive `84BA33E902360BC4F1ED32A0865CE8B15C35D9442FD519CC6C3E85A06D1AE77B` completed one exact six-stage vehicle route and its final player-vehicle cleanup. The separate partial results below expose two unsafe handoffs. None represents the pinned practical baseline. |
-| **Experimental** | General cut semantics, active-scene cancellation, arbitrary monitor teardown, mixed-owner cleanup, command idempotency, and every newly authored interruption/reload policy remain unproved until their own hash-bound matrix passes. |
-
-Extract these focused comparisons from your own installation rather than
-copying their complete resources:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\minor_activities\watson\northside\ma_wat_nid_15\ma_wat_nid_15_phase.questphase
@@ -218,8 +207,9 @@ edge proves command issuance, not immediate disappearance.
 
 **Observed in vanilla:** the cited `mq003_homeless.questphase` changes named
 community phases and deactivates community-backed actors later in its
-lifecycle. **Runtime-proven:** `DE2A28EF...` showed surviving-actor
-deactivation after its exact leave-area boundary.
+lifecycle. **Runtime-proven:** a
+[retained cleanup candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+showed surviving-actor deactivation after its exact leave-area boundary.
 
 Deactivate only after scenes, AI, workspots, combat, carry, and vehicle seats
 no longer need the actor. A timer alone is not a safe-release proof. Use a
@@ -227,8 +217,8 @@ measured outer boundary or another authoritative state, and test dead,
 unconscious, missing, combat-active, streamed-out, and reloaded variants when
 the design supports them.
 
-Early role release has a concrete warning. Archive
-`3EB9FCB4DBD1CA8BA6730C02CDF81B8A89B855C75372FFF8927DC66F0423D597`
+Early role release has a concrete warning. A
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 advanced through three escort gates, then cleared its follower role too early;
 the persistent target walked back toward the original AI spot as the hold
 began. That partial result is **Runtime-proven** for that archive only. It does
@@ -280,11 +270,12 @@ vehicle record string and `enable`, `despawn`, and
 
 Two retained candidates show why ownership matters:
 
-- archive `707CA5603E84D802B11400CF98761624A1B9156E56BF6752B695C30AA29B5D19`
+- one [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
   had a separate theft vehicle disappear exactly at an intermediate
   contact-vehicle cleanup handoff while both custom player-vehicle records had
   live instances;
-- archive `84BA33E9...` removed that intermediate cleanup and completed its
+- a [later candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+  removed that intermediate cleanup and completed its
   exact six-stage route with a dedicated final player-vehicle cleanup.
 
 Both observations are **Runtime-proven** only for their own archive and route.

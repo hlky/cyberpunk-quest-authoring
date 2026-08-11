@@ -12,7 +12,7 @@ which of those results persist.
 | Practical framework baseline | ArchiveXL `1.27.0`; RED4ext `1.30.0`; redscript `0.5.31` |
 | Custom runtime evidence | **Experimental** — all eight required cases pending |
 
-> **Evidence boundary:** layered clue events, BD visibility events, scene-side
+> **Research note:** layered clue events, BD visibility events, scene-side
 > discovery nodes, layer/perspective conditions, and support props are
 > **Observed in vanilla** in the cited SQ012/Q004 resources. The retained
 > mod-owned scene serializes these shapes and is **Structurally validated**.

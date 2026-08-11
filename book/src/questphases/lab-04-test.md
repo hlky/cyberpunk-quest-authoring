@@ -12,12 +12,9 @@ logs across eight executions.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 4 runtime evidence:** **Experimental** — pending.
-
-Use the packaged `runtime-acceptance.json` schema version `3`. Do not replace
-it with an unstructured pass/fail note. Only every required case passing can
-promote `cqa004` to **Runtime-proven**. The promotion applies to normal `Out1`
-handoff only; `CutDestination` remains unwired and outside the matrix.
+Use the unmodified completed checkpoint for these tests and record each result
+separately. The procedure covers the normal `Out1` handoff;
+`CutDestination` remains unwired and is not tested by this lab.
 
 ## Required environment
 
@@ -303,92 +300,6 @@ Search all four for `cqa004`, the child depot path, NodeRef errors, streaming
 errors, journal/localization errors, and framework failures. “No visible
 crash” is not an adequate log result.
 
-## Complete schema version 3
-
-Edit the packaged `runtime-acceptance.json` only as an evidence record. Do not
-change its run IDs, case IDs, expected behavior, or promotion rule to fit an
-unexpected result.
-
-For `candidates[0]`, fill both installed SHA-256 values and retain all seven
-depot paths. For every run, fill:
-
-- `performed_at` and `tester`;
-- every observed environment version;
-- save label, slot directory, `created_before_first_install`, and `sav.dat`
-  SHA-256;
-- the four retained log paths and SHA-256 values.
-
-For every case, set `status` to `passed` or `failed`, describe `observed`, and
-list concrete evidence paths. Use ISO 8601 timestamps with a UTC offset. Each
-completed case needs focused, hash-bound evidence under
-`completed/evidence/`. Sanitize notes, screenshots, log excerpts, or save
-metadata before committing. Do not commit `sav.dat`, private identifiers,
-extracted vanilla resources, or a large unreviewed capture.
-
-The eight fixed case IDs are:
-
-| Case ID | Boundary proved |
-| --- | --- |
-| `clean-walk` | Ordinary root -> child -> parent -> completion route |
-| `pre-reach-reload` | Child active before first trigger |
-| `between-boundaries-reload` | Child active after reach and before leave |
-| `post-return-reload` | Parent active after child return |
-| `stream-away-return` | Active child across finite-sector streaming |
-| `completed-reload` | Completion guard after reload |
-| `completed-reinstall` | Completion guard after identical reinstall |
-| `clean-replay` | Reproducible second clean run |
-
-Promotion requires all eight cases to pass and evidence to bind the exact
-candidate, executions, original and derived saves, versions, observations,
-and all four logs per execution. If any required case is pending or failed,
-the chapter remains **Experimental**.
-
-Every edit to `completed/runtime-acceptance.json` changes the file hash bound
-by `completed/example.json`. From the repository root, recompute it with:
-
-```powershell
-(Get-FileHash -Algorithm SHA256 .\examples\lab-04-handoff-point\completed\runtime-acceptance.json).Hash.ToLowerInvariant()
-```
-
-Replace `artifacts.files["runtime-acceptance.json"]` in the completed manifest
-with that value. After any case is completed, update
-`evidence.runtime.status`, `class`, and `date` to match the derived state. The
-date is the calendar date of the chronologically latest completed execution;
-it remains `null` only while every case is pending.
-
-Status rules are:
-
-- any failed required case makes top-level status `failed` and keeps
-  `evidence_class: experimental`;
-- a mixture of pending and passed cases keeps status `pending` and class
-  `experimental`;
-- only all required cases passed permits status `passed` and class
-  `runtime-proven`.
-
-Synchronize the first Lab 4 marker on every marked status surface, including
-the evidence/version matrix. If the full matrix passes, that marker is exactly:
-
-```text
-**Lab 4 runtime evidence:** **Runtime-proven** — passed.
-```
-
-A failed matrix uses:
-
-```text
-**Lab 4 runtime evidence:** **Experimental** — failed.
-```
-
-Record the derived runtime date on all three Lab 4 practical pages for any
-completed execution, including a failed result or a partially completed
-matrix. As a repository-maintainer step, regenerate the four deterministic
-Lab 4 SVGs with `python -B scripts\build_lab04_diagrams.py` so their evidence
-footer carries the same status and date, then run
-`python -B scripts\validate.py`. Stale record hashes, markers, dates, or
-diagrams must fail validation.
-
-`CutDestination` remains **Experimental** even after normal-handoff promotion,
-because the candidate contains no cut edge and the promotion rule excludes it.
-
 ## Common test failures
 
 | Observation | Classification and next check |
@@ -401,7 +312,7 @@ because the candidate contains no cut edge and the promotion rule excludes it.
 | Post-return reload restarts child | Failed owner transition; retain evidence before editing the graph |
 | Completed reinstall starts child again | Failed one-shot persistence or candidate identity |
 | A cut path is untested | Expected scope boundary; do not mark cut runtime-proven |
-| One log is missing | That execution cannot satisfy promotion until rerun with complete evidence |
+| One run is missing its logs | Repeat that run if you need to diagnose or report it reliably |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
 Handoff Point in WolvenKit](lab-04-authoring.md) · Next lab: [Lab 5: First

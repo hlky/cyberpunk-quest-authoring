@@ -37,7 +37,7 @@ inherits the evidence label and version boundary stated by that chapter.
 | **Depot path** | A resource address in the game's virtual depot, written with backslashes, such as `mod\cqa\cqa005\scenes\cqa005_first_contact.scene`. It is not a Windows filesystem path. | [Resources and ownership](../foundations/resource-model.md) |
 | **Descriptor** | In the streaming chapters, a `worldStreamingSectorDescriptor` in a block. Its `data` points to a sector and its other fields carry streaming metadata such as bounds, category, level, and an optional quest-prefab root. | [Streaming model](../world/streaming-model.md) |
 | **Entry point** | A named `.scene` interface entry that maps a CName such as `start` to an `scnNodeId`. The caller's `questSceneNodeDefinition` must expose a same-named input socket. | [Entry, exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md) |
-| **Evidence label** | One of exactly four claim classes: **Runtime-proven**, **Structurally validated**, **Observed in vanilla**, or **Experimental**. | [Evidence labels](#evidence-labels) |
+| **Evidence label** | One of exactly four claim classes: **Runtime-proven**, **Structurally validated**, **Observed in vanilla**, or **Experimental**. | [Claim labels](#claim-labels) |
 | **External child** | The Lab 4–5 child-phase arrangement in which `phaseGraph` is null and `phaseResource` softly names another archived `.questphase`. It contrasts with an inline/in-place graph. | [Questphase resource anatomy](../questphases/anatomy.md) |
 | **Fact** | A named signed-integer slot in the facts database. Authors commonly use `0` and `1` by convention, but the resource does not turn the fact into a Boolean. | [Facts, journals, and saves](../foundations/persistent-state.md) |
 | **Fan-out** | Several connections leaving one output socket. It starts several downstream routes and does not establish an order or a later join. | [Graph execution](../foundations/graph-execution.md) |
@@ -85,7 +85,7 @@ inherits the evidence label and version boundary stated by that chapter.
 | **WolvenKit** | The editor and resource tool used by the reader to inspect, author, convert, pack, and deploy the resource shapes taught by the book. Documentation-author scripts are not reader prerequisites. | [Set up from zero](../start-here/setup.md) |
 | **Workspot** | A referenced resource that supplies an AI activity or animation setup. A `worldAISpotNode` supplies placement and points to it; the workspot does not choose the community actor or world transform. | [Entries, phases, and AI spots](../communities/entries-phases-and-ai-spots.md) |
 
-## Evidence labels
+## Claim labels
 
 Use the narrowest label supported by the retained evidence:
 

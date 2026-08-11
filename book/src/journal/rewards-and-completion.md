@@ -8,13 +8,11 @@ the effects it needs in an intentional order; none is implied by another.
 | --- | --- |
 | Chapter review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Lab 1 completion path | **Structurally validated**; runtime status is shown by the dedicated marker below |
+| Lab 1 completion path | Structure checked; verify completion with the Lab 1 test guide |
 | Native reward reference | **Observed in vanilla** |
 | Reward-to-completion sequence | **Runtime-proven** in a retained legacy fixture, not in one fully bound pinned-book run |
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-> **Evidence boundary:** the native reward node shape below is a focused
+> **Research note:** the native reward node shape below is a focused
 > vanilla observation. The complete ordering was exercised successfully by a
 > retained quest fixture, but that run does not promote this book's pinned
 > baseline or Lab 1 to runtime-proven. Custom TweakDB reward-record authoring is

@@ -4,24 +4,6 @@ Three kinds of connection often look alike in WolvenKit: an internal CR2W
 handle, a graph socket edge, and a path to another resource. They fail at
 different times and need different tests.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for the practical checks.
-
-**Structurally validated:** the lab validators resolve internal handles,
-freeze semantic graph edges and socket contracts, and verify decisive external
-resource paths after WolvenKit `8.19.0` round trips.
-
-**Observed in vanilla:** the node/socket and handled-object shapes taught in
-the foundations and scene chapters occur in the cited extracted vanilla
-resources. Incidental `HandleId` allocation is not treated as a stable engine
-meaning.
-
-**Experimental:** any changed runtime route remains experimental until its
-exact packed bytes pass the relevant clean-save cases. Structural repair does
-not prove lifecycle behavior.
-
 ## Identify the connection domain
 
 | Connection | Typical form | Scope | Question |

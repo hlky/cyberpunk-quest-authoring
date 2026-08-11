@@ -42,22 +42,17 @@ and [Scene resource anatomy](../scenes/resource-anatomy.md) before composing the
 route. If any local NodeRef is still ambiguous, resolve the prefab scope first
 with [Quest prefabs and NodeRefs](../world/quest-prefabs-and-noderefs.md).
 
-## Evidence and version boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Re-extract cited vanilla resources after a game or serializer update.
+These three resources show the activation, readiness, and scene-acquisition
+handoffs used by a small vanilla meeting. Extract them into a separate research
+project:
 
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | `mq003` separates community activation, spawned-character readiness, child activity, and community actor acquisition. Extract `base\quest\minor_quests\mq003\mq003_orbitals.questphase`, `base\quest\minor_quests\mq003\phases\mq003_homeless.questphase`, and `base\quest\minor_quests\mq003\scenes\mq003_01_homeless.scene` from your own game. |
-| **Structurally validated** | Legacy research commit `68f311c8f2511aeba679b76a68062ef5e446aaa0` retains the activation, readiness, actor, and scene-node fields described below. The current First Contact checkpoint separately cooks and round-trips its exact resources with WolvenKit `8.19.0`. |
-| **Runtime-proven** | At source commit `68f311c8f2511aeba679b76a68062ef5e446aaa0`, archive SHA-256 `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` completed the retained community-acquired meeting route after both actors selected addressable lipsync slot `0`; subtitles and VO resolved on that route. This is a legacy diagnostic result, not proof of facial quality or a general slot policy. |
-| **Experimental** | A newly assembled meeting, every untested actor count, active-line interruption or reload, combat during acquisition, arbitrary pre-scene save state, and immediate cleanup remain unproven until a hash-bound matrix passes. The exact `cqa005` runtime class follows its synchronized Lab 5 marker. |
-
-The legacy header lineage names WolvenKit `8.17.4`, WolvenKit JSON `0.0.9`,
-and CR2W `GameVersion: 2310`; it does not bind the complete pinned runtime
-environment. Keep that historical result separate from the current lab.
+```text
+base\quest\minor_quests\mq003\mq003_orbitals.questphase
+base\quest\minor_quests\mq003\phases\mq003_homeless.questphase
+base\quest\minor_quests\mq003\scenes\mq003_01_homeless.scene
+```
 
 ## Four ownership handoffs
 

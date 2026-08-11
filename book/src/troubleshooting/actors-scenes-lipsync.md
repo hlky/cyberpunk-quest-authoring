@@ -4,31 +4,6 @@ A scene-launch failure can occur before any subtitle, audio, or visualizer
 appears. Diagnose actor readiness, acquisition identity, scene graph entry, and
 indexed resource tables in that order.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for current acceptance.
-
-**Observed in vanilla:** the `mq003`, `mq007`, and `mq010` scene and questphase
-resources cited in the scene chapters show community actor acquisition,
-readiness ordering, actor/performer separation, and lipsync resource tables.
-
-**Structurally validated:** Lab 5 freezes the exact actor acquisition plans,
-performer symbols, scene entry/exit, one generic addressable lipsync row, and
-both actor slot indices after WolvenKit `8.19.0` round trips.
-
-**Runtime-proven:** retained legacy candidate
-`177500B67B2A6B975A597DF5D582797F006643BA6BC975E1D9CFBC66BC498BFD`
-crashed at scene launch after a sequence-only change moved the same failure to
-the broad setup boundary. Its scene asked for lipsync slots `0` and `1` while
-two identical source paths cooked to one addressable import. Candidate
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
-changed the scene to one row with both actors selecting slot `0`; the complete
-meeting route then passed. The record is retained at research commit
-`68f311c8f2511aeba679b76a68062ef5e446aaa0`. This is bounded legacy evidence:
-the shared slot was diagnostic and does not prove final facial-animation
-quality or the current Lab 5 stack.
-
 ## Locate the launch boundary
 
 Record the last confirmed event and the first missing event:

@@ -95,7 +95,7 @@ Each check proves a different claim:
 “WolvenKit saved it” and “the archive packed” are therefore intermediate
 evidence, not completion.
 
-## Evidence labels
+## How claims are marked
 
 Use the narrowest label supported:
 

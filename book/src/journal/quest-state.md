@@ -9,28 +9,6 @@ This chapter applies that distinction to the exact Lab 1 nodes. Read
 [Journal trees and typed paths](trees-and-paths.md) first if `realPath`,
 `className`, or `fileEntryIndex` is unfamiliar.
 
-## Evidence and tested boundary
-
-The manual property paths target Cyberpunk 2077 `2.31a` (GOG), WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Review date: **2026-08-09**.
-
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-- **Structurally validated:** Lab 1 contains the four journal operations,
-  typed paths, sockets, and edges documented below.
-- **Runtime evidence:** the dedicated marker above mirrors the clean-save,
-  presentation, reload, and reinstall results in Lab 1's retained matrix.
-- **Observed in vanilla:** named vanilla questphases use the same journal-node
-  families, state sockets, and path payloads, sometimes with additional legacy
-  variations. A vanilla shape is evidence to inspect, not a template to copy
-  without explaining its context.
-
-Older retained fixtures prove that journal states, visited conditions,
-tracking, phone choices, rewards, and completion can operate together. Their
-environment was not recorded as one complete match for the book baseline, so
-they do not promote Lab 1's player-facing behavior to **Runtime-proven**.
-
 ## Definition versus runtime state
 
 The Lab 1 journal defines three quest-lifecycle entries beneath its two

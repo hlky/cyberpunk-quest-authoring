@@ -2,80 +2,74 @@
 
 *The RED Questbook*
 
-This book explains how Cyberpunk 2077's native quest resources work together
-and how to author new quest content with WolvenKit and standard modding
-frameworks.
+Quest modding in Cyberpunk 2077 is powerful, but the public documentation is
+still scattered across a small number of focused guides. This book provides a
+standalone path from opening your first quest resource to building quests with
+journal entries, world interactions, characters, scenes, combat, vehicles,
+and cleanup.
 
-It starts with a one-shot objective and grows toward scenes, communities,
-devices, combat, vehicles, and specialized systems. The goal is not to hide the
-engine behind a generator. The goal is to make the resource model
-understandable.
+You do not need to understand REDengine internals before you begin. The early
+chapters introduce one idea at a time, and the downloadable WolvenKit projects
+give you something concrete to inspect whenever the resource model feels
+abstract.
 
-The first tutorial builds `cqa001`, a one-shot quest with no world, scene,
-actor, or device dependencies. Its resource design, exact graph, manual
-WolvenKit walkthrough, and runtime-acceptance record keep structural
-claims reviewable without presenting an expected game result as proof.
+The book complements the broader [REDmodding quest and scene
+guides](https://wiki.redmodding.org/cyberpunk-2077-modding/modding-guides/quest).
+It lives separately because native quest authoring is still developing quickly
+and benefits from executable examples, coordinated diagrams, and a learning
+path that can evolve as the tools improve.
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
+## Start small
 
-The second tutorial, `cqa002`, adds immediate and waiting conditions, a nested
-Boolean tree, parallel monitors, and XOR-shaped signal convergence. It ships as
-two structurally validated WolvenKit checkpoints with separate canonical and
-source-edited runtime candidates.
+Begin with [Start here](start-here/index.md). You will install the tools, learn
+the shape of a WolvenKit project, inspect one vanilla questphase, and build
+**First Signal**: a quest with one objective, a short wait, and a one-shot
+completion fact.
 
-**Lab 2 runtime evidence:** **Experimental** — pending.
+Five incremental labs then add the major systems:
 
-The third tutorial, `cqa003`, adds a registered streaming block, Quest and
-AlwaysLoaded sectors, a quest-prefab/NodeRef chain, concentric reach/leave
-triggers, a static marker, and a journal map pin. Its six-resource checkpoints
-are structurally validated; the eight-run world/save matrix is still pending.
+1. **First Signal** — questphase, journal, localization, and a persistent fact.
+2. **Signal Race** — conditions, waits, Boolean trees, and parallel signal flow.
+3. **Boundary Check** — streaming sectors, NodeRefs, triggers, and a map pin.
+4. **Handoff Point** — root and child questphases with explicit input/output
+   contracts.
+5. **First Contact** — a community actor, readiness, a spoken scene, named
+   handoff, and delayed cleanup.
 
-**Lab 3 runtime evidence:** **Experimental** — pending.
+Each lab includes an overview, a manual WolvenKit walkthrough, a completed
+project, and an in-game test procedure. You can follow them in order or use the
+[lab overview](reference/labs-at-a-glance.md) to find the closest starting
+point for your own quest.
 
-The fourth tutorial, `cqa004`, moves the world activity into an archived
-external child and makes the registered-root, root-owned prefab, `In1`/`Out1`,
-and normal return contract explicit.
+## Think in cooperating resources
 
-**Lab 4 runtime evidence:** **Experimental** — pending.
+A Cyberpunk quest is rarely one file:
 
-The fifth tutorial, `cqa005`, activates a one-entry community, waits for actor
-and approach readiness, runs one externally localized spoken line through a
-named scene entry/exit, and delays deactivation until V leaves the outer
-cleanup area. Both checkpoints are structurally validated; exact in-matrix
-runtime claims, including the named pre-scene seed loads in Cases 3, 4, and 7,
-follow the synchronized marker below. Active-line
-interruption/`CutDestination`, arbitrary/unlisted pre-scene active-child
-states, and facial/workspot-animation quality remain **Experimental** outside
-that matrix.
-
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-[Compare all five labs, downloads, identities, and evidence
-boundaries](reference/labs-at-a-glance.md).
-
-## What the resource model covers
-
-Cyberpunk quests span several resource systems:
-
-- `.questphase` graphs control progression and persistent state;
-- `.journal` resources provide quests, objectives, messages, files, and map
+- `.questphase` graphs coordinate progression and persistent state;
+- `.journal` resources define quests, objectives, messages, files, and map
   pins;
-- localization resources provide UI text, subtitles, spoken dialogue, and
-  scene choice text through distinct lookup paths;
-- streaming resources provide triggers, markers, communities, AI spots, and
-  devices;
+- localization resources provide UI text, subtitles, dialogue, and choices;
+- streaming resources place triggers, markers, communities, AI spots, and
+  devices in the world;
 - `.scene` resources provide dialogue, choices, events, animations, and named
   exits;
 - entity, appearance, and TweakDB resources provide custom characters and
   gameplay records.
 
-The practical guides explain who owns each responsibility and how to test the
-boundaries between them. Later cookbook and advanced-system chapters retain
-their evidence limits rather than treating broad engine coverage as proof of
-every custom composition.
+Most difficult bugs occur where two of these owners disagree. The book
+therefore explains not only which properties to set, but which resource owns
+the behavior, how identities connect across files, and what to inspect when a
+graph looks valid but nothing happens in game.
 
-## Evidence
+## What the examples prove
 
-Pages distinguish behavior proven in game from structure observed in vanilla
-or validated only through serialization. Experimental material is kept visible
-without being presented as settled authoring guidance.
+The downloadable projects are executable reference material, not magic
+templates. Their structure is checked with the version of WolvenKit listed in
+[Tested versions](reference/tested-versions.md), and every supplied node and
+resource is explained in the book.
+
+Some wider recipes are based on focused vanilla inspection or on bounded
+runtime research rather than a complete custom quest tested on every save and
+reload path. Those claims are labelled where the distinction affects what you
+should build or test. Detailed provenance remains available in the reference
+material, but it is never required to follow a reader procedure.

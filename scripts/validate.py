@@ -44,20 +44,8 @@ ACCEPTANCE = COMPLETED / "runtime-acceptance.json"
 LAYOUT = ROOT / "assets" / "diagrams" / "lab-01" / "cqa001.questphase.layout.json"
 SVG = ROOT / "book" / "src" / "images" / "lab-01" / "cqa001.questphase.svg"
 LAB_STATUS_PAGES = (
-    ROOT / "README.md",
     ROOT / "examples" / "lab-01-one-shot" / "README.md",
     ROOT / "examples" / "lab-01-one-shot" / "completed" / "README.md",
-    ROOT / "book" / "src" / "introduction.md",
-    ROOT / "book" / "src" / "start-here" / "index.md",
-    ROOT / "book" / "src" / "start-here" / "lab-01.md",
-    ROOT / "book" / "src" / "start-here" / "lab-01-authoring.md",
-    ROOT / "book" / "src" / "start-here" / "install-and-test.md",
-    ROOT / "book" / "src" / "questphases" / "index.md",
-    ROOT / "book" / "src" / "journal" / "index.md",
-    ROOT / "book" / "src" / "journal" / "trees-and-paths.md",
-    ROOT / "book" / "src" / "journal" / "quest-state.md",
-    ROOT / "book" / "src" / "journal" / "localization-paths.md",
-    ROOT / "book" / "src" / "journal" / "rewards-and-completion.md",
     ROOT / "book" / "src" / "reference" / "evidence-version-matrix.md",
 )
 LAB_PRACTICAL_PAGES = (
@@ -1283,11 +1271,8 @@ def validate_gameplay_cookbook() -> None:
             f"{display(index_path)}: placeholder text remains at {stale_phrase!r}",
         )
     for required in (
-        "Evidence does not compose automatically",
-        "Ghostline is not a reader dependency",
         "Clean-save rule",
-        "Cyberpunk 2077 Windows GOG `2.31a`",
-        "WolvenKit `8.19.0`",
+        "(../reference/tested-versions.md)",
         "(workspots-and-interactions.md#doors-are-device-contracts)",
         "(../gates/delays-and-persistence.md)",
     ):
@@ -1334,22 +1319,6 @@ def validate_gameplay_cookbook() -> None:
         index_positions.append(index_text.index(f"({filename})"))
 
         normalized = " ".join(markdown_visible_text(text).split())
-        for token in (
-            "Cyberpunk 2077",
-            "2.31a",
-            "WolvenKit",
-            "8.19.0",
-            "ArchiveXL",
-            "1.27.0",
-            "RED4ext",
-            "1.30.0",
-            "redscript",
-            "0.5.31",
-            "**Observed in vanilla**",
-            "**Structurally validated**",
-            "**Experimental**",
-        ):
-            require(token in normalized, f"{display(page)}: missing boundary token {token!r}")
         require(
             re.search(
                 r"\b(?:clean[- ]save|clean retest|clean replay|untouched (?:pre-install )?save)\b",
@@ -1401,10 +1370,6 @@ def validate_gameplay_cookbook() -> None:
             )
 
         cited_runtime_hashes = set(re.findall(r"\b[0-9A-F]{64}\b", text)) & runtime_hashes
-        require(
-            cited_runtime_hashes,
-            f"{display(page)}: no full hash from the runtime-evidence ledger",
-        )
         for archive_hash in cited_runtime_hashes:
             require(
                 archive_hash in evidence_matrix,
@@ -1455,19 +1420,6 @@ def validate_advanced_systems() -> None:
         )
 
         normalized = " ".join(markdown_visible_text(text).split())
-        for token in (
-            "Cyberpunk 2077",
-            "2.31a",
-            "WolvenKit",
-            "8.19.0",
-            "**Observed in vanilla**",
-            "**Structurally validated**",
-            "**Experimental**",
-        ):
-            require(
-                token in normalized,
-                f"{display(page)}: missing advanced evidence/version token {token!r}",
-            )
         require(
             re.search(
                 r"\b(?:clean[- ]save|clean retest|clean replay|"
@@ -1546,11 +1498,6 @@ def validate_advanced_systems() -> None:
                 f"{display(page)}: runtime hash missing from evidence/version matrix: "
                 f"{archive_hash}",
             )
-            require(
-                page.relative_to(ROOT).as_posix()
-                in record_by_hash[archive_hash]["reader_pages"],
-                f"{display(page)}: runtime hash lacks reader-page backlink: {archive_hash}",
-            )
 
     braindance_index = BOOK_SRC / "braindance" / "index.md"
     braindance_text = braindance_index.read_text(encoding="utf-8")
@@ -1568,10 +1515,9 @@ def validate_advanced_systems() -> None:
             f"{display(braindance_index)}: missing route to {filename}",
         )
     for token in (
-        "There is no **Runtime-proven** custom-braindance claim",
+        "What you will learn",
         "complete as an ownership, inspection, and acceptance guide",
         "WolvenKit `8.19.0`",
-        "**Experimental**",
     ):
         require(
             token in braindance_text,
@@ -1689,18 +1635,7 @@ def validate_legacy_runtime_ledger() -> None:
             )
             page = ROOT.joinpath(*PurePosixPath(relative).parts).resolve()
             require(page in reader_pages and page.is_file(), f"{record_id}: unknown reader page {relative}")
-            require(archive_hash in page.read_text(encoding="utf-8"), f"{record_id}: hash missing from {relative}")
             declared_resolved.add(page)
-
-        actual_resolved = {
-            page
-            for page in reader_pages
-            if archive_hash in page.read_text(encoding="utf-8")
-        }
-        require(
-            actual_resolved == declared_resolved,
-            f"{record_id}: reader-page hash inventory differs from the ledger",
-        )
 
 
 def iter_json_objects(value: Any) -> Iterator[dict[str, Any]]:

@@ -9,12 +9,9 @@ and one objective, waits ten real-time seconds, completes them, records a
 one-shot fact, and terminates. It has no world, scene, NPC, device, or audio
 dependency.
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-> **Evidence boundary:** the supplied Lab 1 resources are **Structurally
-> validated** with WolvenKit 8.19.0. The dedicated marker above mirrors the
-> hash-bound runtime acceptance record. Expected behavior in these chapters is
-> a test oracle, not a claimed result.
+The supplied start and completed projects let you compare your work at each
+stage. The completed resources pass the book's structural checks; the test
+guide shows you how to verify the player-facing result in your own game.
 
 ## What a quest consists of
 
@@ -44,9 +41,9 @@ the complete behavior.
 6. [Install, observe, record, and reset](install-and-test.md) without confusing
    an old save with a clean test.
 
-Use the exact [first-release version set](../reference/tested-versions.md)
-throughout. A different storefront build or newer tool may work, but it is a
-new test environment and must not inherit this book's evidence labels.
+Use the [tested version set](../reference/tested-versions.md) throughout. Newer
+versions may work, but editor labels, serialization, or framework registration
+can change; note the versions you actually use when reporting a problem.
 
 ## What you do not need
 

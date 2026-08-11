@@ -1,15 +1,5 @@
 # Scenes
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 A native scene is not a self-contained quest. It owns performers, screenplay
 items, timed events, scene-graph flow, entry points, and named exits. Other
 resources must make its actors available, start it, consume its outcome, and
@@ -34,21 +24,6 @@ That ownership boundary is the central rule of this section:
 | Journal and facts | Advance the meet/leave presentation after the scene returns, then record terminal completion after child cleanup |
 | ArchiveXL localization | Merge the external subtitle and voiceover resources used by the spoken-line RUID |
 | Save | Retain active quest, journal, fact, checkpoint, community, and scene state independently of a later archive edit |
-
-## Evidence boundary
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The resource families and focused arrangements taught here were compared with scenes at the four cited `mq003`, `mq007`, and `mq010` depot paths. They are observations from comparable resources, not universal templates. |
-| **Structurally validated** | The exact First Contact `scnSceneResource` v5, its canonical four-node completed graph, its start checkpoint, and its questphase socket contract serialize and round-trip with WolvenKit `8.19.0`. |
-| **Runtime-proven** | Retained legacy archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` proved generic community spawn and passivity; later hostile-patrol archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` separately proved leave-area deactivation. Archive `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` proved a community-acquired conversation that completed after both actors used addressable lipsync slot `0`. These bounded results do not promote a newly assembled quest automatically. |
-| **Experimental** while the marker is pending/failed; **Runtime-proven** only when passed | The exact `cqa005` world, community, named pre-scene seed loads for Cases 3/4/7, ordinary one-line playback, named exit, fact handoff, cleanup, post-`contact_done` reload, completed reload, and clean-save integration follow the synchronized marker above. |
-| **Experimental** | Active-line interruption and `CutDestination` behavior, arbitrary or unlisted pre-scene active-child states, general multi-exit choices, custom WEM/lipsync production, and animation/workspot quality are outside the frozen campaign and remain experimental independently of the marker. |
-
-The pinned practical baseline is Cyberpunk 2077 Windows GOG `2.31a`,
-WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`, reviewed on 2026-08-09. See [Tested
-versions](../reference/tested-versions.md).
 
 ## Reading route
 
@@ -82,8 +57,8 @@ Read these pages in order:
    ownership model, exact graphs, and evidence boundary.
 11. [Author First Contact in WolvenKit](lab-05-authoring.md) — the field-level
    construction and round-trip procedure.
-12. [Test First Contact](lab-05-test.md) — the hash-bound clean-save runtime
-   campaign and promotion rules.
+12. [Test First Contact](lab-05-test.md) — clean-save playback, reload,
+   streaming, handoff, and cleanup checks.
 
 The First Contact lab intentionally remains a one-line scene with an empty
 embedded `locStore` and no cinematic-animation or scene-workspot payload. The

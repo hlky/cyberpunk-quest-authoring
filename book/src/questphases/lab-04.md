@@ -10,8 +10,6 @@ then performs a visible parent-only confirmation before completing the quest.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 4 runtime evidence:** **Experimental** — pending.
-
 **Implementation status:** both supplied seven-resource checkpoints are
 **Structurally validated** with WolvenKit `8.19.0`. Their parent and child
 CR2W types, soft child path, socket contracts, graphs, prefab lists, NodeRefs,
@@ -280,16 +278,6 @@ for inspecting both interface layers; it is not the completed player activity.
 
 No root edge reaches a child node directly. No child edge reaches a parent node
 directly. Phase node `13` and the matching interface names are the handoff.
-
-## Evidence boundary
-
-| Claim | Current class | Promotion boundary |
-| --- | --- | --- |
-| Seven CR2W resources, graph topology, sockets, paths, prefab lists, buffers, and descriptors | **Structurally validated** | Already cooked and round-tripped with WolvenKit `8.19.0` |
-| Root-only prefab scope in the named base-game parent/child pair | **Observed in vanilla** | Comparative resource evidence only |
-| Root-only prefab scope across the retained four-child GQT003 flow | **Runtime-proven** | Applies only to its exact archived candidate |
-| Lab 4 root mounting, child resolution, active-child reload/streaming, `Out1` return, and re-entry | **Experimental** | Every hash-bound Lab 4 case must pass before promotion |
-| Cut behavior | **Experimental** | Requires a separately defined, wired, and tested recovery fixture |
 
 ## Common failure modes
 

@@ -10,13 +10,10 @@ being mistaken for evidence about the canonical mode-2 archive.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 2 runtime evidence:** **Experimental** — pending.
-
-Use the packaged `runtime-acceptance.json` schema version 3. Do not replace it
-with screenshots or an unstructured pass/fail note. Evidence can promote the
-book only when every required case, both candidates, all six executions, both
-untouched saves, the derived mid-flow/completed saves, installed payloads,
-exact versions, and every execution's log set are hash-bound.
+This guide tests both the canonical checkpoint and the deliberately edited
+timing variant. Keep their installed files, starting saves, and results
+separate so you can tell whether a failure belongs to the graph or to the
+changed delay.
 
 ## Required environment
 
@@ -191,52 +188,6 @@ Hash all four files under that run. Search for the candidate registration file,
 localization lookup, or condition resource. Clean logs establish that those
 systems did not report an error; they do not replace the in-game route
 observations.
-
-## Complete schema version 3
-
-The record has four provenance layers:
-
-| Object | Required identity |
-| --- | --- |
-| `candidates[]` | Source mode plus installed archive/registration hashes |
-| `runs[]` | Candidate ID, immutable save state/provenance, timestamp, tester, observed environment, exact save, four logs |
-| `cases[]` | Required outcome, linked execution IDs, observation, hash-bound evidence objects |
-| top-level status | Derived from every required case |
-
-The six fixed execution IDs are `canonical-clean`,
-`canonical-mid-flow-reload`, `canonical-completed-reload`,
-`canonical-reinstall`, `canonical-clean-replay`, and
-`source-edit-failure`. Do not reuse one timestamp/log bundle for several
-executions.
-
-Use ISO 8601 timestamps with a UTC offset. Each completed case needs an
-`observed` note and at least one evidence object with `type`, a `reference`
-beneath the completed checkpoint's `evidence/` directory, and a SHA-256. Keep
-evidence focused and redistributable—sanitized notes, screenshots, log
-excerpts, or save metadata—not `sav.dat`, private identifiers, or an
-unreviewed large capture. The save itself is represented by its slot label and
-hash in the execution record; it is not committed.
-
-Every referenced evidence file is part of the completed checkpoint and its
-download ZIP. Packaging admits only safe `evidence/` paths named by the
-acceptance record and rejects unreferenced extras, so sanitize and review each
-artifact before committing it.
-
-Status rules:
-
-- any required failed case makes top-level status `failed` and evidence class
-  `experimental`;
-- a mix of pending/passed cases keeps top-level status `pending` and evidence
-  class `experimental`;
-- only all required cases passed permits top-level status `passed` and evidence
-  class `runtime-proven`.
-
-Whenever any case is completed, derive the top-level state and synchronize the
-manifest date, practical-guide runtime-test dates, and every reader-facing Lab
-2 marker in the same commit. A failed required case uses exactly
-`**Lab 2 runtime evidence:** **Experimental** — failed.`; only a complete pass
-uses `**Lab 2 runtime evidence:** **Runtime-proven** — passed.`. Repository
-validation rejects a status or date split.
 
 ## Restore canonical source
 

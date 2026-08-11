@@ -20,37 +20,10 @@ Use this page after [Triggers and areas](../world/triggers-and-areas.md),
 [Devices and persistence](../world/devices-and-persistence.md). It is a
 cookbook, not a replacement for those ownership chapters.
 
-## Evidence and tested boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-The retained legacy runs below used older authoring provenance and do not prove
-the complete pinned stack.
-
-A custom plant or delivery item can add TweakXL to the dependency set. The
-legacy surrounding metadata records TweakXL `1.11.3`; no TweakXL version is
-promoted into this page's pinned practical baseline, so a new custom-record
-route remains **Experimental** and must record its own version.
-
-| Label | Bounded source and claim |
-| --- | --- |
-| **Observed in vanilla** | `q108_06b_tower_mainframe.questphase` exposes trigger and plant-device shapes; the three `sts_wat_lch_01` phases expose device action, upload, scan, and prefab-scope shapes; `sq021_randys_room.questphase` exposes a computer-read fact; `drop_point.ent` exposes distinct interaction and navigation slots. Exact depot paths appear below. |
-| **Structurally validated** | Legacy research commit `24d8dd633e4009380931fd6bcc507929832ef613` retains generated reach, leave, device-action/device-condition, item-consumption, drop-point reservation, and scan shapes with handle validation. The reduced plant template was also round-tripped with WolvenKit `8.17.4`. This is serialization evidence, not a reader dependency or a runtime guarantee. |
-| **Runtime-proven** | Archive `82C221619EBA15D39D5F82D53B9CCE86AEEB9107AEC15166718143043284B312` advanced into a security trigger that then waited silently below its rooftop route; `8FF1835A73F93B032FC4E1602FA1CC80234779706B085C385EBB7DFB91CE945B` advanced when V entered the corrected trigger; `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` completed its community-acquired meeting route; `B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF` advanced through its native access-point hack; `C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD` completed the exact personal-link plant route described below; `1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC` completed the retained native drop-point deposit route; and `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` established surviving-actor cleanup after a leave boundary. Each claim is limited to its named archive. |
-| **Experimental** | A newly authored generic reach/leave/meeting, arbitrary controller/action/function combination, custom hackable device, plant interaction, or different drop point remains unproved on the pinned stack until its own retained clean-save matrix passes. |
-
-The **Runtime-proven** provenance map is exact: `82C22161...` and
-`8FF1835...` are recorded in legacy source commit
-`5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb`;
-`87956AFF...` in `68f311c8f2511aeba679b76a68062ef5e446aaa0`;
-`B082D157...` and `C3F76083...` in
-`6e959d2149e664432eaff3b7d4905e8b1d342f2f`; and `1C669335...` and
-`DE2A28EF...` in `97b5c5330acfc259bc1e5b814a83b7902cbd70bf`.
-The archive hash binds the observed package; the commit binds the retained
-claim and surrounding test notes.
-
-Extract vanilla references from your own installation; do not copy their full
-CR2W resources into a project or redistribute their serializations:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase
@@ -133,7 +106,7 @@ they ask different questions:
 The world-side area still needs an authoritative outline buffer, a quest
 notifier, a placement whose vertical band intersects the route, and a full
 NodeRef beneath the same root. That bounded failure is **Runtime-proven** for
-archive `82C221619EBA15D39D5F82D53B9CCE86AEEB9107AEC15166718143043284B312`:
+the [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence):
 after its shard stage advanced, the next trigger waited silently with its
 volume below the rooftop route. The **Runtime-proven** result for the later
 `8FF183...` archive is limited to corrected trigger entry and downstream
@@ -174,8 +147,10 @@ request community activation
 | Scene origin | `scnWorldMarker` and scene start node | Scene transform and actor acquisition context |
 | Cleanup | Named scene exit, later delay/area, and community deactivation | A reviewable lifetime after presentation ends |
 
-**Runtime-proven:** `87956AFF...` completed one community-readiness and
-scene-acquisition meeting route. It does not prove universal trigger sizes,
+**Runtime-proven:** a
+[retained meeting candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+completed one community-readiness and scene-acquisition route. It does not
+prove universal trigger sizes,
 arbitrary actor states, interruption behavior, or the current Lab 5 package.
 Use [Activation, readiness, and acquisition](../communities/activation-readiness-and-acquisition.md)
 and [Scene entry, exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md)
@@ -264,8 +239,10 @@ usable entry and exit workspot. The quest may enable the device first, but the
 player-driven route should wait for the native result rather than fire the
 same operation twice.
 
-**Runtime-proven:** archive `B082D157...` advanced through one native
-access-point hack before the escort route and then completed end to end. Its
+**Runtime-proven:** a
+[retained access-point candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+advanced through one native hack before the escort route and then completed
+end to end. Its
 device, controller/action/condition, world placement, and root-owned prefab
 scope form one hash-bound result. It does not prove every access point or hack
 function.
@@ -296,7 +273,9 @@ item `TweakDBID`, the local-player universal reference, silent removal, and no
 notification. Those exact removal choices are fixture properties, not
 universal plant semantics.
 
-**Runtime-proven:** `C3F76083...` exposed a laptop's `Steal Data`
+**Runtime-proven:** a
+[retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+exposed a laptop's `Steal Data`
 personal-link interaction, waited for the connection, displayed a five-second
 install overlay, disconnected automatically, consumed the keylogger, cleaned
 up its guards, and completed. That richer route proves its exact package and
@@ -323,8 +302,9 @@ location, or place a useful quest marker. Inspect
 `poi_mappin`, `roleMappin`, and `main_slot/navQuery` offsets are distinct in
 the retained vanilla template.
 
-**Runtime-proven:** `1C669335...` completed the exact Kabuki
-`drop_point_009` reservation/deposit route. The device remained the deposit
+**Runtime-proven:** a
+[retained drop-point candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+completed the exact Kabuki `drop_point_009` reservation/deposit route. The device remained the deposit
 target while a separate marker used the transformed walkable navigation
 endpoint. This does not certify another kiosk's accessibility.
 

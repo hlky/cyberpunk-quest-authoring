@@ -73,33 +73,3 @@ ArchiveXL quest.phases
 Registration answers how the root becomes reachable. `phaseResource` answers
 which child the parent loads. The archive must contain both files at their
 exact depot paths, but only the root appears under ArchiveXL `quest.phases`.
-
-## Evidence boundary
-
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-**Lab 4 runtime evidence:** **Experimental** — pending.
-
-| Claim | Evidence class | Scope |
-| --- | --- | --- |
-| A root-owned prefab can remain usable across external child phases whose own `phasePrefabs` arrays are empty | **Runtime-proven** | The retained GQT003 candidate completed four external children with one root declaration; archive SHA-256 `B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF` |
-| A vanilla root can declare a prefab while an external child uses nested world refs with an empty `phasePrefabs` array | **Observed in vanilla** | `sts_wat_nid_03.questphase` and `sts_wat_nid_03_openworld.questphase`; extract both from your own game |
-| Lab 4's exact root, child, sockets, soft path, prefab lists, resources, and graphs serialize and round-trip | **Structurally validated** | WolvenKit `8.19.0`; see the synchronized lab marker |
-| Lab 4 enters, resumes, streams, reloads, and completes as intended | **Experimental** | Pending the complete clean-save, hash-bound runtime matrix |
-
-The retained GQT003 evidence was exported with WolvenKit `8.17.4`, WKit JSON
-`0.0.9`, and `GameVersion 2310`, from research commit
-`6e959d2149e664432eaff3b7d4905e8b1d342f2f`. It proves that exact native
-arrangement and its tested lifecycle. It does not prove that every parent
-automatically lends every prefab to every possible child.
-
-Inline phases, non-zero `saveLock`, non-zero unfreezing refs, and wired cut
-routes remain outside the beginner contract until isolated evidence supports
-them.
-
-Advanced teardown does not promote those cut routes. The checked labs keep
-their `CutDestination` sockets unwired; the advanced cleanup chapter shows how
-to design and test a separate mixed-owner cancellation candidate without
-presenting one as already **Runtime-proven**.
-
-Next: [Questphase resource anatomy](anatomy.md).

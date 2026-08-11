@@ -4,32 +4,6 @@ A valid-looking NodeRef does not create a world object. The reference must join
 the questphase's namespace to a loaded streaming block, the intended sector,
 a registered full child identity, and a concrete placed node.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for current tests.
-
-**Observed in vanilla:** focused resources cited in [Quest prefabs and
-NodeRefs](../world/quest-prefabs-and-noderefs.md) show local quest references,
-full quest-prefab children, block descriptors, sector registrations, and
-placed nodes. Their retained CR2W `GameVersion: 2310` describes serialized
-research, not a runtime test.
-
-**Structurally validated:** Labs 3–5 round-trip exact mod-owned block/sector
-paths, local/full NodeRefs, descriptor bounds, and concrete node placements
-with WolvenKit `8.19.0`.
-
-**Runtime-proven:** in a bounded legacy quest route, ArchiveXL reported that a
-direct cooked cross-world device NodeRef could not resolve a journal mappin
-position in candidate
-`0F971F97877421C181C5D4B114F5090D015DEE97B3FE7FFCF9091F57FD476158`.
-The later design kept the native device NodeRef for gameplay reservation and
-used a separate mod-owned always-loaded marker at the same position; the
-complete route passed in candidate
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`.
-This proves that exact bounded legacy arrangement, not a universal rule that
-every native NodeRef needs a duplicate marker.
-
 ## Audit the complete identity chain
 
 For a quest-prefab child, write all four values side by side:

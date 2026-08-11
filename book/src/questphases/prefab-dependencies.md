@@ -40,7 +40,7 @@ The supported statement is more precise:
 That supports Lab 4's design without claiming universal transitive
 inheritance.
 
-## Evidence for the root-only arrangement
+## Why the root-only arrangement is supported
 
 ### Runtime-proven research fixture
 
@@ -49,11 +49,8 @@ activity sequence across four external child phases while only its root
 declared `#gqt003_pr_extract_and_hold`. Every child's `phasePrefabs` list was
 empty.
 
-The retained archive has SHA-256:
-
-```text
-B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF
-```
+The exact candidate identity is retained in [Lab status and research
+provenance](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
 
 The composition used this root and four external child depot resources:
 
@@ -65,9 +62,8 @@ mod\gqt003_extract_and_hold\phases\gqt003_extract_and_hold.questphase
   -> mod\gqt003\phases\gqt003_defend_patch.questphase
 ```
 
-The evidence is pinned to research commit
-`6e959d2149e664432eaff3b7d4905e8b1d342f2f`. Its focused CR2W exports record
-WolvenKit `8.17.4`, WKit JSON `0.0.9`, and `GameVersion 2310`.
+The retained snapshot used WolvenKit `8.17.4`, WKit JSON `0.0.9`, and
+`GameVersion 2310`; treat it as a bounded precedent rather than a current lab.
 
 That run proves root-owned scope remained usable across those four exact
 children and stage handoffs. It does not isolate active-child unload/reload or

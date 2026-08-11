@@ -10,15 +10,12 @@ then leaves a wider trigger to complete the quest.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 3 runtime evidence:** **Experimental** — pending.
-
 **Implementation status:** both supplied checkpoints are **Structurally
 validated** after all twelve checkpoint CR2W resources were cooked and
 serialized back with WolvenKit 8.19.0. Their native types, graph, NodeRef
 chain, sector placement records, outline buffers, journal paths, and block
-descriptors are exact. The synchronized marker and retained acceptance record
-govern the runtime class for mounting, streaming, marker/GPS presentation,
-trigger behavior, and save/reload behavior.
+descriptors are exact. The test chapter checks mounting, streaming, marker/GPS
+presentation, trigger behavior, and save/reload behavior in game.
 
 Follow [Author Boundary Check in WolvenKit](lab-03-authoring.md) to expand the
 start checkpoint. Then use [Test Boundary Check](lab-03-test.md) to bind the
@@ -234,19 +231,6 @@ hidden hub, child phase, scene, community, device, or script dependency.
 The only persistent fact is `cqa003_completed`. Quest, journal, active-node,
 world, and marker state can also be save-backed even though they are not
 FactsDB names.
-
-## Evidence boundary
-
-| Claim | Current class | What would promote it |
-| --- | --- | --- |
-| CR2W types, graph, handles, buffers, paths, and descriptors | **Structurally validated** | Already round-tripped with WolvenKit 8.19.0 |
-| Similar resource shapes exist in retained base-game extracts | **Observed in vanilla** | Cite extracted depot path and exact inspected field |
-| Earlier Ghostline site and trigger behavior | **Runtime-proven** only for its recorded candidate | Does not transfer to `cqa003` |
-| New block mounting, world resolution, pin/GPS, crossings, reloads | Acceptance-record class shown by the synchronized marker | Pass every hash-bound Lab 3 case for **Runtime-proven**; pending or failed remains **Experimental** |
-
-Visible UI can show objective and pin transitions. It cannot identify an
-invisible sector owner by itself. Runtime promotion requires exact installed
-hashes, save provenance, observations, and fresh logs.
 
 ## Common failure modes
 

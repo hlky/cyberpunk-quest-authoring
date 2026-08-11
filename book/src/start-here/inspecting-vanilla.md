@@ -11,7 +11,7 @@ shipping CD Projekt RED's file.
 | Inspection tool | WolvenKit `8.19.0` |
 | Runtime test | Not applicable; read-only research procedure |
 
-> **Evidence boundary:** the depot path and focused behavior below are
+> **Vanilla reference:** the depot path and focused behavior below are
 > **Observed in vanilla**. A retained research extraction reported game version
 > `2310`, was extracted on 2026-07-24, and was serialized for inspection with
 > WolvenKit 8.17.4. No extracted binary or complete serialization is included

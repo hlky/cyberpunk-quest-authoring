@@ -30,10 +30,10 @@ The procedures target the book's pinned first-release stack:
 
 See [Tested versions](../reference/tested-versions.md) before carrying a result
 to another game build, storefront, or tool version. Some pages also cite
-retained Ghostline research. Those records are explicitly called **legacy**:
+retained research. Those records are explicitly called **legacy**:
 their archive hashes and observed routes are useful **Runtime-proven** evidence
 for those arrangements, but their incomplete environment records do not prove
-the same behavior on this pinned stack. Ghostline is never required to follow
+the same behavior on this pinned stack. The research project is never required to follow
 the procedures.
 
 ## Route by symptom
@@ -86,7 +86,7 @@ Before changing anything:
 That snapshot turns “it broke” into a reproducible candidate. The final guide
 explains how to reduce it without changing several boundaries at once.
 
-## Evidence labels do not transfer automatically
+## Keep conclusions narrow
 
 - **Structurally validated** means that serialization, round trips, graph and
   resource checks support the described shape.

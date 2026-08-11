@@ -25,28 +25,6 @@ The surrounding node still decides the schedule:
 Review [Immediate branches and waiting gates](immediate-and-waiting.md) and
 [Condition payloads](condition-payloads.md) before constructing a nested tree.
 
-## Evidence boundary
-
-The retained 41-phase corpus contains 87 `questLogicalCondition` objects. Its
-copies report game resource version `2310` and were serialized with WolvenKit
-`8.17.4`. Reader inspection targets Cyberpunk 2077 `2.31a` and WolvenKit
-`8.19.0`; review date: **2026-08-09**.
-
-| Operation | Retained instances | Supported claim |
-| --- | ---: | --- |
-| `AND` | 72 | **Observed in vanilla** as a child-predicate composition |
-| `OR` | 14 | **Observed in vanilla** as a child-predicate composition |
-| `XOR` | 1 | **Observed in vanilla** as one rare four-child shape; runtime policy not established here |
-| `NAND` | 0 | Present in the WolvenKit enum; no retained vanilla instance or runtime proof |
-| `NOR` | 0 | Present in the WolvenKit enum; no retained vanilla instance or runtime proof |
-| `NXOR` | 0 | Present in the WolvenKit enum; no retained vanilla instance or runtime proof |
-| generic `NOT` | not an enum value | No generic NOT recipe is supported |
-
-Enum availability is structural information, not a runtime acceptance result.
-Treat the zero-instance operations and the rare XOR behavior as
-**Experimental** until a focused mod-owned fixture establishes their truth,
-timing, reload, and re-entry contracts.
-
 ## Condition tree versus signal-flow topology
 
 Two native layers use similar names:

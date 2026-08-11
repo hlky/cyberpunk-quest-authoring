@@ -1,15 +1,5 @@
 # Actors and performers
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 Actor IDs, performer IDs, entity references, and lipsync slots are separate
 domains. First Contact deliberately uses small values that make those joins
 easy to audit, but their proximity does not make them interchangeable.
@@ -118,8 +108,7 @@ The lipsync ID is an array index, not an actor ID or performer ID. Therefore:
 - actor `1` -> lipsync slot `0` is addressable;
 - actor `1` -> lipsync slot `1` would be invalid when the array has one row.
 
-**Runtime-proven:** retained legacy archive
-`87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
+**Runtime-proven:** a [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 records a conversation candidate that previously failed during scene startup
 completing its full route after both roles were changed to slot `0` and the
 duplicate generic row was reduced to one. It played spoken lines, subtitles,
@@ -130,8 +119,8 @@ of performers.
 
 Use distinct NPC and player lipsync resources later only when every referenced
 slot remains separately addressable after cooking and is runtime-tested.
-Facial-animation quality is outside the frozen campaign and remains
-**Experimental** independently of the synchronized marker.
+Facial-animation quality is outside the lab's normal playback checks and must
+be reviewed visually for the final actor and audio assets.
 
 ## Section actor behavior
 
@@ -147,24 +136,3 @@ This bounds section participation when an actor is not alive; it is not an
 actor-readiness wait and it cannot replace `CharacterSpawned`. Nor does it
 define how a dead or missing contact should change the surrounding quest.
 Alternative/failure quest routing remains a separate design problem.
-
-## Evidence boundary
-
-- **Observed in vanilla:** actor/player definitions, community and context
-  acquisition families, performer symbols, section behaviors, and generic
-  lipsync references occur in the cited minor-quest scene resources.
-- **Structurally validated:** actor IDs `0`/`1`, performer IDs `1`/`257`, both
-  slot-`0` references, the one-row reference collection, and `OnlyIfAlive`
-  behaviors round-trip in the First Contact resource.
-- **Runtime-proven:** retained legacy archive
-  `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-  establishes generic community spawn and passive state; archive
-  `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D`
-  establishes the corrected shared-slot conversation route.
-- **Experimental** while the synchronized marker is pending or failed, and
-  **Runtime-proven** only when it passes: acquisition of the exact `cqa005`
-  Tyger Claw entry by the exact First Contact scene, at its new world marker and
-  through its new phase, follows the synchronized marker above.
-
-Previous: [Scene resource anatomy](resource-anatomy.md). Next: [Screenplay,
-sections, and events](screenplay-sections-and-events.md).

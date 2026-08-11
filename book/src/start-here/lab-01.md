@@ -10,12 +10,9 @@ objective and quest, persist a one-shot guard, and terminate.
 | Structural validation date | 2026-07-27 |
 | Runtime test date | Not yet recorded |
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-**Implementation status:** the supplied resources are **Structurally
-validated** after WolvenKit 8.19.0 deserialization and round-trip inspection.
-The dedicated marker above is synchronized with the eight-case, hash-bound
-runtime-acceptance record.
+The supplied resources pass WolvenKit 8.19.0 deserialization and round-trip
+checks. Follow the test chapter to verify activation, timing, journal state,
+reload, reinstall, and clean replay in your game.
 
 The complete [manual WolvenKit authoring, installation, test, and reset
 walkthrough](lab-01-authoring.md) builds this design from the empty checkpoint.

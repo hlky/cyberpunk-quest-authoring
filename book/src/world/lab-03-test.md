@@ -11,11 +11,9 @@ visible transitions, and fresh logs across eight executions.
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 3 runtime evidence:** **Experimental** — pending.
-
-Use the packaged `runtime-acceptance.json` schema version 3. Do not replace it
-with an unstructured pass/fail note. Only every required case passing can
-promote `cqa003` to **Runtime-proven**.
+Use the unmodified completed checkpoint for these tests. Record what you
+observe for every run; a successful ordinary walk does not establish reload,
+stream-return, reinstall, or clean-replay behavior.
 
 ## Required environment
 
@@ -310,57 +308,6 @@ Hash every file under its run. Search for the registration filename, `cqa003`,
 all registered depot paths, the streaming block and sectors, NodeRefs,
 journal/localization lookups, and condition errors. Clean logs mean those
 systems did not report an error; they do not replace in-game observations.
-
-## Complete schema version 3
-
-The record has four provenance layers:
-
-| Object | Required identity |
-| --- | --- |
-| `candidates[]` | Installed archive and registration hashes plus six depot paths |
-| `runs[]` | Candidate, immutable save state/provenance, timestamp, tester, observed environment, exact save, four logs |
-| `cases[]` | Required result, linked run IDs, focused observation, hash-bound evidence |
-| Top-level status | Derived from every required case |
-
-The fixed run IDs are `clean-walk`, `pre-reach-reload`,
-`between-boundaries-reload`, `stream-away-return`, `fast-travel-exit`,
-`completed-reload`, `completed-reinstall`, and `clean-replay`. Do not reuse a
-timestamp or log bundle for several executions.
-
-Use ISO 8601 timestamps with a UTC offset. Each completed case needs an
-`observed` note and at least one evidence object with `type`, a safe
-`reference` beneath `completed/evidence/`, and a SHA-256. Sanitize focused
-notes, screenshots, log excerpts, or save metadata before committing. Do not
-commit `sav.dat`, private identifiers, extracted vanilla resources, or a large
-unreviewed capture.
-
-Every edit to `completed/runtime-acceptance.json`, including a run that leaves
-the top-level status pending, changes the file bound by
-`completed/example.json`. From the repository root, recompute it with:
-
-```powershell
-(Get-FileHash -Algorithm SHA256 .\examples\lab-03-boundary-check\completed\runtime-acceptance.json).Hash.ToLowerInvariant()
-```
-
-Replace `artifacts.files["runtime-acceptance.json"]` in the completed manifest
-with that value. When the derived status changes, also update the manifest's
-`evidence.runtime.status`, `class`, and `date`. Then run
-`python -B scripts/validate.py`; a stale acceptance-record hash must fail the
-shared validator.
-
-Status rules:
-
-- any failed required case keeps `evidence_class: experimental` and makes
-  top-level status `failed`;
-- a mixture of pending and passed cases keeps status `pending` and class
-  `experimental`;
-- only all required cases passed permits status `passed` and class
-  `runtime-proven`.
-
-When evidence changes status, synchronize the manifest runtime date,
-practical-guide runtime dates, and every Lab 3 marker in one commit. A failed matrix uses
-exactly `**Lab 3 runtime evidence:** **Experimental** — failed.`; a complete
-pass uses `**Lab 3 runtime evidence:** **Runtime-proven** — passed.`.
 
 ## Common test failures
 

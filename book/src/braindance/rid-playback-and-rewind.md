@@ -5,7 +5,7 @@ which recorded channel plays, which performer or camera receives it, where it
 is placed, and when it appears on a rewindable timeline. Neither resource is
 self-sufficient.
 
-> **Evidence boundary:** the field shapes and focused counts from
+> **Research note:** the field shapes and focused counts from
 > `sq012_braindance__part_a.scenerid` and `sq012_02a_braindance.scene` are
 > **Observed in vanilla** on Cyberpunk 2077 `2.31a`, re-extracted and inspected
 > with WolvenKit `8.19.0` on 2026-08-09. The retained mod-owned RID/scene pair

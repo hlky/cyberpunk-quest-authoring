@@ -26,13 +26,3 @@ Afterward you should be able to answer:
 The chapters use small excerpts from the mod-owned `cqa001` example. They cite
 vanilla depot paths where useful but do not redistribute extracted game
 resources.
-
-## Evidence boundary
-
-The resource relationships and CR2W structures shown here are
-**Structurally validated** with WolvenKit 8.19.0. Save persistence and selected
-quest lifecycle behavior are **Runtime-proven** in isolated research fixtures.
-Any rule supported only by a particular vanilla resource is labeled
-**Observed in vanilla** instead of being presented as a universal invariant.
-
-See [Tested versions](../reference/tested-versions.md) for the current baseline.

@@ -1,15 +1,5 @@
 # Cleanup and save state
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 Scene termination is not quest completion, and quest completion is not world
 cleanup. First Contact makes every boundary visible so one successful spoken
 line cannot hide a leaked actor, stale marker, or save-backed old graph.
@@ -66,10 +56,9 @@ The order is intentional:
 - the durable completion fact is written only after the child returns.
 
 A failed or interrupted scene must not accidentally reach the same success
-chain. The frozen Lab 5 matrix gates the exact ordinary `cqa005` completion
-through `contact_done`, which follows the synchronized marker above.
-Active-line interruption, `CutDestination`, and interrupted recovery remain
-**Experimental** and need a separate retained runtime record.
+chain. Lab 5 exercises the ordinary `cqa005` completion through
+`contact_done`. Active-line interruption, `CutDestination`, and interrupted
+recovery require separate tests if your scene uses them.
 
 ## Scene interruption is not cleanup
 
@@ -124,9 +113,8 @@ ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`. Record the packed
 payload hashes, exact save provenance, installed framework versions, and result
 for every row.
 
-The [frozen eleven-case Lab 5 campaign](lab-05-test.md) is the only promotion
-contract for the supplied checkpoint. This broader design matrix includes
-active-scene reload and interruption probes as explicitly supplemental work;
+The [Lab 5 test procedure](lab-05-test.md) covers the supplied checkpoint. This
+broader design matrix also includes active-scene reload and interruption probes;
 those rows cannot promote the checked candidate and need their own retained
 runtime record.
 
@@ -141,7 +129,7 @@ runtime record.
 | --- | --- | --- |
 | Normal route | Clean save; approach, hear the line, leave the outer cleanup area | Contact is ready before launch; line occurs once; `contact_done` advances; pin changes; community deactivates after leaving; objectives and fact finish once |
 | Named pre-scene loads (Cases 3/4/7) | Load a distinct byte-identical clone of `seed-pre-scene-outside-setup`, then follow the exact case route | No duplicate contact or objective transition; actor reacquires; Cases 3/4 start once and Case 7 survives its stream-away/return |
-| Arbitrary pre-scene save/load | Save at any unlisted active-child point, then load | Supplemental only: exact behavior is recorded without promotion |
+| Arbitrary pre-scene save/load | Save at any unlisted active-child point, then load | Record the exact behavior; do not infer it from the supplied seed-save cases |
 | Active-scene reload | Where saving is permitted, save during the line or interruption and reload; otherwise record the nearest game-provided checkpoint | No crash, stale speaker, duplicate line, false success, or leaked Cinematic AI state; exact behavior is recorded rather than inferred |
 | Interrupt and return | Cross above 6 units during the line, then return below 5 | Default interruption/return behavior is coherent and does not trigger cleanup or completion accidentally |
 | Named post-contact loads (Cases 5/6/8) | Load distinct clones of `seed-post-contact-inside-cleanup`, then follow the exact case route | Meet and pin state remain correct; replay is suppressed; cleanup/deactivation occurs once |
@@ -163,20 +151,3 @@ claim.
 | Quest restarts after completion | Completion fact write, root guard comparison/branch, or test save provenance |
 | Behavior changes only after reload | Active quest checkpoint, scene interruption state, community phase, journal state, and candidate hash |
 | Start checkpoint completes the meeting | Root or child start graph invokes the inert Start `1` -> End `3` scene shell; remove that invocation from the start project |
-
-## Evidence boundary
-
-The separation of scene exit, quest handoff, durable state, and community
-cleanup is supported by **Observed in vanilla** resource patterns. Retained
-legacy candidates make community activation, spawn readiness, delayed
-deactivation, and a community-acquired scene route **Runtime-proven** within
-their recorded payloads. The exact First Contact ordering and resources are
-**Structurally validated**. Exact ordinary `cqa005` behavior, including the
-named pre-scene seed loads in Cases 3/4/7 and the post-`contact_done` and
-completed reload cases, follows the synchronized marker above. Active-line
-interruption and return, `CutDestination`, arbitrary/unlisted pre-scene states,
-and active-line/interruption reload remain outside the frozen Lab 5 campaign
-and **Experimental** unless separate acceptance records prove them.
-
-Previous: [Author one spoken line](one-spoken-line.md). Back to:
-[Scenes](index.md).

@@ -4,13 +4,9 @@ A choice is made in one state domain and consumed in another. Phone entries,
 scene options, fact comparisons, switch cases, and graph joins are not aliases
 for one generic “branch” node.
 
-| Record | Value |
-| --- | --- |
-| Guide review date | 2026-08-09 |
-| Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Two-way legacy outcome resource | **Structurally validated**; both intended runtime routes remain **Experimental** |
-| Reduced optional-outcome fixture | **Structurally validated** in its stated older WolvenKit boundary |
-| General n-way switch behavior | **Observed in vanilla** structurally; runtime scheduling remains **Experimental** |
+Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
+versions](../reference/tested-versions.md).
 
 The practical rule is simple: observe the player's choice through the system
 that owns it, write one durable outcome, and make downstream phases branch on
@@ -76,11 +72,10 @@ to be mutually exclusive. In GQ002, the upstream phone group owned the choice
 and wrote exactly one source fact. The gate then wrote a stable outcome fact
 for later activity and debrief phases.
 
-**Structurally validated:** Ghostline research commit
-`5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb` retains the exact GQ002 phase,
-and archive SHA-256
-`E37C3498B0AF0EE01697C4542D579252DE844E4D529F6381EDAF0D0CFCA1BF94`
-is the matching retained final-polish build candidate. Its runtime section is
+**Structurally validated:** the exact GQ002 phase and matching final-polish
+build are kept in the
+[provenance record](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
+Its runtime section is
 an active checklist; it does not record the two results. Both outcome routes,
 XOR cancellation, simultaneous facts, and behavior under the pinned versions
 remain **Experimental**. The serialized source reports WolvenKit `8.17.4`, not
@@ -119,8 +114,7 @@ The last point matters: the fixture's name does not prove an optional journal
 presentation flag. If the objective should render as optional, author and test
 that journal property separately.
 
-**Structurally validated:** the reduced mod-owned phase introduced at
-Ghostline commit `fd78ab7c7aa75c4a8744ac7f7a6dd8952f4d951f` passed handle
+**Structurally validated:** the reduced mod-owned phase passed handle
 validation and a WolvenKit `8.17.4` deserialize/serialize round trip. It has no
 retained in-game result and is not validation under WolvenKit `8.19.0`.
 
@@ -217,9 +211,9 @@ Instead:
 
 The single named-exit handoff taught by Lab 5 is **Structurally validated**.
 The complete retained GQ000 route displayed five scene-choice labels and
-continued through its acceptance route at archive SHA-256
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`
-from research commit `97b5c5330acfc259bc1e5b814a83b7902cbd70bf`; that bounded
+continued through its acceptance route in a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence);
+that bounded
 result is **Runtime-proven**. A generalized multi-exit custom scene remains
 **Experimental** and belongs to the later advanced-scene campaign.
 

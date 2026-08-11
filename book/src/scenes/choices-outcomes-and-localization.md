@@ -176,9 +176,8 @@ not make a later phase rediscover the result from presentation state. See
 [Branching, choices, and debriefs](../patterns/branching-choices-and-debriefs.md)
 for fact and convergence design.
 
-The single named-exit handoff in Lab 5 is **Structurally validated**. A retained
-legacy archive with SHA-256
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`
+The single named-exit handoff in Lab 5 is **Structurally validated**. A
+[retained legacy candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 displayed its five intended meeting-choice labels and continued through its
 recorded acceptance route; that bounded result is **Runtime-proven**. It does
 not prove a general two-exit scene, every option, locale fallback, or behavior
@@ -259,7 +258,7 @@ interruption, return, active-branch reload, and localization fallback remain
 | Correct scene branch, wrong later debrief | Durable result was not written immediately after the named output |
 | Rebuild still shows old options | Save/checkpoint provenance, active scene state, archive replacement, and whether the game was fully restarted |
 
-## Evidence boundary and research anchors
+## Research anchors and test scope
 
 **Observed in vanilla:** the focused choice, socket, screenplay, and embedded
 localization shapes described above were inspected in these installed

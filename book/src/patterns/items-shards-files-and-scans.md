@@ -22,31 +22,10 @@ computer files, terminal documents, and ordered clue scans. It does not create
 a universal loot container, computer controller, scanner component, or custom
 item record.
 
-## Evidence and tested boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Legacy runtime evidence below predates the complete pinned book baseline.
-
-Custom item records add a TweakDB authoring dependency. The retained legacy
-environment metadata names TweakXL `1.11.3`, but this page has no
-pinned-baseline acceptance for that version. Treat each new item-record route
-as **Experimental** and record the exact TweakXL version used.
-
-| Label | Bounded source and claim |
-| --- | --- |
-| **Observed in vanilla** | The retained condition corpus contains `questInventory_ConditionType` and `questScan_ConditionType` beneath `questObjectCondition`; `ma_wat_nid_15_phase.questphase` provides an investigation comparison; the inspected `ma_wat_lch_03`, `ma_wat_lch_05`, and `ma_wat_lch_15` phases advance objectives named `read_shard` without `questJournalEntryVisited_ConditionType`; and SQ021 binds computer content to `gameJournalFile` paths and a per-element fact. |
-| **Structurally validated** | Legacy research commit `24d8dd633e4009380931fd6bcc507929832ef613` retains generated acquire-item, readable-shard, terminal-document, and variable-length ordered-scan graphs with handle validation. Reduced templates passed WolvenKit `8.17.4` round trips; that does not prove their behavior in game. |
-| **Runtime-proven** | Archive `82C221619EBA15D39D5F82D53B9CCE86AEEB9107AEC15166718143043284B312` completed one readable-shard stage from the final scan's acquisition fact after the item had been consumed into the Journal; archive `791ED71FB1B443734153304DB609961D193BF7ECEE300CD09818BEEE10D5C166` exposed only its authored Files tab and advanced when the named computer document set its fact; archive `C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD` consumed its exact keylogger item after the retained plant interaction. |
-| **Experimental** | A new item record, arbitrary grant/remove behavior, generic “player read the shard” detector, custom computer package, scan target, partial clue threshold, or unordered clue set remains unproved on the pinned stack until its own clean-save matrix passes. |
-
-The **Runtime-proven** provenance map binds `82C2216...` to legacy source
-commit `5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb`, and `791ED71...` plus
-`C3F7608...` to `6e959d2149e664432eaff3b7d4905e8b1d342f2f`. The
-archive hashes identify the tested packages; the commits retain the bounded
-observations and surrounding failure history.
-
-Useful vanilla paths to extract from your own game are:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\minor_activities\watson\northside\ma_wat_nid_15\ma_wat_nid_15_phase.questphase
@@ -59,9 +38,6 @@ base\worlds\03_night_city\_compiled\default\exterior_19_-8_0_0.streamingsector
 base\gameplay\devices\masters\computers\laptop_1.ent
 base\journal\cooked_journal.journal
 ```
-
-Do not redistribute those extracted CR2W resources or their complete
-serializations. Retain focused property notes and build mod-owned fixtures.
 
 ## Resource and asset checklist
 
@@ -162,8 +138,10 @@ outcome item or fact.
 | Retry after reload | Inventory and completion facts may restore from different save-backed owners |
 | Deliver to a kiosk | The drop point owns deposit UI and removal; do not also remove the item early unless the design proves that sequence |
 
-**Runtime-proven:** `C3F76083...` consumed one exact keylogger as part of its
-completed personal-link install route. It does not establish a generic
+**Runtime-proven:** a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+consumed one exact keylogger as part of its completed personal-link install
+route. It does not establish a generic
 `RemoveAll` policy for quest items. See
 [Areas, devices, and hacking](areas-devices-and-hacking.md) for the complete
 plant and drop-point contracts.
@@ -297,8 +275,10 @@ The phase does not infer a read from generic journal state. The computer
 element, computer scene output, or another explicitly authored UI owner must
 set the completion fact.
 
-**Runtime-proven:** archive `791ED71F...` used a fresh mod-owned laptop
-identity, exposed only its authored Files tab, and advanced when opening
+**Runtime-proven:** a
+[retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+used a fresh mod-owned laptop identity, exposed only its authored Files tab,
+and advanced when opening
 `SIGNAL DELAY` set the named document fact. That result is bounded to the
 retained component mapping and device package. Its later quest-complete
 presentation was a separate, initially unresolved acceptance item.

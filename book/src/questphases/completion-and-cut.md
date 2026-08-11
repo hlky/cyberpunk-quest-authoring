@@ -132,21 +132,6 @@ Use a save created before any Lab 4 candidate was installed. Changing files,
 uninstalling, or writing `cqa004_completed = 0` in a console does not erase
 save-backed journal, graph, mappin, world, or persistent-state history.
 
-## Evidence boundary
-
-**Runtime-proven:** the retained GQT003 research candidate completed normal
-handoffs across four external children with a root-owned prefab scope. That is
-evidence for the exact recorded composition, not for Lab 4's new graphs or its
-eight-run save matrix.
-
-**Structurally validated:** Lab 4's child route reaches terminating `Out1`,
-parent `13.Out1` connects to parent node `14`, every final write precedes the
-root output, and no `CutDestination` is connected.
-
-**Experimental:** Lab 4 normal handoff, active-child reload, active-child
-streaming, parent-window reload, completed re-entry, and cut behavior remain
-pending until the appropriate clean-save evidence is retained.
-
 ## Review before composition grows
 
 Before adding another child or parallel branch, verify:

@@ -5,11 +5,10 @@ file. A mod-owned node becomes discoverable only when a registered streaming
 block has a descriptor that points to its sector and gives the engine enough
 context to stream it.
 
-## Evidence and version boundary
+## Vanilla references
 
-**Observed in vanilla:** the resource shapes on this page occur in focused
-extracts retained as WolvenKit JSON `0.0.9`, serialized by WolvenKit `8.17.4`,
-with CR2W `GameVersion: 2310`. The most useful comparison paths are:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\worlds\03_night_city\_compiled\default\03_night_city.streamingworld
@@ -17,22 +16,6 @@ base\worlds\03_night_city\_compiled\default\blocks\all.streamingblock
 base\worlds\03_night_city\_compiled\default\quest_606b61008df2ba6f.streamingsector
 base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector
 ```
-
-Extract these resources from your own game with WolvenKit; do not copy a
-vanilla CR2W into an example project. Follow [Inspecting vanilla
-resources](../start-here/inspecting-vanilla.md) and keep excerpts focused on
-the properties under discussion.
-
-**Structurally validated:** a prior mod-owned research fixture used the same
-world-to-block-to-sector topology under WolvenKit `8.17.4`. Lab 3's two-sector
-block and exact descriptor paths, categories, levels, roots, and boxes were
-separately cooked and serialized back with WolvenKit `8.19.0`.
-
-**Runtime classification:** Lab 3's acceptance record governs ArchiveXL
-mounting, visible streaming continuity, sector resolution, and save behavior
-for the exact candidate on Cyberpunk 2077 Windows GOG `2.31a`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`. Pending or failed evidence
-is **Experimental**; only an all-pass record is **Runtime-proven**.
 
 ## The ownership chain
 

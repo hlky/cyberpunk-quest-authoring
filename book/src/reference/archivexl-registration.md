@@ -11,7 +11,7 @@ registration.
 | ArchiveXL syntax baseline | `1.27.0` |
 | Complete practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1–5 registration files | **Structurally validated** |
-| Exact Lab 1–5 game registration | Governed by each lab's canonical marker: pending/failed is **Experimental**; passed promotes only its recorded cases to **Runtime-proven** |
+| In-game registration | Verify with the relevant lab's clean-save test and ArchiveXL log checks |
 
 This reference covers only the roots exercised by Labs 1–5. It is not a
 catalog of every ArchiveXL feature.

@@ -39,21 +39,10 @@ and character safety](../communities/cleanup-and-character-safety.md), and
 first. Route volumes use the world contract in [Triggers and
 areas](../world/triggers-and-areas.md).
 
-## Evidence and version boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-The retained building-block research predates this exact tool baseline, so its
-runtime claims remain bounded to their source commit and archive.
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | Focused base-game phases contain device release/readiness, gameplay-AI/follower, ordered NPC trigger, defend, character-mount, vehicle-trunk, and workspot condition shapes. A cited node is not a self-contained extraction system. |
-| **Structurally validated** | Research commit `29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e` retains the focused vanilla corpus and reduced advanced shapes. Commit `6e959d2149e664432eaff3b7d4905e8b1d342f2f` retains release, ordered escort, defend, and carry resources that passed handle checks and WolvenKit `8.17.4` round trips. |
-| **Runtime-proven** | At source commit `6e959d2149e664432eaff3b7d4905e8b1d342f2f`, archive SHA-256 `B082D157978347A126DAACB0A5404AF298B88E549731609D81D5A569CBA81FDF` completed its exact device release, three ordered escort gates, follower-retaining handoff, three-attacker 20-second defend success, surviving-attacker cleanup, and follower-role clear after success. This does not prove its unrecorded failure/retry route, generic movement, carry, trunk placement, or a different target. |
-| **Experimental** | A newly assembled extraction; automatic pathing or teleport recovery; defend failure/retry semantics; arbitrary attacker waves; carry, drop, or trunk placement; workspot arrival; interruption; and every untested save/cleanup route remain unproven until their exact candidate passes. |
-
-Useful comparison paths include:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03_gameplay.questphase
@@ -63,9 +52,6 @@ base\open_world\street_stories\watson\little_china\sts_wat_lch_01\phase\sts_wat_
 base\quest\side_quests\sq004\phases\sq004_03_raffen_shiv_camp.questphase
 base\open_world\street_stories\watson\kabuki\sts_wat_kab_02\phases\sts_wat_kab_02_openworld.questphase
 ```
-
-Extract them yourself and inspect only the focused fields. The repository
-does not redistribute vanilla CR2Ws.
 
 ## Plan the actor ownership timeline
 
@@ -204,12 +190,12 @@ actor's lifecycle. Choose one explicit result:
 | Scene | Move to the required scene/workspot state, wait readiness, let the scene acquire, and clear only after its named exit |
 | Continue escort | Preserve role and transfer to the next route phase without deactivation |
 
-The preceding sequential-route candidate, archive SHA-256
-`3EB9FCB4DBD1CA8BA6730C02CDF81B8A89B855C75372FFF8927DC66F0423D597`,
+The preceding [sequential-route candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 advanced through all three gates but cleared the role at gate 3; the persistent
 actor then walked back toward her original AI spot as the hold began. That
-bounded failure is **Runtime-proven** for its own hash. The later `B082D157...`
-candidate retained the role through the hold and cleared it only after
+bounded failure is **Runtime-proven** for its own candidate. The
+[later candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+retained the role through the hold and cleared it only after
 successful defense. That corrected handoff is **Runtime-proven** for the later
 archive; it remains a design decision for another actor.
 

@@ -5,12 +5,9 @@ device, character, and vehicle systems taught earlier. Start from the player
 behavior you want, then follow the resource owners all the way through
 activation, a durable completion signal, and cleanup.
 
-| Record | Value |
-| --- | --- |
-| Guide review date | 2026-08-09 |
-| Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Research input | Focused vanilla resources and hash-bound legacy candidates retained in Ghostline history; Ghostline is not a reader dependency |
-| Default status for a new composition | **Experimental** until that exact package passes a retained, version-bound, clean-save matrix |
+These are composition guides rather than drop-in templates. Use the [tested
+version set](../reference/tested-versions.md), and expect to adapt identities,
+world resources, journal paths, and cleanup to your own quest.
 
 ## Choose the owning systems
 
@@ -43,8 +40,7 @@ Each page supplies:
 - a conceptual flow and the decisive native node or condition shapes;
 - a manual WolvenKit composition order;
 - named vanilla depot paths to extract from your own installation;
-- exact evidence labels and boundaries for retained research;
-- clean-save, reload, interruption, and cleanup cases appropriate to the
+- clean-save, reload, interruption, and cleanup checks appropriate to the
   pattern;
 - failure isolation and links back to the foundational chapters.
 
@@ -71,36 +67,12 @@ Do not begin with presentation polish. A subtitle, prompt, mappin, or objective
 can appear while the producing device, actor, vehicle, or condition is still
 wrong.
 
-## Evidence does not compose automatically
-
-The four labels apply to the exact statement beside them:
-
-- **Runtime-proven** means the bounded result was observed in game for the
-  named retained arrangement and archive hash.
-- **Structurally validated** means the resource serialized, round-tripped, or
-  passed an explicit structural contract; it is not runtime proof.
-- **Observed in vanilla** means the named extracted resource contains the
-  focused shape under discussion; it is not a reusable template.
-- **Experimental** is the correct status for intended behavior without a
-  retained passing runtime result.
-
-Evidence from two separate candidates does not prove their combination. A
-runtime-proven meeting plus a runtime-proven device action still leaves the new
-meeting-with-device quest **Experimental** until that exact composition passes.
-Use the [evidence and version matrix](../reference/evidence-version-matrix.md)
-and [vanilla depot-path index](../reference/vanilla-depot-paths.md) to audit the
-source and environment boundary behind a claim.
-
 ## Clean-save rule
 
 Facts, journal entries, scenes, communities, device persistent state, and some
 world or vehicle state can survive ordinary reloads. When a test changes any
 of those identities, close the game, install the exact candidate, and begin
-from a save created before that candidate was installed or streamed. Record
-the save lineage, package hash, tool/game versions, route, expected state, and
-observed state. A successful run on a contaminated save is diagnostic
-information, not clean-save evidence.
-
-When a recipe has only structural or vanilla evidence, continue authoring with
-that label and use its acceptance matrix to create the missing evidence. Do
-not promote the intended behavior by analogy.
+from a save created before that candidate was installed or streamed. Keep that
+save untouched, record the versions and build you tested, and write down what
+you expected and what actually happened. Resetting one fact is not a clean
+retest when other quest systems have already written state into the save.

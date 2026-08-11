@@ -15,35 +15,6 @@ things:
 Those are different native resource shapes. A visually similar graph can
 therefore have different runtime behavior.
 
-## Evidence and inspection baseline
-
-| Record | Value |
-| --- | --- |
-| Section review date | 2026-08-09 |
-| Reader inspection target | Cyberpunk 2077 `2.31a` Windows archives |
-| Reader inspection tool | WolvenKit `8.19.0` |
-| Retained research corpus | 41 vanilla `.questphase` resources |
-| Corpus serialization | WolvenKit `8.17.4`; CR2W header game resource version `2310` |
-
-> **Evidence boundary:** the native classes and focused depot-path examples in
-> this section are **Observed in vanilla**. They were counted in a retained
-> research extraction and should be re-extracted from your own pinned game
-> installation before being treated as current. A new mod-owned graph is only
-> **Structurally validated** after it survives serialization, round-trip, and
-> graph checks. Timing, cancellation, save/load, and re-entry behavior remain
-> **Experimental** until a hash-bound runtime acceptance run covers them.
-
-The corpus contains 262 immediate condition nodes and 797 pause condition
-nodes. That frequency is useful evidence that both shapes matter; it is not a
-claim that every quest uses them in the same lifecycle.
-
-**Lab 2 runtime evidence:** **Experimental** — pending.
-
-The downloadable Signal Race CR2W resources are **Structurally validated**
-with pinned WolvenKit `8.19.0`. The dedicated marker above remains
-**Experimental** until both candidates and all six required executions have
-hash-bound runtime evidence.
-
 ## Three layers, three questions
 
 Trace a gate from the outside in:

@@ -15,28 +15,14 @@ In                               In
 
 Choosing between them is a behavior decision, not an editor-layout choice.
 
-## Evidence boundary
+## Vanilla references
 
-The resource and socket shapes in this chapter are **Observed in vanilla**.
-The manual inspection target is Cyberpunk 2077 `2.31a` with WolvenKit
-`8.19.0`; chapter review date: **2026-08-09**.
-
-One retained resource contains the same fact comparison in both node forms:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\street_stories\westbrook\japantown\sts_wbr_jpn_03\phase\sts_wbr_jpn_03_streetstory.questphase
 ```
-
-- nested Pause node `20` waits on `jpn_03_stealth_fail == 1` and exposes the
-  ordinary `In` and `Out` path;
-- nested Condition node `29` reads `jpn_03_stealth_fail == 1` and exposes
-  `In`, `True`, and `False` paths.
-
-The retained copy was serialized with WolvenKit `8.17.4` and reports game
-resource version `2310`. Re-extract it from the pinned installation before
-depending on its current shape. The observation establishes the structural
-contrast. It does not establish phase-exit cleanup, polling rate, save/load
-behavior, or re-arming.
 
 ## Immediate condition: answer on entry
 

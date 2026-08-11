@@ -1,15 +1,5 @@
 # Entries, phases, and AI spots
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 A community entry answers three different questions:
 
 ```text
@@ -23,34 +13,15 @@ character record does not move the spot. Moving the spot does not change the
 appearance. Activating an entry with the wrong phase name does not fall back to
 a similarly named workspot.
 
-## Evidence boundary
+## Vanilla references
 
-**Observed in vanilla:** extract this focused template from your own game:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\minor_activities\westbrook\japantown\
   ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community
 ```
-
-It contains three `communitySpawnEntry` objects. Each entry has a character
-record, entry name, phase `A`, appearance `default`, one `Day` time period,
-quantity `1`, and one spot NodeRef. This observation proves that serialized
-shape in that resource; it does not make its entries, spot names, phase name,
-or schedule universal.
-
-**Runtime-proven:** legacy fixture only. Archive
-`2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-spawned all three configured generic Tyger Claw entries at the retained cache
-site. Its exact character/spot recommendation is bounded further in [Cleanup
-and character safety](cleanup-and-character-safety.md).
-
-**Experimental** while the synchronized marker is pending or failed, and
-**Runtime-proven** only when it passes: the exact `cqa005` entry name, phase,
-appearance, spot placement, spawn, scene join, ordinary lifecycle, post-`contact_done` reload,
-completed reload, and the named pre-scene seed loads in Cases 3, 4, and 7
-follow the synchronized marker above. Workspot/cigarette animation quality,
-combat or interruption behavior, arbitrary/unlisted pre-scene states, and
-active-line/interruption reload remain **Experimental** out-of-matrix claims.
 
 ## Registry-side entry shape
 
@@ -186,7 +157,9 @@ A workspot proven at one transform is not a navmesh guarantee at another. The
 later
 `base\workspots\common\ground\generic__stand_ground__guard__02.workspot`
 source/runtime lineage belongs to a different retained candidate and is not
-the workspot byte-bound to archive `2C517934...`. Separate
+the workspot bound to the
+[runtime-proven community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
+Separate
 `base\workspots\patrolling\guard_stand.workspot` research likewise does not
 replace the exact `cqa005` contact spot.
 

@@ -1,18 +1,16 @@
 # Test First Contact
 
-Lab 5 is promoted only when the unmodified completed checkpoint passes all
-eleven required cases in its schema-version-4 acceptance record. The campaign
-binds one installed candidate to exact saves, versions, logs, visible behavior,
-and the supplied WEM:
+This guide tests the complete **First Contact** checkpoint across ordinary
+play, reload, streaming, cleanup, replay, and removal. The eleven cases are
+deliberately separate: a scene working once does not show that its actor,
+journal state, audio, or cleanup will survive every other lifecycle boundary.
 
 ```text
-canonical completed checkpoint
-  + installed archive and ArchiveXL SHA-256
-  + canonical WEM SHA-256
-  + untouched and clean-derived save provenance
-  + eleven required case results
-  + four retained logs for every execution
-  = eligible for Runtime-proven promotion
+completed checkpoint
+  + known starting saves
+  + one controlled route per case
+  + visible results and fresh logs
+  = a result you can diagnose and reproduce
 ```
 
 | Record | Value |
@@ -21,22 +19,9 @@ canonical completed checkpoint
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
-Use only the canonical completed checkpoint and its packaged
-`runtime-acceptance.json` schema version `4`. Do not substitute the start
-checkpoint, a project you edited while following the authoring chapter, or
-either retained historical archive. Earlier runtime evidence does not prove
-the combined `cqa005` mount, world, community, scene, localization, audio,
-handoff, reload, and cleanup contract.
+Use the unmodified completed checkpoint. A project edited while following the
+authoring chapter is useful for personal testing, but it is a different build
+and may fail for different reasons.
 
 ## Required environment
 
@@ -48,44 +33,20 @@ handoff, reload, and cleanup contract.
 | RED4ext | `1.30.0` |
 | redscript | `0.5.31` |
 
-Record those five components as observed on every execution. Wwise Console
-`2025.1.7.9143` is production provenance for the already-built WEM, not a
-reader runtime requirement; the tester does not need to reconvert it. Preserve
-that provenance without claiming Wwise Console ran during gameplay.
-
-Other versions may mount, serialize, stream, acquire, or play the resources
-differently and do not satisfy this candidate's promotion contract.
+Record the versions you actually use. The WEM is already built; testing the lab
+does not require Wwise Console or audio conversion.
 
 ## Freeze a minimal mod loadout
 
-Run Cases 1--10 with only the pinned RED4ext, ArchiveXL, and redscript
-frameworks plus the exact canonical Lab 5 pair. Case 11 is the sole candidate
-exception: keep the framework and unrelated-mod inventory frozen, but remove
-that pair with the game closed exactly as its procedure requires. With the game
-and every framework process closed, remove or disable unrelated archives,
-ArchiveXL or TweakXL files, RED4ext plug-ins, `.reds` scripts, CET mods,
-AI/faction changes, appearance changes, and community/world edits. In
-particular, another mod can change the generic Tyger record's hostility,
-appearance, workspot behavior, or acquisition without changing any `cqa005`
-byte.
+Run Cases 1–10 with the required frameworks and the completed Lab 5 pair.
+Disable unrelated quest, world, community, AI, appearance, and framework mods
+where practical. In particular, another mod can change the generic Tyger
+record's hostility, appearance, workspot behavior, or acquisition without
+changing any `cqa005` file.
 
-Before the first run, retain a sanitized, sorted file-and-SHA-256 inventory of
-the load-bearing code and configuration assets in the active mod locations.
-Cover at least archives and ArchiveXL/TweakXL configuration under
-`archive\pc\mod`; plug-in binaries and static configuration under
-`red4ext\plugins` and `bin\x64\plugins`; and source/configuration under
-`r6\scripts` and `r6\tweaks`. Exclude logs, caches, crash reports, and other
-generated runtime state from this frozen inventory. In particular,
-`red4ext\plugins\ArchiveXL\ArchiveXL.log` is a per-run evidence artifact, not a
-frozen framework asset.
-
-Keep that framework and unrelated-mod asset inventory unchanged through all
-eleven executions, and keep the canonical pair byte-identical and installed for
-Cases 1--10. Only Case 11 deliberately omits the pair. Record the frozen asset
-inventory as focused `notes` evidence, while retaining the four mutable logs
-separately for every run. If an unrelated mod must remain installed, this
-campaign is not eligible for promotion; isolate it and begin again instead of
-trying to explain away a changed actor or log afterward.
+Keep the loadout unchanged between cases. Case 11 is the exception: close the
+game and remove the Lab 5 pair so you can verify that the completed save does
+not depend on the mod remaining mounted.
 
 ## Establish the site before installation
 
@@ -189,7 +150,7 @@ slots outside the game's rotating autosave set.
    slot for Cases 3–9 or 11. Never edit a clone, reset a fact, or copy only
    `sav.dat` without the rest of its slot directory.
 
-The schema-version-4 `save_captures` inventory is exact:
+The test uses five named save captures:
 
 | Capture ID | Exact label | Source / parent | Frozen observable state | Execution cases |
 | --- | --- | --- | --- | --- |
@@ -597,9 +558,9 @@ red4ext\logs\game.log
 r6\logs\redscript_rCURRENT.log
 ```
 
-Hash every copied log. The packaged record predeclares the same four path
-objects for every run; fill their hashes without changing the path set. The
-promotion rule requires all four logs for the complete eleven-run campaign.
+Copy the logs before the next launch overwrites them. If you plan to report a
+bug or contribute a retained test result, hash the copies so each run remains
+distinguishable.
 
 Search all four logs for:
 
@@ -613,155 +574,7 @@ Search all four logs for:
 
 Record both relevant matches and the absence of expected failures. Do not
 claim that silence proves A/V playback: Case 3 still requires direct subtitle
-and audio observation. One missing or overwritten log makes that execution
-ineligible for promotion until it is rerun.
-
-## Complete the schema-version-4 record
-
-Edit `completed/runtime-acceptance.json` only as an evidence record. Do not
-change the five save captures, eleven run IDs, lineage groups, case IDs,
-preconditions, expected results, `required` flags, candidate identity, depot
-inventory, or promotion rule to fit an unexpected result.
-
-The fixed case set is:
-
-| Case ID | Boundary proved |
-| --- | --- |
-| `clean-ordinary-passive-spawn` | Clean full route plus exactly three manual seed captures at frozen states |
-| `fast-arrival-race` | Spawned readiness before already-fast setup entry |
-| `slow-contact-av-once` | Named pre-scene seed load, acquisition, and exactly-once subtitle/hash-pinned WEM |
-| `named-exit-only` | Same named pre-scene seed load; `contact_done` handoff with default outputs inert |
-| `no-replay-inside-lifetime` | Named post-contact seed load; no scene/A/V replay before outer cleanup |
-| `post-scene-reload` | Named post-contact seed load continues cleanup once |
-| `stream-away-return` | Named pre-scene seed load followed by finite-sector stream unload/return before setup |
-| `cleanup-boundary-no-pop` | Named post-contact seed load; delayed deactivation outside 110 m without an in-volume pop |
-| `completed-reload` | Named completed seed load; root completion guard prevents re-entry |
-| `untouched-replay` | Complete reproduction from original clean bytes |
-| `removal-isolation-diagnostic` | Named completed seed clone; exact-pair removal, no reactivation, fresh-log isolation, and no fixture-owned TweakDB mutation |
-
-For every case, set `status` to `passed` or `failed`, write a concrete
-`observed` result, and add at least one focused evidence object with exactly
-these fields:
-
-```json
-{
-  "type": "video",
-  "reference": "evidence/slow-contact-av-once/continuous-run.mp4",
-  "sha256": "<64 lowercase hexadecimal characters>"
-}
-```
-
-Allowed `type` values are `screenshot`, `video`, `log`, `save-metadata`, and
-`notes`. Every `reference` must be a unique POSIX-style relative path beneath
-`completed/evidence/`, name a regular non-linked file, and match that file's
-SHA-256. Sanitize focused notes, images, log excerpts, and save metadata before
-committing them. Never commit `sav.dat`, private identifiers, extracted
-vanilla resources, or large unreviewed captures.
-
-A statement such as “worked” is insufficient. Bind the exact installed
-candidate, source capture, closed-game full-slot execution clone, route,
-visible outcomes, canonical WEM, and copied logs. When the derived status
-becomes `failed` or `passed`, set the top-level `date` to the `YYYY-MM-DD`
-calendar date carried by the chronologically latest completed run's
-`performed_at` timestamp. Keep it `null` while the campaign remains pending.
-
-Every acceptance or evidence edit changes manifest and package inputs. Refresh
-them in this order from the repository root:
-
-```powershell
-python -B scripts\build_lab05_diagrams.py
-python -B scripts\validate_lab05.py --write-manifest
-python -B scripts\validate.py
-```
-
-The first command synchronizes SVG evidence labels. The second regenerates the
-manifest's complete checkpoint/evidence, shared-file, and diagram hash maps
-and derives `evidence.runtime` plus `audio.runtime` from the acceptance record.
-The global validator then builds both ZIPs twice in temporary directories and
-checks their exact bytes. For a local site preview, build the book before
-placing the same packages in its ignored output tree:
-
-```powershell
-mdbook build .\book
-python -B scripts\package_examples.py
-```
-
-A stale hash map, changed case contract, missing candidate hash, incomplete
-save provenance, unsafe evidence path, or missing log must fail review.
-
-## Promotion rule
-
-Apply the packaged rule literally: set top-level `status` to `passed` and
-`evidence_class` to `runtime-proven` only when all eleven required cases pass
-and evidence binds the exact candidate build, both immutable original
-captures, all three manual Case-1 seed captures, every closed-game full-slot
-execution clone, exact versions, visible observations, canonical WEM hash, and
-all four logs for the complete campaign. Structural round trips alone never
-promote the combined `cqa005` fixture.
-
-Status derivation is:
-
-- any failed required case makes top-level status `failed` and keeps
-  `evidence_class: experimental`;
-- a mixture of pending and passed required cases keeps status `pending` and
-  class `experimental`;
-- only eleven passed required cases permit status `passed` and class
-  `runtime-proven`.
-
-The synchronized marker set contains exactly 23 pages. Use this checklist for
-every pending, failed, or passed evidence update:
-
-- [ ] `README.md`
-- [ ] `book/src/introduction.md`
-- [ ] `book/src/communities/index.md`
-- [ ] `book/src/communities/activation-readiness-and-acquisition.md`
-- [ ] `book/src/communities/entries-phases-and-ai-spots.md`
-- [ ] `book/src/communities/registries-and-areas.md`
-- [ ] `book/src/communities/cleanup-and-character-safety.md`
-- [ ] `book/src/scenes/index.md`
-- [ ] `book/src/scenes/resource-anatomy.md`
-- [ ] `book/src/scenes/actors-and-performers.md`
-- [ ] `book/src/scenes/screenplay-sections-and-events.md`
-- [ ] `book/src/scenes/one-spoken-line.md`
-- [ ] `book/src/scenes/entry-exit-and-quest-handoff.md`
-- [ ] `book/src/scenes/cleanup-and-save-state.md`
-- [ ] `book/src/scenes/lab-05.md`
-- [ ] `book/src/scenes/lab-05-authoring.md`
-- [ ] `book/src/scenes/lab-05-test.md`
-- [ ] `book/src/reference/evidence-version-matrix.md`
-- [ ] `examples/lab-05-first-contact/README.md`
-- [ ] `examples/lab-05-first-contact/start/README.md`
-- [ ] `examples/lab-05-first-contact/completed/README.md`
-
-If the full matrix passes, change all 23 markers in the same evidence commit
-to:
-
-```text
-**Lab 5 runtime evidence:** **Runtime-proven** — passed.
-```
-
-If any required case fails, synchronize those markers to:
-
-```text
-**Lab 5 runtime evidence:** **Experimental** — failed.
-```
-
-For either terminal status, replace `Not yet recorded` in the `Runtime test
-date` row of the overview, authoring, and test pages with the exact top-level
-acceptance `date`. Keep that row unchanged while the derived status is
-`pending`.
-
-The synchronized marker is authoritative for its listed `cqa005` runtime
-claims: pending or failed remains **Experimental**, while eleven passed cases permit
-**Runtime-proven**. A failure is retained evidence, not permission to loosen
-the case or cite the old archive hashes as proof.
-
-Marker promotion does not cover active-line interruption/return or
-`CutDestination`, arbitrary or unlisted pre-scene active-child states,
-active-line/interruption reload, or facial/workspot-animation quality. The
-exact named pre-scene seed loads in Cases 3, 4, and 7 are covered by the frozen
-campaign. The excluded claims remain **Experimental** until separate retained
-evidence proves them.
+and audio observation.
 
 ## Failure triage
 
@@ -784,7 +597,7 @@ before editing anything.
 | Completed reload starts the child | Failed completion guard/write order or dirty candidate/save provenance |
 | Removal run still mounts Lab 5 | Failed removal isolation; search for duplicate archive pairs and preserve fresh framework logs |
 | Packaged project contains a tweak or script mutation | Reject the candidate; Lab 5 may reference the generic record but must not override or mutate it |
-| One log or hash is missing | Execution cannot satisfy promotion; rerun from the recorded source state |
+| A useful log was overwritten | Repeat the case from the same starting save and copy the fresh logs before another launch |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
 First Contact in WolvenKit](lab-05-authoring.md) · Next: [Troubleshooting](../troubleshooting/index.md).

@@ -10,12 +10,9 @@ save-aware acceptance pass.
 | Procedure review date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Lab 1 runtime evidence:** **Experimental** — pending.
-
-**Evidence status:** the supplied checkpoint is **Structurally validated** with
-WolvenKit 8.19.0. The dedicated marker above mirrors the canonical acceptance
-record. Follow the test procedure using that record; expected behavior is never
-an observed result.
+The supplied checkpoint passes WolvenKit 8.19.0 structural checks. Follow the
+test procedure after authoring so you can compare the expected route with what
+actually happens in your game.
 
 Use this exact baseline:
 
@@ -451,21 +448,15 @@ Use a manual save made before any version of `cqa001` was installed or loaded.
 Record the save name, game and framework versions, and the installed archive
 and `.archive.xl` hashes before the first run.
 
-Use the packaged `runtime-acceptance.json`, not an unstructured pass/fail note.
-The [acceptance-record procedure](install-and-test.md#complete-the-acceptance-record)
-maps the first load to `clean-save-activation`, `realtime-delay`, and
-`journal-completion`; the later runs map to `mid-flow-reload`,
-`completed-save-reload`, `completed-save-reinstall`, and `clean-replay`; fresh
-logs supply `registration-and-lookup-logs`.
+Follow the [save-matrix procedure](install-and-test.md#run-the-save-matrix).
+It separates the first load, mid-flow reload, completed reload, reinstall, and
+clean replay so a success in one state is not mistaken for proof of another.
 
 The archive built from the manual start checkpoint is
-`CQA_Lab01_OneShot_Start.archive`; it is your authored comparison candidate,
-not the byte-identical completed candidate named by the canonical record. You
-may copy and adapt the JSON for personal diagnostics, but that run cannot
-promote the book. For contributor evidence, close the game, remove the `_Start`
-archive, install the supplied completed checkpoint, verify that only
-`CQA_Lab01_OneShot.archive` and its `.archive.xl` are under test, and then fill
-the canonical record without changing its candidate paths or expected cases.
+`CQA_Lab01_OneShot_Start.archive`. Test it while following the walkthrough. To
+compare with the supplied result, close the game, remove the `_Start` archive,
+install the completed checkpoint, and confirm that only
+`CQA_Lab01_OneShot.archive` and its `.archive.xl` remain.
 
 ### First load
 

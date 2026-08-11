@@ -1,15 +1,5 @@
 # Communities and characters
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 A community is the native world-side system that turns a character record and
 one or more AI spots into actors that quest logic can activate, wait for, hand
 to a scene, and eventually deactivate. No single resource owns that complete
@@ -60,30 +50,6 @@ The order is part of the design. Starting the scene immediately after
 `Activate` creates a race between actor materialization and scene acquisition.
 Deactivating on the scene's last spoken line can remove an actor while the
 scene, AI, or workspot still owns it.
-
-## Evidence and version boundary
-
-These chapters separate vanilla structure, retained historical behavior, and
-the new Lab 5 candidate.
-
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | The cited `mq003` questphases and scene use community activation, `CharacterSpawned`, and scene actors with community acquisition. The cited Japantown `.community` resource contains the entry, phase, time-period, character-record, and spot-reference shapes described here. |
-| **Structurally validated** | The retained research resources at commit `68f311c8f2511aeba679b76a68062ef5e446aaa0` serialize the registry, streamed area, AI spot, activation, readiness, and acquisition relationships described below. This is legacy research, not validation of `cqa005`. |
-| **Runtime-proven** | Three retained historical archives exercised bounded parts of the lifecycle. Archive `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` completed the meeting route after community readiness and acquisition; archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` spawned all three configured guards and kept them passive; later hostile-patrol archive `DE2A28EF7F7D8D20B4FADF3B97BD0B96BB420FED8456AC0D57E9987B00ACFB2A` confirmed leave-area cleanup. These are separate legacy fixture results, not one combined candidate. |
-| **Experimental** while the marker is pending/failed; **Runtime-proven** only when passed | The exact `cqa005` identity set, world placement, `Activate` -> `CharacterSpawned` -> broad-setup join, scene acquisition, named pre-scene seed loads for Cases 3/4/7, ordinary lifecycle, post-`contact_done` reload, completed reload, and delayed `Deactivate` follow the synchronized marker above. |
-| **Experimental** | Active-line interruption and `CutDestination` behavior, arbitrary or unlisted pre-scene active-child states, and workspot/facial-animation quality are outside the frozen campaign and remain experimental independently of the synchronized marker. |
-
-The retained CR2W research was serialized with WolvenKit `8.17.4` as WKit
-JSON `0.0.9` and records CR2W `GameVersion: 2310`. The historical records do
-not bind one complete run to this book's pinned practical baseline. They do not
-promote a new package merely because it follows the same shape.
-
-The practical acceptance target remains Cyberpunk 2077 Windows GOG `2.31a`,
-WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript
-`0.5.31`. Advanced mod-owned character records additionally use TweakXL
-`1.11.3` in their tested authoring boundary. See [Tested
-versions](../reference/tested-versions.md).
 
 ## Native ownership map
 
@@ -192,5 +158,5 @@ positions.
 | A clean resource change behaves like an older build | Starting save, community activation history, scene state, checkpoints, and installed archive hash |
 
 WolvenKit opening every file and ArchiveXL mounting the block are intermediate
-checks. The exact `cqa005` join follows the synchronized marker above; only the
-hash-bound, clean-save campaign may change that marker.
+checks. Use the Lab 5 clean-save procedure to verify the complete `cqa005`
+activation, acquisition, and cleanup route in game.

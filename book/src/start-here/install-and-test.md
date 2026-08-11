@@ -9,10 +9,8 @@ known baseline without pretending that one fact reset cleans a save.
 | Procedure review date | 2026-08-09 |
 | Target environment | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Supplied resource status | **Structurally validated** |
-| Custom runtime status | See the dedicated evidence marker below |
+| In-game result | Record it while following the save matrix below |
 | Runtime test date | Not yet recorded |
-
-**Lab 1 runtime evidence:** **Experimental** — pending.
 
 Expected behavior is not observed behavior. Do not change the runtime label or
 fill an acceptance result with `pass` until a person has run that exact case
@@ -135,116 +133,6 @@ If you cannot create a save during the short active window, record the
 mid-flow case as pending. Do not convert an unrun case into a pass and do not
 change the authored resource merely to make the evidence form easier to fill.
 
-## Complete the acceptance record
-
-The completed download contains `runtime-acceptance.json` beside its
-`.cpmodproj`. That file is the canonical test record, not an example of an
-already successful run. Its eight immutable cases map to the playtest like
-this:
-
-| Case ID | Observation source |
-| --- | --- |
-| `clean-save-activation` | First-load quest and objective activation |
-| `realtime-delay` | Timestamped observation of the ten-second gate |
-| `journal-completion` | Objective/quest success and rendered text |
-| `mid-flow-reload` | Save and reload during the active delay |
-| `completed-save-reload` | Reload without changing installed bytes |
-| `completed-save-reinstall` | Reload after reinstalling identical bytes |
-| `clean-replay` | Repeat from the original untouched save |
-| `registration-and-lookup-logs` | Fresh loader, framework, and script logs |
-
-For an ordinary local experiment, keep that JSON with your test notes and
-leave unrun cases `pending`. To contribute evidence that can change the book's
-label, work from a repository checkout and complete all of these steps:
-
-Record every SHA-256 as 64 lowercase hexadecimal characters; the commands
-below produce that representation.
-
-1. Fill both `candidate.installed_files[].sha256` values from the installed
-   `.archive` and `.archive.xl` files.
-2. Fill `run.performed_at` with an ISO 8601 timestamp including its UTC offset,
-   and identify the tester.
-3. Fill every `run.observed_environment` value. The game version comes from
-   the tested game build, ArchiveXL/RED4ext/redscript versions come from their
-   startup banners, and WolvenKit records the version that packed and installed
-   the candidate. WolvenKit is build provenance rather than an in-game module.
-4. Record the untouched save's label and slot-directory name, set
-   `artifact` to `sav.dat`, and hash this exact file:
-
-   ```text
-   %USERPROFILE%\Saved Games\CD Projekt Red\Cyberpunk 2077\<slot directory>\sav.dat
-   ```
-
-   `sav.dat` is the canonical private save artifact for this record. Do not
-   publish the save; its label, slot name, pre-install assertion, and SHA-256
-   bind the run to it.
-
-   ```powershell
-   $cqaSaveFile = Join-Path $env:USERPROFILE "Saved Games\CD Projekt Red\Cyberpunk 2077\<slot directory>\sav.dat"
-   (Get-FileHash -Algorithm SHA256 -LiteralPath $cqaSaveFile).Hash.ToLowerInvariant()
-   ```
-
-5. Hash all four full log files listed in `run.logs`. Retain focused,
-   privacy-reviewed excerpts as evidence; the full-log hashes identify the
-   originals without requiring the book to redistribute them.
-
-   ```powershell
-   $cqaGameRoot = "C:\Path\To\Cyberpunk 2077"
-   @(
-     "red4ext\plugins\ArchiveXL\ArchiveXL.log",
-     "red4ext\logs\red4ext.log",
-     "red4ext\logs\game.log",
-     "r6\logs\redscript_rCURRENT.log"
-   ) | ForEach-Object {
-     (Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $cqaGameRoot $_)).Hash.ToLowerInvariant()
-   }
-   ```
-
-6. For each case, write the actual result in `observed` and set `status` to
-   `passed`, `failed`, or leave it `pending`. Do not edit `precondition` or
-   `expected`; repository validation treats those as the fixed test contract.
-7. Every passed or failed case needs at least one retained evidence object:
-
-   ```json
-   {
-     "type": "notes",
-     "reference": "evidence/cqa001-run-notes.md",
-     "sha256": "<64 lowercase hexadecimal characters>"
-   }
-   ```
-
-   Allowed types are `screenshot`, `video`, `log`, `save-metadata`, and
-   `notes`. `save-metadata` means a privacy-reviewed `.md`, `.txt`, or `.json`
-   record; the validator rejects `sav.dat` and other `.dat` binaries so the
-   checkpoint cannot package a private save.
-   References must name a real file below the completed checkpoint's
-   `evidence/` directory, and the SHA-256 must match it. Add each new evidence
-   file to the explicit completed-checkpoint inventories in
-   `scripts/package_examples.py` and `scripts/validate.py`; add its artifact
-   digest to `example.json` as validation directs.
-8. Only when all eight required cases pass, set the record and manifest
-   runtime status to `passed` and their evidence class to `runtime-proven`.
-   If any required case fails, the overall status is `failed` and the evidence
-   class remains `experimental`; otherwise it stays `pending`. For a completed
-   pass or failure, set the manifest runtime `date` to the calendar date from
-   `run.performed_at`.
-9. Synchronize every dedicated line beginning `Lab 1 runtime evidence` in the
-   repository status files, book status pages, and example READMEs. Also update
-   the runtime test date in `lab-01.md`, `lab-01-authoring.md`, and this page.
-   A passing record uses **Runtime-proven**; a failed record remains
-   **Experimental**. Repository validation checks every marker and practical
-   date against the manifest.
-10. Recompute the `runtime-acceptance.json` SHA-256 in `example.json`, then run:
-
-   ```powershell
-   python -B scripts\validate.py
-   ```
-
-The validator checks the fixed case definitions, observed version set, both
-installed payload hashes, the `sav.dat` identity, all four log hashes, and the
-existence and bytes of every retained case-evidence file. It deliberately will
-not promote a verbal “worked for me” note.
-
 ## Reset safely between runs
 
 There are three different resets:
@@ -279,15 +167,4 @@ the result impossible to attribute.
 Stop after the first failing boundary. Repacking repeatedly cannot fix a
 missing framework, and editing the graph cannot clean an old save.
 
-## Acceptance boundary
-
-A complete record contains versions, installed hashes, exact depot paths,
-starting-save provenance, expected and observed results for every matrix row,
-relevant logs, and hash-bound retained evidence. Until that record exists,
-retain the page's
-**Structurally validated** and **Experimental** labels even if a casual run
-looks correct.
-
-Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author
-First Signal in WolvenKit](lab-01-authoring.md) · Next lab: [Lab 2: Signal
-Race](../gates/lab-02.md).
+Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author First Signal in WolvenKit](lab-01-authoring.md) · Next lab: [Lab 2: Signal Race](../gates/lab-02.md).

@@ -3,34 +3,6 @@
 Journal UI, spoken dialogue, and embedded scene choices use different lookup
 systems. A fix in one does not repair the others.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for current tests.
-
-**Observed in vanilla:** the journal and scene chapters cite extracted vanilla
-resources that expose full journal paths, external spoken-line localization,
-and embedded scene locStores. Four focused legacy scene extracts sort each
-locale block by unsigned numeric `locstringId`; the relative ordering of equal
-ID fallback/source pairs is not asserted as universal.
-
-**Structurally validated:** Labs 1–5 freeze journal paths, `fileEntryIndex`,
-onscreen secondary keys, scene RUID joins, subtitle-map paths, VO-map WEM paths,
-and the exact embedded/empty locStore shape required by each lab.
-
-**Runtime-proven:** bounded legacy research retained at commit
-`97b5c5330acfc259bc1e5b814a83b7902cbd70bf` recorded a scene route with all
-five intended choice labels, spoken dialogue, subtitles, VO, and scene exit
-after numeric locStore ordering was corrected. The complete passing route is
-bound to archive
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`.
-Earlier archive
-`FEAEC7D66E6C3E492ACE2454A0E32FFB7E1DCBA6B8C08B7E44A427745BF21CAC`
-was an intermediate sorted candidate, not the artifact that carries the
-complete-route claim. The legacy record does not promote current Lab 5
-behavior or make that exact duplicate-payload ordering a universal vanilla
-rule.
-
 ## Identify the lookup path
 
 | Player-facing content | Authoritative key | Runtime owners |

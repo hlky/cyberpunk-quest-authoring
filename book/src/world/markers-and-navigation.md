@@ -12,16 +12,10 @@ worldStaticMarkerNode + placement + registered NodeRef
         -> HUD icon, map pin, and possible GPS route
 ```
 
-## Evidence and version boundary
+## Vanilla references
 
-| Label | Bounded claim |
-| --- | --- |
-| **Observed in vanilla** | Static marker placement, local journal references, quest-mappin manager nodes, scene world markers, and template slots occur in focused extracts from the paths listed below. |
-| **Structurally validated** | A prior mod-owned project round-tripped an AlwaysLoaded marker under WolvenKit `8.17.4`; Lab 3's exact marker, placement, full/local NodeRefs, journal map pin, and two Mappin Manager payloads separately round-tripped under WolvenKit `8.19.0`. |
-| **Runtime-proven** | A retained legacy fixture displayed a yellow GPS-enabled quest pin, removed it during cleanup, and separately showed that activating a replacement with `disablePreviousMappins: 1` cleared one stale dotted route. This is not a universal mappin policy. |
-| Lab 3 exact candidate | Its retained matrix governs marker resolution at the checked placement, pin presentation, route endpoint, visible height, and reload behavior. Pending or failed evidence is **Experimental**; only an all-pass record is **Runtime-proven**. |
-
-Representative vanilla comparison paths are:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\worlds\03_night_city\_compiled\default\always_loaded_0.streamingsector
@@ -29,11 +23,6 @@ base\journal\cooked_journal.journal
 base\quest\main_quests\part1\q108\phases\q108_06b_tower_mainframe.questphase
 base\gameplay\devices\drop_points\drop_point.ent
 ```
-
-The retained world and quest extracts are WolvenKit JSON `0.0.9`, serialized
-by WolvenKit `8.17.4`, with CR2W `GameVersion: 2310`. Extract your own copies.
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
 
 ## Four records with different jobs
 

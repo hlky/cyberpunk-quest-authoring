@@ -4,14 +4,9 @@ Use a journal thread for text, a phone operation for call state, and a scene
 for performed dialogue. These systems can appear in the same player-facing
 conversation, but they have different resource owners and completion signals.
 
-| Record | Value |
-| --- | --- |
-| Guide review date | 2026-08-09 |
-| Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
-| Journal and phone resource shapes | **Observed in vanilla** |
-| Legacy GQ000 text route | **Runtime-proven** only for the exact retained candidate named below |
-| Legacy GQ002 offer/conversation resources | **Structurally validated**; their planned two-route behavior remains **Experimental** |
-| A new custom text or call flow on the pinned baseline | **Experimental** until its own clean-save campaign passes |
+Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
+RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
+versions](../reference/tested-versions.md).
 
 This page composes the native pieces taught in
 [Messages, files, emails, and onscreens](../journal/messages-and-onscreens.md).
@@ -97,11 +92,9 @@ gate.
 and a following message with the expected entry properties. It proves the
 journal hierarchy, not a new mod-owned questphase.
 
-**Structurally validated:** Ghostline research commit
-`5f0e0d5558c35b0fe58b9dd732d4039c91e9c2eb` retains the GQ002 source phases.
-The phone-related cooked resources match the retained final-polish build whose
-archive SHA-256 is
-`E37C3498B0AF0EE01697C4542D579252DE844E4D529F6381EDAF0D0CFCA1BF94`.
+**Structurally validated:** the retained GQ002 source phases and phone-related
+resources round-trip with their recorded toolchain. Exact provenance is kept
+with the [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
 Its runtime section is the active next-test checklist, not a retained result.
 The serialized source reports WolvenKit `8.17.4`; it is not a pinned
 WolvenKit `8.19.0` compatibility result. Ordered presentation for that exact
@@ -178,9 +171,8 @@ and make a late losing signal harmless or explicitly cut it.
 
 The GQ002 candidate above is **Structurally validated** for two selected-state
 waits, matching replies, result facts, and convergence. Its checklist planned
-both routes; it is not runtime proof for either result. Separately, Ghostline
-research commit `97b5c5330acfc259bc1e5b814a83b7902cbd70bf`, archive SHA-256
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`,
+both routes; it is not runtime proof for either result. Separately, a
+[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
 is **Runtime-proven** for a complete GQ000 route containing phone choices and
 completion presentation after its final-message gate. Combining pieces from
 the two fixtures into a new conversation remains **Experimental** until that

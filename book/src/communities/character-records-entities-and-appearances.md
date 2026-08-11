@@ -32,40 +32,15 @@ model described here remains the native `Character` record and its referenced
 resources. A character that only reuses an existing record does not need a new
 TweakXL record, but it also inherits that record's ownership and behavior.
 
-## Evidence boundary
+## Vanilla references
 
-**Observed in vanilla:** in the installed `2.31a` data,
-`Character.jpn_tyger_claws_biker2_ranged2_copperhead_wa` inherits the Tyger
-Claw woman gameplay chain and resolves to
-`ep1\characters\entities\gang\gang__ep1_tyger_wa.ent`. The extracted entity
-is an `entEntityTemplate` with 34 exposed appearance mappings and
-`defaultAppearance: random`; those mappings point to
-`base\characters\appearances\gang\gang__tyger_wa.app`. The extracted
-`appearanceAppearanceResource` contains 37 internal definitions and declares
-`baseEntityType: WomanAverage`. These counts and names describe those two
-files, not universal NPC requirements.
+The generic Tyger Claw record used in this chapter resolves through these
+focused resources. Extract them into a separate research project:
 
-**Structurally validated:** the retained mod-owned research pair at source
-commit `24d8dd633e4009380931fd6bcc507929832ef613` serializes with WolvenKit
-`8.19.0` as CR2W game version `2310`. Entity SHA-256
-`96EF64D91C440467C389E8341F1174AD8D16740C402E907FE2EB320240DFA637`
-contains one exposed mapping named `ghostline_patch_default` to internal
-definition `default`; appearance SHA-256
-`737570EADCAB705863BC2A416257AECB05E3E1B8EF12AACB2DF585AA1F4B1353`
-contains one 47-component `ManAverage` definition. This proves that exact
-serialized join, not that the appearance is visually correct in game.
-
-**Runtime-proven:** legacy archive
-`2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80`
-spawned all three configured entries that used the cited generic Tyger Claw
-record. It does not prove a new TweakDB record, a custom `.ent`/`.app` pair,
-an arbitrary appearance selection, or animation quality.
-
-**Experimental:** every new character resource assembled through this chapter
-remains experimental until its own hash-bound clean-save campaign covers
-spawn, visibility, approach, animation, combat or passivity, scene
-participation, LOD changes, stream-out/in, reload, and cleanup. Runtime
-appearance changes are also outside the retained evidence.
+```text
+ep1\characters\entities\gang\gang__ep1_tyger_wa.ent
+base\characters\appearances\gang\gang__tyger_wa.app
+```
 
 ## The native resource chain
 

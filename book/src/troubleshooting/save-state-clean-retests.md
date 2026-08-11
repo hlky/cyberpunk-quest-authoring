@@ -4,27 +4,6 @@ The save is part of the candidate. Replacing an archive does not rewind facts,
 journal state, active quest nodes, checkpoints, scenes, communities, or device
 persistent state.
 
-## Evidence and version boundary
-
-Use Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL
-`1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31` for current acceptance.
-
-**Structurally validated:** every lab acceptance record defines named starting
-save classes, immutable pre-install assertions, installed hashes, and reload
-cases. The record schema can validate metadata and retained evidence; it
-cannot manufacture an in-game observation.
-
-**Runtime-proven:** retained legacy delivery testing around archive
-`1C669335E83C93F714455D24743C7F03E34F2FA381A60ABB9E8F35A85375EDCC`
-recorded that installing a rebuilt questphase did not rewind a save which had
-already entered the earlier delivery phase. That bounded result justifies
-treating saved graph progress as input, but does not prove any current lab
-route under the pinned stack.
-
-**Experimental:** a case remains experimental when its starting save is
-unknown, was already exposed to another candidate, or differs from the
-documented seed lineage.
-
 ## Choose the right save class
 
 | Save class | Suitable use | Not suitable for |

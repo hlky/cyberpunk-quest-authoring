@@ -200,7 +200,7 @@ Extract a named resource with WolvenKit, serialize it for local inspection,
 and preserve only a focused excerpt or your own notes. Do not redistribute the
 extracted CR2W or a complete vanilla serialization.
 
-## Evidence required before promoting a recipe
+## Before treating a condition as reusable
 
 For a family that this book has not yet reduced to a practical guide, record
 all of the following before presenting an authoring contract:

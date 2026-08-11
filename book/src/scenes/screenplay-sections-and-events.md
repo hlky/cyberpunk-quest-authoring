@@ -1,15 +1,5 @@
 # Screenplay, sections, and events
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 One spoken line spans three native objects. The screenplay item says who speaks
 and which localization ID to resolve. A timed event schedules that item. A
 section owns the event and determines when graph flow can leave.
@@ -134,18 +124,3 @@ event itself.
 The repeated integer `1` across several rows is coincidence plus a deliberately
 small fixture. See [Identifier domains](../foundations/identifier-domains.md)
 before comparing raw exports.
-
-## Evidence boundary
-
-The screenplay-item/event/section layering, typed IDs, external spoken-line
-localization, and comparable section graph arrangements are **Observed in
-vanilla** at the cited `mq003`, `mq007`, and `mq010` paths. The exact First
-Contact one-line section, ID joins, and `2598 + 400 = 2998` timing are
-**Structurally validated**. Ordinary playback, exact subtitle/WEM lookup,
-performer acquisition through the line, and normal completion in the exact
-`cqa005` package follow the synchronized marker above. Per-frame timing,
-facial/animation quality, active-line interruption and return, and
-`CutDestination` behavior remain **Experimental** outside that campaign.
-
-Previous: [Actors and performers](actors-and-performers.md). Next: [Entry,
-exit, and quest handoff](entry-exit-and-quest-handoff.md).

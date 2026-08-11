@@ -1,15 +1,5 @@
 # Scene resource anatomy
 
-**Lab 5 runtime evidence:** **Experimental** — pending.
-
-**Acceptance gate:** Exact `cqa005` claims covered by the frozen eleven-case
-matrix follow the synchronized marker above: pending or failed means
-**Experimental**; passed means **Runtime-proven**. Legacy evidence and
-out-of-matrix claims retain their own labels. Cases 3, 4, and 7 load distinct
-full-slot copies of the named `seed-pre-scene-outside-setup` capture; those
-exact loads are in-matrix. Arbitrary or unlisted pre-scene states and
-active-line/interruption reload remain out-of-matrix.
-
 The First Contact scene is a native `.scene` CR2W resource rooted at
 `scnSceneResource`. Its root records more than the visible node graph. Actor
 acquisition, entry and exit names, screenplay data, localization storage,
@@ -143,10 +133,10 @@ deactivate a community. Those are separate handoff and cleanup operations.
 
 The scenario shape and distance-condition families are **Observed in
 vanilla**. The exact First Contact serialization is **Structurally validated**.
-The frozen eleven-case Lab 5 promotion campaign does not interrupt an active
-line or exercise `CutDestination`. Walking out during the line, returning, and
-reloading in that state therefore remain **Experimental** independently of the
-synchronized marker and require a separate future runtime record.
+The supplied Lab 5 tests do not interrupt an active line or exercise
+`CutDestination`. If your scene supports those paths, add explicit walk-out,
+return, and reload cases rather than inferring their behavior from normal
+playback.
 
 ## What to preserve in a focused comparison
 

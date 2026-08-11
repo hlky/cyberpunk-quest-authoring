@@ -112,7 +112,7 @@
   - [Journal-path reference](reference/journal-path-reference.md)
   - [Localization reference](reference/localization-reference.md)
   - [ArchiveXL registration reference](reference/archivexl-registration.md)
-  - [Evidence and version matrix](reference/evidence-version-matrix.md)
+  - [Lab status and research provenance](reference/evidence-version-matrix.md)
   - [Vanilla depot paths](reference/vanilla-depot-paths.md)
   - [Tested versions](reference/tested-versions.md)
   - [Tutorial namespace](reference/tutorial-namespace.md)

@@ -21,31 +21,6 @@ but a concrete payload still needs evidence for its intended use. The retained
 fact comparison appears beneath both schedules; the delay recipes below appear
 beneath Pause nodes.
 
-## Evidence and scope
-
-The focused shapes below are **Observed in vanilla** in a retained set of 41
-questphases. The retained copies report game resource version `2310` and were
-serialized with WolvenKit `8.17.4`. Reader inspection targets Cyberpunk 2077
-`2.31a` and WolvenKit `8.19.0`; review date: **2026-08-09**.
-
-| Predicate family | Instances in retained corpus |
-| --- | ---: |
-| Fact comparisons | 259 |
-| Trigger conditions | 214 |
-| Time conditions | 168 |
-| Journal conditions | 88 |
-| Distance comparisons | 55 |
-| Logical condition trees | 87 |
-
-Counts describe this research corpus, not the whole game and not recommended
-usage ratios. Re-extract every cited depot resource from your own installation.
-Do not distribute the extracted binary or its complete serialization.
-
-The corpus also contains content, inventory, character, device, vehicle,
-scene, phone, spawning, scan, destruction, and workspot-related condition
-families. Those names establish an **Observed in vanilla** inventory only.
-They are not property recipes or runtime guarantees.
-
 ## Fact comparison
 
 The focused shape is:

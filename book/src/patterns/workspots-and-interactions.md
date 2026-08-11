@@ -22,31 +22,10 @@ player/device interaction
        -> quest wait
 ```
 
-## Evidence and tested boundary
+## Vanilla references
 
-The practical target is Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit
-`8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
-Legacy archives below do not bind that complete environment.
-
-Custom character or device records can add TweakXL. The retained legacy
-metadata names TweakXL `1.11.3`; no new record route on this page is promoted
-for that dependency, so record the actual version and keep the route
-**Experimental** until its own matrix passes.
-
-| Label | Bounded source and claim |
-| --- | --- |
-| **Observed in vanilla** | `ma_wbr_jpn_013_claws_com.community` joins three community entries to placed spot NodeRefs; the retained `sts_wat_lch_01_combat.questphase` contains a `questCharacterWorkspot_ConditionType`; `drop_point.ent` exposes interaction and navigation slots; and inspected entity templates show that interaction workspots/components belong to the template rather than a quest graph. |
-| **Structurally validated** | Lab 5's exact community registry, compiled area, persistent spot identity, `worldAISpotNode`, and workspot resource reference round-trip under WolvenKit `8.19.0`. Legacy generated world fixtures also round-tripped finite and infinite AI-spot shapes. This validates serialization and joins, not animation, navigation, or interaction behavior. |
-| **Runtime-proven** | Archive `2C5179349DBD1AFF5A5A01123F83FF1DC76D8D91E45FE946CEA4DCAF0166BF80` spawned its three configured generic actors and kept them passive with the exact cited cigarette-workspot lineage; it did not retain an observation of animation quality or cleanup. Archive `87956AFFE3C7CD66E16AD8531D0784689B01A24DCA629FAF41C2291C6E70E40D` completed one community-acquired meeting route. Archive `C3F7608385CDA9E4436AF92E5DA23B866D47504BE889058E0527457470BE71AD` exposed and completed its exact laptop personal-link interaction at the retained placement. |
-| **Experimental** | A generic “use a workspot” quest recipe, arbitrary `.workspot` substitution, sequenced movement, workspot-condition semantics, device prompt construction, door interaction, scene interruption, and workspot/facial-animation quality remain unproved on the pinned stack. |
-
-The **Runtime-proven** provenance map binds `2C517934...` to legacy source
-commit `97b5c5330acfc259bc1e5b814a83b7902cbd70bf`, `87956AFF...` to
-`68f311c8f2511aeba679b76a68062ef5e446aaa0`, and `C3F76083...` to
-`6e959d2149e664432eaff3b7d4905e8b1d342f2f`. The source notes explicitly
-withhold generic workspot-animation and interaction conclusions.
-
-Extract focused comparisons from your own installation:
+These focused base-game resources are useful comparisons. Extract them from
+your own installation; they are references, not files to copy into the project.
 
 ```text
 base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community
@@ -58,10 +37,6 @@ base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot
 base\workspots\common\ground\generic__stand_ground__guard__02.workspot
 base\workspots\patrolling\guard_stand.workspot
 ```
-
-The three workspot paths represent separate evidence lineages. Do not swap one
-for another while keeping the first archive's **Runtime-proven** label. Refer
-to the depot path; do not redistribute the vanilla resource.
 
 ## Choose the interaction family
 
@@ -166,8 +141,10 @@ choose the actor or world transform.
 | Ordered route | Multiple unique spots, mirrored order, `isSequence`, compatible AI, and navigable placement |
 | Readiness | Spawn Manager request followed by the matching character/spawning condition |
 
-**Runtime-proven:** `2C517934...` establishes that its exact three generic
-entries spawned and stayed passive. It does not establish cigarette animation
+**Runtime-proven:** a
+[retained community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+establishes that its exact three generic entries spawned and stayed passive.
+It does not establish cigarette animation
 quality. The later guard-standing and patrol workspot references belong to
 different source/runtime lineages and cannot be merged into that hash-bound
 claim.
@@ -209,8 +186,9 @@ ground contact, and navigation approach at the final transformed placement.
 Rotating an entity can rotate an interaction workspot away from the available
 floor even when the visible prop looks acceptable.
 
-The **Runtime-proven** result for the final `C3F76083...` package is limited to
-exposing `Steal Data` and completing the personal-link route at its exact
+The **Runtime-proven** result for the
+[retained final package](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
+is limited to exposing `Steal Data` and completing the personal-link route at its exact
 barrel placement. It does not isolate placement from controller/action content
 or prove another transform.
 
