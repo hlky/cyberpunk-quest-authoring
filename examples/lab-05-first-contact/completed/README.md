@@ -42,7 +42,7 @@ ordinary route and creates exactly three manual seeds:
 `seed-completed`. With the game closed, clone complete slot directories into
 distinct execution slots. Cases 1/10 share `original-outside-setup`; Case 2
 uses `original-near-setup`; Cases 3/4/7 share the pre-scene seed; Cases 5/6/8
-share the post-contact seed; and Cases 9/11 share the completed seed. Each
-group is byte-identical by `sav.dat` hash. The removal diagnostic loads its
+share the post-contact seed; and Cases 9/11 share the completed seed. Use
+unchanged copies from each source group. The removal diagnostic loads its
 disposable completed-seed clone with the exact candidate pair absent; it does
 not reset facts or edit the save.

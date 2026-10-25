@@ -53,6 +53,11 @@ subtitle and VO resources. Consequently the scene's
 are for scene-owned localized data such as choice labels, not this line's
 external spoken-text path.
 
+For custom clips, those two animation-name fields need their own lookup check:
+confirm the selected CName exists in the intended animset. See
+[Custom clip checks](external-vo-wem-and-lipsync.md#check-the-selected-clip-and-its-skeletal-reference)
+before replacing `None`; a valid RUID or WEM does not validate an animation.
+
 ## The timed line event
 
 Section node `2` contains exactly one handled `scnDialogLineEvent`:

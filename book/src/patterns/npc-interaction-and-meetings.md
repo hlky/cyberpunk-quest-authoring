@@ -253,9 +253,6 @@ Work from a copy of a known-good project, with the game closed:
     handles and sockets, pack, extract the archive, and compare the intended
     depot paths before launching the game.
 
-The reader path ends in native resources and WolvenKit. Documentation-author
-research inputs are not build or runtime dependencies.
-
 ## Transfer ownership instead of cleaning up
 
 Some meetings lead directly into following, combat, or another scene. In that
@@ -298,11 +295,11 @@ overwrite one slot and call the runs independent.
 | Combat or police intrusion | Actor behavior, scene interruption, and cleanup follow the stated policy |
 | Post-scene cleanup | Actor remains until the scene is released and V crosses the cleanup boundary |
 | Completed-save reload | Meeting, marker, scene, and community do not reactivate |
-| Clean replay | The same installed hash completes from a separate untouched save |
+| Clean replay | The same installed build completes from a separate untouched save |
 | Removal isolation | Removing the candidate does not leave a save-dependent claim disguised as a clean resource result |
 
-Active-line save/load, scene interruption, and cut behavior need their own
-matrix. An ordinary named-exit pass does not promote those claims.
+Test active-line save/load, scene interruption, and cut behavior separately
+from the normal named-exit route.
 
 ## Common failures
 
@@ -314,7 +311,7 @@ matrix. An ordinary named-exit pass does not promote those claims.
 | Scene runs but quest does not continue | Scene End name versus questphase output socket and connected edge |
 | Actor disappears during dialogue | Premature `Deactivate`, competing phase change, stream bounds, or another owner clearing the actor |
 | Actor walks back after dialogue | Follower/gameplay role cleared before the next lifecycle owner takes over |
-| Reload uses an older route | Save provenance, active questphase/checkpoint, scene state, installed archive hash, and duplicate archives |
+| Reload uses an older route | Save history, active questphase/checkpoint, scene state, installed archive filename, and duplicate archives |
 | New archive crashes at scene launch | Scene IDs, actor/lipsync slot mapping, handle topology, scene path, and retained crash evidence before changing world geometry |
 
 For symptom-led isolation, use [Actors, scenes, and

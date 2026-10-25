@@ -7,7 +7,6 @@ save-aware acceptance pass.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
 The supplied checkpoint passes WolvenKit 8.19.0 structural checks. Follow the
@@ -406,8 +405,8 @@ With all tabs saved:
 
 Use the normal **Install** command for this ArchiveXL project. Do not choose
 **Install as REDmod** or a hot-reload command. The full install, launch, log,
-and evidence-recording procedure is collected in
-[Install, test, record, reset](install-and-test.md).
+and test procedure is collected in
+[Install, test, and reset](install-and-test.md).
 
 The vanilla journal descriptor and root `parent` are deliberate references;
 they need not be copied into the project. Treat any other unresolved reference
@@ -442,80 +441,26 @@ ArchiveXL and that redscript did not report a new dependency/load error.
 Registration without errors is evidence about registration, not proof that
 the quest route executed.
 
-## 11. Run the acceptance matrix
+## 11. Test and reset
 
-Use a manual save made before any version of `cqa001` was installed or loaded.
-Record the save name, game and framework versions, and the installed archive
-and `.archive.xl` hashes before the first run.
+Continue with [Install, test, and reset](install-and-test.md). Use the archive
+built from your start project, `CQA_Lab01_OneShot_Start.archive`, and the shared
+`CQA_Lab01_OneShot.archive.xl` registration file.
 
-Follow the [save-matrix procedure](install-and-test.md#run-the-save-matrix).
-It separates the first load, mid-flow reload, completed reload, reinstall, and
-clean replay so a success in one state is not mistaken for proof of another.
+That guide covers the first load, mid-flow reload, completed reload,
+reinstallation, clean replay, logs, and removal. Begin from a manual save made
+before any version of `cqa001` was installed. Changing its completion fact alone
+does not reset the journal or saved graph state.
 
-The archive built from the manual start checkpoint is
-`CQA_Lab01_OneShot_Start.archive`. Test it while following the walkthrough. To
-compare with the supplied result, close the game, remove the `_Start` archive,
-install the completed checkpoint, and confirm that only
-`CQA_Lab01_OneShot.archive` and its `.archive.xl` remain.
+The intended first run activates **First Signal** and **Wait for the signal.**,
+then succeeds after about ten real-time seconds. This behavior remains
+**Experimental** until tested. The terminating output has no separate visible
+indicator; infer it from the graph, successful journal state, and absence of
+reactivation.
 
-### First load
-
-Load the clean save and observe, without using a world trigger. The intended
-result is:
-
-1. **First Signal** activates and is tracked;
-2. **Wait for the signal.** activates and is tracked;
-3. after about ten seconds of elapsed realtime, the objective succeeds;
-4. the quest succeeds;
-5. the quest does not reactivate on the completed save.
-
-Record what actually happens and the relevant log lines. Until that retained
-observation exists, all five statements remain expected **Experimental**
-behavior.
-
-The terminating output has no independent on-screen witness in Lab 1. Reaching
-it is an inference from the exact terminal topology, successful journal state,
-and absence of reactivation—not a directly observed UI event.
-
-### Mid-flow reload
-
-Return to the original clean save. As soon as the objective appears, make a
-new manual save before the ten-second gate finishes. Reload that new save and
-record whether the active route resumes and completes once. A successful
-first-load run does not establish this reload behavior.
-
-### Completed reload and reinstall
-
-After a completed run, make another manual save and reload it. Then close the
-game, install the same unchanged build again, and reload the completed save.
-The intended one-shot result is that `cqa001_completed == 1` sends ID `10`
-through `False` to the terminating output without reactivating the journal.
-Record both passes separately.
-
-### Clean replay
-
-Reload the original pre-mod manual save for another first-run test. Do not use
-the completed save as the replay baseline.
-
-## 12. Reset and remove safely
-
-There are three different operations:
-
-- **Clean replay:** load the preserved pre-mod save. This is the acceptance
-  reset because neither the fact nor the Lab 1 journal history exists there.
-- **Fact-only diagnosis:** a fact inspection tool can change
-  `cqa001_completed` back to `0`, but that does not clear succeeded journal
-  state, a saved quest route, or other save-backed records. Never call this a
-  clean replay.
-- **Uninstall:** close the game and remove only the installed archive belonging
-  to the project plus `archive\pc\mod\CQA_Lab01_OneShot.archive.xl`. Removing
-  files does not erase state already written into a save.
-
-When switching between the start and completed checkpoints, remove the other
-checkpoint's archive first so two archives do not provide the same three depot
-paths. Keep the pre-mod save untouched. If a test behaves differently after a
-fact-only reset, repeat it from that pre-mod save before attributing the result
-to the graph.
+To compare your build with the supplied completed checkpoint, close the game,
+remove the `_Start` archive, install the completed project, and repeat from the
+same untouched baseline. Keep only one checkpoint's archive installed.
 
 ## Failure routing
 

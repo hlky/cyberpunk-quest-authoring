@@ -174,5 +174,4 @@ evidence rather than names:
 - Can the containing phase be entered again?
 - Does the completed-save route bypass every one-shot side effect?
 
-If any answer depends on undocumented timing, label it **Experimental** and add
-it to the runtime acceptance record.
+Test any timing-dependent route in game, including both input orders and reload.

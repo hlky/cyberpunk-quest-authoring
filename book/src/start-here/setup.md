@@ -6,7 +6,6 @@ prove which runtime components loaded.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Game baseline | Cyberpunk 2077 `2.31a`, Windows GOG build |
 | Authoring tool | WolvenKit `8.19.0` |
 | Resource framework | ArchiveXL `1.27.0` |

@@ -16,4 +16,4 @@ Both checkpoints contain only mod-owned resources. The completed project is
 pre-Lab-2 save exercises the 30-second failure route.
 
 The graph uses facts and real-time delays, so it does not require world nodes,
-communities, devices, or Ghostline tooling.
+communities, or devices.

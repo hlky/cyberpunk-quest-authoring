@@ -23,7 +23,6 @@ subject of the lab.
 
 The cooked resources are **Structurally validated** with WolvenKit 8.19.0.
 All `cqa004` mounting, external-child execution, world interaction, continuation,
-streaming, and save behavior remains **Experimental** until
-`runtime-acceptance.json` is completed.
+streaming, and save behavior remains **Experimental**.
 
 Do not install both checkpoints together. They register the same depot paths.

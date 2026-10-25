@@ -125,12 +125,6 @@ World-aware phases can declare quest-prefab dependencies:
   presence is not evidence that a tool must duplicate the root declaration
   there.
 
-**Runtime-proven:** in the retained GQT003 candidate, the root declared one
-prefab while four external children declared `phasePrefabs: []`; the complete
-recorded sequence used that root-owned scope successfully. This is bounded
-evidence for that arrangement, not a claim that every prefab survives every
-possible child, cut, stream, or save transition.
-
 **Observed in vanilla:**
 `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03.questphase`
 declares a prefab while its external
@@ -138,11 +132,9 @@ declares a prefab while its external
 references beneath that prefab. The observation supports root-owned scope; it
 does not replace a mod-owned runtime test.
 
-Lab 4 uses the same explicit model: the root declares
-`#cqa004_pr_handoff`, the child declares no prefab, and the parent phase node
-does not duplicate the dependency in `phaseInstancePrefabs`. That exact
-`cqa004` lifetime and save behavior remains **Experimental** until its
-hash-bound runtime matrix passes.
+Lab 4 declares `#cqa004_pr_handoff` on the root, leaves the child’s prefab list
+empty, and keeps `phaseInstancePrefabs` empty on the invoking node. Test
+NodeRef resolution while the child is active, then after streaming and reload.
 
 Do not turn an authoring tool's convenience switch into an engine rule.
 Research tooling may expose an `inherit_phase_prefabs` policy that copies or

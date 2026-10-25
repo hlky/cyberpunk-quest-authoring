@@ -5,13 +5,8 @@ This walkthrough expands the supplied Lab 4 start checkpoint into the exact
 world, journal, localization, registration, and phase resource so the work can
 focus on the native composition boundary.
 
-You edit resources in WolvenKit. The repository's generation, validation, and
-diagram scripts are documentation-author infrastructure, not reader
-prerequisites and not an alternate quest authoring system.
-
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -399,10 +394,9 @@ Use the normal ArchiveXL project install, not **Install as REDmod**. A packed
 archive without its loose `.archive.xl` cannot attach the root, merge the
 journal/localization, or register the world block.
 
-The manually expanded start project installs `_Start`-named files and is a
-comparison candidate. Evidence that promotes the book must use the supplied,
-unmodified `CQA_Lab04_HandoffPoint.cpmodproj`, bind these installed files, and
-follow its acceptance record:
+The authored start project installs `_Start`-named files. To test the supplied
+completed project, open `CQA_Lab04_HandoffPoint.cpmodproj`, remove the start
+project’s installed files, and install the following pair:
 
 ```text
 archive\pc\mod\CQA_Lab04_HandoffPoint.archive

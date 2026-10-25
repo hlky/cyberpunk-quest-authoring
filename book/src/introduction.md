@@ -68,8 +68,11 @@ templates. Their structure is checked with the version of WolvenKit listed in
 [Tested versions](reference/tested-versions.md), and every supplied node and
 resource is explained in the book.
 
-Some wider recipes are based on focused vanilla inspection or on bounded
-runtime research rather than a complete custom quest tested on every save and
-reload path. Those claims are labelled where the distinction affects what you
-should build or test. Detailed provenance remains available in the reference
-material, but it is never required to follow a reader procedure.
+All five labs are **Structurally validated**. Their in-game acceptance runs
+are still pending, so their intended runtime behavior remains
+**Experimental**. Use the test guides to check what happens in your game;
+the completed downloads are comparison projects, not a promise of a tested
+playthrough.
+
+The system chapters explain the resource relationships, and the test guides
+show how to check their behavior in game.

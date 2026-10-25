@@ -98,11 +98,9 @@ objective Active
   -> objective Succeeded
 ```
 
-Use `disablePreviousMappins: 0` unless the transition is deliberately
-replacing prior routing, then prove the changed behavior. One retained legacy
-route needed `1` on the new destination activation to clear a stale dotted
-leg. That **Runtime-proven** result is bounded to that transition; applying it
-everywhere can hide another valid objective.
+Use `disablePreviousMappins: 0` by default. When replacing a destination leaves
+a stale dotted route, test `1` on the new pin’s activation. Check that other
+objectives keep their intended routing.
 
 ## `scnWorldMarker` belongs to scene location semantics
 

@@ -1226,16 +1226,6 @@ def validate_first_release_hardening() -> None:
         )
 
     runtime_definition_fragments = {
-        BOOK_SRC / "foundations" / "lifecycle-and-evidence.md": (
-            "the stated bounded behavior or result was observed in game for the exact "
-            "retained arrangement",
-            "failed campaign remains **Experimental** for the intended behavior",
-        ),
-        BOOK_SRC / "troubleshooting" / "index.md": (
-            "the stated bounded behavior or result was observed in game for the exact "
-            "retained arrangement",
-            "failed lab campaign remains **Experimental** for the intended behavior",
-        ),
         BOOK_SRC / "reference" / "glossary.md": (
             "the stated bounded behavior or result was observed in game for the exact "
             "retained arrangement",
@@ -1516,12 +1506,12 @@ def validate_advanced_systems() -> None:
         )
     for token in (
         "What you will learn",
-        "complete as an ownership, inspection, and acceptance guide",
+        "rewindable .scene",
         "WolvenKit `8.19.0`",
     ):
         require(
             token in braindance_text,
-            f"{display(braindance_index)}: missing bounded status token {token!r}",
+            f"{display(braindance_index)}: missing braindance topic {token!r}",
         )
 
     acceptance = (

@@ -15,7 +15,6 @@ completed checkpoint
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -102,24 +101,9 @@ The subtitle map and VO map are registration roots. The subtitle entries and
 WEM are archived indirect dependencies. Renaming one file or registering the
 entries directly changes the candidate.
 
-Hash the supplied WEM before testing:
+Use the supplied WEM unchanged for these tests.
 
-```powershell
-(Get-FileHash -Algorithm SHA256 `
-  .\examples\lab-05-first-contact\completed\source\archive\mod\cqa\cqa005\localization\en-us\vo\contact_i_85c3283507e7ef2f.wem).Hash.ToLowerInvariant()
-```
-
-It must equal:
-
-```text
-0487ba1116d9c4fa9cfb25e825ad4ec35110195cf3953cb8bc67a16f5cbc657f
-```
-
-Preserve that result with the candidate evidence. Wwise conversion is not
-claimed to be byte-reproducible, so a newly converted WEM is a different
-candidate even when it plays the same source line.
-
-## Prepare save provenance
+## Prepare test saves
 
 Create and preserve two manual-save originals before the first Lab 5
 installation. Never use an autosave or checkpoint save, and keep both source
@@ -131,11 +115,10 @@ slots outside the game's rotating autosave set.
    for the immediate-arrival race. Reach it through ordinary game travel,
    including the verified vanilla fast-travel approach if used; do not
    teleport.
-3. Record each complete slot-directory name and `sav.dat` SHA-256 in the
-   matching `save_captures` row.
-4. Keep `created_before_first_install: true` only after confirming neither save
-   has ever loaded any CQA tutorial candidate: no Lab 1–4 start/completed
-   project and no Lab 5 start, completed, or older `cqa005` candidate. Labs 3
+3. Record each complete slot-directory name in your
+   test notes.
+4. Confirm neither save has ever loaded any CQA tutorial candidate: no Lab 1–4
+   start/completed project and no Lab 5 start, completed, or older `cqa005` candidate. Labs 3
    and 4 share this site, and removing their archives does not erase saved
    quest, journal, trigger, or world state. If you already followed those labs,
    restore a separately preserved pre-tutorial save or create a genuinely new
@@ -160,54 +143,30 @@ The test uses five named save captures:
 | `seed-post-contact-inside-cleanup` | `CQA005 SEED POST CONTACT INSIDE CLEANUP` | Case 1 / pre-scene seed | `contact_done` returned; Meet Succeeded; pin Inactive; Leave Active; child and contact active; V inside cleanup; fact `0` | 5, 6, 8 |
 | `seed-completed` | `CQA005 SEED COMPLETED` | Case 1 / post-contact seed | Leave and quest Succeeded; pin Inactive; contact deactivated; child and root returned; fact `1` | 9, 11 |
 
-Fill each capture's `slot_directory` and `sha256` after making it. The validator
-requires five distinct source directories and five distinct source hashes.
-Each run uses a byte-identical full-slot clone, records `copy_scope` as
-`complete-slot-directory`, and sets `game_closed_before_clone: true` only
-after that condition was observed. All eleven execution slot directories must
-also be distinct from each other and from every source capture directory.
+Keep all five source slots unchanged. With the game closed, copy the entire
+appropriate slot into a separate working directory for each case, including its
+metadata files. Check that its `sav.dat` matches the source copy. Never run a
+case directly from the preserved source slot.
 
-The packaged run records use these exact states:
+Cases 3, 4, and 7 use copies of the same pre-scene capture outside setup.
+There is no save window between child checkpoint node `15` and scene node
+`16`: they are connected directly. Cases 5, 6, and 8 share the post-contact
+capture; Cases 9 and 11 share the completed capture; Cases 1 and 10 share the
+outside original. Case 2 alone uses the separate near-site original.
 
-| Run ID | `save_state` | `save_provenance` | `capture_id` | `source_run_id` |
-| --- | --- | --- | --- | --- |
-| `clean-ordinary-passive-spawn` | `untouched-preinstall-outside-setup` | `canonical-original` | `original-outside-setup` | `null` |
-| `fast-arrival-race` | `untouched-preinstall-near-setup` | `canonical-original` | `original-near-setup` | `null` |
-| `slow-contact-av-once` | `clean-derived-before-setup` | `canonical-clean-derived` | `seed-pre-scene-outside-setup` | `clean-ordinary-passive-spawn` |
-| `named-exit-only` | `clean-derived-before-scene` | `canonical-clean-derived` | `seed-pre-scene-outside-setup` | `clean-ordinary-passive-spawn` |
-| `no-replay-inside-lifetime` | `clean-derived-after-contact-inside-cleanup` | `canonical-clean-derived` | `seed-post-contact-inside-cleanup` | `clean-ordinary-passive-spawn` |
-| `post-scene-reload` | `contact-done-inside-cleanup` | `canonical-clean-derived` | `seed-post-contact-inside-cleanup` | `clean-ordinary-passive-spawn` |
-| `stream-away-return` | `child-active-before-setup` | `canonical-clean-derived` | `seed-pre-scene-outside-setup` | `clean-ordinary-passive-spawn` |
-| `cleanup-boundary-no-pop` | `contact-done-inside-cleanup` | `canonical-clean-derived` | `seed-post-contact-inside-cleanup` | `clean-ordinary-passive-spawn` |
-| `completed-reload` | `completed` | `canonical-completed` | `seed-completed` | `clean-ordinary-passive-spawn` |
-| `untouched-replay` | `untouched-preinstall-outside-setup` | `canonical-original` | `original-outside-setup` | `null` |
-| `removal-isolation-diagnostic` | `completed-disposable-clone-before-removal` | `canonical-completed-diagnostic-clone` | `seed-completed` | `clean-ordinary-passive-spawn` |
-
-The three pre-scene state names are aliases for byte-identical clones of one
-`seed-pre-scene-outside-setup` capture. In particular,
-`clean-derived-before-scene` does not mean a save between child checkpoint
-node `15` and scene node `16`; those nodes are connected directly. Cases 3,
-4, and 7 load the same outside-setup bytes into different execution slots.
-Cases 5, 6, and 8 likewise share the post-contact capture; Cases 9 and 11
-share the completed capture; and Cases 1 and 10 share the outside original.
-Case 2 alone uses the separate near-site original. Do not reset
-`cqa005_completed`: journal, scene, community, actor, phase, and streamed-world
-state can outlive one fact, so a reset would create an unrelated dirty state.
+Do not reset `cqa005_completed` to prepare a case. Journal, scene, community,
+actor, phase, and streamed-world state can outlive that fact.
 
 ## Build, install, and bind the canonical candidate
 
 Use the unmodified [completed checkpoint](../downloads/cqa-lab-05-completed.zip):
 
 ```text
-candidate id: canonical
-project:      CQA_Lab05_FirstContact.cpmodproj
-manifest:     example.json
+project: CQA_Lab05_FirstContact.cpmodproj
 ```
 
-The checkpoint's definitive WolvenKit `8.19.0` structural preflight is eleven
-successful cooks and eleven successful serialize-back checks per checkpoint.
-Any missing or failed CR2W stops this campaign. Those checks remain
-**Structurally validated** evidence only; they do not pass a runtime case.
+Open all eleven CR2W resources in WolvenKit before testing. Resolve missing
+files or conversion errors before installing the project.
 
 1. Close the game.
 2. Open the completed project in WolvenKit and use its normal build/package
@@ -235,57 +194,32 @@ Any missing or failed CR2W stops this campaign. Those checks remain
 5. Confirm the candidate contains the twelve depot paths listed in [the
    resource inventory](lab-05.md#twelve-runtime-artifacts), including the
    indirectly reached child, scene, subtitle entries, WEM, and both sectors.
-6. Hash both installed files and place the values in
-   `candidates[0].installed_files`.
-7. Preserve byte-identical copies of both installed files until the complete
+6. Preserve byte-identical copies of both installed files until the complete
    campaign and log audit finish.
 
-From the game directory:
-
-```powershell
-Get-FileHash -Algorithm SHA256 `
-  .\archive\pc\mod\CQA_Lab05_FirstContact.archive
-Get-FileHash -Algorithm SHA256 `
-  .\archive\pc\mod\CQA_Lab05_FirstContact.archive.xl
-```
-
-Hash the installed pair, not only the ZIP or project source. The archive binds
-the executable resources; the loose ArchiveXL file binds their registration.
-If either hash changes, stop and begin a new candidate record rather than
-mixing runs.
+Keep the installed pair unchanged between cases. If you rebuild it, repeat
+the affected tests from their starting saves.
 
 ## Capture every execution consistently
 
-For each run, fill:
+For each run, keep a dated note containing your game/framework versions,
+installed filenames, starting save label and slot directory, the source save
+it was copied from, and what you observed. Mark cases you did not run as
+pending. Keep a fresh copy of all four logs listed below before the next launch
+can overwrite them.
 
-- `performed_at` with an ISO 8601 timestamp including its UTC offset;
-- `tester`;
-- every observed environment version;
-- the fixed save label, `capture_id`, `source_run_id`,
-  `copy_scope: complete-slot-directory`, distinct execution slot directory,
-  `created_before_first_install`, `game_closed_before_clone: true`, and
-  `sav.dat` SHA-256;
-- all four retained log paths and SHA-256 values;
-- the case `status`, a concrete `observed` account, and focused evidence paths.
-
-Every completed run must bind a distinct execution instant, a distinct
-four-log SHA-256 bundle, and a distinct normalized execution-slot name. Merely
-writing the same instant with another UTC offset, copying one log bundle into
-multiple run rows, or renaming a slot only by slash style or letter case does
-not create independent evidence. Every execution hash must equal its referenced
-source-capture hash, so all five frozen groups remain byte-identical while
-their execution directories and run evidence stay independent. A derived run
-must occur after its recorded Case-1 source run.
+Use a separate working slot and log folder for every case. Reusing one run's
+logs or observations cannot establish the result of another run.
 
 Capture a short continuous video with game audio for timing, replay, visible
 spawn, scene, and cleanup claims. Add focused screenshots or notes for journal
 and pin states. Record the first and last visible contact behavior, the route,
 any combat stimulus, and whether a loading screen occurred. Do not use the
-video alone for log or save provenance.
+video alone for log or save history.
 
-Store focused, sanitized evidence beneath `completed/evidence/` only when it
-is suitable for publication. Keep `sav.dat`, private identifiers, extracted
-vanilla resources, and large unreviewed captures in private evidence storage.
+Keep saves, logs, and captures in your own test folder. If you contribute a
+result to the book, follow the repository contribution guide for sanitizing and
+submitting evidence. Do not publish private saves or extracted vanilla resources.
 
 ## Case 1: `clean-ordinary-passive-spawn`
 
@@ -319,10 +253,9 @@ checkpoint or autosave:
    Succeeded, pin Inactive, contact deactivated, child/root returned, and the
    fact is `1`.
 
-Retain the continuous full-route capture, state screenshots, installed pair
-hashes, starting save hash, and four logs. Exit the game before hashing and
-cloning the three complete seed directories. Do not invent a save between
-checkpoint node `15` and scene node `16`; there is no graph gap there.
+Keep the route capture, state screenshots, and fresh logs. Exit the game
+before copying the three complete seed directories. There is no save window
+between checkpoint node `15` and scene node `16`.
 
 ## Case 2: `fast-arrival-race`
 
@@ -353,21 +286,18 @@ pre-scene outside-setup seed, approach slowly, remain in range for the full
 scene, and do not skip or interrupt it.
 
 **Required result:** The exact subtitle `All clear. Keep moving.` and the
-hash-pinned WEM play once; the contact is acquired, the line does not duplicate,
+supplied WEM play once; the contact is acquired, the line does not duplicate,
 and lipsync/audio errors are absent from retained logs.
 
 Start from `clean-derived-before-setup`, a distinct execution-slot clone of
-`seed-pre-scene-outside-setup`. Confirm its hash matches the capture, keep the
+`seed-pre-scene-outside-setup`. Keep the
 contact in view, enter at a walking pace, and remain until the scene completes.
 Capture the exact subtitle, audible line, contact performer, and mouth/facial
 response in one continuous recording. Count subtitle display and audible
 playback separately; each must be exactly one.
 
-Bind the evidence to RUID `9638591835734011695`, the exact five localization
-depot paths above, and WEM SHA-256
-`0487ba1116d9c4fa9cfb25e825ad4ec35110195cf3953cb8bc67a16f5cbc657f`.
-A subtitle without sound, sound without the exact subtitle, duplicate playback,
-or a substituted WEM fails the combined lookup case.
+Check the line with RUID `9638591835734011695`. A subtitle without sound,
+sound without the exact subtitle, or duplicate playback fails this test.
 
 ## Case 4: `named-exit-only`
 
@@ -401,7 +331,7 @@ contact point before leaving cleanup.
 child lifetime; the leave objective remains the only active progression state.
 
 Use `clean-derived-after-contact-inside-cleanup`, a distinct execution-slot
-clone of `seed-post-contact-inside-cleanup`. Confirm its hash, stay inside the
+clone of `seed-post-contact-inside-cleanup`. Stay inside the
 110 m cleanup volume, and walk out of and back into the 25 m setup area or
 revisit the contact point without crossing cleanup. Remain long enough that a
 duplicate line would be obvious.
@@ -438,7 +368,7 @@ returning resolves the same NodeRefs and advances the scene exactly once
 without duplicate contact entries.
 
 Start from `child-active-before-setup`, a third distinct execution-slot clone
-of `seed-pre-scene-outside-setup`, and confirm its matching hash. Do not enter
+of `seed-pre-scene-outside-setup`. Do not enter
 the setup volume. Travel by ordinary movement beyond the Quest descriptor's
 finite box, whose supplied X/Y range is `-1300.02..-700.02` by
 `1197.2208..1797.2208`, then return by the same recorded route. Do not use fast
@@ -494,11 +424,9 @@ original used by Case 1 and repeat the ordinary route.
 return, and root completion reproduce once with the same visible and logged
 behavior.
 
-Restore a byte-identical copy of the original
-`untouched-preinstall-outside-setup` slot. Confirm its `sav.dat` hash matches
-the first clean run, then repeat the complete ordinary route without changing
-the candidate. Capture every lifecycle boundary from passive spawn through
-root completion and compare it with Case 1 plus the A/V and cleanup evidence.
+Load a working copy of the original `untouched-preinstall-outside-setup` slot
+and repeat the complete route with the same build. Compare spawning, dialogue,
+cleanup, and completion with Case 1.
 
 This is clean reproducibility. Resetting `cqa005_completed` on the completed
 save would test a different, dirty state and cannot pass this case.
@@ -515,10 +443,9 @@ or pin reactivates, no `cqa005` contact appears, fresh logs show no `cqa005`
 registration, and the packaged fixture contains no TweakDB mutation or
 override.
 
-With the game closed, copy the complete `seed-completed` source slot directory
-to a distinct disposable execution slot. Record both directory names and
-confirm that their `sav.dat` hashes match. Preserve the canonical installed
-hashes, then move these two exact files out of the game directory:
+With the game closed, copy the complete `seed-completed` source slot to a
+separate disposable slot. Preserve the installed pair, then move these two
+files out of the game directory:
 
 ```text
 archive\pc\mod\CQA_Lab05_FirstContact.archive
@@ -543,13 +470,12 @@ validated; this diagnostic deliberately does not claim to prove every vanilla
 field or exclude unrelated installed mods. Disable unrelated mods rather than
 trying to edit or compare the generic record.
 
-Label every artifact `removal-isolation-diagnostic`. Restore the hash-bound
+Label every artifact `removal-isolation-diagnostic`. Restore the unchanged
 candidate pair only after the game and framework processes have fully exited.
 
 ## Retain and audit four logs per execution
 
-Before starting another run, copy these logs into that run's private evidence
-directory:
+Before starting another run, copy these logs into that run's test folder:
 
 ```text
 red4ext\plugins\ArchiveXL\ArchiveXL.log
@@ -558,9 +484,8 @@ red4ext\logs\game.log
 r6\logs\redscript_rCURRENT.log
 ```
 
-Copy the logs before the next launch overwrites them. If you plan to report a
-bug or contribute a retained test result, hash the copies so each run remains
-distinguishable.
+Copy the logs before the next launch overwrites them. Keep them in a separate
+folder for each run.
 
 Search all four logs for:
 
@@ -578,7 +503,7 @@ and audio observation.
 
 ## Failure triage
 
-Preserve the failed run, save hash, candidate pair, video, and all four logs
+Preserve the failed run, save name, candidate pair, video, and all four logs
 before editing anything.
 
 | Observation | Classification and first checks |
@@ -594,7 +519,7 @@ before editing anything.
 | Reload replays the scene or pin | Failed save-backed owner transition; retain the derived save before inspecting scene/journal state |
 | Return after streaming creates a second contact | Failed registry/area lifecycle or duplicate mount; inspect identities, descriptor ownership, and installed candidates |
 | Contact disappears while V is inside cleanup | Failed cleanup timing/geometry; inspect trigger polarity, route, node `20`, and deactivation order |
-| Completed reload starts the child | Failed completion guard/write order or dirty candidate/save provenance |
+| Completed reload starts the child | Failed completion guard/write order or dirty candidate/save history |
 | Removal run still mounts Lab 5 | Failed removal isolation; search for duplicate archive pairs and preserve fresh framework logs |
 | Packaged project contains a tweak or script mutation | Reject the candidate; Lab 5 may reference the generic record but must not override or mutate it |
 | A useful log was overwritten | Repeat the case from the same starting save and copy the fresh logs before another launch |

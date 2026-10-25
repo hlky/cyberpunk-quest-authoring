@@ -8,7 +8,6 @@ logs across eight executions.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -49,7 +48,7 @@ Treat access to the route and the new `cqa004` world resources as
 route is inaccessible, record that result. Do not silently substitute a
 console teleport.
 
-## Prepare clean-save provenance
+## Prepare clean starting save
 
 Before installing either checkpoint:
 
@@ -57,22 +56,19 @@ Before installing either checkpoint:
    candidate;
 2. confirm the player is outside the 25-metre reach volume and can approach
    the cabinet row by the verified ordinary route;
-3. copy the complete save-slot directory into private evidence storage;
+3. copy the complete save-slot directory into your test folder;
 4. record its in-game label and slot-directory name;
-5. hash `sav.dat` and set `created_before_first_install: true` only after
-   confirming that history;
+5. confirm that this save predates the first Lab 4 install;
 6. preserve that original byte-for-byte for both `clean-walk` and
    `clean-replay`;
 7. derive separate active-child saves before reach and between boundaries;
 8. derive a separate parent-active save during the 30-second confirmation;
 9. preserve the completed save used by both completed-state cases.
 
-Use a fresh working-copy slot directory for every execution, even when two
-runs restore the same preserved source. The `clean-walk`/`clean-replay`,
-`pre-reach-reload`/`stream-away-return`, and
-`completed-reload`/`completed-reinstall` pairs must each record one shared
-`sav.dat` hash. Those three source classes, the between-boundaries save, and
-the parent-confirmation save must have distinct hashes from one another.
+Use a fresh working copy for each run. Preserve the same source save for
+`clean-walk`/`clean-replay`, `pre-reach-reload`/`stream-away-return`, and
+`completed-reload`/`completed-reinstall`. Keep separate between-boundaries
+and parent-confirmation saves.
 
 Do not obtain “clean” evidence by writing `cqa004_completed = 0`, removing the
 mod after a prior load, or reusing a slot that saw the start checkpoint.
@@ -96,22 +92,9 @@ project:      CQA_Lab04_HandoffPoint.cpmodproj
    archive\pc\mod\CQA_Lab04_HandoffPoint.archive.xl
    ```
 
-4. Hash both installed files in `candidates[0].installed_files`.
-5. Confirm the record lists all seven depot resources, including the child and
+4. Confirm the archive contains all seven depot resources, including the child and
    both sectors reached through the block.
-6. Preserve those installed files until all eight executions finish.
-
-From the game directory, PowerShell can produce the two hashes:
-
-```powershell
-Get-FileHash -Algorithm SHA256 `
-  .\archive\pc\mod\CQA_Lab04_HandoffPoint.archive
-Get-FileHash -Algorithm SHA256 `
-  .\archive\pc\mod\CQA_Lab04_HandoffPoint.archive.xl
-```
-
-Hash the installed files, not the ZIP. Packing and the loose registration file
-are both part of the runtime candidate.
+5. Preserve those installed files until all eight executions finish.
 
 ## Preflight the ownership boundary
 
@@ -171,7 +154,7 @@ The confirmation objective is the visible evidence that child `Out1` reached
 parent node `13.Out1 -> 14.Active`. Preserve a derived save during this window
 for Run 4 and the final completed save for Runs 6 and 7.
 
-Copy and hash all four fresh logs before another execution can replace them.
+Copy all four fresh logs before another execution can replace them.
 
 ## Run 2: pre-reach reload
 
@@ -183,7 +166,7 @@ the 25-metre volume.
 3. Confirm leave and confirmation are not yet active.
 4. Enter reach, remain inside leave, then walk outside.
 5. Confirm the child returns once and the parent completes once.
-6. Retain the save hash, observations, and four fresh logs.
+6. Retain the save name, observations, and four fresh logs.
 
 Pass requires coherent active-child restoration. Restarting the root flow or
 duplicating the pin is a failure even if the quest eventually completes.
@@ -199,7 +182,7 @@ inside the leave volume.
 4. Walk outside the leave volume.
 5. Confirm leave succeeds, confirmation activates once, and completion follows
    once.
-6. Retain the save hash, observations, and four fresh logs.
+6. Retain the save name, observations, and four fresh logs.
 
 Immediate completion on load is a failure unless the retained position is
 actually outside the authoritative leave volume.
@@ -214,7 +197,7 @@ Restore the derived save made after the child returned and while the parent's
 3. Observe whether the realtime delay resumes or restarts; record the measured
    result rather than assuming one.
 4. Confirm the parent succeeds confirmation, phase, fact, and quest once.
-5. Retain the save hash, timing observation, and four fresh logs.
+5. Retain the save name, timing observation, and four fresh logs.
 
 Pass requires a coherent parent-owned continuation. The matrix records timing
 semantics; the procedure does not pre-label resume versus restart.
@@ -230,7 +213,7 @@ Restore a working copy of the active-before-reach child save.
 4. Confirm the reach objective and pin remain coherent.
 5. Cross reach and leave, then confirm one child return and one parent
    completion.
-6. Retain route notes, save hash, observations, and four fresh logs.
+6. Retain route notes, save name, observations, and four fresh logs.
 
 This case tests active composition across world streaming. It does not test
 `CutDestination` and does not generalize to every prefab lifetime.
@@ -253,8 +236,7 @@ This is the completed-route bypass, not a second successful playthrough.
 
 1. Close the game.
 2. Remove only the two installed canonical files.
-3. Reinstall the identical saved canonical pair and verify their hashes are
-   unchanged.
+3. Reinstall the preserved copies of the same two files.
 4. Load the same completed save.
 5. Confirm the quest remains completed and the child does not restart.
 6. Confirm ArchiveXL registers the root without a separate child entry.
@@ -279,14 +261,14 @@ root first-run route
   -> parent completion
 ```
 
-Every transition must occur once with the same candidate hashes and no
+Every transition must occur once with the same installed files and no
 `cqa004` errors. This verifies reproducibility from a second clean derivation;
 it does not erase the need for the six boundary-specific runs.
 
 ## Retain four logs per execution
 
 After each of the eight runs, copy these files into a run-specific private
-evidence directory before starting the next execution:
+test folder before starting the next execution:
 
 ```text
 red4ext\plugins\ArchiveXL\ArchiveXL.log
@@ -295,7 +277,7 @@ red4ext\logs\game.log
 r6\logs\redscript_rCURRENT.log
 ```
 
-Hash every copied log and store the paths/hashes in that run's `logs` array.
+Keep the copied logs with that run’s test notes.
 Search all four for `cqa004`, the child depot path, NodeRef errors, streaming
 errors, journal/localization errors, and framework failures. “No visible
 crash” is not an adequate log result.

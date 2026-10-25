@@ -86,23 +86,24 @@ messages were requested,” write it after their activation. If it means “the
 player acknowledged the exchange,” write it only after the acknowledgement
 gate.
 
+For an offer that follows another quest, place the prerequisite wait and any
+game-time delay before both message and choice activation. Follow the
+[completion-then-delay example](../gates/delays-and-persistence.md#delay-a-follow-up-offer-after-completion).
+Adding a gate to a later build does not remove an offer already stored in a
+save's journal.
+
 **Observed in vanilla:** the compact thread at
 `contacts/dex/q003_flathead_price` inside
 `base\journal\cooked_journal.journal` contains a message, a one-choice group,
 and a following message with the expected entry properties. It proves the
 journal hierarchy, not a new mod-owned questphase.
 
-**Structurally validated:** the retained GQ002 source phases and phone-related
-resources round-trip with their recorded toolchain. Exact provenance is kept
-with the [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-Its runtime section is the active next-test checklist, not a retained result.
-The serialized source reports WolvenKit `8.17.4`; it is not a pinned
-WolvenKit `8.19.0` compatibility result. Ordered presentation for that exact
-candidate therefore remains **Experimental**.
+Custom message ordering remains **Experimental**. Test first delivery, each
+reply, reload, and duplicate prevention from the specified starting saves.
 
 ## Recipe: make a one-choice text job offer
 
-The retained GQ002 offer uses this native shape:
+A one-choice offer uses this native shape:
 
 ```text
 In1
@@ -133,11 +134,8 @@ See [Journal state and tracking](../journal/quest-state.md). Keep the quest
 inactive if the design intentionally allows a declined offer, and give that
 route an explicit output instead of leaving an active listener behind.
 
-The GQ002 candidate named above is **Structurally validated** for the exact
-node/path shape. Its checklist asks the tester to confirm that the offer
-appears and `On my way.` activates the meeting objective, but it does not
-retain that result. Those runtime claims, decline handling, repeatable offers,
-and behavior under the pinned versions remain **Experimental**.
+Test that the offer appears, accepting it activates the intended objective,
+and declining it leaves no active listener. Repeat after reload.
 
 ## Recipe: route a two-choice text conversation
 
@@ -169,14 +167,8 @@ facts can become true, a later signal may reach supposedly finished logic;
 that behavior is **Experimental**. Persist the winner at the choice boundary,
 and make a late losing signal harmless or explicitly cut it.
 
-The GQ002 candidate above is **Structurally validated** for two selected-state
-waits, matching replies, result facts, and convergence. Its checklist planned
-both routes; it is not runtime proof for either result. Separately, a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-is **Runtime-proven** for a complete GQ000 route containing phone choices and
-completion presentation after its final-message gate. Combining pieces from
-the two fixtures into a new conversation remains **Experimental** until that
-exact combined resource passes.
+Test each selected-state wait separately. Confirm the matching reply, result
+fact, and convergence, then reload before and after the response.
 
 ## Text is not a holocall
 
@@ -255,7 +247,7 @@ can all be save-backed. Retain separate cases for:
 7. removal isolation from the original pre-install save;
 8. for calls, reject/interruption, save during the call, and phone-busy cases.
 
-Record archive and loose-file hashes, save provenance, selected choice,
+Record archive and loose-file hashes, save history, selected choice,
 journal state, facts, and fresh ArchiveXL/RED4ext/redscript logs. Resetting one
 fact does not clear a visited message or an active call.
 
@@ -271,10 +263,3 @@ fact does not clear a visited message or an active call.
 | Call UI starts but no dialogue plays | Phone operation succeeded while scene input, actor/context, subtitle, VO, or WEM ownership failed |
 | Dialogue ends but phone remains busy | Missing or unreachable `EndCall`, rejected/interrupted output not handled |
 | Only one save behaves incorrectly | Saved journal, phone, scene, or fact state; repeat from the untouched baseline |
-
-Keep the evidence terms narrow: the exact GQ000 archive is
-**Runtime-proven** for its recorded route, the GQ002 resource/build shape is
-**Structurally validated** while its planned behavior remains
-**Experimental**, and the named base-game shapes are **Observed in vanilla**.
-Every new custom arrangement remains **Experimental** until its own retained
-run passes.

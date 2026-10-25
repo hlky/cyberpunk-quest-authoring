@@ -189,20 +189,6 @@ safely in the current WolvenKit UI, stop at a focused inspection/structural
 prototype. Do not substitute a hidden generator and call that a reader-facing
 manual procedure.
 
-## Structural research result
-
-A retained mod-owned snapshot contains a `.scenerid`, rewindable `.scene`, and
-owning `.questphase` built as one resource chain. Exact artifact identities are
-kept in [Lab status and research
-provenance](../reference/evidence-version-matrix.md#retained-structural-and-vanilla-evidence).
-
-On 2026-08-09, WolvenKit `8.19.0` serialized all three binaries to CR2W-JSON
-and deserialized those documents back to CR2W without error. This is
-**Structurally validated** evidence for readable, writable resource shapes.
-It excludes ArchiveXL mounting, world resolution, actor acquisition,
-animation correctness, seek/rewind, clue layers, UI, audio, save behavior,
-cleanup, interruption, and replay.
-
 ## Failure routing
 
 | Symptom | Inspect first |
@@ -212,7 +198,7 @@ cleanup, interruption, and replay.
 | Recorded camera is absent | Camera RID tag/serial, scene camera-reference row, camera event `animSRRefId`, camera `NodeRef`, camera entity, origin marker, and activation flag |
 | View/fog/setup layer is missing | Scene prop record, corresponding `.ent`, support marker, prop spawn policy, visibility events, and stream availability |
 | Clue appears but quest does not advance | Layer/time interval, clue entity reference, discovery node, fact name/value, and quest-side fact wait |
-| Exit leaves V or UI in the wrong state | Named output route, normal/interrupted cleanup symmetry, teleport/restore ordering, UI/input restoration, and save provenance |
+| Exit leaves V or UI in the wrong state | Named output route, normal/interrupted cleanup symmetry, teleport/restore ordering, UI/input restoration, and save history |
 | Replay uses stale results | Discovery facts, journal state, one-shot guards, active scene state, and explicit reset/preserve policy |
 
 Next: [RID playback and rewind](rid-playback-and-rewind.md).

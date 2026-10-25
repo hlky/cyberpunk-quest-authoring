@@ -37,11 +37,6 @@ Let WolvenKit maintain handle identities through normal editor operations.
 When comparing round trips, compare the resulting object relationships rather
 than requiring the same incidental numbers.
 
-> A legacy research tool once required referenced objects to have already
-> appeared in its serialized traversal. Treat that as a tool-specific
-> constraint, not a universal authoring rule. The portable requirement is
-> that the final CR2W object graph resolves every reference correctly.
-
 ## Diagnose a socket failure
 
 Start with the source and destination nodes and write the intended edge in one

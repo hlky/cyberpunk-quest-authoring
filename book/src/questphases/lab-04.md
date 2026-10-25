@@ -6,16 +6,12 @@ then performs a visible parent-only confirmation before completing the quest.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Implementation status:** both supplied seven-resource checkpoints are
-**Structurally validated** with WolvenKit `8.19.0`. Their parent and child
-CR2W types, soft child path, socket contracts, graphs, prefab lists, NodeRefs,
-journal paths, world records, and registration boundary are exact. Runtime
-mounting, child entry, return, streaming, and save/reload behavior remain
-governed by the synchronized acceptance record.
+**Structurally validated:** both seven-resource checkpoints round-trip with
+WolvenKit `8.19.0`. Follow the test guide for child entry, return, streaming,
+and save/reload.
 
 Follow [Author Handoff Point in WolvenKit](lab-04-authoring.md) to expand the
 start checkpoint. Then use [Test Handoff Point](lab-04-test.md) to bind the
@@ -286,8 +282,8 @@ directly. Phase node `13` and the matching interface names are the handoff.
 | Quest never appears | Root path in `.archive.xl`, installed archive pair, ArchiveXL/RED4ext logs | The child is not an additional root registration |
 | Quest activates but child work never starts | Node `13` soft path, archived child, parent `In1`, child `socketName: In1` | A valid parent CR2W does not prove external resolution |
 | Child finishes but confirmation never appears | Child output reachability, child `socketName: Out1`, parent `13.Out1 -> 14.Active` | Journal success is not implicit parent continuation |
-| Trigger refs fail only in child | Root prefab entry, empty child/instance lists, full world binding, exact candidate hashes | Do not “fix” by duplicating until the tested arrangement is diagnosed |
-| Reload restarts or skips work | Save provenance, active owner at save time, fact write order, journal state | A console fact reset is not a clean save |
+| Trigger refs fail only in child | Root prefab entry, empty child/instance lists, full world binding, exact installed build | Do not “fix” by duplicating until the tested arrangement is diagnosed |
+| Reload restarts or skips work | Save history, active owner at save time, fact write order, journal state | A console fact reset is not a clean save |
 | An interruption route behaves unpredictably | Confirm every `CutDestination` remains unwired | Lab 4 makes no cut-safety claim |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous topic:

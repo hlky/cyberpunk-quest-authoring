@@ -11,11 +11,7 @@ world-integrated quest:
   checkpoint, waits until the player is inside its reach volume, then waits
   until the player is outside its wider leave volume.
 
-Both checkpoints use only mod-owned resources. They inherit a test location
-and trigger geometry from earlier Ghostline research, but that provenance does
-not prove this new resource set in game. The cooked resources are
-**Structurally validated** with WolvenKit 8.19.0; all `cqa003` mounting,
-streaming, marker, trigger, navigation, and save behavior remains
-**Experimental** until `runtime-acceptance.json` is completed.
+Both checkpoints use mod-owned resources and are **Structurally validated**
+with WolvenKit `8.19.0`. Follow the lab test guide for world and save behavior.
 
 Do not install both checkpoints together. They register the same depot paths.

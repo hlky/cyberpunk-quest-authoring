@@ -102,7 +102,7 @@ Use `In1`/`Out1` here because the parent must wait for one child activity and
 then continue. Copy the interface contract appropriate to the lifecycle you
 are implementing, not the nearest-looking graph.
 
-## Multiple outcomes require matching evidence
+## Connect every named outcome
 
 A child can expose several meaningful results only when the complete parent
 and child arrangement supports them:

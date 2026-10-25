@@ -16,9 +16,9 @@ symptom
   -> clean-save runtime retest
 ```
 
-## First-release test boundary
+## Tool versions
 
-The procedures target the book's pinned first-release stack:
+The procedures target the book's pinned version set:
 
 | Component | Version |
 | --- | --- |
@@ -28,13 +28,8 @@ The procedures target the book's pinned first-release stack:
 | RED4ext | `1.30.0` |
 | redscript | `0.5.31` |
 
-See [Tested versions](../reference/tested-versions.md) before carrying a result
-to another game build, storefront, or tool version. Some pages also cite
-retained research. Those records are explicitly called **legacy**:
-their archive hashes and observed routes are useful **Runtime-proven** evidence
-for those arrangements, but their incomplete environment records do not prove
-the same behavior on this pinned stack. The research project is never required to follow
-the procedures.
+Use the [tested versions](../reference/tested-versions.md) when reproducing a
+problem, and record any differences in your setup.
 
 ## Route by symptom
 
@@ -47,7 +42,7 @@ the procedures.
 | A scene crashes at launch, an actor is missing, or dialogue never starts | [Actors, scenes, and lipsync](actors-scenes-lipsync.md) | Was the actor ready, acquired by the same identity, and assigned an addressable lipsync slot? |
 | A quest has no title, a subtitle is missing, audio is silent, or a choice label is stale | [Journal, localization, and audio](journal-localization-audio.md) | Which of the separate journal/UI, spoken-line, or embedded-choice lookup paths failed? |
 | Only old saves fail, a completed quest repeats, or a device keeps stale state | [Save state and clean retests](save-state-clean-retests.md) | What state did the save already contain before these bytes were installed? |
-| Several changes landed together and causality is unclear | [Controlled isolation and evidence](controlled-isolation-evidence.md) | What one variable differs from the last hash-bound baseline? |
+| Several changes landed together and causality is unclear | [Controlled isolation and evidence](controlled-isolation-evidence.md) | What one variable differs from the last unchanged baseline? |
 
 ## Find the earliest failing layer
 
@@ -85,22 +80,5 @@ Before changing anything:
 
 That snapshot turns “it broke” into a reproducible candidate. The final guide
 explains how to reduce it without changing several boundaries at once.
-
-## Keep conclusions narrow
-
-- **Structurally validated** means that serialization, round trips, graph and
-  resource checks support the described shape.
-- **Observed in vanilla** means that the cited shape exists in extracted
-  base-game resources; it is not proof that a mod-owned adaptation runs.
-- **Runtime-proven** means that the stated bounded behavior or result was
-  observed in game for the exact retained arrangement. The result can be a
-  success or a failure; a failed lab campaign remains **Experimental** for the
-  intended behavior that did not occur.
-- **Experimental** means that the relevant runtime or lifecycle acceptance is
-  incomplete.
-
-Fixing a known defect does not promote every surrounding feature. A
-one-variable crash isolation can prove the tested lookup while facial quality,
-reload safety, or interruption behavior remain **Experimental**.
 
 Next: [Serialization versus runtime](serialization-vs-runtime.md).

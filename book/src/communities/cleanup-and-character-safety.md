@@ -114,12 +114,6 @@ round trip cannot reveal:
 - a test save can make the character appear reliable when a different save
   legitimately cannot provide it.
 
-The [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-used `Character.Judy` to isolate a failing scene/community path. That bounded
-result is **Runtime-proven** for the legacy fixture only. It is evidence that
-the tested lifecycle once completed; it is not a recommendation to author new
-content around Judy or any other unique story character.
-
 ## Bounded generic-character starting point
 
 For the Lab 5 stationary contact, use this pair as the evidence-backed
@@ -136,15 +130,11 @@ Workspot resource:
 Why this pair is preferred:
 
 - the character is a generic Tyger Claw record, reducing unique-story
-  ownership risk;
-- the extracted vanilla community at
+  ownership conflicts;
+- **Observed in vanilla:** the community at
   `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community`
-  supplies **Observed in vanilla** evidence for the record's use in a native
-  community entry;
-- the [retained candidate files](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-  bind that entry, its spot identity, and the cigarette workspot, and the
-  legacy fixture spawned all three configured guards. The spawn result is
-  **Runtime-proven** only for that hash-bound fixture and placement.
+  uses the record in a native community entry;
+- the lab's AI spot selects the cigarette workspot explicitly.
 
 This is not a promise that the actor will stand safely at a new transform,
 provide an appropriate voice, remain passive, acquire into a new scene, or
@@ -154,32 +144,10 @@ combat, and interruption need their own checks.
 
 ## How to verify workspot mappings
 
-When retained sources disagree, prefer evidence bound to the installed runtime
-artifact:
-
-```text
-hash-bound archive bytes + runtime observation
-  > byte-identical extracted/serialized resource joins
-  > synchronized source at the tested commit
-  > later or squashed source snapshot
-  > array order, debug-name proximity, or memory
-```
-
-The [retained archive](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-and its typed entry-to-spot joins support the cigarette workspot above. A later
-source-only snapshot named a different
-standing workspot, but it is not byte-bound to that runtime archive and does
-not supersede the archive-bound mapping.
-
-The later
-`base\workspots\common\ground\generic__stand_ground__guard__02.workspot`
-appears in a different source/runtime lineage; it is not the retained
-stationary-contact mapping. Separate
-`base\workspots\patrolling\guard_stand.workspot` evidence belongs to a
-finite-patrol candidate and is not a universal guard workspot. Always follow
-the typed entry name -> registry `spotNodeRefs` -> area `spotNodeIds` ->
-concrete `worldAISpotNode` resource path, rather than pairing nearby
-serialized arrays or debug strings.
+Follow the typed entry name → registry `spotNodeRefs` → area `spotNodeIds` →
+concrete `worldAISpotNode` resource path. Do not pair nearby serialized arrays
+or debug strings by position. Inspect the installed resource when the project
+and game appear to select different workspots.
 
 ## Interruption and combat policy
 
@@ -220,7 +188,7 @@ additional testing if your quest uses them.
 | Named `seed-completed` (Cases 9/11) | Load a distinct byte-identical clone under the case-specific installation | Scene does not restart and no stale contact reactivates |
 | Active contact | Trigger intended interruption/combat cases | No mid-owner disappearance, deadlock, duplicate actor, or lost outcome |
 
-For each run, record the installed archive hash, starting save, route, chosen
+For each run, record the installed archive filename, starting save, route, chosen
 outcome, first/last visible actor state, journal/fact state, and behavior after
 reload and revisit. A later run against a different archive cannot silently
 inherit the earlier result.
@@ -232,8 +200,8 @@ inherit the earlier result.
 | Actor disappears before the scene finishes | Deactivate edge, named-exit routing, workspot/AI ownership, and cleanup trigger polarity |
 | Actor remains forever after completion | Whether the cleanup-area `Exited` edge was armed, action scope/reference, and saved branch state |
 | Scene restarts although the actor was removed | Durable completion fact/journal gate and setup/start path |
-| Different saves produce different actor availability | Unique-character ownership, old community activation, scene state, death/appearance state, and starting-save provenance |
+| Different saves produce different actor availability | Unique-character ownership, old community activation, scene state, death/appearance state, and starting-save history |
 | Actor spawns but behaves like a hostile gang member | Character record packages, faction/attitude logic, AI commands, and interruption policy |
-| Workspot evidence appears contradictory | Installed archive hash, typed spot joins, source-to-binary synchronization, and whether the candidate was stationary or patrolling |
+| Workspot evidence appears contradictory | Installed archive filename, typed spot joins, source-to-binary synchronization, and whether the candidate was stationary or patrolling |
 
 Return to [Communities and characters](index.md).

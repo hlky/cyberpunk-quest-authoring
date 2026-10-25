@@ -1,4 +1,4 @@
-# Lifecycle, cleanup, and evidence
+# Lifecycle and cleanup
 
 Quest authoring is lifecycle design. The happy path is only one transition
 through a system that can be saved, reloaded, interrupted, re-entered, or
@@ -95,40 +95,6 @@ Each check proves a different claim:
 “WolvenKit saved it” and “the archive packed” are therefore intermediate
 evidence, not completion.
 
-## How claims are marked
-
-Use the narrowest label supported:
-
-- **Runtime-proven:** the stated bounded behavior or result was observed in
-  game for the exact retained arrangement. The observed result can be a
-  success or a failure; a failed campaign remains **Experimental** for the
-  intended behavior that did not occur.
-- **Structurally validated:** serialized, round-tripped, and inspected, but not
-  yet proven in game in that arrangement.
-- **Observed in vanilla:** present in one or more cited vanilla resources.
-- **Experimental:** investigation or runtime acceptance is incomplete.
-
-A page can contain several labels. For example, a node shape may be observed in
-vanilla, its mod-owned copy structurally validated, and its new lifecycle still
-experimental.
-
-## Test record
-
-A reproducible runtime claim should record:
-
-- Cyberpunk, WolvenKit, ArchiveXL, RED4ext, and other relevant versions;
-- archive and loose-resource hashes;
-- the exact installed depot paths;
-- the starting save and why it is clean for this test;
-- the expected route and observed result;
-- relevant ArchiveXL, redscript, and game logs;
-- whether normal completion, reload, interruption, and replay were tested;
-- hypotheses rejected during isolation.
-
-Changing several resources and declaring the last edit causal is not controlled
-evidence. Reduce the candidate, preserve known-good baselines, and change one
-boundary at a time.
-
 ## Foundation checkpoint
 
 Before proceeding to a lab, be able to explain:
@@ -138,7 +104,7 @@ Before proceeding to a lab, be able to explain:
 3. the type and domain of every identifier;
 4. which state can already exist in the save;
 5. who owns cleanup and termination;
-6. which validation step supports each claim.
+6. how you will test completion, interruption, and reload.
 
 If one answer is “the template handles it,” the resource has not yet been
 explained.

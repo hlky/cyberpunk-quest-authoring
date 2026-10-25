@@ -1,9 +1,7 @@
 # Location research
 
-Safe location research produces a provenance record and a small mod-owned
-fixture. It does not produce a folder of redistributed vanilla CR2W files. The
-goal is to answer where a native object lives, which resources own it, how it
-is addressed, and which observations still require an in-game test.
+Choose a location by inspecting its world resources and visiting it in game.
+Build a small mod-owned test project rather than copying a vanilla sector.
 
 ## Retained comparison paths
 
@@ -83,11 +81,9 @@ terminal is about 131 m from the center and outside that outline. These are
 structural observations and geometry calculations, not player-access evidence.
 Do not redistribute either extracted sector or the extracted localization.
 
-**Experimental:** confirm on the pinned game build that Allen Street is
-unlockable and usable, that the public northeast route reaches the cabinet row,
-that the row is independently recognizable without the quest pin, and that the
-110 m trigger behaves as calculated. Lab 3's test protocol retains those as
-runtime questions rather than promoting them from coordinates alone.
+**Experimental:** check that Allen Street is accessible, the northeast route
+reaches the cabinet row, the row is recognizable without the quest pin, and
+the 110 m cleanup trigger covers the intended route.
 
 ## Trace owners outward, then inward
 
@@ -125,7 +121,7 @@ retain the narrow containing journal subtree and `gameJournalPath`, not the
 entire cooked journal. For a device, separate the entity template, node-local
 RedPackage, inplace resource, `.devices`, and `.psrep` questions.
 
-## Keep a focused evidence record
+## Record the location
 
 A useful location record contains:
 
@@ -140,10 +136,6 @@ A useful location record contains:
 | Focused excerpt | Only decisive fields, with array indices or stable identifiers |
 | Evidence label | One of the four exact confidence labels, attached to the bounded claim |
 | Runtime case | Starting save, route, expected result, observed result, logs, and fixture hashes |
-
-Hash mod-owned fixtures and generated diagrams. For vanilla resources, the
-important public artifact is the depot path and extraction procedure; a hash
-can help private provenance but does not grant redistribution rights.
 
 ## Turn observation into a mod-owned fixture
 

@@ -214,7 +214,7 @@ cross-system ownership ledger.
 
 Facts, journal state, quest checkpoints, active scene state, spawned
 communities, and some device/world state can survive archive replacement.
-Every runtime case must record the exact starting save and package hash.
+Use the specified starting save and keep the installed build unchanged.
 
 Prepare at least these save seeds:
 
@@ -233,8 +233,8 @@ no longer matches the package.
 
 ## Mandatory eight-case runtime matrix
 
-All eight rows are required for the same packaged candidate. A pass in one row
-cannot promote another.
+Run each case separately; seek, rewind, layer discovery, and cleanup can fail
+independently.
 
 | Case | Start and action | Required observations | Failure boundary |
 | --- | --- | --- | --- |
@@ -250,7 +250,7 @@ cannot promote another.
 For every row, retain:
 
 - case ID and pass/fail;
-- exact archive/package SHA-256 plus every external asset hash;
+- installed archive and external asset paths;
 - game, WolvenKit, ArchiveXL, RED4ext, redscript, and relevant audio/animation
   tool versions;
 - starting-save identity and provenance;
@@ -260,32 +260,15 @@ For every row, retain:
 - timestamps or screenshots/log excerpts sufficient to audit the observation;
 - unexpected behavior and whether the case was rerun from a fresh clone.
 
-Only a retained record with all eight cases passed may support a bounded
-**Runtime-proven** claim for that exact package. Rebuilding any `.questphase`,
-`.scene`, `.scenerid`, entity, world resource, TweakDB registration, audio, or
-animation asset invalidates the package binding and requires the affected
-matrix to be rerun.
-
-## Promotion language
-
-Use exact language:
-
-- **Structurally validated:** “The mod-owned questphase, scene, and RID
-  serialize and their typed reference inventory is internally consistent.”
-- **Experimental:** “The candidate has not completed the eight-case runtime
-  matrix.”
-- **Runtime-proven:** only after all eight retained rows pass, and only for
-  the exact package/version/save boundary named by the record.
-
-Never use “working pipeline,” “game-ready,” or “validated in game” as a
-substitute for the case table and hashes.
+Check that all eight cases passed for the exact package you intend to distribute.
+Repeat the affected tests after changing its resources.
 
 ## Failure routing
 
 | Symptom | Inspect first |
 | --- | --- |
 | Correct layer, no focusable clue | Event interval, `layer`, clue entity reference, entity streaming/acquisition, and focus toggle |
-| Clue highlights but fact remains zero | Discovery node/event path, exact fact name, `overrideFact`, signal ordering, and save provenance |
+| Clue highlights but fact remains zero | Discovery node/event path, exact fact name, `overrideFact`, signal ordering, and save history |
 | Fact changes but objective does not | Questphase fact condition, logical join, journal path/state, and one-shot guard |
 | Rewind leaves highlight/VFX behind | Event interval reconstruction, layer condition, clue/VFX end state, and side effects crossed by reverse playback |
 | Normal exit leaves BD presentation active | View/fog/setup prop cleanup, camera/render restoration, UI/input masks, and named outcome route |

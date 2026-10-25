@@ -1,9 +1,7 @@
 # Author one spoken line
 
-This procedure turns the First Contact start scene's inert Start-to-End shell
-into one community-acquired spoken line with one named exit. It uses native
-WolvenKit project resources; no documentation generator, manifest, explorer,
-or custom compiler is a reader prerequisite.
+Turn the First Contact start scene’s Start-to-End shell into one
+community-acquired spoken line with one named exit in WolvenKit.
 
 ## Procedure boundary
 
@@ -49,11 +47,8 @@ adding dialogue, verify this exact shell:
 | Screenplay | Typed `scnscreenplayStore`; `lines: []`; `options: []` |
 | Embedded localization | Typed `scnlocLocStoreEmbedded`; `vdEntries: []`; `vpEntries: []` |
 
-The start root and start child questphase graphs must not invoke this scene.
-That invariant makes the start checkpoint safe even though the `.scene` shell
-already exists. If it is reachable, a learner could apparently complete the
-meeting without authoring the line, invalidating the exercise and its test
-provenance.
+The start root and child must not invoke the scene shell. Otherwise the
+meeting can complete through Start-to-End without playing the line.
 
 ## 2. Add the screenplay item
 
@@ -158,12 +153,9 @@ this focused fixture.
 | VO map | `mod\cqa\cqa005\localization\en-us\vo\cqa005_vo.json` |
 | Voice asset | `mod\cqa\cqa005\localization\en-us\vo\contact_i_85c3283507e7ef2f.wem` |
 
-The supplied WAV source and derived WEM are synthetic lab assets. They are not
-extracted or redistributed game dialogue. Preserve that provenance whenever
-repackaging the project. This chapter teaches the native scene-to-subtitle and
-scene-to-WEM joins, not audio mastering or Wwise conversion. Exact WEM
-production is deferred to Stage 9; byte-identical Wwise output is not part of
-the Stage 6 acceptance contract.
+The supplied WAV and WEM are synthetic lab assets. Keep their license with
+redistributed copies. Audio conversion is covered in
+[External VO, WEM, and lipsync](external-vo-wem-and-lipsync.md).
 
 For the full field-level localization chain, see [Localization
 paths](../journal/localization-paths.md).

@@ -2,12 +2,11 @@
 
 Lab 3 crosses quest, journal, localization, streaming, marker, trigger, and
 save systems. A screenshot of the final journal state cannot isolate those
-owners. This protocol binds the exact installed candidate, save provenance,
+owners. This protocol binds the exact installed candidate, save history,
 visible transitions, and fresh logs across eight executions.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -76,10 +75,9 @@ following as **Experimental** until performed on the pinned game build:
 5. walk back to Allen Street and make the untouched outside save there.
 
 If the terminal or cabinet route is inaccessible, record that result and do
-not silently replace the route with a console teleport. Revise and hash a new
-test candidate or route before continuing.
+not silently replace the route with a console teleport. Choose an accessible test route before continuing.
 
-## Prepare save provenance
+## Prepare test saves
 
 Before installing any Lab 3 checkpoint:
 
@@ -87,11 +85,10 @@ Before installing any Lab 3 checkpoint:
    build registering `cqa003`;
 2. confirm the player is outside the 25-metre reach volume and can reach the
    cabinet row by the verified ordinary route;
-3. copy the entire save-slot directory into private evidence storage;
+3. copy the entire save-slot directory into your test folder;
 4. record its label and slot-directory name;
-5. hash `sav.dat` and set `created_before_first_install: true` only after
-   confirming that history;
-6. retain one hash-bound active-before-reach derivation for both Run 2 and Run
+5. confirm that this save predates the first Lab 3 install;
+6. retain one unchanged active-before-reach derivation for both Run 2 and Run
    4; restore byte-for-byte working copies from it rather than making a second
    pre-reach state;
 7. reserve separate derived copies for between-boundaries and completed
@@ -120,14 +117,10 @@ project:      CQA_Lab03_BoundaryCheck.cpmodproj
    archive\pc\mod\CQA_Lab03_BoundaryCheck.archive.xl
    ```
 
-4. Hash both installed files in `candidates[0].installed_files`.
-5. Confirm the record names all six depot resources, including the two
+4. Confirm the archive contains all six depot resources, including the two
    sectors reached through the registered block.
-6. Preserve the installed files until every run needing this candidate is
+5. Preserve the installed files until every run needing this candidate is
    complete.
-
-Hash the installed payloads, not the ZIP. Packing and the loose registration
-file are part of the runtime candidate.
 
 ## Run 1: outside negative control and ordinary walk
 
@@ -183,9 +176,8 @@ outside the reach volume, and make a derived save. Hash it and execute
 4. confirm one pin retirement and one reach success;
 5. finish on foot and retain the result.
 
-Keep this exact derived slot immutable after hashing it. Run 4 must restore the
-same `sav.dat`, and the two run records must carry the same SHA-256 rather than
-two independently recreated active-before-reach saves.
+Preserve this source slot unchanged. Run 4 must use a working copy of this
+same active-before-reach save.
 
 The required result is coherent single progression. Do not infer how the
 engine rearmed the state predicate solely from the journal UI.
@@ -209,9 +201,7 @@ mid-candidate.
 
 ## Run 4: stream away and return
 
-Restore a byte-for-byte working copy of Run 2's hash-bound
-active-before-reach save and execute `stream-away-return`. Confirm its
-`sav.dat` SHA-256 matches Run 2 before loading it.
+Load a working copy of Run 2’s active-before-reach save for `stream-away-return`.
 
 1. remain outside the reach volume and go to the recognizable Allen Street
    terminal by ordinary movement; do not open or use it;
@@ -263,31 +253,27 @@ crossing. Allen Street accessibility and the new 110 m behavior remain
 
 From an ordinary clean-walk completion:
 
-1. retain and hash the completed save;
+1. preserve the completed save;
 2. reload it without changing installed files as `completed-reload`;
 3. confirm no quest/objective reactivation and no checkpoint pin;
 4. wait for delayed visible updates;
 5. retain fresh logs.
 
-Exact graph evidence maps this bypass to node `10.False`; runtime evidence
-records that the completed candidate and save display the expected one-shot
-result.
+The completed guard’s bypass is node `10.False`. Check that the completed
+save does not reactivate the quest.
 
 ## Run 7: identical reinstall
 
-Close the game, remove the installed candidate pair, and reinstall the
-identical hash-bound files. Do not rebuild from merely unchanged-looking
-source unless the new installed hashes match exactly.
+Close the game, remove the installed pair, and reinstall the preserved copies
+of those same files.
 
-Load the same completed save as `completed-reinstall`. Confirm the quest stays
-complete, the pin stays inactive, and no duplicate activation occurs. The
-save SHA-256 must match Run 6.
+Load Run 6’s completed save as `completed-reinstall`. Confirm the quest stays
+complete, the pin stays inactive, and no duplicate activation occurs.
 
 ## Run 8: clean replay
 
-Restore the entire original untouched save-slot directory and leave the
-identical canonical candidate installed. Its original `sav.dat` hash must
-match the pre-install record.
+Restore the original untouched save-slot directory and leave the same
+completed build installed.
 
 Execute `clean-replay`, walking the ordinary route again. The same visible
 activation, reach, leave, and completion sequence must occur once. Retain a
@@ -316,11 +302,11 @@ systems did not report an error; they do not replace in-game observations.
 | Quest is already active on the first run | Replace the whole slot with one captured before any `cqa003` install; fact resets do not clean journal/world state |
 | Pin appears but route cannot reach it | Record the map/minimap/GPS result, site accessibility, marker Z, and exact game build; do not count visible pin alone as navigation success |
 | Allen Street is locked or the cabinet row cannot be reached ordinarily | Stop before acceptance, retain the observed route/access result, and establish a separately reviewed route; do not substitute a diagnostic teleport |
-| Trigger result is ambiguous | Record position, Z, ordinary movement versus fast travel, visible journal state, candidate hash, and logs; keep state and transition claims distinct |
-| Leave completes while walking back to Allen Street | Retain the exact player position/Z and candidate hash as a failed geometry result; do not continue as though the terminal were inside the outline |
+| Trigger result is ambiguous | Record position, Z, ordinary movement versus fast travel, visible journal state, installed build, and logs; keep state and transition claims distinct |
+| Leave completes while walking back to Allen Street | Retain the exact player position/Z and installed build as a failed geometry result; do not continue as though the terminal were inside the outline |
 | Leave completes on reload | Verify the derived save is actually inside the outer volume and retain its position evidence; do not move geometry inside the canonical candidate |
 | Stream-away result is inferred | Report only visible continuity and logs unless instrumentation independently establishes unload/reload |
-| Reinstall is not identical | Compare both installed hashes; a new build is a new candidate even when source looks unchanged |
+| Reinstall is not identical | Compare both installed filenames; a new build is a new candidate even when source looks unchanged |
 | One screenshot is used for every case | Retain separate run identity, saves, timestamps, observations, and four-log bundles |
 | UI is treated as proof of sector ownership | Use exact structural evidence for ownership and runtime evidence only for what the player/logs expose |
 

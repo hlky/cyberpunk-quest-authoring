@@ -1,13 +1,10 @@
 # Author Signal Race in WolvenKit
 
-This walkthrough expands the supplied Lab 2 start checkpoint into the exact
-21-node Signal Race graph. You edit native resources in WolvenKit; the
-repository's generator and CR2W-JSON files are documentation-author review
-infrastructure, not reader prerequisites.
+Expand the Lab 2 start checkpoint into the 21-node Signal Race graph in
+WolvenKit.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -284,12 +281,9 @@ localization:
 extracted copy in the project.
 
 Keep the start project filename, `<Name>`, `<ModName>`, and
-`CQA_Lab02_SignalRace_Start.archive.xl` filename during the walkthrough. Its
-built archive is a manual comparison candidate, not the byte-identical
-canonical candidate named by the acceptance record. For book-promoting
-runtime evidence, close that project and open the supplied unmodified
-`CQA_Lab02_SignalRace.cpmodproj`; do not try to turn `_Start` into the
-canonical project with a partial rename.
+`CQA_Lab02_SignalRace_Start.archive.xl` during the walkthrough. To compare with
+the supplied result, open `CQA_Lab02_SignalRace.cpmodproj` separately. Do not
+partially rename the start project.
 
 ## 11. Validate and build
 
@@ -315,13 +309,13 @@ other; both pairs register the same three depot paths.
 
 ## 12. Create the controlled failure candidate
 
-Do this only after preserving the canonical build and its hash:
+Keep a copy of the completed build before editing:
 
 1. copy the completed project to a separately named working directory;
 2. open node `11`;
 3. change only `type.value` from exact `2` to exact `1`;
 4. leave `setExactValue: 1` and all other files/properties unchanged;
-5. rebuild, hash the edited archive, and label it as the source-edited variant;
+5. rebuild and label the edited archive as the mode-1 variant;
 6. install it only after removing the canonical archive;
 7. load a different untouched save created before any Lab 2 candidate was
    installed.

@@ -108,14 +108,9 @@ The lipsync ID is an array index, not an actor ID or performer ID. Therefore:
 - actor `1` -> lipsync slot `0` is addressable;
 - actor `1` -> lipsync slot `1` would be invalid when the array has one row.
 
-**Runtime-proven:** a [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-records a conversation candidate that previously failed during scene startup
-completing its full route after both roles were changed to slot `0` and the
-duplicate generic row was reduced to one. It played spoken lines, subtitles,
-and VO and returned through its quest outcome. That test proves the
-cardinality correction for that hash-bound candidate. It does not prove that
-sharing one generic resource is the final quality configuration for every pair
-of performers.
+For two performers, check both slot IDs against the cooked resource table.
+Sharing one row can help isolate an invalid index, but still requires a visual
+check of both performers.
 
 Use distinct NPC and player lipsync resources later only when every referenced
 slot remains separately addressable after cooking and is runtime-tested.

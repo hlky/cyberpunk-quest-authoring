@@ -157,10 +157,8 @@ Writing a start guard early can suppress a retry after interruption; writing
 it late can repeat the guarded side effect. That is a lifecycle trade-off to
 test, not an ordering rule hidden inside the condition node.
 
-This pattern is useful, but its re-entry safety is **Experimental** until the
-exact graph is tested through repeated entry, save/load, and reinstall over a
-completed save. An observed or structurally valid guard cannot promote a new
-tutorial graph to **Runtime-proven** without those retained runtime cases.
+Re-entry safety is **Experimental**. Test repeated entry, save/load, and
+reinstallation over a completed save.
 
 ## A waiting monitor is still active work
 

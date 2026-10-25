@@ -252,12 +252,11 @@ Use a separate condition at each acceptance boundary:
 - an outer trigger/distance plus durable progression before deactivation.
 
 `questCharacterWorkspot_ConditionType` exposes `puppetRef`, `isPlayer`,
-`spotRef`, `animationName`, and `waitForAnimEnd` in the current schema. The
-condition corpus contains four **Observed in vanilla** instances in
-`base\open_world\street_stories\watson\little_china\sts_wat_lch_01\phase\sts_wat_lch_01_combat.questphase`,
-but this page does not have a hash-bound runtime reduction for their enums,
-already-true state, interruption, or reload behavior. Treat new completion
-gates using it as **Experimental**.
+`spotRef`, `animationName`, and `waitForAnimEnd`. **Observed in vanilla:** four
+instances occur in
+`base\open_world\street_stories\watson\little_china\sts_wat_lch_01\phase\sts_wat_lch_01_combat.questphase`.
+New completion gates are **Experimental**; test an already-true condition,
+normal completion, interruption, and reload.
 
 ## Handoff and cleanup are part of the role
 
@@ -285,10 +284,8 @@ At a handoff:
    has released the actor; and
 6. deactivate only on the quest's explicit cleanup branch.
 
-The two retained escort archives show why step 4 matters. Clearing at the
-third route gate exposed the original community spot as the actor's remaining
-owner, so she walked back. Retaining through the defend activity produced the
-intended handoff in the later exact artifact.
+Clear the role only after the next owner is ready. Otherwise the actor may
+return to its community spot instead of staying for the next activity.
 
 ## Manual WolvenKit composition order
 
@@ -321,11 +318,11 @@ Author one behavior delta at a time in a mod-owned questphase:
    deliberately preserves the actor. Never leave `CutDestination` semantics
    implicit.
 10. Save, close, reopen, and inspect the exact typed handles and sockets. Pack
-    the archive, record its SHA-256, and confirm no extracted vanilla resource
+    the archive, check its depot paths, and confirm no extracted vanilla resource
     entered the package.
 
 WolvenKit serialization and archive packing are **Structurally validated**
-checks. Only the installed hash and clean-save observations can become
+checks. Only the installed build and clean-save observations can become
 **Runtime-proven**.
 
 ## Clean-save acceptance matrix
@@ -342,7 +339,7 @@ checks. Only the installed hash and clean-save observations can become
 | Completed save | Reload and revisit | No stale follower, restarted patrol, duplicate workspot, or reactivated community |
 
 Run every distinct role subtype and every different interruption policy as a
-separate evidence case. Record archive hash, starting save, actor record and
+separate evidence case. Record archive filename, starting save, actor record and
 entry, reference and names array, AI tier, concrete params/role type, path or
 workspot, route, combat state, and the first/last visible behavior.
 
@@ -358,7 +355,7 @@ workspot, route, combat state, and the first/last visible behavior.
 | Actor teleports into or clips through the workspot | `teleport`, movement type, spot transform, workspot resource, clearance, and frame/animation compatibility |
 | Actor restarts the activity after combat | `repeatCommandOnInterrupt`, combat policy, durable quest state, and duplicate command path |
 | Scene cannot acquire or animate the actor | Active AI role/workspot ownership, scene community reference/entry, actor readiness, and missing handoff |
-| Reload produces a different result | Dirty save, saved community/actor state, command reissue policy, stale role, and installed archive hash |
+| Reload produces a different result | Dirty save, saved community/actor state, command reissue policy, stale role, and installed archive filename |
 | Node caption says clear while payload assigns | Inspect `params.Data` concrete type and role handle; do not diagnose from `function` or caption alone |
 
 Return to [Communities and characters](index.md).

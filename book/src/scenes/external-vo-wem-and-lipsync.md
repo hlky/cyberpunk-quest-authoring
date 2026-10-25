@@ -7,7 +7,6 @@ working subtitle does not prove either of the other chains.
 
 | Record | Value |
 | --- | --- |
-| Guide review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 5 external subtitle/VO resource chain | **Structurally validated** |
 | Focused vanilla lipsync slots and localized assets | **Observed in vanilla** |
@@ -20,9 +19,8 @@ working subtitle does not prove either of the other chains.
 > an untouched pre-scene save. Do not diagnose a new WEM from a save captured
 > during the old line.
 
-The native integration can be authored and inspected in WolvenKit. Producing
-a finished WEM or custom lipsync animation may require a compatible audio or
-animation tool, but no project-specific generator is a reader prerequisite.
+Use WolvenKit to author the native resource links. Preparing a WEM or custom
+facial animation also requires a compatible audio or animation tool.
 
 ## Three independent lookup chains
 
@@ -124,22 +122,11 @@ localization archive contains distinct assets at:
 That resource proves the two-slot shape for this scene. It does not make those
 assets appropriate for another actor or permit redistribution.
 
-### The retained cardinality isolation
+### Avoid duplicate-path slots
 
-One retained legacy candidate asked for slots `0` and `1` after two identical
-source paths cooked to one addressable import. A
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-reproduced the scene-launch crash. A later candidate
-reduced the resource table to one row and made both actors select slot `0`;
-the full meeting route, subtitles, and VO then completed. Those two exact
-results are **Runtime-proven** in their recorded legacy environment.
-
-The comparison isolates an addressability defect. It does **not** prove that
-all multi-row tables fail, that duplicate paths always deduplicate, that a
-shared slot is production-quality, or that a generic resource provides correct
-facial animation for both performers. The intended production correction is
-distinct valid resources whose rows remain addressable after cooking, followed
-by visual and lifecycle acceptance.
+Two identical source paths may cook to one addressable import. Inspect the
+cooked table before assigning an actor slot `1`. Prefer distinct compatible
+resources when the NPC and V require different facial performances.
 
 Lab 5 deliberately keeps both actors on slot `0` with the generic resource:
 
@@ -147,6 +134,38 @@ Lab 5 deliberately keeps both actors on slot `0` with the generic resource:
 
 That one-row resource and both indices are **Structurally validated**. Exact
 facial and gesture quality remains **Experimental**.
+
+## Check the selected clip and its skeletal reference
+
+An addressable `.anims` resource is only the first lookup. For a custom line,
+inspect the screenplay line's `femaleLipsyncAnimationName` and
+`maleLipsyncAnimationName` CNames and confirm that the selected clips exist in
+the intended animation set. Keep these clip names separate from the WEM path
+and localization RUID. Lab 5 leaves both names at `None`; it does not teach
+custom clip generation.
+
+A clip can import successfully, resolve by name, and match the audio duration
+while still deforming the actor's head. When removing unwanted donor body
+motion, preserve the neutral translation, rotation, and scale reference used
+by the additive animation.
+
+For a custom facial clip, inspect these separately:
+
+| Check | Why it matters |
+| --- | --- |
+| Selected clip exists | A valid animset slot does not guarantee a matching line clip |
+| Clip and audio durations agree | Inherited donor motion can extend a short clip |
+| Facial keys survive import | Duration alone says nothing about mouth movement |
+| Skeletal reference survives import | Removing unwanted body motion must not remove the additive reference pose |
+| Rig bone and facial-track ordering agree | A matching bone count alone cannot establish compatibility |
+
+Reopen the cooked asset in WolvenKit and inspect an export made from that
+asset, rather than checking only the source animation. Compare the skeleton
+with its compatible rig reference. Joint and key counts depend on the rig;
+matching those counts alone does not validate the reference pose.
+
+Custom facial playback remains **Experimental**. Test each line in game,
+including interruption and reload, before using the clip in a finished scene.
 
 ## Separate asset validity from lookup validity
 
@@ -175,7 +194,8 @@ This ordering distinguishes common boundaries:
 | --- | --- |
 | Subtitle absent and audio silent | Line event/RUID or both localization registrations |
 | Subtitle present, audio silent | VO map, selected WEM path, WEM presence/bytes, audio logs |
-| Audio present, mouth motion wrong | Lipsync resource, actor slot, resource compatibility, line-specific animation data |
+| Audio present, mouth motion wrong | Lipsync resource, actor slot, selected clip name, rig compatibility, line-specific animation data |
+| Head stretches only during speech | Additive skeletal reference and rig/track ordering in the cooked clip; compare with the idle appearance |
 | Crash at scene launch before text/audio | Actor acquisition and cooked lipsync slot addressability |
 | Correct first line, later line silent | Later line RUID, VO entry, WEM path/bytes, event timing |
 | Works for one performer configuration only | Gender path, actor identity, slot/resource assignment, or rig compatibility |
@@ -192,8 +212,7 @@ This ordering distinguishes common boundaries:
    `stringId` and deliberate `femaleResPath` and `maleResPath` values.
 4. Add original or licensed WEM assets at those exact archive paths. If both
    fields select one file, document that choice; if they differ, test both
-   selection routes. This guide does not promote one Wwise encoder version or
-   codec preset as a universal Cyberpunk contract.
+   selection routes. Test the selected encoder and codec with the resulting WEM.
 5. Register the subtitle map and VO map under the exact ArchiveXL locale
    branches. Do not register a subtitle-entry file as if it were the map, and
    do not register each WEM as a VO map.

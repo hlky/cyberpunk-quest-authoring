@@ -8,7 +8,6 @@ delays cleanup until V has left the outer area.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -268,13 +267,8 @@ plain FNV hashes of debug labels, and the `#` alias marker has RED4-specific
 hash behavior. The registry's numeric placement identity is also not an
 ordinary string entry in the sector's `nodeRefs` array.
 
-The exact character/workspot pair occurs in a
-[retained community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-That result proves the pair was present in the successful candidate; it does
-not separately prove the quality of its cigarette animation in every context.
-The Lab 5 test guide checks spawn, passivity, acquisition, and cleanup.
-Cigarette and workspot animation quality are visual checks you should repeat
-for any actor or appearance you substitute.
+Check the contact for spawn, passivity, scene acquisition, cleanup, and visible
+workspot animation at the supplied location.
 
 ## Exact scene contract
 
@@ -326,12 +320,9 @@ scene line locstring 9638591835734011695
        -> archived WEM for femaleResPath and maleResPath
 ```
 
-The WEM is a new synthetic line, not extracted game audio and not copied from
-a research project. Its exact production provenance, source WAV, path, and
-SHA-256 are supplied with the checkpoint. The prebuilt WEM is hash-pinned
-because Wwise conversion is not claimed to be byte-reproducible. General WEM
-production belongs to the later audio chapter; this lab teaches the native
-lookup and ships one inspectable input/output pair.
+The checkpoint includes a synthetic WAV and its prebuilt WEM. Use the supplied
+WEM for the lab; see [External VO, WEM, and lipsync](external-vo-wem-and-lipsync.md)
+when preparing your own audio.
 
 ## Geometry and delayed cleanup
 
@@ -355,14 +346,14 @@ not a universal safe radius.
 
 | Symptom | Check first |
 | --- | --- |
-| Quest never appears | Root registration, archive pair, ArchiveXL and RED4ext logs, clean-save provenance |
+| Quest never appears | Root registration, archive pair, ArchiveXL and RED4ext logs, clean starting save |
 | Objective appears but contact does not | Quest-sector streaming, community/source join, entry and phase names, spot ID joins, `CharacterSpawned` payload |
-| Contact spawns hostile | Generic character record, AI state, absence of unrelated combat stimuli, exact candidate hash |
+| Contact spawns hostile | Generic character record, AI state, absence of unrelated combat stimuli, exact installed build |
 | Contact exists but scene does not start | Setup trigger, scene marker, actor acquisition reference, named `start` socket |
 | Mouth moves but there is no subtitle or sound | Locstring equality across scene, subtitle entries, and VO map; registered map paths; archived WEM path |
 | Line plays but quest stalls | Scene exit `contact_done`, End `3`, quest scene-node output name, unconnected default outputs |
 | Contact disappears in view | Cleanup `IsOutside` radius and deactivation order |
-| Completed save starts again | `cqa005_completed`, write order, exact installed candidate, and original save provenance |
+| Completed save starts again | `cqa005_completed`, write order, exact installed candidate, and original save history |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
 First Contact in WolvenKit](lab-05-authoring.md).

@@ -91,10 +91,8 @@ contract:
 `questTriggerCondition` with an empty `activatorRef`,
 `isPlayerActivator: 1`, local `triggerAreaRef`, and `IsInside`.
 
-**Structurally validated:** the legacy generated reach shape uses `Entered`;
-the generated leave shape uses `Exited`. Lab 3 instead uses ordered
-`IsInside` and `IsOutside` state waits. Both are valid serialized shapes, but
-they ask different questions:
+Use `Entered`/`Exited` for crossings and `IsInside`/`IsOutside` for current
+containment. Lab 3 uses the latter as ordered state waits:
 
 | Condition | Use when the story means | Reload boundary |
 | --- | --- | --- |
@@ -103,14 +101,9 @@ they ask different questions:
 | `IsInside` | Proceed whenever the player is currently inside | Already-inside activation and reload require a retained test |
 | `IsOutside` | Proceed whenever the player is currently outside | Must be activated only after the intended inside step |
 
-The world-side area still needs an authoritative outline buffer, a quest
-notifier, a placement whose vertical band intersects the route, and a full
-NodeRef beneath the same root. That bounded failure is **Runtime-proven** for
-the [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence):
-after its shard stage advanced, the next trigger waited silently with its
-volume below the rooftop route. The **Runtime-proven** result for the later
-`8FF183...` archive is limited to corrected trigger entry and downstream
-activation. Neither hash makes a ten-metre height or either Z offset universal.
+The world-side area needs an authoritative outline buffer, a quest notifier,
+a vertical band that intersects the route, and a full NodeRef beneath the same
+root. Check the player’s Z coordinate when a rooftop trigger never fires.
 
 ### Marker ownership
 
@@ -147,14 +140,9 @@ request community activation
 | Scene origin | `scnWorldMarker` and scene start node | Scene transform and actor acquisition context |
 | Cleanup | Named scene exit, later delay/area, and community deactivation | A reviewable lifetime after presentation ends |
 
-**Runtime-proven:** a
-[retained meeting candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-completed one community-readiness and scene-acquisition route. It does not
-prove universal trigger sizes,
-arbitrary actor states, interruption behavior, or the current Lab 5 package.
-Use [Activation, readiness, and acquisition](../communities/activation-readiness-and-acquisition.md)
-and [Scene entry, exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md)
-for the other owners.
+For actor readiness and scene startup, follow
+[Activation, readiness, and acquisition](../communities/activation-readiness-and-acquisition.md)
+and [Scene entry, exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md).
 
 ## The native device contract
 
@@ -239,14 +227,6 @@ usable entry and exit workspot. The quest may enable the device first, but the
 player-driven route should wait for the native result rather than fire the
 same operation twice.
 
-**Runtime-proven:** a
-[retained access-point candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-advanced through one native hack before the escort route and then completed
-end to end. Its
-device, controller/action/condition, world placement, and root-owned prefab
-scope form one hash-bound result. It does not prove every access point or hack
-function.
-
 **Experimental:** a generic access-point tutorial remains incomplete until a
 mod-owned device passes approach, connection, minigame, success, cancel,
 disconnect, reload, and replay cases on the pinned stack.
@@ -273,14 +253,6 @@ item `TweakDBID`, the local-player universal reference, silent removal, and no
 notification. Those exact removal choices are fixture properties, not
 universal plant semantics.
 
-**Runtime-proven:** a
-[retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-exposed a laptop's `Steal Data`
-personal-link interaction, waited for the connection, displayed a five-second
-install overlay, disconnected automatically, consumed the keylogger, cleaned
-up its guards, and completed. That richer route proves its exact package and
-graph, not the reduced template with arbitrary bindings.
-
 ### Deliver to a drop point
 
 A drop point is a live device and a separate navigation target. The retained
@@ -302,11 +274,8 @@ location, or place a useful quest marker. Inspect
 `poi_mappin`, `roleMappin`, and `main_slot/navQuery` offsets are distinct in
 the retained vanilla template.
 
-**Runtime-proven:** a
-[retained drop-point candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-completed the exact Kabuki `drop_point_009` reservation/deposit route. The device remained the deposit
-target while a separate marker used the transformed walkable navigation
-endpoint. This does not certify another kiosk's accessibility.
+Keep the device as the deposit target and place a separate navigation marker
+at a walkable approach point when the device origin produces a poor GPS route.
 
 ## Author in WolvenKit
 
@@ -360,11 +329,8 @@ named child saves. Do not overwrite the only clean control.
 | Reinstall against an old save | Save-backed fact, journal, trigger, and persistent-device contamination |
 | Remove the mod and load a disposable copy | Cleanup/isolation only; never risk the sole clean control |
 
-Record the archive hash, every authored CR2W hash, starting save provenance,
-player position and Z, selected interaction, result fact, inventory before and
-after, journal states, and ArchiveXL/RED4ext/game logs. Promotion from
-**Experimental** to **Runtime-proven** belongs to that exact retained package
-and matrix.
+For each test, note the starting save, player position and Z, selected
+interaction, result fact, inventory change, journal state, and relevant logs.
 
 ## Troubleshooting
 

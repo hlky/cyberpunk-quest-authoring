@@ -132,15 +132,8 @@ Lab 4's parent root declares `#cqa004_pr_handoff`. The child directly uses
 nested trigger NodeRefs while its own `phasePrefabs` and the parent node's
 `phaseInstancePrefabs` are empty.
 
-That shape is not based on an assumed compiler inheritance feature:
-
-- an exact mod-owned four-child fixture is **Runtime-proven** with only its
-  root declaration;
-- a comparable root/child arrangement is **Observed in vanilla**;
-- Lab 4's exact resources are **Structurally validated**;
-- Lab 4 runtime behavior remains **Experimental** until its matrix passes.
-
-See [Prefab dependencies](prefab-dependencies.md) for the evidence limits.
+See [Prefab dependencies](prefab-dependencies.md) for the root, child, and
+phase-instance declaration locations.
 
 ## External before inline
 

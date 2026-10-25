@@ -1,18 +1,12 @@
 # Condition index
 
-Use this page to find a native condition class, its wrapper, and the chapter
-that owns its current evidence boundary. A class name in the retained corpus
-proves that a serialized shape exists; it does not prove listener timing,
-external-reference resolution, save/load behavior, or suitability as a recipe.
+Find a native condition class, its wrapper, and the chapter explaining its
+fields. Test listener timing and save/load behavior when adapting a condition
+to your quest.
 
-Unless a row says otherwise, inventory counts are **Observed in vanilla** in
-the retained 41-questphase corpus described by [Retained vanilla condition
-catalog](../gates/condition-catalog.md). That corpus was serialized with
-WolvenKit `8.17.4`; current reader inspection targets Cyberpunk 2077 `2.31a`
-and WolvenKit `8.19.0`. The exact condition shapes supplied by Labs 1–5 are
-**Structurally validated**, while their runtime claims remain controlled by
-the lab markers and acceptance records. [Labs at a glance](labs-at-a-glance.md)
-identifies the smallest project for each taught family.
+The condition inventory is **Observed in vanilla**. Use the named depot paths
+to inspect matching nodes in your own installation. For a worked example,
+start with [Labs at a glance](labs-at-a-glance.md).
 
 ## Choose the evaluation schedule first
 
@@ -100,8 +94,7 @@ The retained trigger inventory contains:
 These names are search keys, not proof of exact state-versus-edge behavior
 through activation, teleportation, streaming, or save/load. The exact Lab 3–5
 resources use state-shaped `IsInside` / `IsOutside` forms with the player form
-of the activator fields; only their retained acceptance cases can promote a
-runtime claim.
+of the activator fields; test the intended crossing and reload behavior in game.
 
 ### Time payloads
 
@@ -222,7 +215,7 @@ does not create the scene, token, phone call, or camera behavior it observes.
 | `questSpawnerCondition` | `questSpawnerReady_ConditionType` | 7 | Identify spawner ownership, activation order, failure route, and cleanup |
 
 These rare families are **Observed in vanilla** and remain poor copy-by-name
-recipes. They require reduced mod-owned fixtures before practical publication.
+recipes. Test them in a small mod-owned project before integrating them into a quest.
 
 ## Distance operands
 
@@ -257,7 +250,7 @@ excerpts. Do not redistribute the CR2W files or full serializations.
 | Destruction, device, combat, vehicle speed | `base\open_world\street_stories\watson\northside_industrial_district\sts_wat_nid_03\phases\sts_wat_nid_03_openworld.questphase` |
 | Spawner ready, distance, character mount | `base\open_world\street_stories\westbrook\japantown\sts_wbr_jpn_09\phases\sts_wbr_jpn_09_gameplay.questphase` |
 
-## Before promoting an indexed family
+## Before using an indexed family
 
 For a condition not yet taught as a practical recipe, retain:
 
@@ -268,7 +261,7 @@ For a condition not yet taught as a practical recipe, retain:
 5. a mod-owned WolvenKit `8.19.0` round trip with non-null compatible handles;
 6. already-true, normal-transition, false/failure, save/load, stream-loss,
    cancellation, completion, and re-entry cases as applicable;
-7. exact versions, installed hashes, save provenance, and logs.
+7. exact versions, installed filenames, save history, and logs.
 
 Until those checks exist, a corpus row remains **Observed in vanilla** and a
 new behavior claim remains **Experimental**.

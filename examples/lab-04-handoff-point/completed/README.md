@@ -19,22 +19,14 @@ are `#cqa004_mp_handoff`, `#cqa004_tr_reach`, and `#cqa004_tr_leave`. The world
 geometry intentionally matches Lab 3 so this lab changes phase ownership, not
 location or trigger shape.
 
-## Evidence boundary
-
-- This checkpoint's seven raw/cooked resource pairs—fourteen across the two
-  checkpoints—are **Structurally validated** with WolvenKit 8.19.0
-  serialization and round-trip inspection.
-- ArchiveXL registers the root phase, journal, localization, and streaming
-  block. It does not register the child phase.
-- External-child execution, normal `Out1` parent continuation, root-prefab
-  visibility from the child, and save/reload behavior remain **Experimental**
-  until the acceptance record passes. `CutDestination` remains
-  **Experimental** even after that matrix passes; proving cut behavior requires
-  a separate wired fixture and acceptance record.
+The seven resources are **Structurally validated** with WolvenKit `8.19.0`.
+ArchiveXL registers the root, journal, localization, and streaming block;
+the parent resolves the child from the archive. Follow
+[Test Handoff Point](../../../book/src/questphases/lab-04-test.md) for the
+in-game checks. `CutDestination` is unwired in this example.
 
 ## Save warning
 
 Start every clean run outside the reach volume on an untouched pre-Lab-4 save.
 Preserve distinct pre-reach, between-boundaries, post-return-confirmation, and
-completed saves. A console fact reset is diagnostic only and is not clean-save
-acceptance evidence.
+completed saves. A console fact reset is diagnostic only and is not a clean test.

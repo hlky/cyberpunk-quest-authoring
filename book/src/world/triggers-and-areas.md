@@ -163,7 +163,7 @@ This matrix does not load a save while the active reach wait is already inside
 `#cqa003_tr_reach`. It therefore does not prove `IsInside` evaluation for that
 on-load state; add a separately bound case before making that claim.
 
-Record the exact installed archive, resource hashes, starting save provenance,
+Record the exact installed archive, resource paths, starting save history,
 approach direction, player Z, observed objective transition, and relevant
 ArchiveXL/game logs. A successful pack or WolvenKit open cannot support
 **Runtime-proven** by itself.

@@ -9,6 +9,16 @@ large property dumps or unexplained recipes.
 Lead with the outcome and mental model, then introduce exact RED types and
 properties.
 
+Write the guide itself, not an account of writing or reviewing it. Omit task
+summaries, development stages, research histories, discarded hypotheses, and
+reports of what was added or left unchanged. Turn a useful finding into a
+concrete instruction, explanation, or troubleshooting check.
+
+Keep evidence labels brief and beside the claim. Source commits, archive
+hashes, publication rules, and acceptance-record administration belong in
+maintainer records, not reader procedures. Include file comparisons only when
+they help diagnose an actual installation or resource mismatch.
+
 ## Terminology
 
 - Use **questphase** for a `.questphase` resource.

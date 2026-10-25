@@ -81,7 +81,7 @@
     "algorithm": "sha256",
     "checkpoint_files": {
       "CQA_Lab05_FirstContact.cpmodproj": "5f6c9f55f6310bb257203a523cd652e9a2f865c55da03932cba3c9acf6868b55",
-      "README.md": "01db8164046ff409d3347ca9074df87cbe0c21533cd0ee2598ec9431a028a015",
+      "README.md": "e5fba5fea8135061703b1d02f850e6c0be1320703bded6e0bb6433073c95edec",
       "runtime-acceptance.json": "8fb708951a6905ab4f43e1f169da7531d9e43480cd922a51baff29bcd18d9f20",
       "source/archive/mod/cqa/cqa005/journal/cqa005.journal": "2fe35725619acc8c43124b8be36474f24b38aee9f84a4a64221d5fd260066bb2",
       "source/archive/mod/cqa/cqa005/localization/en-us/onscreens/cqa005_onscreens.json": "09aa7095e0125fd7e6b442a5c72d91db88eb148d4cd63346428845c72f8c494b",
@@ -110,7 +110,7 @@
     },
     "shared_files": {
       "LICENSE.md": "f202fa9a0d4a92a176bf0160e490ae25996c8bf60233bd159feaf8a554ebc802",
-      "README.md": "77adaa8781ef3d41c5186ada95d3845ffaed06cd2b1b9413ed78ac07fa52ad72",
+      "README.md": "bc840a9ffbbcdaa49ec9cd4f06802b32b8b733ffa7921d258e31f20347d8cdf4",
       "voice-source/README.md": "d625e1d55fdbf8cd5a9b03b5280d747ee738522d21d8ea23384d0c27859bb09b",
       "voice-source/contact_i_85c3283507e7ef2f.wav": "ca63bdebd64a1312f53a4fe04f381b97cd9b3e11c04c19b815a503b0b5a11110",
       "voice-source/provenance.json": "fa1b884d3fddf5b044354be132a047ed617484c0adfb438f375b1314b98ffac8"

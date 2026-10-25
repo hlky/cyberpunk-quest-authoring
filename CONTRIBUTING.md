@@ -78,6 +78,35 @@ The validator, rather than duplicated prose markers, is responsible for
 checking consistency between the record, manifest, diagrams, and packaged
 downloads.
 
+### Mapping test notes to acceptance metadata
+
+Readers may keep plain test notes. Maintainers transfer contributed results to
+the existing `runtime-acceptance.json` rather than asking readers to learn its
+schema. Record the actual timestamp with UTC offset, tester, observed versions,
+installed-file hashes, save identity/history, case result, and fresh log paths
+and hashes. An unrun case stays pending. An edited project is a separate
+candidate from the supplied completed checkpoint.
+
+For Lab 5, retain its five source captures and eleven execution slots. Fill
+each `save_captures` row's source directory and SHA-256. The two originals
+must predate every CQA tutorial installation; the three derived captures must
+come from the named Case-1 moments. The validator requires five distinct source
+directories and hashes. Every run uses an unchanged full-slot clone, with
+`copy_scope: complete-slot-directory`, the matching `capture_id` and
+`source_run_id`, and `game_closed_before_clone: true` only after verifying that
+condition. Execution directories must differ from each other and all sources.
+Keep the predeclared `save_state` and `save_provenance` values in the record;
+they describe the case, not extra save windows between directly connected nodes.
+
+Every completed Lab 5 run needs a distinct execution instant and fresh four-log
+hash bundle. Equivalent timestamps with different offsets, renamed copies of
+logs, slash changes, or case changes do not establish independent executions.
+Derived runs must follow their recorded Case-1 source run. Installed hashes go
+in `candidates[0].installed_files`; each run's `logs` array identifies its own
+retained logs. Store only reviewed, sanitized, referenced artifacts under the
+completed checkpoint's `evidence/` directory. Keep private save binaries out
+of the repository and downloadable projects.
+
 ## Vanilla assets
 
 Do not commit extracted base-game CR2W resources or complete serialized copies.

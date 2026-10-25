@@ -40,35 +40,7 @@ The supported statement is more precise:
 That supports Lab 4's design without claiming universal transitive
 inheritance.
 
-## Why the root-only arrangement is supported
-
-### Runtime-proven research fixture
-
-**Runtime-proven:** a retained mod-owned GQT003 candidate completed its full
-activity sequence across four external child phases while only its root
-declared `#gqt003_pr_extract_and_hold`. Every child's `phasePrefabs` list was
-empty.
-
-The exact candidate identity is retained in [Lab status and research
-provenance](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-
-The composition used this root and four external child depot resources:
-
-```text
-mod\gqt003_extract_and_hold\phases\gqt003_extract_and_hold.questphase
-  -> mod\gqt003\phases\gqt003_reach_extraction_relay.questphase
-  -> mod\gqt003\phases\gqt003_release_patch.questphase
-  -> mod\gqt003\phases\gqt003_escort_patch.questphase
-  -> mod\gqt003\phases\gqt003_defend_patch.questphase
-```
-
-The retained snapshot used WolvenKit `8.17.4`, WKit JSON `0.0.9`, and
-`GameVersion 2310`; treat it as a bounded precedent rather than a current lab.
-
-That run proves root-owned scope remained usable across those four exact
-children and stage handoffs. It does not isolate active-child unload/reload or
-wired-cut behavior, and it does not turn a generator's dependency policy into
-an engine law.
+## Compare root and child declarations
 
 ### Vanilla comparison
 
@@ -102,23 +74,13 @@ WolvenKit `8.19.0`.
 back, save/reload, and the eventual parent handoff remain pending until every
 Lab 4 runtime case passes.
 
-## Tooling policy is not a native field
-
-Some generators expose a policy named `inherit_phase_prefabs` or otherwise
-copy declarations into generated children. That option is a tool's authoring
-policy. There is no native CR2W property with that name.
-
-Judge the emitted native fields instead:
+## Inspect all three declaration locations
 
 | Native location | Lab 4 value |
 | --- | --- |
 | Parent root `phasePrefabs` | `[#cqa004_pr_handoff]` |
 | Child root `phasePrefabs` | `[]` |
 | Parent phase node `phaseInstancePrefabs` | `[]` |
-
-An earlier GQT004 research diagnosis blamed a failing candidate on a missing
-child prefab declaration. Later controlled evidence disproved that theory. Do
-not cite that discarded diagnosis as proof that duplication is mandatory.
 
 ## Duplication changes the candidate
 

@@ -24,6 +24,10 @@ The topical table of contents places each lab beside the system it teaches, so
 Lab 4 appears under Questphases before the later-numbered topical sections. The
 table above is the canonical **practical** sequence.
 
+For each lab, read its overview, follow **Author**, then follow **Test**.
+Use the intervening system chapters when you need an explanation of a field
+or behavior; you do not need to read every advanced recipe before continuing.
+
 ## Checkpoint identity
 
 | Lab | Completed project/file stem | Start ZIP | Completed ZIP |
@@ -36,9 +40,14 @@ table above is the canonical **practical** sequence.
 
 A start and completed checkpoint for the same lab own the same depot paths.
 They are alternative source states, not two mods to install together. Lab 2's
-edited timing variant is another separately hash-bound candidate. Install only
+edited timing variant is another separately unchanged candidate. Install only
 the candidate named by the current test case, with the game and framework
 processes closed.
+
+Test one lab at a time. Labs 3–5 share the Allen Street site, so leaving an
+earlier lab installed can add overlapping triggers, pins, and objectives.
+Preserve a save from before starting any tutorial: Lab 5 specifically requires
+that clean lineage, even if you have already completed Labs 1–4 elsewhere.
 
 ## How to use the checkpoints
 
@@ -46,11 +55,11 @@ All five completed checkpoints pass the repository's source, graph, package,
 and WolvenKit `8.19.0` round-trip checks. Use them to compare resource types,
 properties, graphs, paths, and registration with your own work.
 
-Structural success does not guarantee that a resource mounts, streams, plays,
-cleans up, or resumes correctly after a reload. Run the linked test guide for
-the lab you are using, starting from the required clean save. Current project
-status and deeper provenance are available in [Lab status and research
-provenance](evidence-version-matrix.md).
+All five labs still await in-game acceptance. Their intended runtime behavior
+is **Experimental**, including the completed checkpoints.
+
+After authoring, run the linked test guide from the required starting save.
+Check normal play, streaming, cleanup, and reload as applicable.
 
 ## Shared practical baseline
 

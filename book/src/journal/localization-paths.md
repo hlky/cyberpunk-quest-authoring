@@ -7,18 +7,9 @@ other two.
 
 | Record | Value |
 | --- | --- |
-| Chapter review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1 UI resource | Structure checked; verify presentation with the Lab 1 test guide |
 | Vanilla scene references | **Observed in vanilla** |
-| Complete retained localization fixture | **Runtime-proven** in a legacy environment, not in one fully bound pinned-book run |
-
-> **Research note:** the exact resource types and joins below have been
-> structurally inspected, and the choice-store shape is also supported by
-> focused vanilla observations. A retained quest fixture displayed onscreen
-> text, subtitles, voiceover, and all intended choice labels in game. That run
-> did not bind the complete pinned toolchain and this book's Lab 1 payload into
-> one evidence record, so it is not runtime proof for the pinned baseline.
 
 ## Choose the lookup by content owner
 
@@ -167,12 +158,9 @@ Putting the subtitle-entry file directly in `subtitles`, omitting the map, or
 placing a choice ID in either external branch does not complete the intended
 lookup.
 
-**Runtime-proven boundary:** a retained legacy fixture resolved matching scene
-RUIDs through both registered branches and played subtitles and VO. This
-chapter documents that lookup contract, but it does not teach complete scene
-graphs, WEM production, lipsync resources, or audio mastering. Those remain
-deferred to the scene and audio work; copying this table is not a complete
-spoken-dialogue implementation.
+For complete spoken dialogue, continue with
+[Author one spoken line](../scenes/one-spoken-line.md). Registering the maps
+alone does not create the scene, its actors, or audio assets.
 
 ## Path 3: choice labels and the embedded locStore
 
@@ -241,17 +229,13 @@ unsigned locstring IDs within each locale block. These findings are
 - `base\quest\minor_quests\mq007\scenes\mq007_01_gun_found.scene`
 - `base\quest\minor_quests\mq010\scenes\mq010_02_barry_talk.scene`
 
-A retained custom fixture used locale blocks `db_db`, `pl_pl`, then `en_us`.
-Its unsorted build produced blank and stale rows; the numerically sorted build
-displayed all intended labels. That result is **Runtime-proven** for the legacy
-fixture and supports this known-good shape, but it does not prove that numeric
-sorting is a universal engine theorem for every scene or locale set.
+Use locale-grouped descriptors and ascending unsigned locstring IDs within
+each block. Blank or stale choice labels are a reason to check both ordering
+and the descriptor-to-payload join.
 
-The same fixture keeps duplicate `db_db` entries blank-before-source. That is
-fixture-specific, not a vanilla-wide rule: the audited scenes also contain
-source-before-blank pairs. Preserve the exact variant-to-payload mapping you
-derived from a comparable reference instead of enforcing blank-first as a
-general rule.
+Vanilla scenes contain both blank-before-source and source-before-blank
+`db_db` pairs. Preserve the exact variant-to-payload mapping from the
+comparable scene rather than enforcing one order for every pair.
 
 Use the disposable workflow in [Inspect a vanilla questphase](../start-here/inspecting-vanilla.md)
 to open these scene depot paths from your own installed archives. Record only
@@ -296,4 +280,4 @@ Journal activation and visited state, quest facts, graph checkpoints, and
 active scene state are save-backed. Resetting a fact does not clear the other
 records. Use the full matrix in [Facts, journals, and saves](../foundations/persistent-state.md)
 and [Install, test, and reset](../start-here/install-and-test.md), and record the
-exact payload hashes, save provenance, versions, and observed result.
+exact payload inventory, save history, versions, and observed result.

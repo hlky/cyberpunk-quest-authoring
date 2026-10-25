@@ -23,9 +23,6 @@ paths. Its Quest descriptor binds the mod-owned root
 trigger child NodeRefs, while the separate AlwaysLoaded sector registers the
 full marker child NodeRef.
 
-Inspect and edit these resources in WolvenKit. The repository generator is
-documentation-author infrastructure, not a reader prerequisite.
-
 Do not install the start and completed checkpoints together. Use a distinct
 save created before either checkpoint was first installed; quest, journal,
 world, and completion state can become save-backed.

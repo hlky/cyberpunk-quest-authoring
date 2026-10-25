@@ -20,7 +20,7 @@ boundary.
 | --- | --- |
 | Find a quest/scene node, its sockets, and the lab that demonstrates it | [Node and socket index](node-and-socket-index.md) |
 | Choose a condition family without confusing a predicate with a waiting node | [Condition index](condition-index.md) |
-| Understand how exact book diagrams are derived and fingerprinted | [Exact graph contract](graph-contract.md) |
+| Read node IDs, sockets, edges, and colors in the diagrams | [Reading graph diagrams](graph-contract.md) |
 
 ## Registration and data lookup
 
@@ -29,20 +29,18 @@ boundary.
 | Build or diagnose a typed journal path and `fileEntryIndex` | [Journal-path reference](journal-path-reference.md) |
 | Trace UI, subtitle, VO, or embedded scene-choice localization | [Localization reference](localization-reference.md) |
 | Decide what ArchiveXL registers and what the archive reaches indirectly | [ArchiveXL registration reference](archivexl-registration.md) |
+| Connect a status to a custom visual on V or an NPC | [Entity spawners and status effects](../effects/entity-spawners-and-status-effects.md) |
 | Reuse the tutorial naming convention without colliding with it | [Tutorial namespace](tutorial-namespace.md) |
 
-## Research references
+## Additional references
 
 | Need | Reference |
 | --- | --- |
-| Check lab status or audit the scope of older research | [Lab status and research provenance](evidence-version-matrix.md) |
+| Check which labs have been tested in game | [Lab status](evidence-version-matrix.md) |
 | Check the exact pinned practical versions | [Tested versions](tested-versions.md) |
 | Locate a named vanilla resource to extract and inspect yourself | [Vanilla depot paths](vanilla-depot-paths.md) |
 
-The vanilla index cites depot paths and focused properties; it does not contain
-extracted game resources. Legacy research results remain evidence for their
-named historical candidates, commits, and archive hashes. They are never a
-reader prerequisite and do not silently promote a new lab under the current
-pinned baseline.
+The vanilla index contains depot paths and focused properties. Extract the
+resources from your own installation when inspecting them.
 
 For failures rather than lookup, start with [Troubleshooting](../troubleshooting/index.md).

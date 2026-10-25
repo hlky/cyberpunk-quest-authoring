@@ -121,7 +121,7 @@ The later scene chapters own screenplay, actor/performer, entry-point, and
 named-exit details. This section explains only the community side of their
 join.
 
-## Focused vanilla research route
+## Vanilla references
 
 Extract the following resources from your own game with WolvenKit. Do not copy
 or redistribute the extracted CR2W files.
@@ -155,7 +155,7 @@ positions.
 | Role command fires but the actor does not move | Spawn readiness, AI tier, command target, concrete typed params, path/workspot streaming, and navmesh |
 | Actor walks back when the next activity starts | Follower/patrol role was cleared before the next scene, defend, phase, or cleanup owner took over |
 | Actor vanishes during the scene | Cleanup edge ordering, scene outcome handoff, and the distance/trigger used before `Deactivate` |
-| A clean resource change behaves like an older build | Starting save, community activation history, scene state, checkpoints, and installed archive hash |
+| A clean resource change behaves like an older build | Starting save, community activation history, scene state, checkpoints, and installed archive filename |
 
 WolvenKit opening every file and ArchiveXL mounting the block are intermediate
 checks. Use the Lab 5 clean-save procedure to verify the complete `cqa005`

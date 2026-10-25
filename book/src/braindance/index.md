@@ -1,8 +1,7 @@
 # Braindance and specialized scenes
 
-Braindance authoring is the book's deliberately bounded advanced-research
-section. It is complete as an ownership, inspection, and acceptance guide; it
-is not presented as a runtime-proven recipe for shipping a custom recording.
+Braindances coordinate rewindable scenes, recorded animation, layered clues,
+and cleanup. Custom braindance playback remains **Experimental**.
 
 The native feature is not one resource or one scene-node option. A reviewable
 candidate crosses all of these owners:
@@ -41,7 +40,7 @@ exit, and quest handoff](../scenes/entry-exit-and-quest-handoff.md), and
 [Persistent state](../foundations/persistent-state.md) first. Braindance adds
 contracts to ordinary scenes; it does not replace them.
 
-## Focused vanilla research route
+## Vanilla references
 
 Extract these resources from your own installed archives into a disposable
 inspection project. Do not publish or package the extracted files.
@@ -66,7 +65,7 @@ copy-ready design.
 
 ## What you will learn
 
-This section is complete when a reader can:
+You will learn to:
 
 - name every owner in the resource chain and the typed identity used at each
   join;
@@ -74,14 +73,12 @@ This section is complete when a reader can:
 - distinguish serialization success from RID/event compatibility and runtime
   behavior;
 - design a mod-owned candidate and its cleanup contract without relying on a
-  hidden generator;
+  compatible authoring tools;
 - run the eight test cases that cover forward playback, rewind, clue layers,
   normal cleanup, interrupted cleanup, and replay.
 
-It does not promise that WolvenKit exposes a one-click custom-braindance
-wizard, that a vanilla RID may be redistributed as a template, or that a
-custom Blender/export pipeline is part of the reader workflow. Creating new
-compressed animation buffers is a specialized production problem; this book
-documents the native contract they must satisfy and how to test the result.
+Creating compressed animation buffers requires a compatible animation
+production tool. Inspect the RID/event relationships before producing new
+assets, then test playback, seek, rewind, and cleanup in game.
 
 Next: [Ownership and resource chain](ownership-and-resource-chain.md).

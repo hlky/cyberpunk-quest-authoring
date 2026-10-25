@@ -19,7 +19,7 @@ tests can establish how its active state survives interruption.
 | RED4ext | `1.30.0` |
 | redscript | `0.5.31` |
 
-Review date: **2026-08-09**.
+Runtime test date: not yet recorded.
 
 The book-owned Lab 2 CR2W resources are **Structurally validated** by cooking
 and serializing them back with WolvenKit `8.19.0`. The other values pin the
@@ -74,6 +74,40 @@ waits:
 Those observations establish the payloads, not every clock rule. The contact,
 message, or scene seen after an SQ011 delay is downstream behavior and should
 not be attributed to the time condition itself.
+
+## Delay a follow-up offer after completion
+
+To offer a second quest twelve game hours after the first completes, use two
+sequential waits before activating any message or reply choice:
+
+```text
+Input
+  -> Pause(completed fact > 0)
+  -> Pause(game-time delay: 0 days, 12 hours, 0 minutes, 0 seconds)
+  -> activate offer message
+  -> activate reply choices
+```
+
+In WolvenKit, give the first Pause Condition a `questFactsDBCondition`
+wrapping `questVarComparison_ConditionType`: your completion fact,
+`comparisonType = Greater`, `value = 0`. Give the second a
+`questTimeCondition` wrapping `questGameTimeDelay_ConditionType` with the
+duration above. Connect the first `Out` to the second `In`, then the second
+`Out` to the message's `Active` socket. Keep reply activation downstream too.
+
+This graph expresses a wait that becomes active after the prerequisite passes.
+Starting both waits in parallel expresses a different timing requirement:
+the delay can become active while the prerequisite is still pending. An
+immediate Condition is also unsuitable if this running route needs to wait
+for a completion fact that is currently zero.
+
+This follow-up pattern is **Experimental** until tested in game.
+
+A completion prerequisite and a delay do not replace a separate already-sent
+guard. Preserve that guard when composing a one-shot offer. Nor can the new
+gate retract an offer already delivered by an older build: repeat from an
+untouched pre-install save. Test initial suppression, completion, elapsed game
+time, reload during the wait, and duplicate prevention separately.
 
 ## Choose the clock deliberately
 
@@ -132,9 +166,8 @@ content.
 Use different facts when “started” and “completed” have different meanings.
 One fact cannot distinguish a partially completed run from a never-started run.
 
-This pattern is **Structurally validated** in the book's labs. Re-entry and
-reinstall behavior remain **Experimental** until the exact completed save and
-installed payload are hash-bound to a passing runtime record.
+The labs supply a **Structurally validated** guard. Test re-entry and
+reinstallation using a completed save to check its one-shot behavior.
 
 ## Clean-save rule
 
@@ -150,7 +183,7 @@ For every practical delay or one-shot test, retain:
 3. one save made after completion;
 4. the exact installed archive and registration file;
 5. exact game/mod versions and fresh logs;
-6. hashes for all retained evidence.
+6. observations and fresh logs for each run.
 
 Never reuse the mid-flow or completed save as the clean replay baseline.
 
@@ -171,8 +204,6 @@ Record what happened; do not normalize a surprising result into the behavior
 you expected. See [Lab 2 test protocol](lab-02-test.md) for the concrete
 two-route version of this matrix.
 
-Even a fully passing Lab 2 record promotes only its listed uninterrupted,
-mid-flow reload, completed reload/reinstall, and clean-replay cases. It does
-not promote pause-menu, full process-restart, time-skip, fast-travel,
-simultaneous-arrival, or late-second-XOR-input behavior; those rows remain
-**Experimental** until a future fixture exercises them explicitly.
+Test pause-menu, process-restart, time-skip, and fast-travel behavior separately
+when your quest depends on them. For parallel waits, also test simultaneous
+arrival and a late second input.

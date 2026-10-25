@@ -252,9 +252,8 @@ Focused **Observed in vanilla** examples include:
 - a three-day delay at node `61` and a five-hour delay at node `87` in
   `base\quest\side_quests\sq011\phases\sq011_follow_up.questphase`.
 
-The corpus also has one tick-delay payload and two time-period payloads. Their
-presence is **Observed in vanilla**, but this chapter does not promote those
-rare shapes to authoring recipes.
+Tick-delay and time-period payloads are also **Observed in vanilla**. Inspect
+a matching use before adapting those less common forms.
 
 A delay owns only its gate. The downstream graph owns the call, message,
 journal update, or other presentation that follows. A 23-hour condition in a

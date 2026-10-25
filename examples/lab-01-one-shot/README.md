@@ -9,9 +9,7 @@ This directory contains the two WolvenKit checkpoints for
 - `completed`: the mod-owned questphase, journal, localization, and ArchiveXL
   registration for `cqa001`.
 
-The completed project is structurally validated with WolvenKit 8.19.0. The
-completed checkpoint includes a machine-readable `runtime-acceptance.json`;
-its status, observations, versions, package identity, save provenance, and log
-hashes govern the dedicated marker above.
+The completed project is **Structurally validated** with WolvenKit `8.19.0`.
+Follow the lab test guide to check it in game.
 
 No extracted vanilla resource is included.

@@ -8,10 +8,9 @@ creates the other resource automatically.
 
 | Record | Value |
 | --- | --- |
-| Guide review date | 2026-08-09 |
-| Authoring target | [Pinned first-release versions](../reference/tested-versions.md) |
+| Authoring target | [Pinned versions](../reference/tested-versions.md) |
 | Native hierarchies and property shapes | **Observed in vanilla** |
-| New custom phone/device arrangement | **Experimental** until its own hash-bound clean-save acceptance run passes |
+| New custom phone/device arrangement | **Experimental** until its own unchanged clean-save acceptance run passes |
 
 This chapter teaches the journal-side contracts. Building a computer's world
 node, instance package, persistent controller, and component CRUID bindings is
@@ -270,9 +269,9 @@ device-construction recipe.
 
 ## Readable onscreens and the optional item layer
 
-Activating a `gameJournalOnscreen` can make it available in the Journal, but a
-retained legacy probe did not produce an obvious pickup presentation from that
-activation alone.
+Activating a `gameJournalOnscreen` makes journal content available. If the
+quest also needs item acquisition or pickup presentation, author and test
+that item layer separately.
 
 An optional readable item can point its secondary `Read` action's
 `journalEntry` at the onscreen path. That gives inventory acquisition and a
@@ -313,6 +312,6 @@ Test one ownership boundary at a time:
 
 For phone tests, retain which choice succeeded and whether the final message
 became visited. For device tests, retain the exact world identity, journal
-path, read fact, installed resource hashes, framework logs, and starting save.
+path, read fact, installed resource paths, framework logs, and starting save.
 Repeat after reload and from a clean replay save before assigning causality to
 an edit.

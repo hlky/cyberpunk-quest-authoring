@@ -7,8 +7,7 @@ resolvable target.
 
 | Record | Value |
 | --- | --- |
-| Guide review date | 2026-08-09 |
-| Authoring target | [Pinned first-release versions](../reference/tested-versions.md) |
+| Authoring target | [Pinned versions](../reference/tested-versions.md) |
 | Native type and property shapes | **Observed in vanilla** |
 | New mod-owned mappin lifecycle | **Experimental** until exercised from a clean save on the pinned baseline |
 
@@ -141,24 +140,18 @@ phase to copy.
 Keep `disablePreviousMappins: 0` as the ordinary value unless the transition
 is intentionally establishing a replacement destination.
 
-**Runtime-proven in a retained legacy fixture:** in one delivery transition,
-inactivating the earlier pin still left a stale second dotted GPS leg. Setting
-`disablePreviousMappins: 1` on the activation node for the new destination
-cleared that route. The later deactivation node retained `0`.
+If activating the next destination leaves a stale dotted GPS leg, test
+`disablePreviousMappins: 1` on that activation. Keep the later deactivation at
+`0` so it does not clear unrelated routing.
 
-That result proves one transition, not a universal rule that every activation
-must clear every earlier pin. Overusing it can erase a different objective's
-valid destination. For a new arrangement, test these separately:
+Clearing previous routing can erase another objective’s valid destination.
+Check these transitions separately:
 
 1. the first pin appears;
 2. its GPS route targets the intended marker;
 3. inactivation removes its presentation;
 4. the next pin does not retain a stale route;
 5. reloading at each boundary produces the same intended state.
-
-The legacy run was not retained against the complete pinned book environment,
-so this chapter does not promote a new `cqa` mappin project to
-**Runtime-proven**.
 
 ## Quest pins and point-of-interest entries are different
 

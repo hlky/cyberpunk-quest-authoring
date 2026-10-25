@@ -45,7 +45,7 @@ cause.
 
 ## Build a one-delta candidate
 
-1. Copy the known baseline project or restore its exact source commit.
+1. Copy the working baseline project.
 2. Make one semantic change. Generated binary noise does not count as another
    semantic change, but it must still be inspected.
 3. Round-trip every changed CR2W and compare decisive properties.
@@ -106,37 +106,14 @@ Negative controls prevent false attribution:
 Each control answers a narrow question. A scene bypass proves the preceding
 path can continue; it does not prove the full scene is correct.
 
-## Evidence package
+## Keep a reproducible test
 
-Retain or record:
+Save the baseline project, installed files, starting save, versions, and logs.
+Note the single change, the route you followed, and what happened. Keep failed
+runs too, so later changes can be compared with the same baseline.
 
-- source commit and focused diff;
-- built `.archive`/loose-file hashes;
-- archive listing and extracted-payload comparison;
-- exact installed inventory;
-- game/framework/tool versions;
-- save lineage and private save hash;
-- full relevant log hashes;
-- crash report identifier when applicable;
-- privacy-reviewed screenshots, video, log excerpts, save metadata, and notes;
-- every expected/observed result, including failed and unexecutable cases;
-- the hypotheses rejected during the campaign.
-
-Do not publish private saves or unreviewed logs. Hashes identify retained
-private artifacts without redistributing them.
-
-## Promote only the tested claim
-
-| Evidence | Supported statement |
-| --- | --- |
-| Round trip retains exact intended delta | Candidate is **Structurally validated** |
-| Cited vanilla resource contains the comparison shape | Shape is **Observed in vanilla** |
-| Paired runtime route changes exactly as predicted | Exact bounded behavior is **Runtime-proven** |
-| Reload, interruption, replay, quality, or another version was not tested | Those surfaces remain **Experimental** |
-
-If several changes landed together, preserve the result as a useful candidate
-but do not assign causality. Return to the last controlled baseline and split
-the changes into separate candidates.
+If several changes were made together, split them into separate tests before
+assigning a cause.
 
 ## Handoff checklist
 

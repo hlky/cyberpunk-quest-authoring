@@ -132,7 +132,7 @@ Check root composition in this order:
 6. Run from a save whose relevant facts and journal state are known.
 7. Observe child entry, child `Out1`, and the first parent-only operation after
    the handoff.
-8. Retain installed hashes and repeat the reload/streaming matrix.
+8. Retain installed filenames and repeat the reload/streaming matrix.
 
 Packing proves that both payloads exist. A clean ArchiveXL log proves the
 framework processed registration. Only the controlled game run proves native

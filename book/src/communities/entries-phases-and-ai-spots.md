@@ -153,15 +153,8 @@ validate it at the new placement. Check:
 7. normal exit, post-`contact_done` reload, completed reload, and delayed
    deactivation do not leave the actor stuck in the workspot.
 
-A workspot proven at one transform is not a navmesh guarantee at another. The
-later
-`base\workspots\common\ground\generic__stand_ground__guard__02.workspot`
-source/runtime lineage belongs to a different retained candidate and is not
-the workspot bound to the
-[runtime-proven community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-Separate
-`base\workspots\patrolling\guard_stand.workspot` research likewise does not
-replace the exact `cqa005` contact spot.
+Check the workspot at its actual transform. A pose that works at one location
+can intersect geometry or lack a usable approach at another.
 
 ## Common failures
 

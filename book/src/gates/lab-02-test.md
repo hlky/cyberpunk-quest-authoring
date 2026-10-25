@@ -6,7 +6,6 @@ being mistaken for evidence about the canonical mode-2 archive.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -37,8 +36,8 @@ Before installing any Lab 2 checkpoint:
 2. copy each whole save-slot directory to retained evidence storage;
 3. label one for `canonical-clean` and the other for
    `source-edit-failure`;
-4. hash each slot's `sav.dat` and record the slot-directory name;
-5. set `created_before_first_install: true` only after confirming that history.
+4. record the slot-directory name;
+5. confirm neither save has loaded Lab 2 before; note that history with the save.
 
 A console reset of `cqa002_*` facts does not create a clean save. Neither does
 removing the archive after an earlier load: journal, fact, and active-node state
@@ -65,13 +64,8 @@ canonical:          true
    archive\pc\mod\CQA_Lab02_SignalRace.archive.xl
    ```
 
-4. Hash both installed files and enter the values under the
-   `canonical-mode-2` candidate.
-5. Confirm that all three registered depot paths in the record match the
-   project.
-
-Do not hash the source ZIP in place of the installed files. Packing is part of
-the candidate.
+4. Confirm that all three registered depot paths in the `.archive.xl` match
+   the project.
 
 ## Run the canonical cases
 
@@ -102,8 +96,7 @@ infer the selector/monitor distinction only from the final journal screen.
 Restore the untouched canonical save, start a separate execution, and save
 after both objectives activate but while the optional objective is still
 active before its roughly 120-second outcome. Reload that derived save. Record
-this as `canonical-mid-flow-reload`: hash the mid-flow `sav.dat`, set
-`save_state: mid-flow`, and retain fresh logs for this execution. Record
+this as `canonical-mid-flow-reload`. Label the save and keep fresh logs. Note
 whether the remaining delay resumes, restarts, or behaves another way.
 
 The required correctness result is eventual single completion without a
@@ -115,24 +108,21 @@ preselected expectation.
 Use another execution from the original canonical save. After completion:
 
 1. make and retain a completed save;
-2. hash it and use it for `canonical-completed-reload`;
+2. use it for `canonical-completed-reload`;
 3. reload it without changing the installed files and confirm there is no
    quest/objective reactivation or delayed visible journal update;
 4. retain this execution's fresh logs;
-5. close the game, remove and reinstall the **identical hash-bound** candidate;
+5. close the game, remove and reinstall the **same** candidate;
 6. use the same completed save for a new `canonical-reinstall` execution;
 7. confirm there is still no reactivation and retain a new log set.
 
-These are distinct cases. Rebuilding from unchanged-looking source is not an
-identical reinstall unless the installed hashes match. The completed-save SHA
-must match between the two execution records.
+Use the preserved installed files for reinstallation and load the same
+completed save for both completed-state tests.
 
 ### Clean replay
 
-Restore the original untouched canonical save directory, leave the identical
-candidate installed, and repeat the stable route as `canonical-clean-replay`.
-Its `sav.dat` hash must equal `canonical-clean`'s original pre-install hash.
-Retain another fresh log set. The same player-facing result must occur once.
+Restore the original untouched save directory and repeat the stable route as
+`canonical-clean-replay`. Leave the same build installed and retain fresh logs.
 
 ## Build and bind the source-edited candidate
 
@@ -147,10 +137,8 @@ set exact value:    1
 canonical:          false
 ```
 
-Change no other property or resource. Build/install, hash the resulting archive
-and `.archive.xl`, and enter them under `source-edit-mode-1`. The registration
-file may hash identically to the canonical version; record the actual digest
-rather than assuming it does.
+Change no other property or resource. Build and install this mode-1 version
+separately from mode 2, and use its assigned untouched starting save.
 
 Load only the second untouched save assigned to
 `source-edit-failure`. Give it a distinct save label and retained slot
@@ -195,9 +183,8 @@ After the edited run:
 
 1. close the game and remove the mode-1 installed files;
 2. restore node `11` to exact value `2` or discard the edited working copy;
-3. compare the canonical completed checkpoint against its recorded artifact
-   hashes;
-4. restore either no Lab 2 installation or the hash-bound canonical candidate;
+3. reopen the unmodified completed checkpoint;
+4. restore either no Lab 2 installation or the unchanged canonical candidate;
 5. keep both candidates and all six execution/evidence bundles labelled
    separately.
 
@@ -209,10 +196,10 @@ archive is a test artifact, not a second shipped example.
 | Symptom | Check |
 | --- | --- |
 | Quest is already active or complete on the first run | Stop and replace the save with a whole slot captured before any `cqa002` candidate was installed; fact resets do not clean journal or active-node state |
-| Optional objective changes too early to observe | Confirm the installed candidate hashes and raw node `18 = 30` seconds / node `20 = 120` seconds; remove stale archives before reinstalling |
-| Canonical and edited results cannot be attributed | Keep candidate hashes, untouched-save labels, slot-directory identities, executions, and logs separate; identical clean-save bytes are allowed |
+| Optional objective changes too early to observe | Confirm the installed installed files and raw node `18 = 30` seconds / node `20 = 120` seconds; remove stale archives before reinstalling |
+| Canonical and edited results cannot be attributed | Keep installed files, untouched-save labels, slot-directory identities, executions, and logs separate; identical clean-save bytes are allowed |
 | Reload result is ambiguous | Record whether the timer resumed or restarted, but require only eventual single completion without duplicate activation |
-| One evidence note is reused for every execution | Retain a fresh four-log set per run and reference focused, hash-bound evidence beneath `completed/evidence/` for each completed case |
+| One evidence note is reused for every execution | Keep separate observations and a fresh four-log set for each run in your test folder |
 | Internal node or socket behavior is claimed from the journal UI | Record only visible states and timing; use the exact graph for structural route mapping and leave winner/cancellation/tie policy **Experimental** |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Previous: [Author

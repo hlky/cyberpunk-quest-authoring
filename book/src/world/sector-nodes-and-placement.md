@@ -110,8 +110,7 @@ the focused extract; it is not a complete catalogue of sector node types.
 The later triggers chapter will explain `AreaShapeOutline`, outline height,
 points, and `questTriggerNotifier_Quest`. The later markers chapter will
 separate marker placement from [journal map-pin](../journal/mappins.md)
-presentation. At this stage, the important rule is that type-specific data
-belongs on the concrete node while placement and identity remain separate.
+presentation. Type-specific data belongs on the concrete node while placement and identity remain separate.
 
 ## Inplace resources are another ownership layer
 
@@ -168,17 +167,10 @@ marker at `(-1000.02, 1497.2208, 8.3)`. The reach trigger uses a 25-unit radius,
 110-unit radius, 20 outline points, height 16, and base Z `0.3`. Its finite
 padded block box encloses both areas and the intended approach.
 
-Those values are inherited research inputs. Their encoded form is checked; it
-does not prove that vertical coverage, placement, bounds, or streaming behavior
-is correct in game. Regenerate and inspect `AreaShapeOutline.buffer` together
-with `points` and `height` after any edit. Then test approach from several
-directions, ordinary foot crossing, fast travel as a separate case,
-reload before reach, reload between the boundaries, ordinary stream-away and
-return while reach is active, departure, and completed-save reload. This set
-does not support a separate post-completion re-entry claim.
-[Triggers and
-areas](triggers-and-areas.md) connects the state-shaped conditions to these
-nodes.
+After changing the trigger geometry, regenerate and inspect
+`AreaShapeOutline.buffer` together with `points` and `height`. Test approach
+from several directions, foot crossings, fast travel, streaming return, and
+reload before and between the boundaries.
 
 ## Common failures
 

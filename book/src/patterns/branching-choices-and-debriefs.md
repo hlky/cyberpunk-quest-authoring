@@ -47,7 +47,7 @@ reload matrix.
 
 ## Recipe: two mutually exclusive fact branches
 
-The retained GQ002 choice gate normalizes two phone-choice facts into two
+This choice gate normalizes two phone-choice facts into two
 durable quest-outcome facts:
 
 ```text
@@ -68,26 +68,18 @@ In1
 | Convergence | `questLogicalXorNodeDefinition`, `inputSocketCount: 2`, `outputSocketCount: 1`, sockets `In1`, `In2`, `Out1` |
 
 Start both waits from the same input only when the source facts are guaranteed
-to be mutually exclusive. In GQ002, the upstream phone group owned the choice
-and wrote exactly one source fact. The gate then wrote a stable outcome fact
+to be mutually exclusive. Have the upstream phone group write exactly one source fact. The gate then wrote a stable outcome fact
 for later activity and debrief phases.
 
-**Structurally validated:** the exact GQ002 phase and matching final-polish
-build are kept in the
-[provenance record](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-Its runtime section is
-an active checklist; it does not record the two results. Both outcome routes,
-XOR cancellation, simultaneous facts, and behavior under the pinned versions
-remain **Experimental**. The serialized source reports WolvenKit `8.17.4`, not
-a pinned `8.19.0` round trip. Add an acceptance case that deliberately seeds
-both source facts; the graph should reject, guard, or route that impossible
-state intentionally.
+Both outcome routes and XOR cancellation remain **Experimental**. Test each
+source fact separately, then deliberately set both facts. The graph should
+reject, guard, or route that conflicting state intentionally.
 
 ## Recipe: evaluate one optional outcome at a boundary
 
 An optional condition often means “record success or failure when the main
 activity reaches this boundary,” not “monitor continuously from activity
-start.” One retained reduced fixture has this exact shape:
+start.” Use this shape:
 
 ```text
 In1
@@ -209,13 +201,8 @@ Instead:
 4. write the durable quest outcome immediately after the named output;
 5. converge only after branch-specific scene/quest effects are complete.
 
-The single named-exit handoff taught by Lab 5 is **Structurally validated**.
-The complete retained GQ000 route displayed five scene-choice labels and
-continued through its acceptance route in a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence);
-that bounded
-result is **Runtime-proven**. A generalized multi-exit custom scene remains
-**Experimental** and belongs to the later advanced-scene campaign.
+Lab 5 demonstrates a **Structurally validated** single named exit. Test every
+exit when expanding it into a choice scene.
 
 ## Authoring procedure
 
@@ -267,9 +254,3 @@ fact edit is useful for fault injection, but it is not clean-save evidence.
 | Optional result is never recorded | Negative/out-of-domain value, boundary never entered, or wrong result fact |
 | Shared continuation runs twice | Convergence semantics, late listener, multiple incoming signals, absent one-shot guard |
 | Correct choice but wrong debrief | Outcome was inferred again downstream instead of consuming the durable fact |
-
-The evidence labels apply to exact scopes: the GQ002 two-route resource and
-the older reduced optional fixture are **Structurally validated**, their
-intended runtime behavior remains **Experimental**, and the cited switch and
-condition shapes are **Observed in vanilla**. New branch combinations remain
-**Experimental** until their own hash-bound runtime matrix passes.

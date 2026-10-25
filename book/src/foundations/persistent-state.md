@@ -128,5 +128,5 @@ For a one-shot quest:
 5. **Clean replay:** return to the original pre-mod save for another first-run
    pass.
 
-Record which save was used with the archive hash and test result. “Works on my
+Record which save was used with the archive filename and test result. “Works on my
 save” is not enough evidence to reproduce a lifecycle claim.

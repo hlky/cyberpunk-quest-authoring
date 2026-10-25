@@ -1,17 +1,10 @@
 # Author Boundary Check in WolvenKit
 
-This walkthrough expands the supplied Lab 3 start checkpoint into the exact
-16-node Boundary Check graph. The start project already contains every world,
-journal, localization, and registration resource so you can inspect native
-ownership before adding behavior.
-
-You edit resources in WolvenKit. The repository's Python generators and
-CR2W-JSON copies are documentation-author review infrastructure, not reader
-prerequisites.
+Build Boundary Check in WolvenKit using the start checkpoint. You will add
+the quest graph to the supplied streaming, journal, and localization resources.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -361,10 +354,9 @@ Use the normal ArchiveXL project install, not **Install as REDmod**. A packed
 archive without its loose `.archive.xl` cannot attach the phase, merge the
 journal/localization, or register the block.
 
-The manually expanded start project installs `_Start`-named files and is a
-comparison candidate. Evidence that promotes the book must use the supplied,
-unmodified `CQA_Lab03_BoundaryCheck.cpmodproj`, bind its installed hashes, and
-follow the acceptance record.
+The authored start project installs `_Start`-named files. To test the supplied
+completed project, open `CQA_Lab03_BoundaryCheck.cpmodproj` and remove the
+start project’s installed files before installing it.
 
 ## Common authoring failures
 

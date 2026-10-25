@@ -79,7 +79,7 @@ explicit entry edge, exit edge, lifecycle owner, and evidence plan.
 Start with the node schedule. A perfectly authored fact comparison still
 behaves incorrectly if it sits under the wrong surrounding graph node.
 
-## Inspect evidence without redistributing it
+## Inspect vanilla conditions
 
 Use a disposable WolvenKit project for vanilla research:
 
@@ -93,9 +93,8 @@ Use a disposable WolvenKit project for vanilla research:
 5. Keep the extracted `.questphase` and any complete CR2W-JSON serialization
    out of the book and downloadable examples.
 
-The depot path is provenance. It is not a dependency to package, and the
-surrounding vanilla quest is not a template whose local facts, NodeRefs, or
-journal paths can be copied into a new mod.
+Use the depot path to locate a reference. Adapt only the fields you need;
+vanilla facts, NodeRefs, and journal paths belong to the original quest.
 
 ## State is not an event sequence
 
@@ -117,19 +116,8 @@ one condition evaluation. It does not record that A happened first. Starting
 two waiters in parallel likewise does not establish which will emit first or
 whether the losing path will stop.
 
-## Claims this section deliberately does not make
+## Test timing-dependent behavior
 
-The retained structures do not by themselves prove:
-
-- polling frequency or short-circuit order;
-- automatic cleanup when a phase terminates;
-- timer behavior through pause menus, loading, time skip, fast travel, or
-  save/load;
-- deterministic resolution when several signals become ready together;
-- reset, exactly-once, or re-arm behavior after interruption;
-- a universal Boolean NOT node;
-- that a numeric distance threshold is measured in metres.
-
-Those questions are runtime acceptance cases. Keep them **Experimental** until
-the exact resource build, installation, save state, route, and observation are
-retained together.
+When your quest depends on timing, test pause, loading, time skip, fast travel,
+and save/load. For parallel signals, test both arrival orders and simultaneous
+arrival. For reusable waits, test interruption and re-entry.

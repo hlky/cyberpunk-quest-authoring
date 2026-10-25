@@ -58,11 +58,9 @@ PauseCondition
 ```
 
 Alternatively, re-evaluate `IsInside` immediately after the speed wait and
-route false back to the arrival/stop cycle. A graph-level AND that merely
-remembers two earlier signals has the same temporal defect as the sequential
-chain. The mixed stopped-inside predicate is **Experimental** in this book: its
-exact already-true, exit/re-entry, reload, and event-order behavior needs a
-retained candidate before promotion.
+route false back to arrival. An AND that remembers two earlier signals has
+the same temporal defect as the sequential chain. The combined predicate is
+**Experimental**; test already-true, exit/re-entry, reload, and both event orders.
 
 **Observed in vanilla:** inspect
 `base\quest\side_quests\sq004\phases\sq004_02_drive.questphase` for an exact
@@ -75,14 +73,8 @@ contains `CT_NOT_EQUAL`/`0` for its van while its nearby triggers are
 player-activated. Do not merge those separate observations into one vanilla
 delivery chain.
 
-The reduced four-node sequential chain is **Structurally validated** at its
-recorded WolvenKit `8.17.4` research boundary. Its intended stopped-inside
-meaning is **Experimental** because the topology does not enforce that meaning.
-
-The final GQT004 runtime route is not evidence for this exact stopped chain.
-Its `drive_to` delivery child observed the designated vehicle entering the
-destination trigger and did not contain the separate `CT_EQUAL`/`0` speed
-wait.
+The sequential chain expresses arrival followed by a stop. Use the combined
+predicate or recheck containment when delivery requires stopping inside.
 
 ## Separate delivery from handoff
 
@@ -115,25 +107,9 @@ Choose cleanup from the way the vehicle entered the activity.
 | Player-vehicle record | Player-vehicle system | Is `questEnablePlayerVehicle_NodeType` valid for this exact TweakDB record and state? |
 | Scene-staged vehicle | Scene plus surrounding quest | Which exit owns unmount, visibility, and post-scene handoff? |
 
-`questEnablePlayerVehicle_NodeType` is not a generic world-entity despawner.
-GQT004 originally put an `sq031_porsche`-style player-record operation in an
-intermediate contact-cleanup child. The **Runtime-proven** partial result for
-a [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-is that the separately authored theft vehicle existed during the contact drive
-but disappeared exactly at that cleanup handoff while both custom
-player-vehicle records had live instances. It does not establish a universal
-cause.
-
-The later fact-only intermediate child also failed: a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-reached that child, did not hand off, and lost the theft vehicle as the child
-was entered. That bounded failure is **Runtime-proven** for its own hash; a
-generic fact-only-child rule is not. The passing six-stage route removed the
-intermediate cleanup entirely. Its dedicated final child targeted the exact
-`Vehicle.GhostlineGQT004Theft` player-vehicle record and ran on the
-[retained route](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-That is **Runtime-proven** only for that record, ordering,
-and archive; it is not generic community/world-vehicle cleanup.
+`questEnablePlayerVehicle_NodeType` operates on player-vehicle records; it is
+not a generic world-entity despawner. Target the exact record and delay cleanup
+until no later activity needs that vehicle.
 
 **Observed in vanilla:** extract
 `base\quest\side_quests\sq031\phases\sq031_porsche.questphase` and inspect the
@@ -149,8 +125,8 @@ save behavior pass in game.
 
 ## Chase is a coordinated encounter
 
-There is no retained generic chase child in this book or its research input.
-A chase needs at least:
+A chase needs a separate encounter design. Define pursuit, recovery, escape,
+and failure behavior before wiring the vehicle conditions.
 
 - spawned vehicles and occupants with consistent community/entry identities;
 - seat assignment and spawned-readiness gates;
@@ -243,7 +219,7 @@ isolation.
 8. Reopen every mod-owned phase and inspect handles, sockets, vehicle refs,
    entry names, trigger refs, comparisons, facts, and terminal outputs.
    Round-trip the resources with WolvenKit `8.19.0`.
-9. Pack and hash one candidate. Run delivery/cleanup or chase/race cases from
+9. Pack and install one build. Run delivery/cleanup or chase/race cases from
    separate copies of an untouched pre-install save, retaining fresh logs and
    state captures.
 10. Promote only the exact observed result. Keep stopped delivery, generic

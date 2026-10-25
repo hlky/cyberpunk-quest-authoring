@@ -179,5 +179,4 @@ For each monitor/race pair, retain at least:
 | Completed-save reload | No listener reactivation |
 | Clean replay | Both variants still work from separate untouched saves |
 
-Bind the record to exact installed files, versions, saves, and logs before
-promoting a claim to **Runtime-proven**.
+Keep the installed build and starting save consistent while comparing results.

@@ -10,7 +10,7 @@ Each example should:
 - contain only redistributable, mod-owned source;
 - omit packed archives, extracted vanilla resources, and generated build
   output; and
-- use stable resource paths that do not depend on Ghostline.
+- use stable mod-owned resource paths.
 
 Implemented examples:
 
@@ -28,5 +28,4 @@ Implemented examples:
   checkpoints for the `cqa005` community-backed contact, one-line scene,
   named outcome, and delayed cleanup lifecycle.
 
-Runtime status and evidence-promotion boundaries are recorded in the book's
-[evidence and version matrix](../book/src/reference/evidence-version-matrix.md).
+See the book’s [lab status](../book/src/reference/evidence-version-matrix.md).

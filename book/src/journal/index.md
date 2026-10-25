@@ -7,25 +7,9 @@ targets, resolve every kind of text, or grant rewards by itself.
 
 | Record | Value |
 | --- | --- |
-| Section review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Mod-owned reference | `cqa001` / **First Signal** |
 | Reference status | Lab 1 journal and onscreen resources are **Structurally validated** |
-
-> **Scope note:** this section distinguishes the structurally validated
-> Lab 1 resources, focused structures **Observed in vanilla**, legacy
-> **Runtime-proven** research fixtures whose environment is not identical to
-> the pinned book baseline, and untested combinations that remain
-> **Experimental**. A legacy run never silently promotes a new tutorial
-> resource.
-
-Where a chapter cites a legacy fixture as **Runtime-proven**, the surviving
-records variously name WolvenKit `8.17.4` for mod-owned fixture resources,
-ArchiveXL `1.27.0`, and, where relevant, TweakXL `1.11.3`. Separate focused
-vanilla-extraction notes name WolvenKit `8.17.4-nightly.2026-03-20`. They do
-not bind one uniform game and RED4ext environment. Those values are research
-provenance, not the reader baseline and not proof that a new tutorial resource
-works on the pinned versions.
 
 ## Keep the owners separate
 

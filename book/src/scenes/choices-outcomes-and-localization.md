@@ -8,7 +8,6 @@ calling questphase records the result.
 
 | Record | Value |
 | --- | --- |
-| Guide review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Focused vanilla comparison | **Observed in vanilla** |
 | New mod-owned choice or multi-exit scene | **Experimental** until its own runtime matrix passes |
@@ -176,12 +175,9 @@ not make a later phase rediscover the result from presentation state. See
 [Branching, choices, and debriefs](../patterns/branching-choices-and-debriefs.md)
 for fact and convergence design.
 
-The single named-exit handoff in Lab 5 is **Structurally validated**. A
-[retained legacy candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-displayed its five intended meeting-choice labels and continued through its
-recorded acceptance route; that bounded result is **Runtime-proven**. It does
-not prove a general two-exit scene, every option, locale fallback, or behavior
-after interruption.
+Lab 5 supplies a **Structurally validated** single named-exit handoff. For a
+choice scene, test every option and named exit, then repeat after interruption
+and reload.
 
 ## Manual WolvenKit authoring procedure
 
@@ -256,9 +252,9 @@ interruption, return, active-branch reload, and localization fallback remain
 | Choice appears but cannot progress | Choice type/conditions, missing output edge, required persistent-line behavior, or a branch section that never ends |
 | Scene reaches End but quest stalls | End missing from `endNodes`, missing/wrong `exitPoints` name, or quest scene-node socket mismatch |
 | Correct scene branch, wrong later debrief | Durable result was not written immediately after the named output |
-| Rebuild still shows old options | Save/checkpoint provenance, active scene state, archive replacement, and whether the game was fully restarted |
+| Rebuild still shows old options | Starting save/checkpoint state, active scene state, archive replacement, and whether the game was fully restarted |
 
-## Research anchors and test scope
+## Vanilla references
 
 **Observed in vanilla:** the focused choice, socket, screenplay, and embedded
 localization shapes described above were inspected in these installed
@@ -276,13 +272,8 @@ publish the extracted resources or complete serialized payloads.
 locStore, and one named scene exit survive a WolvenKit `8.19.0` round trip. It
 does not contain a choice.
 
-**Runtime-proven:** the hash-bound legacy route above proves only its recorded
-five labels and acceptance continuation in its recorded environment.
-
-**Experimental:** every newly assembled choice, new embedded payload, general
-multi-exit handoff, locale fallback, persistent-line behavior, interruption,
-return, active-scene reload, and cleanup behavior remains experimental until
-its own evidence record passes.
+Custom choices are **Experimental**. Test every option, locale, named exit,
+interruption route, reload, and cleanup transition that your scene supports.
 
 Previous: [Cleanup and save state](cleanup-and-save-state.md). Next: [External
 VO, WEM, and lipsync](external-vo-wem-and-lipsync.md).

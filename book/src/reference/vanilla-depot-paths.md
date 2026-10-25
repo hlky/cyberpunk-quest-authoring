@@ -11,7 +11,6 @@ citation, not a template and not a file supplied by this repository.
 
 | Record | Value |
 | --- | --- |
-| Index review date | 2026-08-09 |
 | Practical comparison target | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0` |
 | Evidence class | **Observed in vanilla**, limited to the question named for each path |
 
@@ -83,7 +82,7 @@ not a self-contained recipe.
 | `base\open_world\minor_activities\westbrook\japantown\ma_wbr_jpn_13\community\ma_wbr_jpn_013_claws_com.community` | Generic Tyger Claw entries, phases, appearances, time periods, quantities, and AI-spot references |
 | `ep1\characters\entities\gang\gang__ep1_tyger_wa.ent` | Entity-template appearance mappings exposed by the focused `Character.*` record inheritance chain |
 | `base\characters\appearances\gang\gang__tyger_wa.app` | Internal appearance definitions selected by the focused entity's exposed mapping; not a portable appearance template |
-| `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot` | The stationary workspot byte-bound to the retained generic-character research lineage used by Lab 5 |
+| `base\workspots\common\ground\generic__stand_ground_cigarette__smoke__01.workspot` | The stationary cigarette workspot used by the Lab 5 contact |
 | `base\workspots\common\ground\generic__stand_ground__guard__02.workspot` | A different standing-guard lineage; do not substitute it for the cigarette mapping without new evidence |
 | `base\workspots\common\wall\generic__stand_wall_lean_left__stand_around__01.workspot` | A scene-referenced wall-lean workspot used to distinguish workspot acquisition from direct animation events |
 | `base\workspots\patrolling\guard_stand.workspot` | Finite-patrol research only; not a universal guard workspot |
@@ -129,18 +128,24 @@ World identities and transforms are not portable guarantees. Reusing a
 vanilla location still requires measured geometry, streaming tests, collision
 and navmesh checks, and save-aware device/community acceptance.
 
-## Provenance boundary
+## Custom effects
 
-The focused quest-block corpus was retained in Ghostline research commit
-`29066f7b76ad4b7435b3fa2a7c0b20ecea464b5e`. Its README summarizes focused
-base-game archive extraction across 2026-07-23 and 2026-07-24; the manifest at
-that commit records the 2026-07-24 corpus state. Later research supplied the
-scene, community, and world comparisons used by the book.
+| Depot path | Inspect it for |
+| --- | --- |
+| `base\fx\player\status_effects\blindness\p_blindness.particle` | Screen particle drawer, emitter modules, local material, and compiled render data |
+| `base\fx\player\p_hacking_glitch\p_hacking_glitch_low.effect` | `worldEffect` timeline, tracks, event objects, and loop data |
+| `engine\materials\particles_generic.remt` | Textured-particle material parameters |
+| `base\characters\entities\player\player_ma_fpp.ent` | Male-average player first-person components and slots |
+| `base\characters\entities\player\player_wa_fpp.ent` | Female-average player first-person components and slots |
+| `base\characters\entities\player\player_ma_tpp.ent` | Male-average player third-person components and slots |
+| `base\characters\entities\player\player_wa_tpp.ent` | Female-average player third-person components and slots |
 
-That provenance is not one fully bound Cyberpunk `2.31a` acceptance record.
-Treat every row as **Observed in vanilla**, then re-extract the named resource
-from the pinned installation before depending on version-sensitive fields.
-Ghostline remains research input only; readers do not need it.
+See [Custom effects](../effects/index.md) for the resource chain and authoring
+procedure.
+
+## Inspect a reference
+
+Extract the named resource from your own installation before comparing fields.
 
 For every focused inspection, record:
 

@@ -32,10 +32,8 @@ Cases 3, 4, and 7. Active-line interruption or `CutDestination`, arbitrary or
 unlisted pre-scene active-child states, and facial/workspot-animation quality
 remain **Experimental** outside that campaign.
 
-The schema-version-4 campaign binds five manual source captures: two untouched
-originals plus the pre-scene, post-contact, and completed seeds made during
-Case 1's continuous ordinary route. Every execution uses a closed-game copy of
-the complete source slot, and all runs that reference one capture must retain
-its exact `sav.dat` hash.
+For reload tests, preserve the pre-scene, post-contact, and completed saves
+made during the first route. Follow the lab test guide for which save to use
+in each case.
 
 Do not install both checkpoints together. They own the same depot paths.

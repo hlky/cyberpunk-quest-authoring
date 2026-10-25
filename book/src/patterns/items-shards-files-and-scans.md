@@ -138,13 +138,9 @@ outcome item or fact.
 | Retry after reload | Inventory and completion facts may restore from different save-backed owners |
 | Deliver to a kiosk | The drop point owns deposit UI and removal; do not also remove the item early unless the design proves that sequence |
 
-**Runtime-proven:** a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-consumed one exact keylogger as part of its completed personal-link install
-route. It does not establish a generic
-`RemoveAll` policy for quest items. See
-[Areas, devices, and hacking](areas-devices-and-hacking.md) for the complete
-plant and drop-point contracts.
+Choose the removal quantity deliberately; do not use `RemoveAll` for every
+quest item. See [Areas, devices, and hacking](areas-devices-and-hacking.md) for
+the personal-link install and drop-point sequences.
 
 ## Readable shards
 
@@ -275,13 +271,9 @@ The phase does not infer a read from generic journal state. The computer
 element, computer scene output, or another explicitly authored UI owner must
 set the completion fact.
 
-**Runtime-proven:** a
-[retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-used a fresh mod-owned laptop identity, exposed only its authored Files tab,
-and advanced when opening
-`SIGNAL DELAY` set the named document fact. That result is bounded to the
-retained component mapping and device package. Its later quest-complete
-presentation was a separate, initially unresolved acceptance item.
+For a document-read gate, open the named file and confirm its fact changes.
+Then check that the quest advances; file visibility alone does not test the
+completion route.
 
 **Experimental:** a generic email-click completion signal is not established
 by the file result. Files, emails, internet pages, and onscreens can use
@@ -383,9 +375,9 @@ as a hidden template.
 | Reload after completion | Duplicate item, journal entry, fact, objective, and marker prevention |
 | Reuse an old device save after changing content | Persistent controller contamination; repeat with a fresh NodeRef or pre-stream save |
 
-Retain the exact archive and resource hashes, TweakDB item records, full
+Retain the exact archive and resource paths, TweakDB item records, full
 journal paths, scan target NodeRefs, inventory counts, facts, journal states,
-starting save provenance, and framework/game logs.
+starting save history, and framework/game logs.
 
 ## Troubleshooting
 

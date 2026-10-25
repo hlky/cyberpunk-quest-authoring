@@ -42,11 +42,11 @@ base\workspots\patrolling\guard_stand.workspot
 
 | Player-facing design | Primary asset owner | Quest-side responsibility | Current status |
 | --- | --- | --- | --- |
-| Stationary contact waits at a pose | Community plus one `worldAISpotNode` and `.workspot` | Activate, wait for spawn, acquire in scene, then clean up | Exact legacy meetings are **Runtime-proven**; a new mapping is **Experimental** |
+| Stationary contact waits at a pose | Community plus one `worldAISpotNode` and `.workspot` | Activate, wait for spawn, acquire in scene, then clean up | Test pose, acquisition, and cleanup at the selected location |
 | Guard or civilian follows a finite spot sequence | Community time period plus multiple AI spots and compatible AI behavior | Activate, observe milestones if needed, stop/clean up | Shapes are **Structurally validated**; general movement behavior is **Experimental** |
-| Player uses, plugs into, or hacks a device | Device `.ent`, instance package, controller, interaction/workspot/slot | Enable only if required, wait on a controller function or fact | Exact named legacy routes are **Runtime-proven**; arbitrary combinations are **Experimental** |
-| Quest waits until an actor is in a workspot | Character condition targeting the actor | Activate the wait only after the producing AI/workspot route | Condition family is **Observed in vanilla**; no generic recipe is promoted |
-| Scene needs an actor at a presentation point | Community/AI preparation plus scene marker and actor acquisition | Wait for readiness, start scene, route named exit | One retained meeting is **Runtime-proven**; scene-local animation quality is separate |
+| Player uses, plugs into, or hacks a device | Device `.ent`, instance package, controller, interaction/workspot/slot | Enable only if required, wait on a controller function or fact | Test the selected controller, action, and interaction |
+| Quest waits until an actor is in a workspot | Character condition targeting the actor | Activate the wait only after the producing AI/workspot route | Condition family is **Observed in vanilla**; test completion and reload |
+| Scene needs an actor at a presentation point | Community/AI preparation plus scene marker and actor acquisition | Wait for readiness, start scene, route named exit | Test readiness, actor placement, and the named exit |
 
 This choice prevents a common category error: adding a
 `questCharacterWorkspot_ConditionType` cannot place an actor into a workspot,
@@ -141,13 +141,8 @@ choose the actor or world transform.
 | Ordered route | Multiple unique spots, mirrored order, `isSequence`, compatible AI, and navigable placement |
 | Readiness | Spawn Manager request followed by the matching character/spawning condition |
 
-**Runtime-proven:** a
-[retained community candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-establishes that its exact three generic entries spawned and stayed passive.
-It does not establish cigarette animation
-quality. The later guard-standing and patrol workspot references belong to
-different source/runtime lineages and cannot be merged into that hash-bound
-claim.
+Check the workspot animation as well as actor spawning. A visible, passive
+actor can still be using the wrong pose or workspot.
 
 ## Device interaction assets
 
@@ -186,11 +181,8 @@ ground contact, and navigation approach at the final transformed placement.
 Rotating an entity can rotate an interaction workspot away from the available
 floor even when the visible prop looks acceptable.
 
-The **Runtime-proven** result for the
-[retained final package](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-is limited to exposing `Steal Data` and completing the personal-link route at its exact
-barrel placement. It does not isolate placement from controller/action content
-or prove another transform.
+Test the personal-link interaction at its actual device placement. Check
+approach, collision, prompt visibility, connection, and exit pose.
 
 ## Doors are device contracts
 
@@ -352,10 +344,9 @@ contain a general player-interaction workspot or custom device recipe.
 | Replay from untouched clean save | One-shot state and deterministic placement |
 | Reuse an old device identity after changing its package | Demonstrates save contamination; repeat with a fresh identity |
 
-Record the exact archive/resource hashes, workspot path, actor record,
-community/entry/phase/period, spot NodeRef and global ID, transform, device
-template and component IDs, starting save provenance, interruption state, and
-logs. Do not promote animation quality merely because the actor spawned.
+When diagnosing a workspot, note its resource path, actor record, community
+entry, spot NodeRef, transform, device component IDs, starting save, and logs.
+Watch the animation through entry, completion, and interruption.
 
 ## Troubleshooting
 

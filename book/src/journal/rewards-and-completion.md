@@ -6,17 +6,12 @@ the effects it needs in an intentional order; none is implied by another.
 
 | Record | Value |
 | --- | --- |
-| Chapter review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1 completion path | Structure checked; verify completion with the Lab 1 test guide |
 | Native reward reference | **Observed in vanilla** |
-| Reward-to-completion sequence | **Runtime-proven** in a retained legacy fixture, not in one fully bound pinned-book run |
 
-> **Research note:** the native reward node shape below is a focused
-> vanilla observation. The complete ordering was exercised successfully by a
-> retained quest fixture, but that run does not promote this book's pinned
-> baseline or Lab 1 to runtime-proven. Custom TweakDB reward-record authoring is
-> outside this chapter and remains deferred.
+**Observed in vanilla:** the reward node below grants an existing reward
+record. Creating custom TweakDB reward records is a separate task.
 
 ## Four effects, four owners
 
@@ -118,12 +113,9 @@ Its concrete operation families are:
 | 4 | `questJournalNodeDefinition` → `questJournalQuestEntry_NodeType`, connected to the `Succeeded` input socket for the quest path |
 | 5 | `questOutputNodeDefinition`, `type: Terminating` |
 
-This ordering is **Runtime-proven** for the retained legacy fixture. It is a
-strong completion pattern, not a universal requirement that every quest end
-with a phone message. Replace the first gate with the final player-facing event
-your quest actually requires, but do not let an asynchronous scene, message,
-or interaction continue after you have declared the route complete unless
-that behavior is intentional and tested.
+Replace the final-message gate with the last player-facing event your quest
+requires. Wait for an asynchronous scene, message, or interaction to finish
+before declaring the route complete.
 
 ### Why this order is not atomic
 
@@ -158,11 +150,8 @@ succeed the objective
   -> terminate
 ```
 
-That is not an incomplete reward example; it is a smaller lifecycle example
-whose promised outcome contains no payout. Its fact write, quest success, and
-termination remain separate for the same reason described above. The Lab 1
-graph is **Structurally validated**, while its clean-save, mid-flow reload, and
-completed-reload behavior are governed by the pinned acceptance record.
+Lab 1 has no payout. Its fact write, quest success, and termination are
+separate operations. Follow the test guide for first load and reload checks.
 
 To add a payout in a later lab, first create and validate a quest-owned
 `QuestRewards.*` record through the future TweakDB procedure. Then insert the
@@ -177,7 +166,7 @@ Do not point Lab 1 at the named vanilla record or copy the vanilla phase.
 | Payout appears but the quest stays active | Quest journal path, `className`, `fileEntryIndex`, and connection to the quest node's `Succeeded` socket |
 | Quest succeeds but restarts on a later load | Completion fact name/value, root one-shot condition, and whether the fact write is reachable before termination |
 | Quest stops changing before the payout | Final wait condition, especially visited versus merely active journal state |
-| Payout occurs twice | Parallel completion routes, reward-to-fact interruption window, checkpoint resume point, and save provenance |
+| Payout occurs twice | Parallel completion routes, reward-to-fact interruption window, checkpoint resume point, and save history |
 | Journal succeeds but the graph remains active | Connection from the journal node's `Out` socket to a `Terminating` output |
 | Objective succeeds but quest does not | Confirm there are distinct objective and quest journal nodes and that both receive the intended state |
 
@@ -208,5 +197,5 @@ and device persistent state can all survive in a save. A console fact reset is
 not a clean replay and cannot establish one-shot correctness. Use
 [Facts, journals, and saves](../foundations/persistent-state.md) and
 [Install, test, and reset](../start-here/install-and-test.md), and bind the
-archive hashes, exact versions, save provenance, and retained logs to the test
+archive filenamees, exact versions, save history, and retained logs to the test
 record before changing an **Experimental** claim to **Runtime-proven**.

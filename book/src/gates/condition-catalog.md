@@ -22,11 +22,9 @@ report:
 - WolvenKit `8.17.4`;
 - WolvenKit JSON version `0.0.9`.
 
-The count was repeated on **2026-08-09** by recursively enumerating concrete
-`$type` object definitions in every serialization. Wrapper-to-payload counts
-were then checked by reading the concrete `$type` beneath each wrapper's
-`type.Data` handle. Direct fields such as `questLogicalCondition.operation`
-and `questTriggerCondition.type` were counted separately.
+Counts include concrete `$type` definitions. Wrapper-to-payload counts use
+the concrete type beneath `type.Data`; operation and trigger enums are
+counted separately.
 
 A `HandleRefId` reference does not create another object definition, so it is
 not counted again. Conversely, nested predicates are counted even when they
@@ -220,10 +218,8 @@ all of the following before presenting an authoring contract:
    failure state, save/load while waiting, streaming loss and return where
    relevant, cancellation or phase exit, completion, and re-entry/reset.
 7. Exact tested Cyberpunk, WolvenKit, RED4ext, ArchiveXL, and dependency
-   versions, plus build hashes, logs, clean-save provenance, and the result of
+   versions, plus build hashes, logs, clean starting save, and the result of
    every acceptance case.
 
-Until those checks are retained, the catalog entry remains **Observed in
-vanilla** and any new behavior claim remains **Experimental**. Successful
-serialization alone can make a mod-owned shape **Structurally validated**; it
-cannot promote the runtime contract.
+Treat a newly adapted condition as **Experimental** until the intended
+activation, completion, interruption, and reload behavior has been tested.

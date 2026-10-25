@@ -29,7 +29,7 @@ into exact native resource contracts:
    external child and makes the boundary inspectable.
 
 The practical pages target the exact
-[first-release version set](../reference/tested-versions.md): Cyberpunk 2077
+[pinned version set](../reference/tested-versions.md): Cyberpunk 2077
 `2.31a` for Windows (GOG; public patch `2.31`), WolvenKit `8.19.0`, ArchiveXL
 `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`.
 

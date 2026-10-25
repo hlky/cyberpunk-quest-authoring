@@ -6,7 +6,6 @@ then leaves a wider trigger to complete the quest.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -238,11 +237,11 @@ FactsDB names.
 | --- | --- | --- |
 | Quest never appears | Installed archive plus loose `.archive.xl`, root phase/journal/localization paths, ArchiveXL and RED4ext logs | Structural validation does not establish runtime activation |
 | Objective appears but pin does not | Journal map-pin path, marker NodeRef, AlwaysLoaded descriptor, and Mappin Manager state socket | Do not infer GPS or sector behavior from the objective alone |
-| Pin appears at the wrong height | Marker placement Z, yaw, terrain accessibility, and clean-save provenance | Judge inherited coordinates from the exact candidate's retained runtime evidence |
+| Pin appears at the wrong height | Marker placement Z, yaw, terrain accessibility, and clean starting save | Judge inherited coordinates from the exact candidate's retained runtime evidence |
 | Entering does nothing | Quest-sector descriptor root, full child ref, local condition ref, player activator flag, trigger notifier, and decoded reach buffer | JSON `points` alone are not geometry evidence |
 | Leave completes immediately | Confirm the starting save is inside the outer volume when leave activates and the condition is `IsOutside` | A dirty save or bad vertical coverage changes the initial state |
 | Area works until streaming away | Finite Quest bounds, sector logs, return route, and NodeRef resolution | One successful nearby crossing does not prove unload/reload behavior |
-| Quest reactivates after reload | `completed` write order, guard comparison, exact candidate hash, and untouched/completed save identity | Console resets are diagnostic, not clean acceptance |
+| Quest reactivates after reload | `completed` write order, guard comparison, exact installed build, and untouched/completed save identity | Console resets are diagnostic, not clean acceptance |
 
 Lab sequence: [All labs](../reference/labs-at-a-glance.md) · Next: [Author
 Boundary Check in WolvenKit](lab-03-authoring.md).

@@ -6,7 +6,6 @@ objective and quest, persist a one-shot guard, and terminate.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-07-27 |
 | Runtime test date | Not yet recorded |
 
@@ -43,7 +42,7 @@ Read [Foundations](../foundations/index.md) first. The lab assumes you can
 distinguish resource ownership, socket semantics, identifier domains, and
 save-backed state.
 
-Use the exact [first-release version set](../reference/tested-versions.md):
+Use the exact [pinned version set](../reference/tested-versions.md):
 Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext
 `1.30.0`, and the pinned redscript `0.5.31` (ArchiveXL requires `0.5.31` or
 newer).
@@ -107,9 +106,8 @@ This value is not the leaf index and is not a CR2W handle.
 
 ![Exact cqa001 questphase graph](../images/lab-01/cqa001.questphase.svg)
 
-The figure is generated from the supplied WolvenKit CR2W-JSON. Its layout file
-contains no duplicate nodes or edges and records source fingerprint
-`sha256:4f19c675ab57194ce73a007aca29c3c973e9c98f1129fc4cf05e756bfaeafa82`.
+The figure is generated from the supplied WolvenKit CR2W-JSON. Match its node
+IDs, socket names, and connections to your graph; editor layout can differ.
 
 | ID | RED node type | Incoming socket | Decisive property | Purpose |
 | ---: | --- | --- | --- | --- |
@@ -161,11 +159,9 @@ runtime proof.
 
 Structural checks already completed:
 
-1. deserialize all three CR2W-JSON sources with WolvenKit 8.19.0;
-2. serialize the resulting binaries back to JSON;
-3. compare quest node IDs, types, sockets, edges, and decisive properties;
-4. compare the journal entry tree and localization keys;
-5. verify the exact SVG against its source fingerprint.
+The supplied resources have been round-tripped with WolvenKit `8.19.0`.
+Compare the node IDs, sockets, connections, journal tree, and localization keys
+with your authored project.
 
 Runtime acceptance still required:
 

@@ -110,20 +110,18 @@ saves](../foundations/persistent-state.md).
 
 Run this matrix on Cyberpunk 2077 Windows GOG `2.31a` with WolvenKit `8.19.0`,
 ArchiveXL `1.27.0`, RED4ext `1.30.0`, and redscript `0.5.31`. Record the packed
-payload hashes, exact save provenance, installed framework versions, and result
+payload inventory, exact save history, installed framework versions, and result
 for every row.
 
-The [Lab 5 test procedure](lab-05-test.md) covers the supplied checkpoint. This
-broader design matrix also includes active-scene reload and interruption probes;
-those rows cannot promote the checked candidate and need their own retained
-runtime record.
+The [Lab 5 test procedure](lab-05-test.md) covers the supplied checkpoint.
+Also test active-scene reload and interruption when adding those behaviors.
 
 > The frozen campaign begins from two untouched manual-save originals, then
 > Case 1 creates the three named manual seeds under the unchanged candidate.
 > Cases 3/4/7, 5/6/8, and 9/11 load distinct full-slot clones from their
 > respective seed. Close the game before cloning. Never use an autosave,
 > checkpoint save, or a save carried forward from a failed or differently
-> hashed candidate as positive evidence.
+> build when comparing the result.
 
 | Case | Save point and action | Required observations |
 | --- | --- | --- |
@@ -148,6 +146,6 @@ claim.
 | Contact remains after leaving | `IsOutside` condition, community target/scope, `Deactivate` operation, or active save state from an older graph |
 | Meet succeeds but leave objective never appears | Connection order after `contact_done`, journal socket names, and pin-inactive node |
 | Quest finishes but contact remains | Root fact/journal completion bypassed child cleanup, or deactivation occurred after rather than before child output |
-| Quest restarts after completion | Completion fact write, root guard comparison/branch, or test save provenance |
-| Behavior changes only after reload | Active quest checkpoint, scene interruption state, community phase, journal state, and candidate hash |
+| Quest restarts after completion | Completion fact write, root guard comparison/branch, or test save history |
+| Behavior changes only after reload | Active quest checkpoint, scene interruption state, community phase, journal state, and installed build |
 | Start checkpoint completes the meeting | Root or child start graph invokes the inert Start `1` -> End `3` scene shell; remove that invocation from the start project |

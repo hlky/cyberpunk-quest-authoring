@@ -142,7 +142,7 @@ Before adding another child or parallel branch, verify:
 - persistent writes occur before their route becomes unreachable;
 - post-return parent work is distinguishable from active-child work;
 - cut remains explicitly unsupported or has a tested policy;
-- the exact version set, installed hashes, and clean-save provenance are
+- the exact version set, installed filenames, and clean starting save are
   recorded.
 
 Previous: [Prefab dependencies](prefab-dependencies.md). Next: [Complex

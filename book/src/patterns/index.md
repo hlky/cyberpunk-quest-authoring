@@ -22,6 +22,7 @@ world resources, journal paths, and cleanup to your own quest.
 | Wait in real time, game time, or for a time period | [Delays, facts, and persistence](../gates/delays-and-persistence.md) | Clock domain, wait semantics, durable facts, reload, and re-entry policy |
 | Meet or coordinate a named NPC | [NPC interaction and meetings](npc-interaction-and-meetings.md) | Community identity, readiness, acquisition, scene or interaction, and cleanup |
 | Monitor stealth, run combat, plant, or destroy | [Stealth, combat, and destruction](stealth-combat-and-destruction.md) | Parallel monitors, encounter owner, device/target capability, outcomes, and cleanup |
+| Show a custom optics overlay or an NPC-attached visual | [Custom effects](../effects/index.md) | Status records, entity spawner, effect timeline, particles, materials, and textures |
 | Release, escort, defend, carry, or place an NPC | [Rescue, escort, defend, and carry](rescue-escort-defend-and-carry.md) | Actor ownership, AI roles, ordered volumes, combat/carry state, and terminal cleanup |
 | Mount, ride in, drive, or steal a vehicle | [Mount, ride, drive, and theft](mount-ride-drive-and-theft.md) | Vehicle identity, seat roles, mount conditions, route volumes, and lifecycle policy |
 | Deliver, remove, chase with, or race a vehicle | [Vehicle delivery, cleanup, chase, and race](vehicle-delivery-cleanup-chase-race.md) | Vehicle state, trigger/speed observations, AI route or race systems, restrictions, and cleanup |

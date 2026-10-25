@@ -7,7 +7,6 @@ completion signals, placement rules, and cleanup obligations.
 
 | Record | Value |
 | --- | --- |
-| Guide review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 Windows GOG `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Focused `mq007` and `mq010` shapes | **Observed in vanilla** |
 | Lab 5 empty animation collections and scene-local PuppetAI branch | **Structurally validated** |
@@ -232,9 +231,8 @@ collections; every added event, asset slot, or workspot route is a new
 7. Inspect data/instance/node/debug joins after a WolvenKit round trip. Pack and
    list the archive before entering the game.
 
-A successful save, CR2W conversion, and pack promote the exact serialization
-only to **Structurally validated**. They do not prove animation playback,
-navigation, camera quality, workspot success, or cleanup.
+Reopen the cooked resource, then test animation playback, navigation, camera
+framing, workspot completion, and cleanup in game.
 
 ## Acceptance and lifecycle matrix
 
@@ -272,7 +270,7 @@ remain **Experimental** until the exact route passes.
 | Workspot works once but fails after reload | Saved scene/community/workspot state, retained actor role, stale instance identity |
 | Actor disappears at scene exit | Community cleanup/deactivation raced animation/workspot release |
 
-## Vanilla references and test scope
+## Vanilla references
 
 **Observed in vanilla:** the focused fields and paths in this guide were
 inspected in installed Cyberpunk `2.31a` resources:
@@ -285,20 +283,11 @@ inspected in installed Cyberpunk `2.31a` resources:
 These are citations. Extract focused references from your own installation;
 do not publish the vanilla CR2W resources or full serialized exports.
 
-**Structurally validated:** Lab 5 verifies that the v5 scene retains typed
-empty animation/workspot collections and its scene-local PuppetAI wrapper
-through WolvenKit `8.19.0`. It contains no custom cinematic animation or
-scene-local workspot route.
+Lab 5 supplies empty animation/workspot collections and a scene-local PuppetAI
+wrapper. Add and test your own animation or workspot route separately.
 
-**Runtime-proven:** no evidence record in this book proves a new mod-owned
-cinematic animation or scene-local workspot under the pinned stack. The legacy
-meeting hashes prove scene acquisition and one diagnostic lipsync route, not
-animation quality.
-
-**Experimental:** every new animation asset assignment, event combination,
-root-motion route, scene-local workspot, camera/look-at sequence,
-interruption/return policy, reload, and cleanup behavior is experimental until
-its own hash-bound acceptance record passes.
+New animation, camera, and workspot combinations are **Experimental** until
+tested through normal completion, interruption, return, and reload.
 
 Previous: [External VO, WEM, and
 lipsync](external-vo-wem-and-lipsync.md). Back to: [Scenes](index.md).

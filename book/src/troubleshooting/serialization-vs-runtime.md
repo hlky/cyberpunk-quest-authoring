@@ -79,7 +79,7 @@ save state according to the earliest observed failure.
 | --- | --- |
 | Binary round trip and semantic checks pass | **Structurally validated** |
 | Same shape exists in a cited vanilla resource | **Observed in vanilla** |
-| Exact hash-bound candidate passes the defined game route | **Runtime-proven** |
+| Exact unchanged candidate passes the defined game route | **Runtime-proven** |
 | Candidate is unplayed, reload cases are incomplete, or several variables changed | **Experimental** for those runtime claims |
 
 A non-crashing load alone does not prove journal presentation, cleanup,

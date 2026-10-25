@@ -7,7 +7,6 @@ editor.
 
 | Record | Value |
 | --- | --- |
-| Reference review date | 2026-08-09 |
 | Practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1–5 localization resources | **Structurally validated** |
 | In-game presentation | Verify with the relevant lab's UI, subtitle, audio, and reload checks |
@@ -144,22 +143,6 @@ There is no ArchiveXL registration for an embedded choice locStore. Adding a
 choice RUID to onscreens, subtitles, or vomaps cannot repair its descriptor or
 payload join.
 
-## What the legacy runtime evidence proves
-
-Two retained research candidates provide useful, narrower results:
-
-| Source and artifact | **Runtime-proven** bounded result | Missing version binding |
-| --- | --- | --- |
-| [Retained meeting candidate](evidence-version-matrix.md#retained-legacy-runtime-evidence) | A community-acquired meeting scene completed; all spoken subtitles and VO in that route resolved while a slot-0 lipsync diagnostic avoided the prior startup crash | Not one acceptance record binding the game executable, RED4ext, and this book's package |
-| [Retained complete-route candidate](evidence-version-matrix.md#retained-legacy-runtime-evidence) | The retained route displayed the intended onscreen quest text, all five meeting choice labels, spoken subtitles/VO, phone choices, and completion presentation | Legacy environment; not proof against the pinned Lab 1–5 payloads |
-
-The historical metadata mentions WolvenKit
-`8.17.4-nightly.2026-03-20`, ArchiveXL `1.27.0`, and TweakXL `1.11.3`, but not
-as one uniform run record, and it does not bind the game executable or
-RED4ext version. Reusing the same resource shape does not transfer either
-runtime result to a new archive. See the [evidence and version
-matrix](evidence-version-matrix.md).
-
 ## Symptom routing
 
 | Symptom | Inspect first |
@@ -173,6 +156,6 @@ matrix](evidence-version-matrix.md).
 | A rebuilt string behaves like an older candidate | Installed archive/control-file hashes and a save made before the journal or scene became active |
 
 Packing and a clean deserialize prove resource structure, not runtime lookup.
-Retain hashes for the archive and loose configuration, inspect registration
+Keep the archive and loose configuration together, inspect registration
 logs, and run journal tests from a pre-install save and scene tests from a save
 made before scene activation.

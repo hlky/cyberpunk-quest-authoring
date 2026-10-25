@@ -190,14 +190,10 @@ actor's lifecycle. Choose one explicit result:
 | Scene | Move to the required scene/workspot state, wait readiness, let the scene acquire, and clear only after its named exit |
 | Continue escort | Preserve role and transfer to the next route phase without deactivation |
 
-The preceding [sequential-route candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-advanced through all three gates but cleared the role at gate 3; the persistent
-actor then walked back toward her original AI spot as the hold began. That
-bounded failure is **Runtime-proven** for its own candidate. The
-[later candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-retained the role through the hold and cleared it only after
-successful defense. That corrected handoff is **Runtime-proven** for the later
-archive; it remains a design decision for another actor.
+Clearing the follower role at the final escort gate can let the actor return
+to its community AI spot during the next activity. Retain the role through a
+defend hold when the target must remain with V, then clear it during the
+chosen success or failure cleanup.
 
 ## Defend with an explicit success/failure race
 
@@ -402,12 +398,12 @@ condition is more precise but adds asset, role, and animation dependencies.
     interaction/movement owner has been authored and tested.
 11. Serialize and reopen every CR2W with WolvenKit `8.19.0`, verify handles,
     actor references, paths, and sockets, pack, extract-verify, and freeze the
-    installed hashes.
+    installed filenames.
 
 ## Clean-save and lifecycle matrix
 
 Use independent descendants of an untouched pre-quest save. Record the exact
-archive, framework files, versions, and slot provenance for every case.
+archive, framework files, versions, and save-slot history for every case.
 
 | Case | Required observation |
 | --- | --- |
@@ -429,9 +425,8 @@ archive, framework files, versions, and slot provenance for every case.
 | Completed reload | No release action, follower assignment, wave, timer, reward, marker, or cleanup replays |
 | Removal isolation | Removing the exact candidate does not masquerade save-backed state as current behavior |
 
-Carry, trunk, workspot, and generic failure/retry claims keep the
-**Experimental** label until their own rows pass. The historical GQT003
-success cannot promote them.
+Carry, trunk placement, workspot transitions, and failure/retry remain
+**Experimental**. Test each transition and its cleanup separately.
 
 ## Common failures
 

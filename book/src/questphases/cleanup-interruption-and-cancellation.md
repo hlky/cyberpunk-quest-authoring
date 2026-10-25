@@ -205,11 +205,9 @@ boundary matrix.
 `questCommunityTemplate_NodeType` requests `Deactivate`. Its outgoing graph
 edge proves command issuance, not immediate disappearance.
 
-**Observed in vanilla:** the cited `mq003_homeless.questphase` changes named
-community phases and deactivates community-backed actors later in its
-lifecycle. **Runtime-proven:** a
-[retained cleanup candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-showed surviving-actor deactivation after its exact leave-area boundary.
+**Observed in vanilla:** `mq003_homeless.questphase` changes named community
+phases and deactivates actors later in its lifecycle. Keep deactivation after
+the scene or gameplay owner has released those actors.
 
 Deactivate only after scenes, AI, workspots, combat, carry, and vehicle seats
 no longer need the actor. A timer alone is not a safe-release proof. Use a
@@ -217,12 +215,8 @@ measured outer boundary or another authoritative state, and test dead,
 unconscious, missing, combat-active, streamed-out, and reloaded variants when
 the design supports them.
 
-Early role release has a concrete warning. A
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-advanced through three escort gates, then cleared its follower role too early;
-the persistent target walked back toward the original AI spot as the hold
-began. That partial result is **Runtime-proven** for that archive only. It does
-not define a universal safe follower-clear command or timing rule.
+Keep a follower role active while the next activity still needs it. Clearing
+it early can return the actor to the community AI spot.
 
 See [Cleanup and character safety](../communities/cleanup-and-character-safety.md)
 for actor-specific acceptance cases.
@@ -268,15 +262,8 @@ The cited `sq031_porsche.questphase` is an **Observed in vanilla** context for
 vehicle record string and `enable`, `despawn`, and
 `makePlayerActiveVehicle`. It is not a generic world-entity despawner.
 
-Two retained candidates show why ownership matters:
-
-- one [retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-  had a separate theft vehicle disappear exactly at an intermediate
-  contact-vehicle cleanup handoff while both custom player-vehicle records had
-  live instances;
-- a [later candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-  removed that intermediate cleanup and completed its
-  exact six-stage route with a dedicated final player-vehicle cleanup.
+Avoid intermediate vehicle cleanup while later stages still need a live
+vehicle. Give the final owner an explicit cleanup route targeting that vehicle.
 
 Both observations are **Runtime-proven** only for their own archive and route.
 They do not prove the cause of the failure or a generic vehicle-cleanup recipe.
@@ -349,8 +336,8 @@ community phase, vehicle instance, or journal state retained in a save.
 10. Save, close, reopen, and serialize every affected CR2W. Review concrete
     node types, socket classes, edges, NodeRefs, controller/record values,
     action arrays, output names, and the order of all durable writes.
-11. Cook, pack, extract, and hash the exact mod-owned payload. Keep the archive
-    inventory with the acceptance record.
+11. Cook, pack and inspect the exact mod-owned payload. Keep the archive
+    inventory with your test notes.
 
 The existing labs demonstrate smaller ownership boundaries. Combining their
 shapes into a mixed scene/actor/device/vehicle teardown creates a new
@@ -361,7 +348,7 @@ results from its parts.
 
 Begin positive identity/topology testing from an untouched save created before
 the candidate was ever installed. Clone complete save slots only while the
-game is closed. Bind every row to the same archive hash unless the row is an
+game is closed. Bind every row to the same archive filename unless the row is an
 explicit upgrade/removal case.
 
 | Case | Required observation |

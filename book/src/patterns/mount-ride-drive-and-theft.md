@@ -10,14 +10,9 @@ Tested with Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`,
 RED4ext `1.30.0`, and redscript `0.5.31`. See [Tested
 versions](../reference/tested-versions.md).
 
-The reduced mount, paired-ride, destination, and theft candidates are
-**Structurally validated** at their recorded WolvenKit `8.17.4` research
-boundary. Comparable shapes are **Observed in vanilla** in the depot paths
-named below. The later hash-bound legacy candidate completed its exact
-contact-mount, Patch-passenger, contact-arrival, designated-theft,
-delivery-trigger, and final-cleanup route in game. That result does not promote
-a newly authored vehicle lifecycle—or its untested reload, interruption, and
-failure paths—to **Runtime-proven**.
+The node shapes below are **Observed in vanilla**. A new vehicle lifecycle
+remains **Experimental** until mount, passenger assignment, arrival, theft,
+delivery, cleanup, and reload have been tested together.
 
 ## Name the vehicle before building the graph
 
@@ -117,8 +112,7 @@ arrival-memory, unmount, cancellation, and reload semantics remain
 at the same boundary, use one waiting `questLogicalCondition` whose AND tree
 contains both current mount predicates, or immediately recheck both current
 states before success. Retain an adversarial test where the first actor
-unmounts before the second mounts; the ordinary passing GQT004 route does not
-prove that ordering.
+unmounts before the second mounts; test this ordering explicitly.
 
 The assignment payload needs four identities plus explicit operation policy:
 
@@ -133,10 +127,9 @@ The assignment payload needs four identities plus explicit operation policy:
 | `slotName` | a seat slot supported by the vehicle, such as a tested passenger slot |
 | `isInstant` | staging policy; the exact passing candidate used `1`, which is not a visible enter animation |
 
-The exact passing GQT004 assignment used `assign: 1`, `isPlayer: 0`,
-`isInstant: 1`, and `slotName: seat_front_right`. Those values prove that
-candidate's Patch-passenger operation; they are not universal seat or staging
-defaults.
+For a front-right passenger assignment, inspect whether the vehicle supports
+`seat_front_right`. Use `isInstant: 1` only when instant staging is intended;
+it does not request a visible entry animation.
 
 Assignment is not readiness. Wait for the contact community and vehicle to be
 streamed and spawned before issuing it, then retain the contact mount
@@ -199,15 +192,9 @@ Use distinct facts for “mounted,” “delivered,” and “cleaned” when la
 needs to diagnose partial progress. One overloaded completion fact makes
 reload repair ambiguous.
 
-**Runtime-proven:** a
-[retained vehicle candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-completed this exact sequence with its two named community vehicles: V mounted
-the contact vehicle, Patch was assigned as
-passenger, the contact vehicle reached its destination, V mounted the
-designated theft vehicle, that vehicle reached its delivery trigger, and the
-final player-vehicle cleanup ran. Its delivery child did not contain the
-separate exact-zero speed wait, and the result does not prove another vehicle,
-seat, owner, or cleanup operation.
+Test the complete sequence with the designated vehicles: V mounts the contact
+vehicle, the passenger takes the correct seat, the vehicle arrives, V mounts
+the theft vehicle, and that same vehicle reaches delivery before cleanup.
 
 ## Manual WolvenKit composition order
 

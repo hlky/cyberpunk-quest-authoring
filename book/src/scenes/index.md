@@ -60,14 +60,11 @@ Read these pages in order:
 12. [Test First Contact](lab-05-test.md) — clean-save playback, reload,
    streaming, handoff, and cleanup checks.
 
-The First Contact lab intentionally remains a one-line scene with an empty
-embedded `locStore` and no cinematic-animation or scene-workspot payload. The
-advanced pages explain how those additional native structures are owned and
-inspected; they do not silently add them to the lab or promote unexecuted
-runtime behavior. Combat, holocalls, and complex devices remain owned by their
-cookbook and system chapters.
+First Contact uses one spoken line, an empty embedded `locStore`, and no
+cinematic-animation or scene-workspot payload. Continue to the advanced pages
+when adding choices, animation, or workspots.
 
-## Vanilla research anchors
+## Vanilla references
 
 Use WolvenKit to extract these resources from your own installed archives and
 inspect only the fields needed for comparison:
@@ -100,6 +97,6 @@ vanilla questphase](../start-here/inspecting-vanilla.md).
 | Animation does not play or deforms the actor | Performer mapping, actor-visible animation-set slot, animation name, component/mask, and rig compatibility |
 | Scene workspot never succeeds | Actor reference, workspot data/instance IDs, transform, params, wrapper mapping, and output semantics |
 | Contact remains after completion | Leave condition, community `Deactivate`, and any durable community/device state; reaching `scnEndNode` is not cleanup |
-| A rebuild behaves like an older graph | Save provenance, active scene/checkpoint state, facts, and journal state before editing more resources |
+| A rebuild behaves like an older graph | Save history, active scene/checkpoint state, facts, and journal state before editing more resources |
 
 Next: [Scene resource anatomy](resource-anatomy.md).

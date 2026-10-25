@@ -91,6 +91,21 @@ NPC and V resources and prove both rows remain addressable after cooking. A
 shared slot can isolate a cardinality fault, but it leaves facial and gesture
 quality **Experimental** unless separately accepted.
 
+## Head deformation during speech
+
+If the actor looks normal before a line but stretches while speaking, inspect
+the selected facial clip before rebuilding the appearance. A clip can import
+and match the audio duration while lacking the skeletal reference its additive
+animation needs. Check facial keys, neutral skeletal channels, rig/track
+ordering, and the export from the cooked asset. See
+[Custom clip checks](../scenes/external-vo-wem-and-lipsync.md#check-the-selected-clip-and-its-skeletal-reference)
+for the fields to compare.
+
+If the defect is also present at idle, investigate appearance, skinning,
+parent bindings, and rig compatibility. Treat a faint surface mark separately
+from severe animated mesh deformation; screenshots alone may not distinguish
+hair or cyberware clipping from a rendering artifact.
+
 ## Reduce a crashing scene without losing causality
 
 Use staged candidates, one change each:
@@ -118,6 +133,7 @@ call a bypass “fixed”; it only locates a boundary.
 | Crash exactly when scene launches | Actor table, performer joins, resource-reference indexes, graph entry |
 | Slow approach works, fast approach fails | Readiness/order race and trigger cascade |
 | Dialogue plays but actor is invisible | Character root/default appearance and requested community appearance |
+| Head stretches during a line | Selected lipsync clip, additive skeletal reference, and rig/track ordering |
 | Scene exits immediately | Bypassed section or retained Start-to-End edge |
 | Scene never returns to quest | Scene End/named exit and questphase output CName mismatch |
 | No subtitle or audio but no crash | Continue with [Journal, localization, and audio](journal-localization-audio.md) |

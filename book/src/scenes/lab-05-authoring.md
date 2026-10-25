@@ -1,18 +1,10 @@
 # Author First Contact in WolvenKit
 
-This walkthrough expands the supplied Lab 5 start checkpoint into the exact
-root, contact child, and one-line scene in the completed checkpoint. The start
-project already contains every world, journal, localization, audio, and
-registration resource so each owner can be inspected before execution is
-added.
-
-You edit native resources in WolvenKit. The repository's generators,
-validators, and diagram renderer are documentation-author infrastructure, not
-reader prerequisites and not an alternate quest authoring system.
+Build First Contact from the supplied start project in WolvenKit. The completed
+checkpoint is available alongside it for comparing resources and connections.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
@@ -208,10 +200,8 @@ base\workspots\common\ground\
 generic__stand_ground_cigarette__smoke__01.workspot
 ```
 
-Do not substitute `generic__stand_ground__guard__02.workspot` while claiming
-the [retained candidate's](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-provenance. That later workspot belongs to a
-different candidate lineage.
+Keep the supplied cigarette workspot while building the lab. If you change it,
+check the new pose, approach, and scene acquisition at the contact location.
 
 ## 6. Audit geometry before behavior
 
@@ -276,10 +266,8 @@ Open the VO map. Its root data type is `locVoiceoverMap`; its one
 `femaleResPath` and `maleResPath`.
 
 The source WAV is mono 48 kHz signed 16-bit PCM and lasts about 2.595 seconds.
-The prebuilt WEM is mono 48 kHz and lasts about 2.598 seconds. Confirm the
-checkpoint's SHA-256 values against its provenance record before using the
-completed project. Do not rename only the file: the VO map is a depot-path
-lookup.
+The prebuilt WEM is mono 48 kHz and lasts about 2.598 seconds. Keep its filename
+and VO-map path consistent when copying it.
 
 ## 9. Preserve the scene's actor scaffold
 

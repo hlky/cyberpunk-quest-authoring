@@ -103,9 +103,6 @@ Make the result safe even if the listener survives:
    them.
 5. Save with both waits armed, reload, and exercise both arrival orders.
 
-The hash-bound quiet-install result proves its two tested routes. It does not
-promote the general rules above to a runtime cancellation contract.
-
 ## Produce stealth failure from a real system
 
 Choose a producer that corresponds to the player-facing rule. Examples
@@ -113,11 +110,9 @@ include a security system entering combat, a dedicated detection fact, an
 alarm device state, or a named actor's combat/senses condition. Do not set a
 failure fact merely because V entered the objective area.
 
-The retained quiet-install harness used a dangerous security area linked to
-the encounter community and observed
-`SecuritySystemControllerPS.IsSystemInCombat`. That specific controller,
-world link, and route are covered by its runtime record. It is not evidence
-that every community automatically informs every security system.
+For a security-driven failure, connect the security area to the encounter
+community and inspect `SecuritySystemControllerPS.IsSystemInCombat`. Test that
+the intended guards actually inform that security system.
 
 For each producer, document:
 
@@ -219,11 +214,8 @@ not count toward the current wave. If several waves share one community,
 prove exactly how inactive, dead, despawned, or future entries affect every
 community-scoped comparison.
 
-The single three-attacker survival wave in a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-is **Runtime-proven** only for its recorded activation, engagement, successful
-20-second route, and escort/defend handoff. General sequential waves remain
-**Experimental**.
+Sequential waves are **Experimental**. Test activation, engagement, resolution,
+cleanup, and the handoff between waves.
 
 Do not spawn the next wave before the previous wave's surviving actors have a
 defined owner. Decide whether survivors despawn, retreat, transfer into the
@@ -265,10 +257,9 @@ Converge only after writing different outcome facts. The global
 `open_world_cyberpsychos.questphase` owns umbrella progress; an individual
 sighting still owns its own spawn, fight, report, reward, and cleanup.
 
-These relationships are **Observed in vanilla**. A current generic custom
-cyberpsycho recipe is **Experimental** because no retained runtime record in
-this book proves reveal races, boss HUD behavior, lethal/nonlethal resolution,
-reload, reporting, and cleanup for one new hash-bound candidate.
+These relationships are **Observed in vanilla**. A custom cyberpsycho
+encounter remains **Experimental**; test reveal, boss HUD, lethal/nonlethal
+resolution, reload, reporting, and cleanup.
 
 ## Plant through a real device interaction
 
@@ -304,11 +295,7 @@ The decisive ownership is:
 | Consume item | `questAddRemoveItem_NodeTypeParams`, exact item `TweakDBID`, player reference, quantity/removal policy, and notification policy |
 | Persist result | Dedicated fact set only after disconnection and inventory mutation succeed |
 
-That ordering is **Runtime-proven** only for the
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-Sending the
-disconnect action before the player connects would be a different and
-unsupported route.
+Send the disconnect action only after the connection wait has passed.
 
 ### Quest-driven structural template
 
@@ -386,7 +373,7 @@ condition, cleanup, and save matrix are retained together.
     encounter cleanup edge erase a scene actor or escorted target owned by the
     next phase.
 11. Serialize and reopen every CR2W with WolvenKit `8.19.0`, inspect handles
-    and NodeRefs, pack, extract-verify, and freeze exact candidate hashes.
+    and NodeRefs, pack, extract-verify, and freeze exact installed build.
 
 ## Controlled acceptance matrix
 
@@ -409,7 +396,7 @@ condition, cleanup, and save matrix are retained together.
 
 For cyberpsycho work, add approach, reveal, arena, hostile acquisition, boss
 HUD, lethal, spared, evidence, report, reward, cleanup, and saves at each hold
-point. Structure alone cannot promote any of them.
+point. Test each transition in game.
 
 ## Common failures
 

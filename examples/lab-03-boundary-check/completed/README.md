@@ -22,24 +22,12 @@ Both map-pin manager nodes use `disablePreviousMappins: 0`. This isolated lab
 has no deliberate previous route to replace; the nodes' `Active` and
 `Inactive` sockets request the two states.
 
-## Evidence boundary
-
-- The six cooked resources and their CR2W-JSON review artifacts are
-  **Structurally validated** with WolvenKit 8.19.0.
-- The resource shapes and selected location derive from Ghostline research,
-  but no extracted vanilla resource is shipped.
-- The synchronized marker above and `runtime-acceptance.json` govern ArchiveXL
-  mounting, NodeRef resolution, streaming bounds, marker/GPS behavior, trigger
-  transitions, and save/reload behavior. Pending or failed evidence is
-  **Experimental**; only every required case passing is **Runtime-proven**.
-
-Visible UI can demonstrate objective and pin transitions. It cannot by itself
-prove which streaming sector resolved; bind runtime conclusions to candidate
-hashes and logs as well.
+The six resources are **Structurally validated** with WolvenKit `8.19.0`.
+Follow [Test Boundary Check](../../../book/src/world/lab-03-test.md) for
+streaming, trigger, marker, and reload checks.
 
 ## Save warning
 
 Start every clean run outside the reach volume on an untouched pre-Lab-3
 save. Preserve separate pre-reach, between-boundaries, and completed saves for
-reload tests. A console fact reset is diagnostic only and is not clean-save
-acceptance evidence.
+reload tests. A console fact reset is diagnostic only and is not a clean test.

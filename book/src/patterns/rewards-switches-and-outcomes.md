@@ -100,7 +100,7 @@ reload, and repeated entry are tested.
 
 ## Recipe: outcome-dependent text debrief
 
-The retained GQ002 ending uses common context, one outcome-specific opening,
+This ending uses common context, one outcome-specific opening,
 then a shared response group and completion chain:
 
 ```text
@@ -137,26 +137,18 @@ debrief objective Active
 | Payout | `questRewardManagerNodeDefinition` → `questGiveReward_NodeType` |
 | Durable completion | `questSetVar_NodeType`, exact value `1` |
 
-**Structurally validated:** the exact GQ002 debrief phase and matching
-final-polish build are kept in the
-[provenance record](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence).
-Its runtime section is
-the active next-test checklist and lists the expected branch, reply,
-completion, payout, and cleanup results. It does not retain those results.
-Both outcome-specific openings, both final response routes, payout, and
-no-lingering-state behavior remain **Experimental** for that candidate. Its
-serialized source reports WolvenKit `8.17.4`; this is not a pinned `8.19.0`
-round-trip result.
+The custom debrief is **Experimental**. Test both openings, both final
+responses, payout, completion, and cleanup, including a reload before payment.
 
 The exact retained phase uses a one-second realtime delay after activating its
 final message. That is a presentation-pacing choice, not proof that the player
 read the message. If acknowledgement is a design requirement, replace that
 boundary with the visited-state recipe below and test the changed graph. Do not
-silently relabel the GQ002 candidate as an acknowledged-message result.
+treat a pacing delay as player acknowledgement.
 
 ## Recipe: require acknowledgement before payout
 
-The retained GQ000 completion route places a visited gate before its common
+This completion route places a visited gate before its common
 ending:
 
 ```text
@@ -175,15 +167,8 @@ wait final debrief message visited
 | 4 | `questJournalNodeDefinition` → `questJournalQuestEntry_NodeType`, entered through `Succeeded` |
 | 5 | `questOutputNodeDefinition`, `type: Terminating` |
 
-**Runtime-proven:** a
-[retained candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-completed the GQ000 route with phone choices, completion presentation,
-and the expected reward after its final-message gate.
-
-That legacy result and the GQ002 outcome-specific debrief are separate
-artifacts. Combining GQ002-style outcome openings with GQ000-style visited
-completion is a strong design, but the combined graph is **Experimental**
-until one exact archive and save matrix prove it.
+When combining outcome-specific openings with a final-message visited gate,
+test every response path and reload before and after payment.
 
 ## Same reward versus branch-specific rewards
 
@@ -253,11 +238,9 @@ debrief or final success, decide who owns:
 - temporary inventory removal;
 - still-running waits, monitors, and losing choice routes.
 
-The GQ002 retained checklist requires no lingering objective, marker, actor, or
-interaction at completion. It is an acceptance target, not a result; that
-behavior remains **Experimental** for the named archive. Its graph assigns
-cleanup to earlier phases rather than implying quest success cleans those
-systems automatically.
+Before completing the quest, clear or transfer ownership of every active
+objective, marker, actor, and interaction. Quest success does not clean up
+those systems automatically.
 
 ## Manual authoring order
 
@@ -311,10 +294,3 @@ journal, community, or device persistence.
 | Quest succeeds before dialogue finishes | Activation or pacing signal was mistaken for acknowledgement/normal scene completion |
 | Quest completes with actors or marker present | Cleanup owner is absent or ordered after termination |
 | One old save routes differently | Saved outcome, journal, scene, community, or device state; return to the untouched baseline |
-
-Use the evidence labels literally: the exact GQ000 completion candidate is
-**Runtime-proven** for its bounded recorded result, the GQ002 debrief candidate
-is **Structurally validated** while its intended behavior remains
-**Experimental**, and the cited base-game node shapes are **Observed in
-vanilla**. New reward/debrief combinations remain **Experimental** until their
-exact acceptance records pass.

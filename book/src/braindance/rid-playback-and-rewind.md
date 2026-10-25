@@ -13,10 +13,9 @@ self-sufficient.
 > playback, camera, seek, rewind, facial/cyberware channels, and interruption
 > remain **Experimental**.
 
-Runtime promotion requires a clean retest on an untouched pre-install save.
-Scene playback, current playhead position, clue state, camera ownership, and
-quest facts are save-backed or session-backed observations; do not infer a
-clean replay from a save that has already entered the candidate braindance.
+Test from an untouched pre-install save. Scene playback, playhead position,
+clue state, camera ownership, and quest facts can survive in saves or the
+current session. A save already inside the braindance is not a clean replay.
 
 ## Two resources, three reference levels
 
@@ -126,7 +125,7 @@ scene:
 
 | Manifest field | Record |
 | --- | --- |
-| RID depot path and local SHA-256 | Binds evidence to bytes |
+| RID depot path | Locates the recorded animation resource |
 | RID root version | Prevents assumptions from another layout version |
 | Actor/camera signature | Names the intended RID slot |
 | Tag serial and animation serial | Proves RID-local identity |
@@ -275,7 +274,7 @@ the evidence.
    type, RID handlers, serial mappings, event references, durations, and
    cardinalities.
 10. Keep the result **Experimental** until all runtime cases pass on the exact
-    package hash.
+    installed build.
 
 This sequence localizes failures. It is not a claim that arbitrary compressed
 animation buffers can be authored correctly by filling WolvenKit fields by
@@ -294,7 +293,7 @@ not evidence that the native runtime contract passed.
       explicit.
 - [ ] The rewindable section contains no unexplained durable side effect.
 - [ ] WolvenKit binary-to-JSON-to-binary conversion succeeds.
-- [ ] Packed paths and hashes are retained before runtime testing.
+- [ ] The archive contains the intended depot paths before runtime testing.
 
 Passing this checklist supports **Structurally validated**, not
 **Runtime-proven**.
@@ -309,7 +308,7 @@ Passing this checklist supports **Structurally validated**, not
 | Body works but face or cyberware does not | Separate channel presence, joint/track cardinality, scene anim-set reference, actor component, and event binding |
 | Camera remains gameplay camera | RID camera serial/reference, event local ID, `cameraRef`, `activateAsGameCamera`, marker, and camera entity |
 | Forward playback works but seeking breaks | Event reconstruction at arbitrary time, side effects crossed by seek, interval coverage, and replayable state |
-| Binary round-trips but crashes or corrupts at runtime | Buffer layout/cardinality, resource/serial mapping, actor rig compatibility, and current package hash; serialization alone is not runtime proof |
+| Binary round-trips but crashes or corrupts at runtime | Buffer layout/cardinality, resource/serial mapping, actor rig compatibility, and installed build; serialization alone is not runtime proof |
 
 Next: [Clue layers, cleanup, and
 acceptance](clue-layers-cleanup-and-acceptance.md).

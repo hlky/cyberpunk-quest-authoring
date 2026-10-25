@@ -1,7 +1,6 @@
 # Tested versions
 
-The first release pins one exact baseline instead of promising compatibility
-with older tools.
+Use these versions for the lab procedures.
 
 | Component | Pinned version | Role |
 | --- | --- | --- |
@@ -11,7 +10,6 @@ with older tools.
 | RED4ext | `1.30.0` | Runtime required by ArchiveXL |
 | redscript | `0.5.31` | Runtime dependency declared by ArchiveXL 1.27.0, even though Labs 1–5 contain no `.reds` source |
 | TweakXL | `1.11.3` | Scope-specific pin for registering mod-owned `Character.*` and other TweakDB records in advanced guides; not required by Labs 1–5 |
-| mdBook | `0.5.4` | Documentation build only; not a reader authoring prerequisite |
 
 Version check date: **2026-08-09**. The ArchiveXL 1.27.0 compatibility contract
 requires Cyberpunk 2077 2.31, redscript 0.5.31 or later, and RED4ext 1.29.0 or
@@ -41,7 +39,3 @@ Release sources:
 - [RED4ext 1.30.0](https://github.com/WopsS/RED4ext/releases/tag/v1.30.0)
 - [redscript 0.5.31](https://github.com/jac3km4/redscript/releases/tag/v0.5.31)
 - [TweakXL 1.11.3](https://github.com/psiberx/cp2077-tweak-xl/releases/tag/v1.11.3)
-
-Every practical guide must also state its own test date, evidence status, and
-clean-save requirements. A repository-wide pin does not turn an untested
-resource arrangement into a runtime-proven one.

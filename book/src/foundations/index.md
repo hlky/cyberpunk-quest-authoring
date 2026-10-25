@@ -12,7 +12,7 @@ Read these chapters in order:
 3. [Identifier domains](identifier-domains.md)
 4. [Facts, journals, and saves](persistent-state.md)
 5. [Root and child questphases](phase-composition.md)
-6. [Lifecycle, cleanup, and evidence](lifecycle-and-evidence.md)
+6. [Lifecycle and cleanup](lifecycle-and-evidence.md)
 
 Afterward you should be able to answer:
 

@@ -99,15 +99,10 @@ components in `laptop_1.ent`. In the retained comparison, the active computer
 controller uses `1131680419258347532` and the scanning component uses
 `1131680419258347552`.
 
-The [retained laptop candidate](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-used the template-matched binding and exposed its exact authored file; that
-passing result is **Runtime-proven** for the archived
-package. An earlier development comparison reported a visible laptop with
-empty authored content after those IDs were replaced, but the current ledger
-does not bind that negative control to a separate retained archive. Treat the
-causal mismatch interpretation as **Experimental**, and prove it with paired
-candidates before relying on it. Do not copy SQ021's IDs into a different
-template and call it a reusable recipe.
+Match component bindings to the selected entity template. If the laptop is
+visible but its authored content is empty, inspect the instance package and
+component IDs before changing the document resources. SQ021’s IDs are specific
+to its template.
 
 Keep the separate inplace link separate as well. The laptop placement's
 `CookedPrefabData` points at the cited `.streamingsector_inplace`, while its
@@ -202,21 +197,14 @@ automatic controller rollback. Record the cancellation discriminator before
 any irreversible inventory or journal write, then route retry and terminal
 failure separately.
 
-The exact [retained route](../reference/evidence-version-matrix.md#retained-legacy-runtime-evidence)
-waited for a personal-link connection, performed
-its timed presentation, sent `QuestForceDisconnectPersonalLink`, consumed its
-item, and completed. That **Runtime-proven** route does not establish what an
-early disconnect, interrupted workspot, reload during connection, or a
-different controller should do.
+Test connection, timed presentation, forced disconnect, item consumption, and
+completion in order. Repeat with an early disconnect and reload while connected.
 
 ## Persistent state is part of the public identity
 
-A device NodeRef can key state that survives archive replacement. A retained
-development investigation reported that a save which had already streamed an
-earlier laptop package continued to expose old content after the authored
-arrays changed. That observation is **Runtime-proven** only for that saved
-identity/package history; it is not hash-bound evidence for the new experiment.
-Repacking under the same identity was not a clean comparison.
+A device NodeRef can identify persistent state saved by an earlier build.
+Changing authored content under the same identity may leave old content in
+that save. Retest from a save made before the device was installed or streamed.
 
 Treat these as independent saved surfaces:
 
@@ -284,7 +272,7 @@ the complete matrix below is retained for its exact archive.
 ## Clean-save and lifecycle matrix
 
 Start the identity/topology campaign from a save created before the device was
-ever installed or streamed. Record the archive SHA-256, project commit, exact
+ever installed or streamed. Record the installed archive name, project commit, exact
 save, versions, route, controller state, quest/journal state, and logs for every
 case.
 

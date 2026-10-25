@@ -38,7 +38,7 @@ the complete behavior.
 4. Read [Foundations](../foundations/index.md) for ownership, graph execution,
    identifiers, save-backed state, composition, and lifecycle.
 5. Build [Lab 1: First Signal](lab-01.md).
-6. [Install, observe, record, and reset](install-and-test.md) without confusing
+6. [Install, test, and reset](install-and-test.md) without confusing
    an old save with a clean test.
 
 Use the [tested version set](../reference/tested-versions.md) throughout. Newer

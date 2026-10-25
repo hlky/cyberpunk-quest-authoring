@@ -7,7 +7,6 @@ registration.
 
 | Record | Value |
 | --- | --- |
-| Reference review date | 2026-08-09 |
 | ArchiveXL syntax baseline | `1.27.0` |
 | Complete practical baseline | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Lab 1–5 registration files | **Structurally validated** |
@@ -15,6 +14,11 @@ registration.
 
 This reference covers only the roots exercised by Labs 1–5. It is not a
 catalog of every ArchiveXL feature.
+
+For custom effect spawners, use the separate
+[entity patching procedure](../effects/entity-spawners-and-status-effects.md#patch-the-actual-entity-templates).
+Its `resource.patch` mapping adds the spawner to the named entity templates;
+the `.effect`, particles, and textures remain referenced archive dependencies.
 
 ## Registered roots versus packed dependencies
 
@@ -194,7 +198,7 @@ replace it.
 5. Confirm subtitle registration names the map, streaming registration names
    the block, and neither indirect leaf is added as a root.
 6. Pack and list the archive's depot paths.
-7. Install the `.archive` and matching `.archive.xl`; retain hashes for both.
+7. Install the `.archive` and matching `.archive.xl`; keep the pair together.
 8. Start the game and inspect RED4ext and ArchiveXL logs for load,
    registration, merge, and missing-resource errors.
 9. Run from a save created before the relevant quest, journal, scene,

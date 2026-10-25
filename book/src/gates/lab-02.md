@@ -7,15 +7,11 @@ relying on an untested cancellation claim.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Structural validation date | 2026-08-09 |
 | Runtime test date | Not yet recorded |
 
-**Implementation status:** both supplied checkpoints are **Structurally
-validated** after all six mod-owned CR2W resources were cooked and serialized
-back with WolvenKit 8.19.0. Runtime timing, active-listener persistence, XOR
-emission, re-entry, and reload behavior remain governed by the pending
-acceptance record.
+**Structurally validated:** both checkpoints round-trip with WolvenKit
+`8.19.0`. Follow the test guide for timing, parallel waits, re-entry, and reload.
 
 Follow [Author Signal Race in WolvenKit](lab-02-authoring.md) to build the graph
 from the start checkpoint. Use [Test both Signal Race routes](lab-02-test.md)
@@ -113,9 +109,8 @@ uses `fileEntryIndex: 2` because `cqa002` is the containing
 
 ![Exact cqa002 Signal Race questphase](../images/lab-02/cqa002.questphase.svg)
 
-The figure is generated from the completed checkpoint's CR2W-JSON. Repository
-validation resolves every socket handle, requires exactly 21 nodes and 22
-edges, and rejects a stale source fingerprint or SVG.
+The completed graph has 21 nodes and 22 edges. Compare its IDs, socket names,
+and connections with your WolvenKit graph.
 
 | ID | RED node type | Decisive payload | Purpose |
 | ---: | --- | --- | --- |

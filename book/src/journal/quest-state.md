@@ -175,10 +175,8 @@ Legacy runtime evidence also showed that activating an onscreen entry made it
 available in the journal without producing an obvious item-acquisition
 notification. Do not generalize one entry family's presentation to another.
 
-For Lab 1, preserve the exact flags in the supplied checkpoint, but keep the
-presentation claims synchronized with the acceptance record that captures the
-objective text, notification behavior, tracking, and final Completed
-presentation.
+In Lab 1, preserve the supplied notification and tracking flags. Check the
+objective text, notifications, tracking, and final Completed presentation in game.
 
 ## Completion is an ordered lifecycle
 
@@ -224,10 +222,8 @@ Lab 1's acceptance matrix therefore separates:
 4. reinstalling the identical build over the completed save;
 5. replaying from the untouched pre-install save.
 
-Record the exact archive hash, loose ArchiveXL-file hash, save identity, and
-fresh logs with the observations. A fact reset can help isolate one branch,
-but it does not clear journal state and cannot promote a test to clean-save
-evidence.
+Keep the starting save and fresh logs with your observations. Resetting a
+fact does not clear the journal; repeat from the pre-mod save for a clean test.
 
 ## Failure checks
 

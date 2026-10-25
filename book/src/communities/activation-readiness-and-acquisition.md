@@ -49,12 +49,9 @@ questSpawnManagerNodeDefinition
 `CName` fields decide whether the command addresses a named entry/phase or the
 broader community operation used by the inspected vanilla pattern.
 
-In serialized data, `None` is a real authored `CName` token. It is not a
-missing JSON property, `null`, an empty string, or permission to omit the
-field. In the observed `mq003` whole-community action and retained legacy
-fixture, the broad form is conventionally described as `Activate None/None`.
-A focused action instead supplies the exact community-local entry and phase
-names.
+`None` is an authored `CName`, not a missing field, `null`, or an empty string.
+The whole-community action uses `Activate None/None`; a focused action names
+the community-local entry and phase.
 
 Choose scope deliberately:
 
@@ -209,10 +206,10 @@ tests for a quest that uses them.
 | Cases 3/4/7: distinct clones of `seed-pre-scene-outside-setup` | The exact saved child/contact state reacquires; Cases 3/4 start once and Case 7 survives its specified stream-away/return route |
 | Case 9: `seed-completed` clone | No duplicate scene start or accidentally reactivated contact |
 | Supplemental: generic fast travel, then approach | Same ordering; no start-time acquisition failure |
-| Supplemental: arbitrary pre-scene save point, then load | No stale activation or skipped readiness edge; result does not promote the frozen cases |
+| Supplemental: arbitrary pre-scene save point, then load | No stale activation or skipped readiness edge; no duplicate setup or skipped readiness |
 | Supplemental: complete alternate named outcomes | Each route writes the intended durable progression before cleanup |
 
-Record the installed archive SHA-256, starting save, approach route, game and
+Record the installed installed archive name, starting save, approach route, game and
 tool versions, exact first and last visible behavior, and any crash or log
 artifact. A successful CR2W round trip is **Structurally validated**; it is not
 a runtime result.

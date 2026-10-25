@@ -278,7 +278,7 @@ or actor topology, begin from an untouched pre-activation save.
 | Post-outcome save | Reload, leave the cleanup boundary, revisit | Outcome persists; actor releases once; no stale appearance or reactivation |
 | Completed save | Remove the mod archive and load only a disposable clone | Failure is isolated and understood; never use a valuable save for removal testing |
 
-Record the archive SHA-256, TweakXL file hash, complete version set, starting
+Record the installed archive name, TweakXL filename, complete version set, starting
 save, community/entry/appearance names, route, and first/last visible state for
 each run. Promote only the exact in-matrix artifact.
 
@@ -290,7 +290,7 @@ each run. Promote only the exact in-matrix artifact.
 | Appearance from another NPC appears | Record inheritance, `appearanceName`, entity default, community phase appearance, dirty-save history, and mapping-name collision |
 | Body, clothing, or hair is malformed | `baseEntityType`, rig/skin target, bind names, garment support, chunk masks, companion components, and frame compatibility |
 | Actor is unexpectedly hostile or armed | Record base, reaction preset, attitude/faction, action map, archetype, abilities, and equipment |
-| Actor works until stream-out or reload | Persistent identity, community lifecycle, entity dependencies, LOD/proxy data, and clean-save provenance |
+| Actor works until stream-out or reload | Persistent identity, community lifecycle, entity dependencies, LOD/proxy data, and clean starting save |
 | Scene has the actor but face/body animation fails | Rig and facial setup, scene performer binding, animsets, voice/lipsync resources, and whether the body frame matches the authored performance |
 | Package replaces a vanilla NPC globally | A game-owned CR2W was shipped or a shared vanilla record was mutated instead of adding mod-owned paths and records |
 

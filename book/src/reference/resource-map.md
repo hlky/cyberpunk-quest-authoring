@@ -5,12 +5,8 @@ Use this page to answer two questions before editing a graph:
 1. Which resource owns the missing definition or behavior?
 2. Which registration or native reference makes that owner reachable?
 
-The rows introduced by the completed Lab 1–5 projects are **Structurally
-validated** with WolvenKit `8.19.0`. Advanced rows inherit the narrower label
-and acceptance boundary of their linked chapter. Rows explicitly marked
-**Observed in vanilla** are research surfaces rather than supplied tutorial
-resources. This map adds no runtime promotion; each lab or advanced candidate's
-retained record governs its exact in-game claims.
+The Lab 1–5 resources are **Structurally validated** with WolvenKit `8.19.0`.
+Rows marked **Observed in vanilla** describe game resources to inspect yourself.
 
 ## Project and installation layers
 
@@ -168,6 +164,22 @@ This is the quickest lookup for “which file do I put in ArchiveXL?”
 | Mod-owned character record | Not through ArchiveXL; use the locally pinned TweakXL `1.11.3` route | Record `entityTemplatePath` reaches the archived `.ent` |
 | Mod-owned entity/appearance resource | Archived at a unique depot path; no root merge | Character record reaches `.ent`; entity appearance mapping reaches `.app` |
 | Vanilla workspot or animation set | No new registration in the taught route | AI spot or scene resource-reference path |
+
+## Custom visual effects
+
+| Resource or record | Owns | Reached through |
+| --- | --- | --- |
+| TweakDB status record | Duration and VFX/SFX requests | Item, quickhack, or other gameplay action |
+| `StatusEffectFX` record | Requested effect CName | Status record's `VFX` array |
+| `entEffectSpawnerComponent` / `entEffectDesc` | Effect-name lookup, timeline path, event placements | Component on the target entity; add with an ArchiveXL `resource.patch` when needed |
+| `.effect` / `worldEffect` | Particle/sound tracks, loop range, outro | Descriptor's `effect` reference |
+| `.particle` / `CParticleSystem` | Emitters, drawer, authored and compiled simulation | `effectTrackItemParticles.particleSystem` |
+| Local `CMaterialInstance` | Texture references, tint, opacity, blending | Emitter's `localMaterialInstance` |
+| `.xbm` textures | Color and mask pixels | Material's `Diffuse` and `AlphaMask` references |
+
+The VFX record name, effect CName, component name, and effect depot path are
+different identifiers. Follow [Custom effects](../effects/index.md) to connect
+them and test the screen and NPC variants separately.
 
 ## Save-state overlay
 

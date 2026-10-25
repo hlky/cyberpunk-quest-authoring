@@ -12,7 +12,6 @@ inherits the evidence label and version boundary stated by that chapter.
 
 | Term | Meaning | Continue with |
 | --- | --- | --- |
-| **Acceptance gate** | A retained, hash-bound test record that controls whether a bounded claim remains **Experimental** or can become **Runtime-proven**. It is a promotion mechanism, not a fifth evidence label. | [Lifecycle, cleanup, and evidence](../foundations/lifecycle-and-evidence.md) |
 | **Actor** | A scene role declared with `scnActorDef` or `scnPlayerActorDef`. Its `scnActorId` is scene-local and is not a performer ID, community ID, or TweakDB record. | [Actors and performers](../scenes/actors-and-performers.md) |
 | **AI spot** | A placed `worldAISpotNode` whose `AIActionSpot` refers to a workspot resource. Placement, world identity, workspot behavior, and actor selection have separate owners. | [Entries, phases, and AI spots](../communities/entries-phases-and-ai-spots.md) |
 | **Archive** | The packed `.archive` that carries CR2W resources and other archived payloads at depot paths. Its existence does not prove that a loose ArchiveXL registration file was installed. | [Resources and ownership](../foundations/resource-model.md) |
@@ -27,7 +26,7 @@ inherits the evidence label and version boundary stated by that chapter.
 | **Connection** | A `graphGraphConnectionDefinition` joining one source output socket to one destination input socket in a quest graph. Reciprocal handle references from both sockets still describe one edge. | [Graph execution](../foundations/graph-execution.md) |
 | **CR2W** | REDengine's typed resource container used by questphases, journals, scenes, world resources, and many referenced assets. A successful parse or save proves structure was accepted, not that external references resolve in game. | [Resources and ownership](../foundations/resource-model.md) |
 | **CR2W handle** | A serialization-local `HandleId` / `HandleRefId` relationship between objects in one CR2W object graph. It is not a quest node ID or NodeRef. | [Identifier domains](../foundations/identifier-domains.md) |
-| **CR2W-JSON** | WolvenKit's serialized review form for a CR2W resource. The book uses it for deterministic inspection and figures; readers author CR2W resources through WolvenKit rather than treating raw JSON editing as the beginner workflow. | [Exact graph contract](graph-contract.md) |
+| **CR2W-JSON** | WolvenKit's serialized review form for a CR2W resource. The book uses it for deterministic inspection and figures; readers author CR2W resources through WolvenKit rather than treating raw JSON editing as the beginner workflow. | [Reading graph diagrams](graph-contract.md) |
 | **Cut** | An explicit interruption route from a `CutSource` to one or more `CutDestination` sockets. The presence of cut sockets does not establish cleanup, rollback, re-entry, or propagation behavior. | [Parallel monitors and cancellation](../gates/monitors-and-cancellation.md) |
 
 ## D–L
@@ -96,7 +95,5 @@ Use the narrowest label supported by the retained evidence:
 | **Observed in vanilla** | The focused shape occurs in one or more cited game resources. It is a research precedent, not automatic proof that a new mod-owned arrangement works. |
 | **Experimental** | The investigation, resource contract, or required runtime acceptance remains incomplete. |
 
-One page can contain all four labels for different claims. Never promote a
-whole node family because one specific fixture passed, and never demote a
-focused vanilla observation merely because a new custom arrangement remains
-**Experimental**.
+Labels apply to the behavior beside them. A working first run does not
+establish interruption or reload behavior.

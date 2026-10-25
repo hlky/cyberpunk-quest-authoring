@@ -6,7 +6,6 @@ shipping CD Projekt RED's file.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Extraction target | Cyberpunk 2077 `2.31a` Windows archives |
 | Inspection tool | WolvenKit `8.19.0` |
 | Runtime test | Not applicable; read-only research procedure |

@@ -6,7 +6,6 @@ part of a quest installation.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | WolvenKit | `8.19.0` |
 | Runtime baseline | Cyberpunk 2077 `2.31a`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Runtime test date | Not yet recorded |

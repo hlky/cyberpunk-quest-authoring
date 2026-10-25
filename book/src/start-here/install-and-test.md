@@ -1,21 +1,18 @@
 # Install, test, and reset
 
-This procedure installs the completed Lab 1 checkpoint, captures structural
-and loader evidence, exercises a save-aware acceptance matrix, and returns to a
-known baseline without pretending that one fact reset cleans a save.
+Install Lab 1, check that First Signal appears and completes, then test reload
+and replay from separate saves. This guide works with either your authored
+start project or the supplied completed checkpoint.
 
 | Record | Value |
 | --- | --- |
-| Procedure review date | 2026-08-09 |
 | Target environment | Cyberpunk 2077 `2.31a`, WolvenKit `8.19.0`, ArchiveXL `1.27.0`, RED4ext `1.30.0`, redscript `0.5.31` |
 | Supplied resource status | **Structurally validated** |
 | In-game result | Record it while following the save matrix below |
 | Runtime test date | Not yet recorded |
 
-Expected behavior is not observed behavior. Do not change the runtime label or
-fill an acceptance result with `pass` until a person has run that exact case
-against the recorded archive, loose-file hashes, environment, and starting
-save.
+The expected results below remain **Experimental** until observed in game.
+Keep notes of what actually happens, including failures or cases you cannot run.
 
 ## Prepare an untouched save
 
@@ -41,6 +38,14 @@ state model behind this rule.
 
 ## Install the completed checkpoint
 
+If you just installed your authored start project, keep that installation and
+continue with the file and log checks below. Its archive is
+`CQA_Lab01_OneShot_Start.archive`; the loose registration file is still
+`CQA_Lab01_OneShot.archive.xl`. Use the `_Start` archive name wherever this
+guide names the completed archive, including removal.
+
+To test the supplied completed project instead:
+
 1. Exit the game completely.
 2. Download and extract the
    [completed Lab 1 checkpoint](../downloads/cqa-lab-01-completed.zip) into a
@@ -65,16 +70,8 @@ Verify these installed files exist:
 <Cyberpunk 2077>\archive\pc\mod\CQA_Lab01_OneShot.archive.xl
 ```
 
-Record a SHA-256 for each installed file. PowerShell can do this without
-another tool:
-
-```powershell
-(Get-FileHash -Algorithm SHA256 -LiteralPath "C:\Path\To\Cyberpunk 2077\archive\pc\mod\CQA_Lab01_OneShot.archive").Hash.ToLowerInvariant()
-(Get-FileHash -Algorithm SHA256 -LiteralPath "C:\Path\To\Cyberpunk 2077\archive\pc\mod\CQA_Lab01_OneShot.archive.xl").Hash.ToLowerInvariant()
-```
-
-Use your actual game path. A hash binds later observations to bytes; it does
-not prove those bytes are valid.
+Install only one checkpoint at a time. Before switching, close the game and
+remove the other checkpoint's archive so it cannot supply the same depot paths.
 
 ## Check startup and registration logs
 
@@ -104,15 +101,15 @@ framework evidence, not proof that the graph ran or the journal rendered.
 
 ## Run the save matrix
 
-Use separate manual save slots and record the installed hashes for every row.
+Use separate manual save slots for each state. Keep the installed build unchanged.
 
 | Case | Starting state | Expected observation | Required record |
 | --- | --- | --- | --- |
 | First load | Untouched pre-mod save | Quest and objective activate once; after about ten real-time seconds the objective and quest succeed | Start save identity, visible state/timing, logs |
 | Mid-flow reload | New save made while the objective is active | Reload reaches a defined, non-duplicated state rather than silently creating a second run | Save identity, state before/after reload, logs |
 | Completed reload | New save made after success | Root guard takes the already-complete route; no reactivation | Completion state before exit and after reload |
-| Reinstall same build | Completed save; identical archive and `.archive.xl` hashes reinstalled | Reinstalling bytes does not erase save-backed completion or reactivate the quest | Pre/post hashes and observed state |
-| Clean replay | Original untouched pre-mod save | The same first-run route remains reproducible | Original save identity, hashes, observations |
+| Reinstall same build | Completed save; the same archive and `.archive.xl` reinstalled | Reinstalling bytes does not erase save-backed completion or reactivate the quest | Installed filenames and observed state |
+| Clean replay | Original untouched pre-mod save | The same first-run route remains reproducible | Original save identity and observations |
 
 The player-facing oracle for the first and clean-replay cases is:
 
@@ -131,7 +128,7 @@ rounding it into a claimed exact runtime duration.
 
 If you cannot create a save during the short active window, record the
 mid-flow case as pending. Do not convert an unrun case into a pass and do not
-change the authored resource merely to make the evidence form easier to fill.
+change the delay merely to make this test easier to run.
 
 ## Reset safely between runs
 
@@ -143,12 +140,12 @@ There are three different resets:
 2. **Installation reset:** with the game closed, remove only
    `CQA_Lab01_OneShot.archive` and `CQA_Lab01_OneShot.archive.xl` from
    `<Cyberpunk 2077>\archive\pc\mod`. Preserve them with the test record first
-   if their hashes support a result. Do not delete the whole `mod` directory.
+   if you need to reproduce a problem. Do not delete the whole `mod` directory.
 3. **State reset:** load the preserved manual save that predates the first
    `cqa001` installation. Reinstall the intended build before the clean replay.
 
 For a controlled rebuild, close the game, clean project output, install once,
-record new hashes, and then load the untouched baseline. Changing source files,
+then load the untouched baseline. Changing source files,
 framework versions, installed bytes, and starting saves at the same time makes
 the result impossible to attribute.
 
